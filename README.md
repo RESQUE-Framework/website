@@ -1,6 +1,6 @@
 # RESQUE
 
-The **Research Quality Evaluation Scheme (RESQUE)** provides objective quality and impact indicators for three types of research outputs:
+The **Research Quality Evaluation (RESQUE)** framework provides recommendations for a responsible research assessment that does not rely on flawed metrics such as the journal impact factor or the h-index. It provides objective quality and impact indicators for three types of research outputs:
 (a) publications of empirical studies, (b) published data sets and (c) research software. It is primarily developed for the field of psychology, but might be easily transferred to neighbouring empirical scientific fields.
 
 In the spirit of [CoARA](https://coara.eu), it recognises diverse academic outputs, emphasizes quality over quantity, and combines qualitative peer review by responsible use of quantitative indicators. Its main intended use is to aid decisions in hiring and tenure committees.
@@ -32,7 +32,7 @@ Schönbrodt, F. D., Gärtner, A., Frank, M., Gollwitzer, M., Ihle, M., Mischkows
 
 ![](images/RESQUE_framework.png)
 
-The *specific rating scheme* is described in:
+The *specific RESQUE rating scheme* is described in:
 
 Gärtner, A., Leising, D., & Schönbrodt, F. D. (2022, November 25). Responsible Research Assessment II: A specific proposal for hiring and promotion in psychology. [https://doi.org/10.31234/osf.io/5yexm](https://doi.org/10.31234/osf.io/5yexm)
 
@@ -40,7 +40,7 @@ and
 
 Gärtner, A., Leising, D., & Schönbrodt, F. D. (2023, March 3). Empfehlungen zur Bewertung wissenschaftlicher Leistungen bei Berufungsverfahren in der Psychologie. [https://doi.org/10.31234/osf.io/3yjz7](https://doi.org/10.31234/osf.io/3yjz7)
 
-(Note: these publications refer to version 1.0 of RESQUE; as the rating scheme will be continuously updated based on community feedback and ongoing evaluation studies, some divergences to these publications will arise).
+(Note: these publications refer to version 1.0 of the RESQUE scheme; as the rating scheme will be continuously updated based on community feedback and ongoing evaluation studies, some divergences to these publications will arise).
 
 ### Rating sheets
 The rating sheets are provided as offline Excel files in the folder [/rating_sheets](/rating_sheets). It is one separate sheet for publications, data set, and research software, respectively. The goal is to make data entry for applicants and hiring committees as easy and frictionless as possible.

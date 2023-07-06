@@ -1,15 +1,17 @@
 # RESQUE
 
 The **Research Quality Evaluation Scheme (RESQUE)** provides quality and impact indicators for three types of research outputs:
-(a) Publications of empirical studies, (b) published data sets and (c) research software.
+(a) Publications of empirical studies, (b) published data sets and (c) research software. It is primarily developed for the field of psychology, but might be easily transferred to neighbouring empirical scientific fields.
+
+In the spirit of [CoARA](https://coara.eu), it recognises the diverse academic outputs, emphasizes quality over quantity, and combines qualitative peer review by responsible use of quantitative indicators. Its main intended use is to aid decisions in hiring and tenure committees.
 
 This repository is used for continuous development, versioning, and issue tracking.
 Stable releases are tagged here and are mirrored to a [project on OSF](https://osf.io/4wynr/wiki/home/).
 (The OSF project is intended to be a landing page for end-users not acquainted with Github).
 
-## Ressources
+## Resources
 
-## Publications
+### Publications
 
 The *general framework* of RESQUE is described in:
 
@@ -41,3 +43,8 @@ We provide R scripts that ...
 - (c) create summaries and profiles that can be used in hiring and tenure committees
 
 ## How to contribute
+
+- For minor updates and minor feature requests, please use the [issue tracker](https://github.com/nicebread/RESQUE/issues).
+- If you want to collaborate scientifically on the project, please contact one of the project maintainers ([Felix Schönbrodt](mailto:felix.schoenbrodt@psy.lmu.de); [Anne Gärtner](mailto:anne_gaertner@tu-dresden.de); [Daniel Leising](mailto:Daniel.Leising@tu-dresden.de)).
+
+

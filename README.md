@@ -9,6 +9,19 @@ This repository is used for continuous development, versioning, and issue tracki
 Stable releases are tagged here and are mirrored to a [project on OSF](https://osf.io/4wynr/wiki/home/).
 (The OSF project is intended to be a landing page for end-users not acquainted with Github).
 
+**Table of content:**
+
+- [RESQUE](#resque)
+  - [Resources](#resources)
+    - [Publications](#publications)
+    - [Rating sheets](#rating-sheets)
+    - [Coding manual](#coding-manual)
+    - [Analysis scripts for R](#analysis-scripts-for-r)
+  - [How to contribute](#how-to-contribute)
+  - [How to get started](#how-to-get-started)
+    - [...as hiring committees](#as-hiring-committees)
+    - [... as applicants](#-as-applicants)
+
 ## Resources
 
 ### Publications
@@ -29,10 +42,10 @@ Gärtner, A., Leising, D., & Schönbrodt, F. D. (2023, March 3). Empfehlungen zu
 
 (Note: these publications refer to version 1.0 of RESQUE; as the rating scheme will be continuously updated based on community feedback and ongoing evaluation studies, some divergences to these publications will arise).
 
-### The rating sheets
+### Rating sheets
 The rating sheets are provided as offline Excel files in the folder [/rating_sheets](/rating_sheets). It is one separate sheet for publications, data set, and research software, respectively. The goal is to make data entry for applicants and hiring committees as easy and frictionless as possible.
 
-### A coding manual
+### Coding manual
 The coding manual is a companion to the rating schemes and gives guidance on how to apply the ratings. It includes examples and a discussion of boundary cases.
 The goal of the coding manual is to increase interrater reliability, in particular when external raters apply the scheme to research outputs (in contrast to applicants rating their own research).
 
@@ -53,7 +66,7 @@ We provide R scripts that ...
 
 ## How to get started
 
-### As hiring committees
+### ...as hiring committees
 
 TODO
 
@@ -61,7 +74,7 @@ TODO
 - Instructions for applicants
 - How to aggregate the xlsx files
 
-### As applicants
+### ... as applicants
 
 TODO
 

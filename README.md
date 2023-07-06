@@ -17,6 +17,8 @@ The *general framework* of RESQUE is described in:
 
 Schönbrodt, F. D., Gärtner, A., Frank, M., Gollwitzer, M., Ihle, M., Mischkowski, D., … Leising, D. (2022, November 25). Responsible Research Assessment I: Implementing DORA for hiring and promotion in psychology. [https://doi.org/10.31234/osf.io/rgh5b](https://doi.org/10.31234/osf.io/rgh5b)
 
+
+
 The *specific rating scheme* is described in:
 
 Gärtner, A., Leising, D., & Schönbrodt, F. D. (2022, November 25). Responsible Research Assessment II: A specific proposal for hiring and promotion in psychology. [https://doi.org/10.31234/osf.io/5yexm](https://doi.org/10.31234/osf.io/5yexm)
@@ -31,14 +33,16 @@ Gärtner, A., Leising, D., & Schönbrodt, F. D. (2023, March 3). Empfehlungen zu
 The rating schemes are provided as offline Excel files. The goal is to make data entry for applicants and hiring committees as easy and frictionless as possible.
 
 ### A coding manual
-The coding manual is a companion to the rating schemes and gives guidance on how to apply the ratings, including examples, a discussion of boundary cases.
-The goal of the coding manual is to increase interrater reliability, in particular when external raters rate research outputs (in contrast to applicants rating their own research).
+The coding manual is a companion to the rating schemes and gives guidance on how to apply the ratings. It includes examples and a discussion of boundary cases.
+The goal of the coding manual is to increase interrater reliability, in particular when external raters apply the scheme to research outputs (in contrast to applicants rating their own research).
+
+Active development of the manual takes place in a [Google doc](https://docs.google.com/document/d/1jEFQ6Klpgc3uQQMKZDEfGmJLp1WSSVNjadTAHULLJk4/edit?usp=sharing); tagged releases are stored in /coding_manual.
 
 ### Analysis scripts for R
 We provide R scripts that ...
 
 - (a) read and aggregate multiple xlsx files with rating data
-- (b) enrich the data with other information sources (e.g. citation counts & normalized citation counts from [OpenAlex](https://openalex.org))
+- (b) enrich the data with other sources of information (e.g. citation counts & normalized citation counts from [OpenAlex](https://openalex.org))
 - (c) create summaries and profiles that can be used in hiring and tenure committees
 
 ## How to contribute
@@ -53,8 +57,12 @@ We provide R scripts that ...
 
 TODO
 
+- Show recommended paragraph in job ad
+- Instructions for applicants
+
 ### As applicants
 
 TODO
 
-
+- How to use the xlsx sheets
+- 

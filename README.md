@@ -1,4 +1,4 @@
-# RESQUE
+# RESQUE: The Research Quality Evaluation scheme for psychological research
 
 The **Research Quality Evaluation (RESQUE)** framework provides recommendations for a responsible research assessment that does not rely on flawed metrics such as the journal impact factor or the h-index. It provides objective quality and impact indicators for three types of research outputs:
 (a) publications of empirical studies, (b) published data sets and (c) research software. It is primarily developed for the field of psychology, but might be easily transferred to neighbouring empirical scientific fields.
@@ -11,10 +11,13 @@ Stable releases are tagged here and are mirrored to a [project on OSF](https://o
 
 **Table of content:**
 
-- [RESQUE](#resque)
-  - [Resources](#resources)
+- [RESQUE: The Research Quality Evaluation scheme for psychological research](#resque-the-research-quality-evaluation-scheme-for-psychological-research)
+  - [Publications and commentaries by the scientific community](#publications-and-commentaries-by-the-scientific-community)
     - [Publications](#publications)
-    - [Rating sheets](#rating-sheets)
+    - [Commentaries](#commentaries)
+  - [Resources](#resources)
+    - [Rating sheets (core set)](#rating-sheets-core-set)
+    - [Rating sheets (expansion packs)](#rating-sheets-expansion-packs)
     - [Coding manual](#coding-manual)
     - [Analysis scripts for R](#analysis-scripts-for-r)
   - [How to contribute](#how-to-contribute)
@@ -22,28 +25,63 @@ Stable releases are tagged here and are mirrored to a [project on OSF](https://o
     - [...as hiring committees](#as-hiring-committees)
     - [... as applicants](#-as-applicants)
 
-## Resources
+## Publications and commentaries by the scientific community
 
 ### Publications
 
 The *general framework* of RESQUE is described in:
 
-Schönbrodt, F. D., Gärtner, A., Frank, M., Gollwitzer, M., Ihle, M., Mischkowski, D., … Leising, D. (2022, November 25). Responsible Research Assessment I: Implementing DORA for hiring and promotion in psychology. [https://doi.org/10.31234/osf.io/rgh5b](https://doi.org/10.31234/osf.io/rgh5b)
+> [1] Schönbrodt, F. D., Gärtner, A., Frank, M., Gollwitzer, M., Ihle, M., Mischkowski, D., … Leising, D. (2022, November 25). Responsible Research Assessment I: Implementing DORA for hiring and promotion in psychology. [https://doi.org/10.31234/osf.io/rgh5b](https://doi.org/10.31234/osf.io/rgh5b)
 
 ![](images/RESQUE_framework.png)
 
 The *specific RESQUE rating scheme* is described in:
 
-Gärtner, A., Leising, D., & Schönbrodt, F. D. (2022, November 25). Responsible Research Assessment II: A specific proposal for hiring and promotion in psychology. [https://doi.org/10.31234/osf.io/5yexm](https://doi.org/10.31234/osf.io/5yexm)
+> [2] Gärtner, A., Leising, D., & Schönbrodt, F. D. (2022, November 25). Responsible Research Assessment II: A specific proposal for hiring and promotion in psychology. [https://doi.org/10.31234/osf.io/5yexm](https://doi.org/10.31234/osf.io/5yexm)
 
 and
 
-Gärtner, A., Leising, D., & Schönbrodt, F. D. (2023, March 3). Empfehlungen zur Bewertung wissenschaftlicher Leistungen bei Berufungsverfahren in der Psychologie. [https://doi.org/10.31234/osf.io/3yjz7](https://doi.org/10.31234/osf.io/3yjz7)
+> [3] ![](https://commons.wikimedia.org/wiki/Category:Open_access_logos_and_banners#/media/File:Open_Access_logo_PLoS_transparent.svg) Gärtner, A., Leising, D., & Schönbrodt, F. D. (2023). Empfehlungen zur Bewertung wissenschaftlicher Leistungen bei Berufungsverfahren in der Psychologie. Psychologische Rundschau, 74(3), 166–174. [https://doi.org/10.1026/0033-3042/a000630](https://doi.org/10.1026/0033-3042/a000630)
 
-(Note: these publications refer to version 1.0 of the RESQUE scheme; as the rating scheme will be continuously updated based on community feedback and ongoing evaluation studies, some divergences to these publications will arise).
+(Note: these publications refer to version 0.1 of the RESQUE scheme; as the rating scheme will be continuously updated based on community feedback and ongoing evaluation studies, some divergences to these publications will arise).
 
-### Rating sheets
-The rating sheets are provided as offline Excel files in the folder [/rating_sheets](/rating_sheets). It is one separate sheet for publications, data set, and research software, respectively. The goal is to make data entry for applicants and hiring committees as easy and frictionless as possible.
+### Commentaries
+
+You can find 15 comments to our taget paper [1] published in Meta-Psychology:
+
+TODO
+
+Furthermore, there are 6 additional commentaries (in German) published in the [Psychologische Rundschau](https://econtent.hogrefe.com/toc/pru/74/3):
+
+- Lange, J., Degner, J., Gleibs, I. H., & Jonas, E. (2023). Fachgruppe Sozialpsychologie: Faires und valides Shortlisting in Phase 1. Psychologische Rundschau, 74(3), 187–190. [https://doi.org/10.1026/0033-3042/a000641](https://doi.org/10.1026/0033-3042/a000641)
+- Niessen, C., Melchers, K. G., Ohly, S., Fay, D., Handke, L., & Kern, U. M. (2023). Fachgruppe Arbeits-, Organisations- und Witschaftspsychologie: Ein Plädoyer für breit gewählte und anforderungsbezogene Leistungsindikatoren. Psychologische Rundschau, 74(3), 180–182. [https://doi.org/10.1026/0033-3042/a000637](https://doi.org/10.1026/0033-3042/a000637)
+- Ortner, T., Kretzschmar, A., Rauthmann, J. F., & Tibubos, A. N. (2023). Fachgruppe Differentielle Psychologie, Persönlichkeitspsychologie und psychologische Diagnostik: Berufungsverfahren unter einer diagnostischen Perspektive fundiert durchführen. Psychologische Rundschau, 74(3), 182–184. [https://doi.org/10.1026/0033-3042/a000638](https://doi.org/10.1026/0033-3042/a000638)
+- Schwartz, B., Szota, K., Schmitz, J., Lueken, U., & Lincoln, T. (2023). Fachgruppe Klinische Psychologie und Psychotherapie: Mehr Differenzierung nach Fachgebieten. Psychologische Rundschau, 74(3), 184–185. [https://doi.org/10.1026/0033-3042/a000639](https://doi.org/10.1026/0033-3042/a000639)
+- Sparfeldt, J. R., Spörer, N., Greiff, S., & Schneider, R. (2023). Fachgruppe Pädagogische Psychologie: Ein Plädoyer für valide‍(re) Bewertungen der wissenschaftlichen Leistungen in Berufungsverfahren. Psychologische Rundschau, 74(3), 185–187. [https://doi.org/10.1026/0033-3042/a000640](https://doi.org/10.1026/0033-3042/a000640)
+- Stroebe, W., & Strack, F. (2023). Kommentare zu Gärtner, A. et al. (2023). Empfehlungen zur Bewertung wissenschaftlicher Leistungen bei Berufungsverfahren in der Psychologie: Zweierlei Maß? Warum manche Psychologen den Gebrauch von quantitativen Indikatoren der Forschungsqualität ablehnen. Psychologische Rundschau, 74(3), 175–179. [https://doi.org/10.1026/0033-3042/a000631](https://doi.org/10.1026/0033-3042/a000631)
+
+
+## Resources
+
+### Rating sheets (core set)
+The rating sheets are provided as offline Excel files in the folder [/rating_sheets](/rating_sheets). The goal is to make data entry for applicants and hiring committees as easy and frictionless as possible.
+
+There are three separate sheets for ...
+
+- Publications (RESQUE-Text)
+- Data sets (RESQUE-Data)
+- Research software (RESQUE-Software)
+
+The rating sheets are versioned, and all indicators from the core set start with the prefix "Q". The current development version is in a Google sheet.
+
+### Rating sheets (expansion packs)
+
+We envision that subfields create expansion packs with specific indicators that relevant for them.
+
+Here is a minimal technical specification for expansion packs, in order to increase interoperability:
+
+- Use xlsx files
+- Each indicator gets a unique ID, starting with a prefix specific to the expansion pack (e.g., "CP1", "CP2" for the "Clinical Psychology" expansion pack).
 
 ### Coding manual
 The coding manual is a companion to the rating schemes and gives guidance on how to apply the ratings. It includes examples and a discussion of boundary cases.
@@ -54,9 +92,11 @@ Active development of the manual takes place in a [Google doc](https://docs.goog
 ### Analysis scripts for R
 We provide R scripts that ...
 
-- (a) read and aggregate multiple xlsx files with rating data
-- (b) enrich the data with other sources of information (e.g. citation counts & normalized citation counts from [OpenAlex](https://openalex.org))
-- (c) create summaries and profiles that can be used in hiring and tenure committees
+1. read and aggregate multiple xlsx files with rating data
+2. enrich the data with other sources of information (e.g. citation counts & normalized citation counts from [OpenAlex](https://openalex.org))
+3. tenure committees
+
+Make sure that the version of the R script matches the version of the rating sheet - otherwise it will probably not work.
 
 ## How to contribute
 

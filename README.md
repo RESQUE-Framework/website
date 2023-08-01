@@ -69,7 +69,7 @@ Versioned releases of the rating sheets are provided as offline Excel files in t
 There are three separate sheets for ...
 
 - Publications, preprints, book chapters, etc. (**RESQUE-Text**): [Current release (v0.1)](/rating_sheets/RESQUE_text_v0_1.xlsx) - [Development version](https://docs.google.com/spreadsheets/d/1SUhwiZnhFCjy5COga3utGO15KT2wD4Pk/edit?usp=sharing&ouid=108982640291853577145&rtpof=true&sd=true)
-- Data sets (**RESQUE-Data**): [Current release (v0.1)](/rating_sheets/RESQUE_data_v0_1.xlsx) - Development version
+- Data sets (**RESQUE-Data**): [Current release (v0.1)](/rating_sheets/RESQUE_data-sets_v0_1.xlsx) - Development version
 - Research software (**RESQUE-Software**): [Current release (v0.1)](/rating_sheets/RESQUE_software_v0_1.xlsx) - Development version
 
 The rating sheets are versioned, and all indicators from the core set start with the prefix "Q". The current development version is in a Google sheet.
@@ -77,7 +77,7 @@ The rating sheets are versioned, and all indicators from the core set start with
 ### ☑️ Rating sheets (expansion packs)
 
 
-One purpose of this central landing page is to collect disciplinary **expansion packs (EPs)** with specific indicators that relevant for a subfield. Here is a minimal technical specification for expansion packs, in order to increase interoperability:
+One purpose of this central landing page is to collect disciplinary **expansion packs (EPs)** with specific indicators that are relevant for a subfield. Here is a minimal technical specification for expansion packs, in order to increase interoperability:
 
 - Use xlsx files, comparable to the RESQUE core sheets
 - Each indicator gets a unique ID, starting with a prefix specific to the expansion pack (e.g., "CP1", "CP2" for the "Clinical Psychology" expansion pack).

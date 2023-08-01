@@ -98,6 +98,7 @@ We provide R scripts that ...
 
 Make sure that the version of the R script matches the version of the rating sheet - otherwise it will probably not work.
 
+
 ## How to contribute
 
 - For minor updates and minor feature requests, please use the [issue tracker](https://github.com/nicebread/RESQUE/issues).

@@ -16,11 +16,11 @@ Stable releases are tagged here and are mirrored to a [project on OSF](https://o
     - [Publications](#publications)
     - [Commentaries](#commentaries)
   - [Resources](#resources)
-    - [Rating sheets (core set)](#rating-sheets-core-set)
-    - [☑️ Rating sheets (expansion packs)](#️-rating-sheets-expansion-packs)
+    - [☑️ Rating sheets (core set)](#️-rating-sheets-core-set)
+    - [☑︎ Rating sheets (expansion packs)](#︎-rating-sheets-expansion-packs)
     - [📔 Coding manual](#-coding-manual)
     - [🧑‍💻 Analysis scripts for R](#-analysis-scripts-for-r)
-  - [🚀 How to contribute / Expansion packs](#-how-to-contribute--expansion-packs)
+  - [🚀 How to contribute](#-how-to-contribute)
   - [How to get started](#how-to-get-started)
     - [...as hiring committees](#as-hiring-committees)
     - [... as applicants](#-as-applicants)
@@ -63,7 +63,7 @@ Furthermore, there are 6 additional commentaries (in German) published in the [P
 
 ## Resources
 
-### Rating sheets (core set)
+### ☑️ Rating sheets (core set)
 Versioned releases of the rating sheets are provided as offline Excel files in the folder [/rating_sheets](/rating_sheets). The goal is to make data entry for applicants and hiring committees as easy and frictionless as possible.
 
 There are three separate sheets for ...
@@ -72,17 +72,16 @@ There are three separate sheets for ...
 - Data sets (**RESQUE-Data**): [Current release (v0.1)](/rating_sheets/RESQUE_data-sets_v0_1.xlsx) - Development version
 - Research software (**RESQUE-Software**): [Current release (v0.1)](/rating_sheets/RESQUE_software_v0_1.xlsx) - Development version
 
-The rating sheets are versioned, and all indicators from the core set start with the prefix "Q". The current development version is in a Google sheet.
+The rating sheets are versioned, and all indicators from the core set start with the prefix "Q".
 
-### ☑️ Rating sheets (expansion packs)
-
+### ☑︎ Rating sheets (expansion packs)
 
 One purpose of this central landing page is to collect disciplinary **expansion packs (EPs)** with specific indicators that are relevant for a subfield. Here is a minimal technical specification for expansion packs, in order to increase interoperability:
 
 - Use xlsx files, comparable to the RESQUE core sheets
 - Each indicator gets a unique ID, starting with a prefix specific to the expansion pack (e.g., "CP1", "CP2" for the "Clinical Psychology" expansion pack).
 
-Such EPs ideally are contributed from a legit academic community and stem from a consensus process.
+Such EPs ideally are contributed from a legit academic community and stem from a consensus process. Before including EPs in this project, we do a minimal review for suitability.
 
 *Currently, there are no expansion packs available.*
 
@@ -95,14 +94,14 @@ Active development of the manual takes place in a [Google doc](https://docs.goog
 ### 🧑‍💻 Analysis scripts for R
 We provide R scripts that ...
 
-1. read and aggregate multiple xlsx files with rating data
+1. load and aggregate multiple xlsx files with rating data
 2. enrich the data with other sources of information (e.g. citation counts & normalized citation counts from [OpenAlex](https://openalex.org))
-3. tenure committees
+3. provide candidate profiles for tenure committees
 
-Make sure that the version of the R script matches the version of the rating sheet - otherwise it will probably not work.
+Make sure that the version of the R scripts match the version of the rating sheets - otherwise they will probably not work.
 
 
-## 🚀 How to contribute / Expansion packs
+## 🚀 How to contribute
 
 For minor updates and minor feature requests, please use the [issue tracker](https://github.com/nicebread/RESQUE/issues).
 
@@ -114,6 +113,7 @@ If you want to collaborate scientifically on the project, please contact one of 
 
 TODO
 
+- Explicate the "menu approach"
 - Show recommended paragraph in job ad
 - Instructions for applicants
 - How to aggregate the xlsx files

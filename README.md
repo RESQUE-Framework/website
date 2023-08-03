@@ -23,6 +23,7 @@ Stable releases are tagged here and are mirrored to a [project on OSF](https://o
   - [🚀 How to contribute](#-how-to-contribute)
   - [How to get started](#how-to-get-started)
     - [...as hiring committees](#as-hiring-committees)
+    - [...as tenure track committees](#as-tenure-track-committees)
     - [... as applicants](#-as-applicants)
 
 ## Publications and commentaries by the scientific community
@@ -35,7 +36,7 @@ The *general framework* of RESQUE is described in:
 
 ![](images/RESQUE_framework.png)
 
-The *specific RESQUE rating scheme* is described in:
+The *specific RESQUE rating schemes* are described in:
 
 > [2] ![](images/OA_icon.png) Gärtner, A., Leising, D., & Schönbrodt, F. D. (2022, November 25). Responsible Research Assessment II: A specific proposal for hiring and promotion in psychology. [https://doi.org/10.31234/osf.io/5yexm](https://doi.org/10.31234/osf.io/5yexm)
 
@@ -68,7 +69,7 @@ Versioned releases of the rating sheets are provided as offline Excel files in t
 
 There are three separate sheets for ...
 
-- Publications, preprints, book chapters, etc. (**RESQUE-Text**): [Current release (v0.1)](/rating_sheets/RESQUE_text_v0_1.xlsx) - [Development version](https://docs.google.com/spreadsheets/d/1SUhwiZnhFCjy5COga3utGO15KT2wD4Pk/edit?usp=sharing&ouid=108982640291853577145&rtpof=true&sd=true)
+- Publications, preprints, book chapters, etc. (**RESQUE-Pubs**): [Current release (v0.1)](/rating_sheets/RESQUE_pubs_v0_1.xlsx) - [Development version](https://docs.google.com/spreadsheets/d/1SUhwiZnhFCjy5COga3utGO15KT2wD4Pk/edit?usp=sharing&ouid=108982640291853577145&rtpof=true&sd=true)
 - Data sets (**RESQUE-Data**): [Current release (v0.1)](/rating_sheets/RESQUE_data-sets_v0_1.xlsx) - Development version
 - Research software (**RESQUE-Software**): [Current release (v0.1)](/rating_sheets/RESQUE_software_v0_1.xlsx) - Development version
 
@@ -115,8 +116,13 @@ TODO
 
 - Explicate the "menu approach"
 - Show recommended paragraph in job ad
+- cf. Lange et al.: Commit to weights and indicator sets when publishing the job ad; we recommend to publish the weights and indicators along with the ad.
 - Instructions for applicants
 - How to aggregate the xlsx files
+
+### ...as tenure track committees
+
+TODO
 
 ### ... as applicants
 

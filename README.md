@@ -20,11 +20,11 @@ Stable releases are tagged here and are mirrored to a [project on OSF](https://o
     - [☑︎ Rating sheets (expansion packs)](#︎-rating-sheets-expansion-packs)
     - [📔 Coding manual](#-coding-manual)
     - [🧑‍💻 Analysis scripts for R](#-analysis-scripts-for-r)
-  - [🚀 How to contribute](#-how-to-contribute)
   - [How to get started](#how-to-get-started)
     - [...as hiring committees](#as-hiring-committees)
     - [...as tenure track committees](#as-tenure-track-committees)
     - [... as applicants](#-as-applicants)
+  - [🚀 How to contribute](#-how-to-contribute)
 
 ## Publications and commentaries by the scientific community
 
@@ -73,7 +73,7 @@ There are three separate sheets for ...
 - Data sets (**RESQUE-Data**): [Current release (v0.1)](/rating_sheets/RESQUE_data-sets_v0_1.xlsx) - Development version
 - Research software (**RESQUE-Software**): [Current release (v0.1)](/rating_sheets/RESQUE_software_v0_1.xlsx) - Development version
 
-The rating sheets are versioned, and all indicators from the core set start with the prefix "Q".
+The rating sheets are versioned. Indicators from the core set start with the prefix "P" (Publications), "D" (Data) or "S" (Software).
 
 ### ☑︎ Rating sheets (expansion packs)
 
@@ -102,12 +102,6 @@ We provide R scripts that ...
 Make sure that the version of the R scripts match the version of the rating sheets - otherwise they will probably not work.
 
 
-## 🚀 How to contribute
-
-For minor updates and minor feature requests, please use the [issue tracker](https://github.com/nicebread/RESQUE/issues).
-
-If you want to collaborate scientifically on the project, please contact one of the project maintainers ([Felix Schönbrodt](mailto:felix.schoenbrodt@psy.lmu.de); [Anne Gärtner](mailto:anne_gaertner@tu-dresden.de); [Daniel Leising](mailto:Daniel.Leising@tu-dresden.de)).
-
 ## How to get started
 
 ### ...as hiring committees
@@ -130,3 +124,19 @@ TODO
 
 - How to use the xlsx sheets
 - 
+
+
+## 🚀 How to contribute
+
+For minor updates and minor feature requests, please use the [issue tracker](https://github.com/nicebread/RESQUE/issues).
+
+If you want to collaborate scientifically on the project, please contact one of the project maintainers ([Felix Schönbrodt](mailto:felix.schoenbrodt@psy.lmu.de); [Anne Gärtner](mailto:anne_gaertner@tu-dresden.de); [Daniel Leising](mailto:Daniel.Leising@tu-dresden.de)).
+
+This project is a community effort with many contributors, including:
+
+- Maximilian Ernst
+- Aaron Peikert
+- TODO add all others
+
+... all who wrote [comments](#commentaries) with many suggestions
+... and many more who gave extended feedback on the proposal! 🙏

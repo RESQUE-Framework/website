@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+body {
+    font-family: "Montserrat", sans-serif;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    color: #333333;
+}
+
+#main {
+    display: flex;
+    flex-direction: row;
+}
+
+#menu {
+    width: 30%;
+    position: fixed; /* Safari */
+    top: 0;
+    margin-left: 2.5%;
+    margin-top: 3rem;
+}
+
+.card {
+    border-radius: 8px;
+    box-shadow: 0 0 8px #ccc;
+    width: 100%;
+    padding: 16px;
+    margin: 1rem;
+}
+
+#menu h1 {
+    margin: 0;
+}
+
+#formview {
+    width: 50%;
+    margin-left: 40%;
+    margin-top: 5rem;
+}
+
+input[type=text], input[type=number], select, .textbox {
+    display: block;
+    border-radius: 4px;
+    border: 1px solid lightgray;
+    padding: 0.25rem 0.5rem;
+    margin-bottom: 1.5rem;
+    width: 100%;
+    font-size: large;
+    box-sizing: border-box;
+}
+
+label {
+    display: block;
+    margin-right: 0.5rem;
+}
+form {
+    margin-bottom: 2rem;
+}
+
+.top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+button {
+    font-size: 12pt;
+    background-color: #efefef;
+    border-radius: 4px;
+    border: none;
+    padding: 0.25rem 0.5rem;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: #dfdfdf;
+}
+
+.title {
+    margin-bottom: 0.25rem;
+    font-weight: bold;
+}
+
+.alignment-horizontal {
+    display: flex;
+    flex-direction: row;
+}
+
+.textbox-container {
+    position: relative;
+}
+
+.wordcount {
+    position: absolute;
+    right: 0.25rem;
+    bottom: 0.25rem;
+    background-color: #efefef;
+    color: gray;
+    border-radius: 99px;
+    padding: 0.25rem 0.5rem;
+    font-size: 10pt;
+}
+
+.wordcount-max {
+    right: 0;
+    bottom: -2rem;
+}
+
+.wordcount-ok {
+}
+
+.wordcount-warning {
+    color: darkred;
+    font-weight: bold;
+}
+
+#tabs {
+    margin-bottom: 2rem;
+}
+
+.tab {
+    background-color: #efefef;
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+}
+
+.tab:hover {
+    background-color: #dfdfdf;
+}
+
+.tab.selected {
+    background-color: #333333;
+    color: #efefef;
+}

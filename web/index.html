@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RESQUE</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <div id="main">
+        <div id="menu">
+                <div class="card">
+                    <div class="top">
+                        <h1>RESQUE</h1>
+                        <div id="actions">
+                            <button onclick="reset()">Reset</button>
+                            <button onclick="triggerLoad()">Load</button>
+                            <button onclick="exp()">Export</button>
+                        </div>
+                    </div>
+                    <p id="slot-info"></p>
+                    <div id="tabs"></div>
+                    <div>
+                        <b>Add</b>
+                        <button onclick="newTab('pub')">publication</button>
+                        <button onclick="newTab('software')">software</button>
+                        <button onclick="newTab('data')">data set</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <div id="score">
+                        <b>Score</b>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="formview"></div>
+    </div>
+    <input id="fileInput" type="file" accept="text/json" style="visibility: hidden" onchange="handleLoad(this.files)"/>
+    <a id="download" style="visibility: hidden"></a>
+</body>
+
+<script src="resque.js"></script>
+
+<script>
+    let elems = [];
+    let tabs = [];
+
+    const formTypes = {
+        meta, pub, software, data
+    }
+
+    const newTab = type => {
+        results.push({ type });
+        document.getElementById("tabs").appendChild(createTab(results[results.length - 1], results.length - 1));
+        updateTabs();
+        updateInfo();
+        save();
+    }
+
+    const save = () => {
+        localStorage.setItem("formdata", JSON.stringify(results))
+    }
+
+    const getSavedData = () => {
+        return JSON.parse(localStorage.getItem("formdata")) || [{type: "meta"}];
+    }
+
+    const reset = () => {
+        results = {};
+        localStorage.clear();
+        location.reload();
+    }
+
+    const triggerLoad = () => {
+        fileSelector = document.getElementById("fileInput");
+        fileSelector.click();
+    }
+    
+    const handleLoad = async files => {
+        results = JSON.parse(await files[0].text());
+        save();
+        location.reload();
+    }
+
+    const exp = () => {
+        let json = JSON.stringify(results, null, 2);
+        let blob = new Blob([json], { type: "text/json;charset=utf-8" });
+        let filename = 'export.json';
+
+        let a = document.getElementById("download");
+        a.innerText = filename;
+        a.download = filename;
+        a.href = (window.URL || window.webkitURL).createObjectURL(blob);
+
+        a.click();
+    }
+
+    const update = e => {
+            if (e.target.classList.contains("type-radio") || e.target.classList.contains("type-dropdown")) {
+                result[e.target.name] = parseInt(e.target.value);
+            } else if (e.target.classList.contains("type-checkbox")) {
+                result[e.target.id] = e.target.checked;
+            } else if (e.target.classList.contains("type-boolean")) {
+                result[e.target.id] = e.target.value === "true";
+            } else if (e.target.classList.contains("type-textbox")) {
+                result[e.target.id] = e.target.innerText;
+            } else {
+                result[e.target.id] = e.target.value;
+            }
+
+            console.log(results);
+
+            save();
+            updateInfo();
+            applyFilters();
+    }
+    
+    const updateInfo = () => {
+        document.getElementById("slot-info").innerText = `${results.length - 1} of ${max} slots used`;
+    }
+
+    const applyFilters = () => {
+        for (let elem of elems) {
+            if (!elem.condition) continue;
+
+            let condition = elem.condition.replaceAll(/\$(\w*)/g, `result['$1']`);
+
+            const domElements = [...document.getElementsByClassName(elem.id)];
+
+            if (eval(condition)) {
+                domElements.forEach(de => de.style.display = "")
+            } else {
+                domElements.forEach(de => de.style.display = "none")
+            }
+        }
+    }
+
+    const countWords = (text) => {
+        return text.trim() ? text.replace(/[\r\n\t]+/g, " ").split(/\s+/).filter(x => x).length : 0;
+    }
+
+    const updateWordcount = (textbox, wordcount) => {
+        const words = countWords(textbox.innerText);
+
+        if (textbox.hasAttribute("data-maxwords")) {
+            const maxwords = parseInt(textbox.getAttribute("data-maxwords"));
+            wordcount.innerText = words + " / " + maxwords;
+
+            if (words <= maxwords) {
+                wordcount.classList.add("wordcount-ok");
+                wordcount.classList.remove("wordcount-warning");
+            } else {
+                wordcount.classList.remove("wordcount-ok");
+                wordcount.classList.add("wordcount-warning");
+            }          
+        } else {
+            wordcount.innerText = words;
+        }
+    }
+
+    const textboxWordcount = e => {
+        const wordcount = document.getElementById(e.target.id + "-wordcount");
+
+        updateWordcount(e.target, wordcount);
+    }
+
+    const createInput = (element) => {
+        elems.push(element);
+
+        const creator = {
+            "separator": () => {
+                let separator = document.createElement("hr");
+
+                return separator;
+            },
+            "info": () => {
+                let info = document.createElement("p");
+                info.id = element.id;
+
+                info.innerHTML = element.text;
+
+                return info;
+            },
+            "text": () => {
+                let input = document.createElement("input");
+                input.type = "text";
+
+                input.placeholder = element.title || '';
+
+                return input;
+            },
+            "textbox": () => {
+                let container = document.createElement("div");
+                container.classList.add("textbox-container");
+
+                let input = document.createElement("div");
+                input.id = element.id;
+                input.classList.add("textbox", "type-textbox");
+                input.contentEditable = true;
+
+                let wordcount = document.createElement("div");
+                wordcount.id = element.id + "-wordcount";
+                wordcount.classList.add("wordcount");
+
+                if (element.id in result) {
+                    input.innerText = result[element.id];
+                }
+
+                if (element.maxwords) {
+                    input.setAttribute("data-maxwords", element.maxwords);
+                    wordcount.classList.add("wordcount-max");
+                }
+
+                updateWordcount(input, wordcount);
+
+                input.addEventListener("input", textboxWordcount);
+                input.addEventListener("blur", update);
+
+                container.append(input, wordcount);
+
+                return container;
+            },
+            "number": () => {
+                let input = document.createElement("input");
+                input.type = "number";
+
+                input.placeholder = element.title || '';
+
+                return input;
+            },
+            "date": () => {
+                let input = document.createElement("input");
+                input.type = "date";
+
+                input.placeholder = element.title || '';
+
+                return input;
+            },
+            "dropdown": () => {
+                let input = document.createElement("select");
+                input.name = element.id;
+                input.id = element.id;
+
+                const values = element.values || element.options;
+
+                let options = element.options.map((option, index) => {
+                    let opt = document.createElement("option")
+                    opt.value = index;
+                    opt.innerText = option;
+
+                    return opt;
+                })
+
+                input.append(...options);
+
+                return input;
+            },
+            "boolean": () => {
+                let input = document.createElement("select");
+                input.name = element.id;
+                input.id = element.id;
+
+                let options = element.options.map((option, index) => {
+                    let opt = document.createElement("option")
+                    opt.value = index == 0;
+                    opt.innerText = option;
+
+                    return opt;
+                })
+
+                input.append(...options);
+
+                return input;
+            },
+            "radio": () => {
+                let input = document.createElement("div");
+                input.classList.add("radio", element.alignment ? "alignment-" + element.alignment : "alignment-vertical")
+
+                let options = element.options.map((option, index) => {
+                    let container = document.createElement("div");
+                    
+                    let label = document.createElement("label");
+
+                    let radio = document.createElement("input");
+                    radio.type = "radio";
+                    radio.value = index;
+                    radio.name = element.id;
+                    radio.classList.add("type-radio");
+
+                    label.append(radio, option);
+
+                    if (element.id in result && result[element.id] == index) {
+                        radio.checked = true;
+                    }
+
+                    return label;
+                })
+
+                input.append(...options);
+
+                return input;
+            },
+            "checkbox": () => {
+                let input = document.createElement("div");
+
+                let options = element.options.map((option, index) => {
+                    let container = document.createElement("div");
+
+                    let label = document.createElement("label");
+                    
+                    let checkbox = document.createElement("input");
+                    checkbox.type = "checkbox";
+                    checkbox.id = element.id + String.fromCharCode(index + 97);
+                    checkbox.classList.add("type-checkbox");
+
+                    label.append(checkbox, option);
+
+                    if (checkbox.id in result && result[checkbox.id] === true) {
+                        checkbox.checked = true;
+                    }
+
+                    return label;
+                })
+
+                input.append(...options);
+
+                return input;
+            }
+        }
+       
+        if (element.type in creator) {
+            let domElement  = creator[element.type]();
+
+            domElement.classList.add("type-" + element.type);
+
+            if (element.id) {
+                domElement.id = element.id;
+            }
+            
+            domElement.pattern = element.check;
+
+           
+            if (filterTriggers.includes(element.id)) {
+                domElement.addEventListener('input', update);
+            }
+            
+
+            if (element.id in result) {
+                domElement.value = result[element.id];
+            }
+
+            let fragment = document.createDocumentFragment();
+            
+            if (element.title) {
+                let title = document.createElement("p");
+                title.innerText = element.title;
+                title.classList.add(element.id, "title");
+                fragment.appendChild(title);
+            }
+            
+
+            domElement.classList.add(element.id);
+
+
+            fragment.appendChild(domElement);
+
+            return fragment;
+        } else return "";
+    }
+
+    const createForm = (form) => {
+        let formElement = document.createElement("form");
+
+        let domElements = form.elements.map(elem => createInput(elem));
+
+        let title = document.createElement("h2");
+        title.innerText = form.title;
+
+        formElement.append(title, ...domElements);
+        
+        formElement.addEventListener('change', update);
+
+        return formElement;
+    }
+
+    const handleTabClick = e => {
+        currentTab = parseInt(e.target.getAttribute("data-index"));
+        result = results[currentTab];
+        updateTabs();
+    }
+
+    const updateTabs = () => {
+        tabs.forEach(t => {
+            if (parseInt(t.getAttribute("data-index")) === currentTab) {
+                t.classList.add("selected");
+
+                const formView = document.getElementById("formview");
+                formView.innerHTML = "";
+                formView.appendChild(createForm(formTypes[result.type]));
+                applyFilters();
+            } else {
+                t.classList.remove("selected");
+            }
+        })
+    }
+
+    const createTab = (result, index) => {
+        let tab = document.createElement("div");
+        tab.classList.add("tab");
+
+        let content = document.createElement("span");
+        tab.appendChild(content);
+
+        tab.setAttribute("data-index", index);
+
+        switch (result.type) {
+            case "meta":
+                content.innerHTML = `<b>Author</b>`;
+                break;
+            case "pub":
+                content.innerHTML = results[index]["P2"] && results[index]["P3"]
+                    ? `<b>Publication ${results[index]["P2"]}</b><br>${results[index]["P3"]}`
+                    : "<b>New publication<b>";
+                break;
+            case "software":
+                content.innerHTML = `<b>New software project</b>`;
+                break;
+            case "data":
+                content.innerHTML = `<b>New data</b>`;
+                break;
+        
+            default:
+                break;
+        }
+
+        tab.addEventListener("click", handleTabClick);
+
+        tabs.push(tab);
+        return tab;
+    }
+
+    let filterTriggers = pub.elements
+        .filter(element => element.condition)
+        .map(element => element.condition.match(/\$\w*/g))
+        .flat()
+        .map(ids => ids.replaceAll('$', ''))
+
+    let results = getSavedData();
+    let result = results[0];
+    let currentTab = 0;
+
+    results.forEach((r, index) => {
+        document.getElementById("tabs").appendChild(createTab(r, index));
+    });
+
+    updateTabs();
+    updateInfo();
+    applyFilters();
+</script>
+    
+</html>

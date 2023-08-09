@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400;1,700&display=swap');
-
 body {
     font-family: "Montserrat", sans-serif;
     margin: 0;
@@ -8,35 +7,42 @@ body {
     color: #333333;
 }
 
+
 #main {
     display: flex;
     flex-direction: row;
+    max-width: 1040px;
+    width: 90%;
+    margin: 0 auto;
 }
 
-#menu {
-    width: 30%;
-    position: fixed; /* Safari */
-    top: 0;
-    margin-left: 2.5%;
-    margin-top: 3rem;
-}
 
 .card {
     border-radius: 8px;
     box-shadow: 0 0 8px #ccc;
-    width: 100%;
     padding: 16px;
-    margin: 1rem;
+    box-sizing: border-box;
+    margin-bottom: 1rem;
+    width: 100%;
 }
 
-#menu h1 {
+#menu h3 {
     margin: 0;
 }
 
+#menu {
+    width: 40%;
+}
+
 #formview {
-    width: 50%;
-    margin-left: 40%;
-    margin-top: 5rem;
+    width: 60%;
+    height: 85vh;
+    overflow-y: scroll;
+    margin-right: 2rem;
+}
+
+#formview h2 {
+    margin: none;
 }
 
 input[type=text], input[type=number], select, .textbox {
@@ -116,19 +122,28 @@ button:hover {
     font-weight: bold;
 }
 
-#tabs {
-    margin-bottom: 2rem;
+.tabs-container {
+    max-width: 100%;
+    overflow-y: scroll;
+    display: flex;
 }
 
-.tab {
+#tabs {
+    display: flex;
+}
+
+.tab, .add-button {
+    font-size: 11pt;
+    white-space: nowrap;
     background-color: #efefef;
     border-radius: 8px;
     padding: 0.5rem 1rem;
     margin-bottom: 0.5rem;
     cursor: pointer;
+    margin-right: 0.5rem;
 }
 
-.tab:hover {
+.tab:hover, .add-button {
     background-color: #dfdfdf;
 }
 
@@ -139,4 +154,41 @@ button:hover {
 
 .tab span {
     pointer-events: none;
+}
+
+#tabs::-webkit-scrollbar{
+    display: none;
+}
+
+#tabs {
+    overflow: -moz-scrollbars-none;
+}
+
+.topbar {
+    padding: 8px;
+    max-width: 1040px;
+    margin: 0 auto;
+    margin-bottom: 24px;
+    border-bottom: 1px solid lightgray;
+}
+
+.topbar p {
+    margin-top: 0;
+    margin-bottom: 8px;
+    color: gray;
+    font-size: small;
+}
+
+@media (max-width: 500px) {
+    #main {
+        flex-direction: column-reverse;
+    }
+
+    #formview {
+        width: 100%;
+    }
+
+    #menu {
+        width: 100%;
+    }
 }

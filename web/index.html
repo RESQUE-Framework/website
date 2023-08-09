@@ -9,25 +9,29 @@
 </head>
 
 <body>
+    <div class="topbar">
+        <p id="slot-info"></p>
+        <div class="tabs-container">
+            <div id="tabs">
+
+            </div>
+            <button class="add-button" onclick="newTab('pub')">+</button>
+        </div>
+    </div>
+
     <div id="main">
+        <div id="formview"></div>
         <div id="menu">
             <div class="card">
                 <div class="top">
-                    <h1>RESQUE</h1>
+                    <h3>RESQUE</h3>
                     <div id="actions">
                         <button onclick="reset()">Reset</button>
                         <button onclick="triggerLoad()">Load</button>
                         <button onclick="exp()">Export</button>
                     </div>
                 </div>
-                <p id="slot-info"></p>
-                <div id="tabs"></div>
-                <div>
-                    <b>Add</b>
-                    <button onclick="newTab('pub')">publication</button>
-                    <button onclick="newTab('software')">software</button>
-                    <button onclick="newTab('data')">data set</button>
-                </div>
+                <p><b>Px</b><br>Helpful information about an item!</p>
             </div>
             <div class="card">
                 <div id="score">
@@ -36,7 +40,6 @@
             </div>
         </div>
     </div>
-    <div id="formview"></div>
     </div>
     <input id="fileInput" type="file" accept="text/json" style="visibility: hidden" onchange="handleLoad(this.files)" />
     <a id="download" style="visibility: hidden"></a>
@@ -177,7 +180,7 @@
                     break;
                 case "pub":
                     content.innerHTML = result["P2"] && result["P3"]
-                        ? `<b>Publication ${result["P2"]}</b><br>${result["P3"]}`
+                        ? `<b>P${result["P2"]}:</b> ${result["P3"]}`
                         : "<b>New publication<b>";
                     break;
                 case "software":

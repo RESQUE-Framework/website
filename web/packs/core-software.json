@@ -1,0 +1,10 @@
+{
+    "title": "Software Project",
+    "elements": [
+        {
+            "id": "S2",
+            "type": "text",
+            "title": "Name of the software project"
+        }
+    ]
+}

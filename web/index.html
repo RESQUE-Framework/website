@@ -1,46 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RESQUE</title>
     <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body>
     <div id="main">
         <div id="menu">
-                <div class="card">
-                    <div class="top">
-                        <h1>RESQUE</h1>
-                        <div id="actions">
-                            <button onclick="reset()">Reset</button>
-                            <button onclick="triggerLoad()">Load</button>
-                            <button onclick="exp()">Export</button>
-                        </div>
-                    </div>
-                    <p id="slot-info"></p>
-                    <div id="tabs"></div>
-                    <div>
-                        <b>Add</b>
-                        <button onclick="newTab('pub')">publication</button>
-                        <button onclick="newTab('software')">software</button>
-                        <button onclick="newTab('data')">data set</button>
+            <div class="card">
+                <div class="top">
+                    <h1>RESQUE</h1>
+                    <div id="actions">
+                        <button onclick="reset()">Reset</button>
+                        <button onclick="triggerLoad()">Load</button>
+                        <button onclick="exp()">Export</button>
                     </div>
                 </div>
-                <div class="card">
-                    <div id="score">
-                        <b>Score</b>
-                    </div>
+                <p id="slot-info"></p>
+                <div id="tabs"></div>
+                <div>
+                    <b>Add</b>
+                    <button onclick="newTab('pub')">publication</button>
+                    <button onclick="newTab('software')">software</button>
+                    <button onclick="newTab('data')">data set</button>
+                </div>
+            </div>
+            <div class="card">
+                <div id="score">
+                    <b>Score</b>
                 </div>
             </div>
         </div>
-        <div id="formview"></div>
     </div>
-    <input id="fileInput" type="file" accept="text/json" style="visibility: hidden" onchange="handleLoad(this.files)"/>
+    <div id="formview"></div>
+    </div>
+    <input id="fileInput" type="file" accept="text/json" style="visibility: hidden" onchange="handleLoad(this.files)" />
     <a id="download" style="visibility: hidden"></a>
 </body>
 
-<script src="resque.js"></script>
+<script>
+
+
+    async function use(...packs) {
+
+        const pool = [];
+
+        const ps = await Promise.all(packs.map(async pack => {
+            const response = await fetch("./packs/" + pack + ".json");
+            return response.json();
+        }));
+
+        ps.forEach(p => pool.push(...p.elements));
+
+        return pool;
+    }
+
+    function pick(pool, title, ...ids) {
+        console.log(pool, ids)
+        return {
+            title,
+            elements: ids.length <= 0 ? pool : ids.map(id => pool.find(item => item.id === id))
+        };
+    }
+
+    function pickByPrefix(pool, title, prefix) {
+        return {
+            title,
+            elements: pool.filter(item => item.id.startsWith(prefix))
+        };
+    }
+
+    function pickByCondition(pool, condition) {
+        return {
+            title,
+            elements: pool.filter(item => condition(item))
+        };
+    }
+
+    const resolveIndices = str => {
+        let indices = str.split(',');
+
+        let expandedIndices = indices.map(index => {
+            if (index.includes(':')) {
+                let range = index;
+                let increment = 1;
+
+
+                if (range.includes(';')) {
+                    const parts = range.split(';');
+                    increment = parseInt(parts[1].trim());
+                    range = parts[0].trim();
+                }
+
+                const bounds = range.split(':').map(s => parseInt(s.trim()));
+
+                let result = [];
+
+                for (let i = bounds[0]; i <= bounds[1]; i += increment) {
+                    result.push(i === 0 ? 'intro' : i.toString());
+                }
+
+                return result;
+            }
+            return index.trim();
+        });
+
+        let result = [];
+
+        for (let indexList of expandedIndices) {
+            if (typeof indexList === 'object') {
+                result.push(...indexList);
+            } else {
+                result.push(indexList);
+            }
+        }
+
+        return result;
+    }
+
+    const expand = indices => {
+        let result = [];
+        for (let item of indices) {
+            let foundTemplate = item.match(/(.*)\[(.*)\]/);
+            if (foundTemplate && foundTemplate.length > 1) {
+                let prefix = foundTemplate[1];
+                
+                result.push(
+                    ...resolveIndices(foundTemplate[2])
+                    .map(index => prefix + index)
+                );
+            } else {
+                result.push(item);
+            }
+        }
+
+        return result;
+    }
+</script>
+
+<script src="menu.js"></script>
 
 <script>
     const MODE_PREVIEW = "preview";
@@ -48,9 +150,7 @@
     let elems = [];
     let tabs = [];
 
-    const formTypes = {
-        meta, pub, software, data
-    }
+    let formTypes;
 
     const newTab = type => {
         results.push({ type });
@@ -65,7 +165,7 @@
     }
 
     const getSavedData = () => {
-        return JSON.parse(localStorage.getItem("formdata")) || [{type: "meta"}];
+        return JSON.parse(localStorage.getItem("formdata")) || [{ type: "meta" }];
     }
 
     const reset = () => {
@@ -78,7 +178,7 @@
         fileSelector = document.getElementById("fileInput");
         fileSelector.click();
     }
-    
+
     const handleLoad = async files => {
         results = JSON.parse(await files[0].text());
         save();
@@ -99,25 +199,25 @@
     }
 
     const update = e => {
-            if (e.target.classList.contains("type-radio") || e.target.classList.contains("type-dropdown")) {
-                result[e.target.name] = parseInt(e.target.value);
-            } else if (e.target.classList.contains("type-checkbox")) {
-                result[e.target.id] = e.target.checked;
-            } else if (e.target.classList.contains("type-boolean")) {
-                result[e.target.id] = e.target.value === "true";
-            } else if (e.target.classList.contains("type-textbox")) {
-                result[e.target.id] = e.target.innerText;
-            } else {
-                result[e.target.id] = e.target.value;
-            }
+        if (e.target.classList.contains("type-radio") || e.target.classList.contains("type-dropdown")) {
+            result[e.target.name] = parseInt(e.target.value);
+        } else if (e.target.classList.contains("type-checkbox")) {
+            result[e.target.id] = e.target.checked;
+        } else if (e.target.classList.contains("type-boolean")) {
+            result[e.target.id] = e.target.value === "true";
+        } else if (e.target.classList.contains("type-textbox")) {
+            result[e.target.id] = e.target.innerText;
+        } else {
+            result[e.target.id] = e.target.value;
+        }
 
-            console.log(results);
+        console.log(results);
 
-            save();
-            updateInfo();
-            applyFilters();
+        save();
+        updateInfo();
+        applyFilters();
     }
-    
+
     const updateInfo = () => {
         document.getElementById("slot-info").innerText = `${results.length - 1} of ${max} slots used`;
     }
@@ -159,7 +259,7 @@
             } else {
                 wordcount.classList.remove("wordcount-ok");
                 wordcount.classList.add("wordcount-warning");
-            }          
+            }
         } else {
             wordcount.innerText = words;
         }
@@ -289,7 +389,7 @@
 
                 let options = element.options.map((option, index) => {
                     let container = document.createElement("div");
-                    
+
                     let label = document.createElement("label");
 
                     let radio = document.createElement("input");
@@ -322,7 +422,7 @@
                     let container = document.createElement("div");
 
                     let label = document.createElement("label");
-                    
+
                     let checkbox = document.createElement("input");
                     checkbox.type = "checkbox";
                     checkbox.id = element.id + String.fromCharCode(index + 97);
@@ -346,30 +446,30 @@
                 return input;
             }
         }
-       
+
         if (element.type in creator) {
-            let domElement  = creator[element.type]();
+            let domElement = creator[element.type]();
 
             domElement.classList.add("type-" + element.type);
 
             if (element.id) {
                 domElement.id = element.id;
             }
-            
+
             domElement.pattern = element.check;
 
-           
+
             if (filterTriggers.includes(element.id)) {
                 domElement.addEventListener('input', update);
             }
-            
+
 
             if (element.id in result) {
                 domElement.value = result[element.id];
             }
 
             let fragment = document.createDocumentFragment();
-            
+
             if (element.title) {
                 let title = document.createElement("p");
                 title.innerText = element.title;
@@ -381,7 +481,7 @@
                     title.innerText = `[${element.id}] ${title.innerText}`;
                 }
             }
-            
+
 
             domElement.classList.add(element.id);
 
@@ -410,7 +510,7 @@
         }
 
         formElement.append(title, ...domElements);
-        
+
         formElement.addEventListener('change', update);
 
         return formElement;
@@ -427,9 +527,16 @@
             if (parseInt(t.getAttribute("data-index")) === currentTab) {
                 t.classList.add("selected");
 
+                filterTriggers = formTypes[result.type].elements
+                    .filter(element => element.condition)
+                    .map(element => element.condition.match(/\$\w*/g))
+                    .flat()
+                    .map(ids => ids.replaceAll('$', ''))
+
                 const formView = document.getElementById("formview");
                 formView.innerHTML = "";
                 formView.appendChild(createForm(formTypes[result.type]));
+
                 applyFilters();
             } else {
                 t.classList.remove("selected");
@@ -461,7 +568,7 @@
             case "data":
                 content.innerHTML = `<b>New data</b>`;
                 break;
-        
+
             default:
                 break;
         }
@@ -472,27 +579,29 @@
         return tab;
     }
 
-    let filterTriggers = pub.elements
-        .filter(element => element.condition)
-        .map(element => element.condition.match(/\$\w*/g))
-        .flat()
-        .map(ids => ids.replaceAll('$', ''))
+    let meta, pub, software, data, max;
+
+    let filterTriggers;
 
     const params = new URLSearchParams(window.location.search);
     const mode = params.get("mode");
 
     let results = getSavedData();
-    
+
     let currentTab = 0;
     let result = results[currentTab];
 
-    results.forEach((r, index) => {
-        document.getElementById("tabs").appendChild(createTab(r, index));
-    });
+    menu().then(m => {
+        formTypes = m;
+        ({ meta, pub, software, data, max } = m);
+        results.forEach((r, index) => {
+            document.getElementById("tabs").appendChild(createTab(r, index));
+        });
 
-    updateTabs();
-    updateInfo();
-    applyFilters();
+        updateTabs();
+        updateInfo();
+        applyFilters();
+    })
 </script>
-    
+
 </html>

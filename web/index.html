@@ -74,71 +74,15 @@
         };
     }
 
-    function pickByCondition(pool, condition) {
+    function pickByCondition(pool, title, condition) {
         return {
             title,
             elements: pool.filter(item => condition(item))
         };
     }
 
-    const resolveIndices = str => {
-        let indices = str.split(',');
-
-        let expandedIndices = indices.map(index => {
-            if (index.includes(':')) {
-                let range = index;
-                let increment = 1;
-
-
-                if (range.includes(';')) {
-                    const parts = range.split(';');
-                    increment = parseInt(parts[1].trim());
-                    range = parts[0].trim();
-                }
-
-                const bounds = range.split(':').map(s => parseInt(s.trim()));
-
-                let result = [];
-
-                for (let i = bounds[0]; i <= bounds[1]; i += increment) {
-                    result.push(i === 0 ? 'intro' : i.toString());
-                }
-
-                return result;
-            }
-            return index.trim();
-        });
-
-        let result = [];
-
-        for (let indexList of expandedIndices) {
-            if (typeof indexList === 'object') {
-                result.push(...indexList);
-            } else {
-                result.push(indexList);
-            }
-        }
-
-        return result;
-    }
-
-    const expand = indices => {
-        let result = [];
-        for (let item of indices) {
-            let foundTemplate = item.match(/(.*)\[(.*)\]/);
-            if (foundTemplate && foundTemplate.length > 1) {
-                let prefix = foundTemplate[1];
-                
-                result.push(
-                    ...resolveIndices(foundTemplate[2])
-                    .map(index => prefix + index)
-                );
-            } else {
-                result.push(item);
-            }
-        }
-
-        return result;
+    function pickExclude(pool, title, ...ids) {
+        return pickByCondition(pool, title, item => !ids.includes(item.id));
     }
 </script>
 

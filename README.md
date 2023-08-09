@@ -132,11 +132,14 @@ For minor updates and minor feature requests, please use the [issue tracker](htt
 
 If you want to collaborate scientifically on the project, please contact one of the project maintainers ([Felix Schönbrodt](mailto:felix.schoenbrodt@psy.lmu.de); [Anne Gärtner](mailto:anne_gaertner@tu-dresden.de); [Daniel Leising](mailto:Daniel.Leising@tu-dresden.de)).
 
+Please note and respect our [Code of Conduct](/CODE_OF_CONDUCT.md).
+
 This project is a community effort with many contributors, including:
 
+- Alp Kaan Aksu
 - Maximilian Ernst
 - Aaron Peikert
 - TODO add all others
 
-... all who wrote [comments](#commentaries) with many suggestions
+... all who wrote [comments](#commentaries) with many constructive suggestions
 ... and many more who gave extended feedback on the proposal! 🙏

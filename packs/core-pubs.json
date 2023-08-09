@@ -1,4 +1,6 @@
 {
+    "version": "0.2",
+    "prefix": "P",
     "title": "Publication",
     "elements": [
         {

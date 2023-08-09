@@ -1,15 +1,12 @@
 {
+    "prefix": "S",
+    "version": "0.1",
     "title": "Software Project",
     "elements": [
         {
             "id": "S2",
             "type": "text",
             "title": "Name of the software project"
-        },
-        {
-            "id": "S3",
-            "type": "text",
-            "title": "Anything you want to add?"
         }
     ]
 }

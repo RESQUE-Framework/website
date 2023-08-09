@@ -1,7 +1,9 @@
 {
+    "prefix": "M",
+    "title": "Author",
     "elements": [
         {
-            "id": "P1",
+            "id": "M1",
             "type": "text",
             "title": "Last name"
         }

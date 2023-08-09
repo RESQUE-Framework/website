@@ -63,32 +63,42 @@
 
         ps.forEach(p => pool.push(...p.elements));
 
-        return pool;
-    }
+        let versions = {};
 
-    function pick(title, pool, ...ids) {
+        ps.forEach(pack => versions[pack.prefix] = pack.version);
+
         return {
-            title,
-            elements: ids.length <= 0 ? pool : ids.map(id => pool.find(item => item.id === id))
+            title: ps[0].title,
+            versions,
+            pool
         };
     }
 
-    function pickByPrefix(title, pool, prefix) {
+    function pick(combinedPack, ...ids) {
         return {
-            title,
-            elements: pool.filter(item => item.id.startsWith(prefix))
+            title: combinedPack.title,
+            versions: combinedPack.versions,
+            elements: ids.length <= 0 ? combinedPack.pool : ids.map(id => combinedPack.pool.find(item => item.id === id))
         };
     }
 
-    function pickByCondition(title, pool, condition) {
+    function pickByPrefix(combinedPack, prefix) {
         return {
-            title,
-            elements: pool.filter(item => condition(item))
+            title: combinedPack.title,
+            versions: combinedPack.versions,
+            elements: combinedPack.pool.filter(item => item.id.startsWith(prefix))
         };
     }
 
-    function pickExclude(title, pool, ...ids) {
-        return pickByCondition(title, pool, item => !ids.includes(item.id));
+    function pickByCondition(combinedPack, condition) {
+        return {
+            title: combinedPack.title,
+            elements: combinedPack.filter(item => condition(item))
+        };
+    }
+
+    function pickExclude(combinedPack, ...ids) {
+        return pickByCondition(combinedPack, item => !ids.includes(item.id));
     }
 </script>
 
@@ -102,8 +112,10 @@
 
     let formTypes;
 
+    const getVersion = type => formTypes[type].versions[prefixes[type]];
+
     const newTab = type => {
-        results.push({ type });
+        results.push({ type, version: getVersion(type)});
         document.getElementById("tabs").appendChild(createTab(results[results.length - 1], results.length - 1));
         updateTabs();
         updateInfo();
@@ -130,9 +142,15 @@
     }
 
     const handleLoad = async files => {
-        results = JSON.parse(await files[0].text());
-        save();
-        location.reload();
+        let loadedData = JSON.parse(await files[0].text());
+
+        if (loadedData.every(r => getVersion(r.type) === r.version)) {
+            results = loadedData;
+            save();
+            location.reload();
+        } else {
+            alert("Error: Could not load data because it was created using an earlier version.");
+        }
     }
 
     const exp = () => {
@@ -573,6 +591,13 @@
 
     let currentTab = 0;
     let result = results[currentTab];
+
+    let prefixes = {
+        meta: "M",
+        pub: "P",
+        software: "S",
+        data: "D"
+    }
 
     menu().then(m => {
         formTypes = m;

@@ -1,0 +1,9 @@
+{
+    "elements": [
+        {
+            "id": "P1",
+            "type": "text",
+            "title": "Last name"
+        }
+    ]
+}

@@ -50,7 +50,7 @@
         const pool = [];
 
         const ps = await Promise.all(packs.map(async pack => {
-            const response = await fetch("./packs/" + pack + ".json");
+            const response = await fetch("../packs/" + pack + ".json");
             return response.json();
         }));
 
@@ -60,7 +60,6 @@
     }
 
     function pick(title, pool, ...ids) {
-        console.log(pool, ids)
         return {
             title,
             elements: ids.length <= 0 ? pool : ids.map(id => pool.find(item => item.id === id))

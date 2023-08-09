@@ -59,7 +59,7 @@
         return pool;
     }
 
-    function pick(pool, title, ...ids) {
+    function pick(title, pool, ...ids) {
         console.log(pool, ids)
         return {
             title,
@@ -67,22 +67,22 @@
         };
     }
 
-    function pickByPrefix(pool, title, prefix) {
+    function pickByPrefix(title, pool, prefix) {
         return {
             title,
             elements: pool.filter(item => item.id.startsWith(prefix))
         };
     }
 
-    function pickByCondition(pool, title, condition) {
+    function pickByCondition(title, pool, condition) {
         return {
             title,
             elements: pool.filter(item => condition(item))
         };
     }
 
-    function pickExclude(pool, title, ...ids) {
-        return pickByCondition(pool, title, item => !ids.includes(item.id));
+    function pickExclude(title, pool, ...ids) {
+        return pickByCondition(title, pool, item => !ids.includes(item.id));
     }
 </script>
 

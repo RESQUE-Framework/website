@@ -136,3 +136,7 @@ button:hover {
     background-color: #333333;
     color: #efefef;
 }
+
+.tab span {
+    pointer-events: none;
+}

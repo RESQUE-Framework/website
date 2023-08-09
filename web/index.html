@@ -159,11 +159,39 @@
 
         save();
         updateInfo();
+        updateTabs();
         applyFilters();
     }
 
     const updateInfo = () => {
         document.getElementById("slot-info").innerText = `${results.length - 1} of ${max} slots used`;
+
+        tabs.forEach(t => {
+            const content = t.firstChild;
+
+            const index = parseInt(t.getAttribute("data-index"));
+            const result = results[index];
+
+            switch (result.type) {
+                case "meta":
+                    content.innerHTML = `<b>Author</b>`;
+                    break;
+                case "pub":
+                    content.innerHTML = result["P2"] && result["P3"]
+                        ? `<b>Publication ${result["P2"]}</b><br>${result["P3"]}`
+                        : "<b>New publication<b>";
+                    break;
+                case "software":
+                    content.innerHTML = `<b>New software project</b>`;
+                    break;
+                case "data":
+                    content.innerHTML = `<b>New data</b>`;
+                    break;
+
+                default:
+                    break;
+            }
+        })
     }
 
     const applyFilters = () => {
@@ -475,7 +503,7 @@
                     .filter(element => element.condition)
                     .map(element => element.condition.match(/\$\w*/g))
                     .flat()
-                    .map(ids => ids.replaceAll('$', ''))
+                    .map(ids => ids.replaceAll('$', ''));
 
                 const formView = document.getElementById("formview");
                 formView.innerHTML = "";
@@ -496,26 +524,6 @@
         tab.appendChild(content);
 
         tab.setAttribute("data-index", index);
-
-        switch (result.type) {
-            case "meta":
-                content.innerHTML = `<b>Author</b>`;
-                break;
-            case "pub":
-                content.innerHTML = results[index]["P2"] && results[index]["P3"]
-                    ? `<b>Publication ${results[index]["P2"]}</b><br>${results[index]["P3"]}`
-                    : "<b>New publication<b>";
-                break;
-            case "software":
-                content.innerHTML = `<b>New software project</b>`;
-                break;
-            case "data":
-                content.innerHTML = `<b>New data</b>`;
-                break;
-
-            default:
-                break;
-        }
 
         tab.addEventListener("click", handleTabClick);
 

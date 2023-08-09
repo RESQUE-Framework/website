@@ -179,6 +179,26 @@ button:hover {
     font-size: small;
 }
 
+#item-info {
+    color: gray;
+    margin-bottom: 0;
+}
+
+details {
+    color: gray;
+    display: none;
+    margin-top: 1rem;
+}
+
+summary {
+    margin-bottom: 8px;
+    cursor: pointer;
+}
+
+summary:hover {
+   color: #333333;
+}
+
 @media (max-width: 500px) {
     #main {
         flex-direction: column-reverse;

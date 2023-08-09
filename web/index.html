@@ -31,7 +31,11 @@
                         <button onclick="exp()">Export</button>
                     </div>
                 </div>
-                <p><b>Px</b><br>Helpful information about an item!</p>
+                <p id="item-info">Click on an item to show detailed information</p>
+                <details id="item-background-details">
+                    <summary>Background information</summary>
+                    <span id="item-background"></span>
+                </details>
             </div>
             <div class="card">
                 <div id="score">
@@ -245,6 +249,28 @@
         updateWordcount(e.target, wordcount);
     }
 
+    const showInfo = (e, element) => {
+        const itemInfo = document.getElementById("item-info");
+        const itemBackground = document.getElementById("item-background");
+        const itemBackgroundDetails = document.getElementById("item-background-details");
+
+        if (element.info) {
+            itemInfo.style.color = "#333333";
+            itemInfo.innerHTML = `<b>${element.id}</b><br>${element.info}`;
+        } else {
+            itemInfo.style.color = "gray";
+            itemInfo.innerHTML = `<b>${element.id}</b><br><i>No information</i>`;
+        }
+
+        if (element.background) {
+            itemBackground.innerHTML = element.background;
+            itemBackgroundDetails.style.display = "block";
+            itemBackgroundDetails.removeAttribute("open");
+        } else {
+            itemBackgroundDetails.style.display = "none";
+        }
+    }
+
     const createInput = (element) => {
         elems.push(element);
 
@@ -442,7 +468,7 @@
                 domElement.value = result[element.id];
             }
 
-            let fragment = document.createDocumentFragment();
+            let fragment = document.createElement("div");
 
             if (element.title) {
                 let title = document.createElement("p");
@@ -466,6 +492,9 @@
             }
 
             fragment.appendChild(domElement);
+
+            fragment.title = element.tooltip || "";
+            fragment.addEventListener("click", e => showInfo(e, element));
 
             return fragment;
         } else return "";

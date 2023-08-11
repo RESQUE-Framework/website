@@ -251,8 +251,13 @@
 
         let scoringResult = score(result);
 
-        document.getElementById("score-minmax").innerHTML = `${scoringResult.score}/${scoringResult.max}`
-        document.getElementById("score-percentage").innerHTML = `${scoringResult.percentage}%`
+        if (scoringResult.max > 0) {
+            document.getElementById("score-container").style.display = "flex"
+            document.getElementById("score-minmax").innerHTML = `${scoringResult.score}/${scoringResult.max}`
+            document.getElementById("score-percentage").innerHTML = `${scoringResult.percentage}%`
+        } else {
+            document.getElementById("score-container").style.display = "none"
+        }
     }
 
     const preprocessCondition = condition => {

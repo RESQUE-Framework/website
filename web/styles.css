@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
 body {
     font-family: "Montserrat", sans-serif;
     margin: 0;
@@ -25,7 +26,6 @@ body {
     padding: 16px;
     margin-bottom: 1rem;
     width: 100%;
-    box-sizing: border-box;
 }
 
 #menu h3 {
@@ -52,6 +52,7 @@ body {
     flex: 1 1 60%;
     overflow: auto;
     margin-right: 2rem;
+    padding: 2px;
 }
 
 #formview h2 {
@@ -81,6 +82,8 @@ form {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-bottom: 1px solid lightgray;
+    padding-bottom: 16px;
 }
 
 button {
@@ -214,6 +217,34 @@ summary {
 
 summary:hover {
    color: #333333;
+}
+
+#score-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+#score-minmax {
+    text-align: center;
+    color: gray;
+    font-weight: bold;
+    margin: 0;
+}
+
+#score-percentage {
+    margin: 0;
+    text-align: center;
+    font-weight: bold;
+    font-size: 24pt;
+}
+
+#score-dot {
+    margin: 0 0.5rem;
+    font-weight: bold;
+    font-size: 16pt;
+    color: gray;
 }
 
 @media (max-width: 500px) {

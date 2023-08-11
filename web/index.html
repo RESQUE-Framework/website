@@ -31,8 +31,10 @@
                         <button onclick="exp()">Export</button>
                     </div>
                 </div>
-                <div id="score">
-                    <b>Score</b>
+                <div id="score-container">
+                    <p id="score-percentage"></p>
+                    <p id="score-dot">•</p>
+                    <p id="score-minmax"></p>
                 </div>
             </div>
             <div class="card">
@@ -67,9 +69,14 @@
 
         ps.forEach(pack => versions[pack.prefix] = pack.version);
 
+        let scoringInfos = {}
+
+        ps.forEach(pack => scoringInfos = {...scoringInfos, ...pack.scoring})
+
         return {
             title: ps[0].title,
             versions,
+            scoring: scoringInfos,
             pool
         };
     }
@@ -78,6 +85,7 @@
         return {
             title: combinedPack.title,
             versions: combinedPack.versions,
+            scoring: combinedPack.scoring,
             elements: ids.length <= 0 ? combinedPack.pool : ids.map(id => combinedPack.pool.find(item => item.id === id))
         };
     }
@@ -86,6 +94,7 @@
         return {
             title: combinedPack.title,
             versions: combinedPack.versions,
+            scoring: combinedPack.scoring,
             elements: combinedPack.pool.filter(item => item.id.startsWith(prefix))
         };
     }
@@ -93,6 +102,7 @@
     function pickByCondition(combinedPack, condition) {
         return {
             title: combinedPack.title,
+            scoring: combinedPack.scoring,
             elements: combinedPack.filter(item => condition(item))
         };
     }
@@ -238,7 +248,34 @@
                     break;
             }
         })
+
+        let scoringResult = score(result);
+
+        document.getElementById("score-minmax").innerHTML = `${scoringResult.score}/${scoringResult.max}`
+        document.getElementById("score-percentage").innerHTML = `${scoringResult.percentage}`
     }
+
+    const preprocessCondition = condition => {
+        let processedCondition = condition
+            .replaceAll(/([\$\w]+)\s*=\|=\s*\[(.*?)\]/g, (match, variable, list) => {
+                return "(" + list.split(",")
+                    .map(value => `${variable} === ${value.trim()}`)
+                    .join(" || ") + ")";
+            })
+            .replaceAll(/([\$\w]+)\s*=&=\s*\[(.*?)\]/g, (match, variable, list) => {
+                return "(" + list.split(",")
+                    .map(value => `${variable} === ${value.trim()}`)
+                    .join(" && ") + ")";
+            })
+
+        return processedCondition;
+    }
+
+    const insertValuesIntoCondition = condition => {
+        return condition.replaceAll(/\$(\w*)/g, `result['$1']`);
+    }
+
+    const evaluateCondition = condition => eval(insertValuesIntoCondition(preprocessCondition(condition)));
 
     const applyFilters = () => {
         if (mode === MODE_PREVIEW) {
@@ -248,11 +285,10 @@
         for (let elem of elems) {
             if (!elem.condition) continue;
 
-            let condition = elem.condition.replaceAll(/\$(\w*)/g, `result['$1']`);
 
             const domElements = [...document.getElementsByClassName(elem.id)];
 
-            if (eval(condition)) {
+            if (evaluateCondition(elem.condition)) {
                 domElements.forEach(de => de.style.display = "")
             } else {
                 domElements.forEach(de => de.style.display = "none")
@@ -567,22 +603,26 @@
 
     const updateTabs = () => {
         tabs.forEach(t => {
-            if (currentTab !== preTab && parseInt(t.getAttribute("data-index")) === currentTab) {
+            if (parseInt(t.getAttribute("data-index")) === currentTab) {
                 t.classList.add("selected");
 
-                preTab = currentTab;
-
-                filterTriggers = formTypes[result.type].elements
+                if (currentTab !== preTab) {
+                    filterTriggers = formTypes[result.type].elements
                     .filter(element => element.condition)
                     .map(element => element.condition.match(/\$\w*/g))
                     .flat()
                     .map(ids => ids.replaceAll('$', ''));
 
-                const formView = document.getElementById("formview");
-                formView.innerHTML = "";
-                formView.appendChild(createForm(formTypes[result.type]));
+                    const formView = document.getElementById("formview");
+                    formView.innerHTML = "";
+                    formView.appendChild(createForm(formTypes[result.type]));
 
-                applyFilters();
+                    applyFilters();
+                    updateInfo();
+
+                    preTab = currentTab;
+                }
+
             } else {
                 t.classList.remove("selected");
             }
@@ -602,6 +642,44 @@
 
         tabs.push(tab);
         return tab;
+    }
+
+    const score = r => {
+        const scoring = formTypes[r.type].scoring;
+
+        let maxScore = 0;
+        let reachedScore = 0;
+
+        for (indicator in scoring) {
+            if (scoring[indicator].not_applicable && evaluateCondition(scoring[indicator].not_applicable)) {
+                continue;
+            }
+
+            maxScore += scoring[indicator].max;
+
+            switch(scoring[indicator].op) {
+                case "sum":
+                    reachedScore += scoring[indicator].points
+                        .filter(p => evaluateCondition(p.condition))
+                        .reduce((sum, next) => sum + next.value, 0);
+                    break;
+                case "select":
+                    reachedScore += (scoring[indicator].points.find(p => evaluateCondition(p.condition)) || {value: 0}).value;
+                    break;
+                default:
+                    break;
+            }
+            
+
+        }
+
+
+        return {
+                max: maxScore,
+                score: reachedScore,
+                relative: reachedScore / maxScore,
+                percentage: ((reachedScore / maxScore) * 100).toFixed(1)
+        }
     }
 
     let meta, pub, software, data, max;

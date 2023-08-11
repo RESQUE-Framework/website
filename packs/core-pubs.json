@@ -2,6 +2,97 @@
     "version": "0.2",
     "prefix": "P",
     "title": "Publication",
+    "scoring": {
+        "P12": {
+            "not_applicable": "$P11 === 0 && $P11_explanation",
+            "max": 1,
+            "op": "select",
+            "points": [
+                 { "value": 1, "condition": "$P12 =|= [0, 1]" }
+            ]
+        },
+        "P13": {
+            "not_applicable": "$P11 === 0 && $P11_explanation",
+            "max": 1,
+            "op": "sum",
+            "points": [
+                 { "value": 0.25, "condition": "$P13a" },
+                 { "value": 0.5, "condition": "$P13b" },
+                 { "value": 0.25, "condition": "$P13c" }
+            ]
+        },
+        "P14": {
+            "not_applicable": "$P14 === 0",
+            "max": 1,
+            "op": "select",
+            "points": [
+                 { "value": 1, "condition": "$P14 === 2 && $P14_extra" }
+            ]
+        },
+        "P15": {
+            "not_applicable": "$P15 === 0 && $P15_explanation",
+            "max": 1,
+            "op": "select",
+            "points": [
+                 { "value": 1, "condition": "$P15 === 3 && $P15_extra" }
+            ]
+        },
+        "P16": {
+            "max": 1,
+            "op": "sum",
+            "points": [
+                 { "value": 0.20, "condition": "$P16a" },
+                 { "value": 0.20, "condition": "$P16b" },
+                 { "value": 0.20, "condition": "$P16c" },
+                 { "value": 0.20, "condition": "$P16d" },
+                 { "value": 0.20, "condition": "$P16e" }
+            ]
+        },
+        "P17": {
+            "not_applicable": "$P17 === 0 && $P17_explanation",
+            "max": 1,
+            "op": "select",
+            "points": [
+                 { "value": 1, "condition": "$P17 === 3 && $P17_extra" }
+            ]
+        },
+        "P18": {
+            "not_applicable": "$P18 === 0 && $P18_explanation",
+            "max": 2,
+            "op": "select",
+            "points": [
+                 { "value": 1, "condition": "$P18 === 2 && $P18_extra" },
+                 { "value": 2, "condition": "$P18 === 3 && $P18_extra" }
+            ]
+        },
+        "P19": {
+            "not_applicable": "$P18 === 0 && $P18_explanation",
+            "max": 1,
+            "op": "sum",
+            "points": [
+                 { "value": 0.25, "condition": "$P19a" },
+                 { "value": 0.25, "condition": "$P19b" },
+                 { "value": 0.25, "condition": "$P19c" },
+                 { "value": 0.25, "condition": "$P19d" }
+            ]
+        },
+        "P20": {
+            "not_applicable": "$P20 === 0 && $P20_explanation",
+            "max": 2,
+            "op": "select",
+            "points": [
+                { "value": 2, "condition": "$P20 === 2" }
+            ]
+        },
+        "P21": {
+            "not_applicable": "$P21 === 0 && $P21_explanation",
+            "max": 1,
+            "op": "select",
+            "points": [
+                { "value": 1, "condition": "$P21 === 2" }
+            ]
+        }
+    },
     "elements": [
         {
             "id": "P2",
@@ -86,7 +177,8 @@
         },
         {
             "id": "P8P9SEP",
-            "type": "separator"
+            "type": "separator",
+            "condition": "$P8"
         },
         {
             "id": "P9info",
@@ -315,7 +407,7 @@
             "id": "P11_extra",
             "type": "text",
             "title": "⤷ DOI or URL",
-            "condition": "$P8 && ($P11 === 3 || $P11 === 2)"
+            "condition": "$P8 && $P11 =|= [2, 3]"
         },
         {
             "id": "P12",
@@ -343,11 +435,12 @@
                 "All variables are comprehensively described in a codebook with a structured format",
                 "The data set is stored in a structured, open format\\n(e.g., .csv, .tsv, .tab, .txt, .json; not .sav, .xlsx, .pdf)"
             ],
-            "condition": "$P8 && ($P12 === 0 || $P12 === 1 || $P12 === 2 && $P12_explanation)"
+            "condition": "$P8 && ($P12 =|= [0, 1] || $P12 === 2 && $P12_explanation)"
         },
         {
             "id": "P13P14SEP",
-            "type": "separator"
+            "type": "separator",
+            "condition": "$P8"
         },
         {
             "id": "P14",
@@ -388,7 +481,7 @@
             "id": "P15_extra",
             "type": "text",
             "title": "DOI or URL to the script",
-            "condition": "$P8 && ($P15 === 2 || $P15 === 3)"
+            "condition": "$P8 && $P15 =|= [2, 3]"
         },
         {
             "id": "P16",
@@ -401,7 +494,7 @@
                 "Proper documentation of code",
                 "Reproducible software environments (e.g. conda environment, renv environment in R)"
             ],
-            "condition": "$P8 && ($P12 === 0 || $P12 === 1 || $P12 === 2 && $P12_explanation)"
+            "condition": "$P8 && ($P12 =|= [0, 1] || $P12 === 2 && $P12_explanation)"
         },
         {
             "id": "P17",
@@ -425,7 +518,7 @@
             "id": "P17_extra",
             "type": "text",
             "title": "DOI or URL to the open materials",
-            "condition": "$P8 && ($P17 === 2 || $P17 === 3)"
+            "condition": "$P8 && $P17 =|= [2, 3]"
         },
         {
             "id": "P17P18SEP",
@@ -454,7 +547,7 @@
             "id": "P18_extra",
             "type": "text",
             "title": "DOI or URL to the preregistration",
-            "condition": "$P8 && ($P18 === 2 || $P18 === 3)"
+            "condition": "$P8 && $P18 =|= [2, 3]"
         },
         {
             "id": "P19",

@@ -2,8 +2,9 @@
 body {
     font-family: "Montserrat", sans-serif;
     margin: 0;
-    height: 100%;
+    height: 100vh;
     width: 100%;
+    overflow: hidden;
     color: #333333;
 }
 
@@ -11,6 +12,7 @@ body {
 #main {
     display: flex;
     flex-direction: row;
+    height: 100%;
     max-width: 1040px;
     width: 90%;
     margin: 0 auto;
@@ -30,14 +32,25 @@ body {
     margin: 0;
 }
 
+#formview::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+#formview {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+
 #menu {
-    width: 40%;
+    flex: 1 1 40%;
+    margin-top: 2rem;
 }
 
 #formview {
-    width: 60%;
-    height: 85vh;
-    overflow-y: scroll;
+    flex: 1 1 60%;
+    overflow: scroll;
     margin-right: 2rem;
 }
 
@@ -156,20 +169,24 @@ button:hover {
     pointer-events: none;
 }
 
-#tabs::-webkit-scrollbar{
+.tabs-container::-webkit-scrollbar {
     display: none;
 }
 
-#tabs {
-    overflow: -moz-scrollbars-none;
+/* Hide scrollbar for IE, Edge and Firefox */
+.tabs-container {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
 }
 
 .topbar {
     padding: 8px;
     max-width: 1040px;
     margin: 0 auto;
-    margin-bottom: 24px;
     border-bottom: 1px solid lightgray;
+    position: sticky;
+    background-color: white;
+    top: 0;
 }
 
 .topbar p {

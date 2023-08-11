@@ -383,6 +383,7 @@
                 "Simulated data",
                 "No data"
             ],
+            "last_option_exclusive": true,
             "condition": "$P8"
         },
         {

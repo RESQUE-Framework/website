@@ -71,7 +71,7 @@
 
         let scoringInfos = {}
 
-        ps.forEach(pack => scoringInfos = {...scoringInfos, ...pack.scoring})
+        ps.forEach(pack => scoringInfos = { ...scoringInfos, ...pack.scoring })
 
         return {
             title: ps[0].title,
@@ -125,7 +125,7 @@
     const getVersion = type => formTypes[type].versions[prefixes[type]];
 
     const newTab = type => {
-        results.push({ type, version: getVersion(type)});
+        results.push({ type, version: getVersion(type) });
         document.getElementById("tabs").appendChild(createTab(results[results.length - 1], results.length - 1));
 
         updateTabs();
@@ -200,7 +200,9 @@
             result[e.target.id] = e.target.value;
         }
 
-        console.log(results);
+        if (mode === MODE_PREVIEW) {
+            console.log(results);
+        }
 
         save();
         updateInfo();
@@ -214,7 +216,7 @@
         const usedSlots = results.length - 1;
         const maxReached = usedSlots >= max;
 
-        document.getElementById("slot-info").innerText = `${usedSlots} of ${max} slots used${ maxReached ? ", you can't add more publications." : ""}`;
+        document.getElementById("slot-info").innerText = `${usedSlots} of ${max} slots used${maxReached ? ", you can't add more publications." : ""}`;
 
         if (usedSlots >= max) {
             document.getElementById("add-button").style.display = "none"
@@ -515,6 +517,34 @@
 
                     label.append(checkbox, option);
 
+                    // Last option exclusive
+                    if (element.last_option_exclusive) {
+                        // Uncheck others if the last one is checked
+                        if (index === element.options.length - 1) {
+                            checkbox.addEventListener("change", e => {
+                                if (e.target.checked) {
+                                    element.options.forEach((option, index) => {
+                                        if (index !== element.options.length - 1) {
+                                            let id = element.id + String.fromCharCode(index + 97);
+                                            document.getElementById(id).checked = false;
+                                            result[id] = false;
+                                        }
+                                    })
+
+                                }
+                            })
+                        } else {
+                            // Uncheck last one if one of the others is checked
+                            checkbox.addEventListener("change", e => {
+                                if (e.target.checked) {
+                                    let id = element.id + String.fromCharCode(options.length - 1 + 97);
+                                    document.getElementById(id).checked = false;
+                                    result[id] = false;
+                                }
+                            })
+                        }
+                    }
+
                     if (checkbox.id in result && result[checkbox.id] === true) {
                         checkbox.checked = true;
                     }
@@ -613,10 +643,10 @@
 
                 if (currentTab !== preTab) {
                     filterTriggers = formTypes[result.type].elements
-                    .filter(element => element.condition)
-                    .map(element => element.condition.match(/\$\w*/g))
-                    .flat()
-                    .map(ids => ids.replaceAll('$', ''));
+                        .filter(element => element.condition)
+                        .map(element => element.condition.match(/\$\w*/g))
+                        .flat()
+                        .map(ids => ids.replaceAll('$', ''));
 
                     const formView = document.getElementById("formview");
                     formView.innerHTML = "";
@@ -662,28 +692,28 @@
 
             maxScore += scoring[indicator].max;
 
-            switch(scoring[indicator].op) {
+            switch (scoring[indicator].op) {
                 case "sum":
                     reachedScore += scoring[indicator].points
                         .filter(p => evaluateCondition(p.condition))
                         .reduce((sum, next) => sum + next.value, 0);
                     break;
                 case "select":
-                    reachedScore += (scoring[indicator].points.find(p => evaluateCondition(p.condition)) || {value: 0}).value;
+                    reachedScore += (scoring[indicator].points.find(p => evaluateCondition(p.condition)) || { value: 0 }).value;
                     break;
                 default:
                     break;
             }
-            
+
 
         }
 
 
         return {
-                max: maxScore,
-                score: reachedScore,
-                relative: reachedScore / maxScore,
-                percentage: ((reachedScore / maxScore) * 100).toFixed(1)
+            max: maxScore,
+            score: reachedScore,
+            relative: reachedScore / maxScore,
+            percentage: ((reachedScore / maxScore) * 100).toFixed(1)
         }
     }
 

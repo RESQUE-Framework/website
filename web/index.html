@@ -15,7 +15,7 @@
             <div id="tabs">
 
             </div>
-            <button class="add-button" onclick="newTab('pub')">+</button>
+            <button class="add-button" id="add-button" onclick="newTab('pub')">+</button>
         </div>
     </div>
 
@@ -117,9 +117,16 @@
     const newTab = type => {
         results.push({ type, version: getVersion(type)});
         document.getElementById("tabs").appendChild(createTab(results[results.length - 1], results.length - 1));
+
         updateTabs();
         updateInfo();
         save();
+
+        const tabsElement = document.getElementById("tabs");
+        tabsElement.scrollTo({
+            left: tabsElement.scrollWidth,
+            behavior: "smooth"
+        })
     }
 
     const save = () => {
@@ -188,7 +195,16 @@
     }
 
     const updateInfo = () => {
-        document.getElementById("slot-info").innerText = `${results.length - 1} of ${max} slots used`;
+        const usedSlots = results.length - 1;
+        const maxReached = usedSlots >= max;
+
+        document.getElementById("slot-info").innerText = `${usedSlots} of ${max} slots used${ maxReached ? ", you can't add more publications." : ""}`;
+
+        if (usedSlots >= max) {
+            document.getElementById("add-button").style.display = "none"
+        } else {
+            document.getElementById("add-button").style.display = "inherit"
+        }
 
         tabs.forEach(t => {
             const content = t.firstChild;

@@ -50,7 +50,7 @@ body {
 
 #formview {
     flex: 1 1 60%;
-    overflow: scroll;
+    overflow: auto;
     margin-right: 2rem;
 }
 
@@ -74,7 +74,7 @@ label {
     margin-right: 0.5rem;
 }
 form {
-    margin-bottom: 2rem;
+    margin-bottom: 10rem;
 }
 
 .top {
@@ -137,12 +137,13 @@ button:hover {
 
 .tabs-container {
     max-width: 100%;
-    overflow-y: scroll;
     display: flex;
 }
 
 #tabs {
     display: flex;
+    overflow: scroll;
+    box-sizing: border-box;
 }
 
 .tab, .add-button {
@@ -154,6 +155,7 @@ button:hover {
     margin-bottom: 0.5rem;
     cursor: pointer;
     margin-right: 0.5rem;
+    box-sizing: border-box;
 }
 
 .tab:hover, .add-button {
@@ -169,12 +171,12 @@ button:hover {
     pointer-events: none;
 }
 
-.tabs-container::-webkit-scrollbar {
+#tabs::-webkit-scrollbar {
     display: none;
 }
 
 /* Hide scrollbar for IE, Edge and Firefox */
-.tabs-container {
+#tabs {
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
 }

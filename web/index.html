@@ -567,8 +567,10 @@
 
     const updateTabs = () => {
         tabs.forEach(t => {
-            if (parseInt(t.getAttribute("data-index")) === currentTab) {
+            if (currentTab !== preTab && parseInt(t.getAttribute("data-index")) === currentTab) {
                 t.classList.add("selected");
+
+                preTab = currentTab;
 
                 filterTriggers = formTypes[result.type].elements
                     .filter(element => element.condition)
@@ -612,6 +614,7 @@
     let results = getSavedData();
 
     let currentTab = 0;
+    let preTab = -1;
     let result = results[currentTab];
 
     let prefixes = {

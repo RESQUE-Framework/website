@@ -559,7 +559,7 @@
                 "Operationalizations",
                 "Analysis Plan"
             ],
-            "condition": "$P8"
+            "condition": "$P8 && $P18 =|= [2, 3]"
         },
         {
             "id": "P19P20SEP",

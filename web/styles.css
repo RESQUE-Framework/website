@@ -23,9 +23,9 @@ body {
     border-radius: 8px;
     box-shadow: 0 0 8px #ccc;
     padding: 16px;
-    box-sizing: border-box;
     margin-bottom: 1rem;
     width: 100%;
+    box-sizing: border-box;
 }
 
 #menu h3 {
@@ -143,7 +143,6 @@ button:hover {
 #tabs {
     display: flex;
     overflow: scroll;
-    box-sizing: border-box;
 }
 
 .tab, .add-button {
@@ -155,7 +154,6 @@ button:hover {
     margin-bottom: 0.5rem;
     cursor: pointer;
     margin-right: 0.5rem;
-    box-sizing: border-box;
 }
 
 .tab:hover, .add-button {
@@ -220,11 +218,13 @@ summary:hover {
 
 @media (max-width: 500px) {
     #main {
-        flex-direction: column-reverse;
+        flex-direction: column;
+        overflow: auto;
     }
 
     #formview {
         width: 100%;
+        overflow: initial;
     }
 
     #menu {

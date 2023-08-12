@@ -175,7 +175,7 @@
     const exp = () => {
         let json = JSON.stringify(results, null, 2);
         let blob = new Blob([json], { type: "text/json;charset=utf-8" });
-        let filename = 'export.json';
+        let filename = `resque_${results[0].M1 ? results[0].M1.toLowerCase() + "_" : ""}${Date.now()}.json`;
 
         let a = document.getElementById("download");
         a.innerText = filename;
@@ -238,7 +238,7 @@
                     break;
                 case "pub":
                     content.innerHTML = result["P2"] && result["P3"]
-                        ? `<b>P${result["P2"]}:</b> ${result["P3"]}`
+                        ? `<b>Publication ${result["P2"]}</b>`
                         : "<b>New publication<b>";
                     break;
                 case "software":
@@ -257,7 +257,7 @@
 
         if (scoringResult.max > 0) {
             document.getElementById("score-container").style.display = "flex"
-            document.getElementById("score-minmax").innerHTML = `${scoringResult.score}/${scoringResult.max}`
+            document.getElementById("score-minmax").innerHTML = `${scoringResult.score} / ${scoringResult.max}`
             document.getElementById("score-percentage").innerHTML = `${scoringResult.percentage}%`
         } else {
             document.getElementById("score-container").style.display = "none"
@@ -529,20 +529,21 @@
                                         if (index !== element.options.length - 1) {
                                             let id = element.id + String.fromCharCode(index + 97);
                                             document.getElementById(id).checked = false;
-                                            result[id] = false;
+                                            update({ ...e, target: document.getElementById(id) })
                                         }
                                     })
-
                                 }
                             })
                         } else {
                             // Uncheck last one if one of the others is checked
                             checkbox.addEventListener("change", e => {
+                                let id = element.id + String.fromCharCode(options.length - 1 + 97);
+
                                 if (e.target.checked) {
-                                    let id = element.id + String.fromCharCode(options.length - 1 + 97);
                                     document.getElementById(id).checked = false;
-                                    result[id] = false;
                                 }
+
+                                update({...e, target: document.getElementById(id)});
                             })
                         }
                     }

@@ -126,8 +126,25 @@
 
     const getVersion = type => formTypes[type].versions[prefixes[type]];
 
+    const getDefaultValues = type => {
+        let defaultValues = {};
+
+        for (element of formTypes[type].elements) {
+            if (element.default) {
+                defaultValues[element.id] = element.default;
+            }
+        }
+
+        return defaultValues;
+    }
+
     const newTab = type => {
-        results.push({ type, version: getVersion(type) });
+        results.push({
+            type,
+            version: getVersion(type),
+            ...getDefaultValues(type)
+        });
+
         document.getElementById("tabs").appendChild(createTab(results[results.length - 1], results.length - 1));
 
         updateTabs();

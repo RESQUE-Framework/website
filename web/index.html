@@ -103,7 +103,7 @@
         return {
             title: combinedPack.title,
             scoring: combinedPack.scoring,
-            elements: combinedPack.filter(item => condition(item))
+            elements: combinedPack.pool.filter(item => condition(item))
         };
     }
 
@@ -339,10 +339,10 @@
 
         if (element.info) {
             itemInfo.style.color = "#333333";
-            itemInfo.innerHTML = `<b>${element.id}</b><br>${element.info}`;
+            itemInfo.innerHTML = `<b>${element.id}</b><span id="eval-dimension">${element.eval_dimension ? element.eval_dimension : ""}</span><br><br>${element.info}`;
         } else {
             itemInfo.style.color = "gray";
-            itemInfo.innerHTML = `<b>${element.id}</b><br><i>No information</i>`;
+            itemInfo.innerHTML = `<b>${element.id}</b><span id="eval-dimension">${element.eval_dimension ? element.eval_dimension : ""}</span><br><br><i>No information</i>`;
         }
 
         if (element.background) {

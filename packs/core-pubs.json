@@ -452,6 +452,10 @@
                 "No",
                 "Yes [provide doi or URL to verification report]"
             ],
+            "eval_dimension": "rigor",
+            "tooltip": "Tooltip for P14",
+            "info": "Info about P14. This is a longer explanation of the indicator.",
+            "background": "How do we justify having this indicator?",
             "condition": "$P8"
         },
         {

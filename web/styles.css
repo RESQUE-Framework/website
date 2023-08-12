@@ -247,6 +247,21 @@ summary:hover {
     color: gray;
 }
 
+hr {
+    border: none;
+    border-top: 1px solid lightgray;
+}
+
+#eval-dimension {
+    color: gray;
+    font-size: small;
+    font-weight: bold;
+    background-color: #efefef;
+    padding: 0.125rem 0.5rem;
+    border-radius: 99px;
+    margin-left: 8px;
+}
+
 @media (max-width: 500px) {
     #main {
         flex-direction: column;

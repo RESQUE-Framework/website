@@ -22,7 +22,7 @@ body {
 
 .card {
     border-radius: 8px;
-    box-shadow: 0 0 8px #ccc;
+    box-shadow: 0 0 4px #ccc;
     padding: 16px;
     margin-bottom: 1rem;
     width: 100%;

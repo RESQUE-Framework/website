@@ -74,7 +74,8 @@ input[type=text], input[type=number], select, .textbox {
 
 label {
     display: block;
-    margin-right: 0.5rem;
+    margin-right: 8px;
+    margin-bottom: 8px;
 }
 form {
     margin-bottom: 10rem;
@@ -103,7 +104,7 @@ button:hover {
 }
 
 .title {
-    margin-bottom: 0.25rem;
+    margin-bottom: 8px;
     font-weight: bold;
 }
 

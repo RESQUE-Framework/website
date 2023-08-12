@@ -17,6 +17,7 @@ body {
     max-width: 1040px;
     width: 90%;
     margin: 0 auto;
+    box-sizing: content-box;
 }
 
 
@@ -26,6 +27,7 @@ body {
     padding: 16px;
     margin-bottom: 1rem;
     width: 100%;
+    display: block;
 }
 
 #menu h3 {
@@ -182,11 +184,14 @@ button:hover {
     scrollbar-width: none;  /* Firefox */
 }
 
+header {
+    border-bottom: 1px solid lightgray;
+}
+
 .topbar {
     padding: 8px;
     max-width: 1040px;
     margin: 0 auto;
-    border-bottom: 1px solid lightgray;
     position: sticky;
     background-color: white;
     top: 0;

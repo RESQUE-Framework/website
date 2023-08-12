@@ -339,10 +339,10 @@
 
         if (element.info) {
             itemInfo.style.color = "#333333";
-            itemInfo.innerHTML = `<b>${element.id}</b><span id="eval-dimension">${element.eval_dimension ? element.eval_dimension : ""}</span><br><br>${element.info}`;
+            itemInfo.innerHTML = `<b>${element.id}</b>${element.eval_dimension ? '<span id="eval-dimension">' + element.eval_dimension + '</span>' : ""}<br><br>${element.info}`;
         } else {
             itemInfo.style.color = "gray";
-            itemInfo.innerHTML = `<b>${element.id}</b><span id="eval-dimension">${element.eval_dimension ? element.eval_dimension : ""}</span><br><br><i>No information</i>`;
+            itemInfo.innerHTML = `<b>${element.id}</b>${element.eval_dimension ? '<span id="eval-dimension">' + element.eval_dimension + '</span>' : ""}<br><br><i>No information</i>`;
         }
 
         if (element.background) {

@@ -4,7 +4,7 @@
     "title": "Publication",
     "scoring": {
         "P12": {
-            "not_applicable": "$P11 === 0 && $P11_explanation",
+            "not_applicable": "$P11 === 0 && $P11_explanation || P10 !== 0",
             "max": 1,
             "op": "select",
             "points": [

@@ -203,7 +203,7 @@
         });
 
         if (doi) {
-            fetch("http://doi.org/" + doi.trim(), {
+            fetch("https://doi.org/" + doi.trim(), {
                 headers: {
                     Accept: 'application/vnd.citationstyles.csl+json'
                 }

@@ -16,7 +16,7 @@
                 <div id="tabs">
 
                 </div>
-                <button class="add-button" id="add-button" onclick="newTab('pub')">+</button>
+                <button class="add-button" id="add-button" onclick="openAddModal()">+</button>
             </div>
         </div>
     </header>
@@ -48,6 +48,24 @@
             </div>
         </div>
     </div>
+    </div>
+    <div id="add-modal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <details class="doi-info">
+                <summary> 🪄 DOI Magic?</summary>
+                <p>If you provide a DOI, some information can be fetched automatically. You can leave it empty if you want to fill in everything manually.</p>
+                <input id="add-doi" type="text" placeholder="DOI (optional)" />
+            </details>
+
+            <div>
+                <button onclick="newTab('pub')">Publication</button>
+                <button onclick="newTab('software')">Software</button>
+                <button onclick="newTab('data')">Data Set</button>
+            </div>
+        </div>
+
     </div>
     <input id="fileInput" type="file" accept="text/json" style="visibility: hidden" onchange="handleLoad(this.files)" />
     <a id="download" style="visibility: hidden"></a>
@@ -138,7 +156,31 @@
         return defaultValues;
     }
 
+    // Modal
+
+    window.onclick = e => {
+        if (event.target.classList.contains("modal")) {
+            e.target.style.display = "none";
+        }
+    }
+
+    const openAddModal = () => {
+        if (doimagic === "active") {
+            document.getElementById("add-modal").style.display = "block";
+        } else {
+            newTab("pub");
+        }
+    }
+
+    const closeAddModal = () => {
+        document.getElementById("add-modal").style.display = "none";
+    }
+
     const newTab = type => {
+        let doi = document.getElementById("add-doi").value;
+
+        let index = results.length
+
         results.push({
             type,
             version: getVersion(type),
@@ -152,11 +194,35 @@
         updateInfo();
         save();
 
+        closeAddModal();
+
         const tabsElement = document.getElementById("tabs");
         tabsElement.scrollTo({
             left: tabsElement.scrollWidth,
             behavior: "smooth"
         });
+
+        if (doi) {
+            fetch("http://doi.org/" + doi.trim(), {
+                headers: {
+                    Accept: 'application/vnd.citationstyles.csl+json'
+                }
+            })
+                .then(response => response.json())
+                .then(response => {
+                    if (type === "pub" && doimagic === "active") {
+                        results[index].P3 = response.title;
+                        results[index].P4 = response.published["date-parts"][0][0];
+                        results[index].P5 = doi;
+                        
+                        save();
+
+                        if (currentTab === index) {
+                            location.reload();
+                        }
+                    }
+                })
+        }
     }
 
     const save = () => {
@@ -170,6 +236,7 @@
     const reset = () => {
         results = {};
         localStorage.clear();
+        sessionStorage.clear();
         location.reload();
     }
 
@@ -191,7 +258,7 @@
     }
 
     const exp = () => {
-        let millis =  Date.now();
+        let millis = Date.now();
         results[0].exported = millis;
         let json = JSON.stringify(results, null, 2);
         let blob = new Blob([json], { type: "text/json;charset=utf-8" });
@@ -563,7 +630,7 @@
                                     document.getElementById(id).checked = false;
                                 }
 
-                                update({...e, target: document.getElementById(id)});
+                                update({ ...e, target: document.getElementById(id) });
                             })
                         }
                     }
@@ -655,6 +722,7 @@
 
     const handleTabClick = e => {
         currentTab = parseInt(e.target.getAttribute("data-index"));
+        sessionStorage.setItem("index", currentTab.toString())
         result = results[currentTab];
         updateTabs();
     }
@@ -746,10 +814,11 @@
 
     const params = new URLSearchParams(window.location.search);
     const mode = params.get("mode");
+    const doimagic = params.get("doimagic");
 
     let results = getSavedData();
 
-    let currentTab = 0;
+    let currentTab = parseInt(sessionStorage.getItem("index") || "0");
     let preTab = -1;
     let result = results[currentTab];
 

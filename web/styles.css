@@ -210,7 +210,7 @@ header {
     margin: 0;
 }
 
-details {
+.item-background-details {
     color: gray;
     display: none;
     margin-top: 1rem;
@@ -266,6 +266,44 @@ hr {
     padding: 0.125rem 0.5rem;
     border-radius: 99px;
     margin-left: 8px;
+}
+
+/* Modal */
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: #33333328;
+    backdrop-filter: blur(5px);
+  }
+  
+  /* Modal Content */
+  .modal-content {
+    background-color: white;
+    margin: auto;
+    padding: 20px;
+    width: 360px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 0 8px #ccc;
+  }
+  
+
+.doi-info {
+    color: gray;
+    margin-bottom: 1rem;
+}
+
+.doi-info p {
+    text-align: left;
 }
 
 @media (max-width: 500px) {

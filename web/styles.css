@@ -210,7 +210,7 @@ header {
     margin: 0;
 }
 
-.item-background-details {
+#item-background-details {
     color: gray;
     display: none;
     margin-top: 1rem;

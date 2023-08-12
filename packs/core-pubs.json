@@ -167,7 +167,8 @@
             "options": [
                 "No, it should be processed manually (provide explanation)",
                 "Yes"
-            ]
+            ],
+            "default": 1
         },
         {
             "id": "P8_explanation",

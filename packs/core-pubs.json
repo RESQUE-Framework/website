@@ -499,7 +499,7 @@
                 "Proper documentation of code",
                 "Reproducible software environments (e.g. conda environment, renv environment in R)"
             ],
-            "condition": "$P8 && ($P12 =|= [0, 1] || $P12 === 2 && $P12_explanation)"
+            "condition": "$P8 && $P15 =|= [2, 3]"
         },
         {
             "id": "P17",

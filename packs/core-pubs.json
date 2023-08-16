@@ -4,7 +4,7 @@
     "title": "Publication",
     "scoring": {
         "P12": {
-            "not_applicable": "$P11 === 0 && $P11_explanation || !($P10a)",
+            "not_applicable": "!($P8) || $P11 === 0 && $P11_explanation || !($P10a)",
             "max": 1,
             "op": "select",
             "points": [
@@ -12,7 +12,7 @@
             ]
         },
         "P13": {
-            "not_applicable": "$P11 === 0 && $P11_explanation",
+            "not_applicable": "!($P8) || $P11 === 0 && $P11_explanation",
             "max": 1,
             "op": "sum",
             "points": [
@@ -22,7 +22,7 @@
             ]
         },
         "P14": {
-            "not_applicable": "$P14 === 0",
+            "not_applicable": "!($P8) || $P14 === 0",
             "max": 1,
             "op": "select",
             "points": [
@@ -30,7 +30,7 @@
             ]
         },
         "P15": {
-            "not_applicable": "$P15 === 0 && $P15_explanation",
+            "not_applicable": "!($P8) || $P15 === 0 && $P15_explanation",
             "max": 1,
             "op": "select",
             "points": [
@@ -38,6 +38,7 @@
             ]
         },
         "P16": {
+            "not_applicable": "!($P8)",
             "max": 1,
             "op": "sum",
             "points": [
@@ -49,7 +50,7 @@
             ]
         },
         "P17": {
-            "not_applicable": "$P17 === 0 && $P17_explanation",
+            "not_applicable": "!($P8) || $P17 === 0 && $P17_explanation",
             "max": 1,
             "op": "select",
             "points": [
@@ -57,7 +58,7 @@
             ]
         },
         "P18": {
-            "not_applicable": "$P18 === 0 && $P18_explanation",
+            "not_applicable": "!($P8) || $P18 === 0 && $P18_explanation",
             "max": 2,
             "op": "select",
             "points": [
@@ -66,7 +67,7 @@
             ]
         },
         "P19": {
-            "not_applicable": "$P18 === 0 && $P18_explanation",
+            "not_applicable": "!($P8) || $P18 === 0 && $P18_explanation",
             "max": 1,
             "op": "sum",
             "points": [
@@ -77,7 +78,7 @@
             ]
         },
         "P20": {
-            "not_applicable": "$P20 === 0 && $P20_explanation",
+            "not_applicable": "!($P8) || $P20 === 0 && $P20_explanation",
             "max": 2,
             "op": "select",
             "points": [
@@ -85,7 +86,7 @@
             ]
         },
         "P21": {
-            "not_applicable": "$P21 === 0 && $P21_explanation",
+            "not_applicable": "!($P8) || $P21 === 0 && $P21_explanation",
             "max": 1,
             "op": "select",
             "points": [

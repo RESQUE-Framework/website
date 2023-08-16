@@ -253,6 +253,12 @@ summary:hover {
     color: gray;
 }
 
+#no-score {
+    color: gray;
+    font-style: italic;
+    margin-bottom:  0;
+}
+
 hr {
     border: none;
     border-top: 1px solid lightgray;

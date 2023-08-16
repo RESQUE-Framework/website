@@ -38,6 +38,7 @@
                     <p id="score-dot">•</p>
                     <p id="score-minmax"></p>
                 </div>
+                <p id="no-score">No score</p>
             </div>
             <div class="card">
                 <p id="item-info">Click on an indicator to see detailed information</p>
@@ -343,10 +344,12 @@
         let scoringResult = score(result);
 
         if (scoringResult.max > 0) {
+            document.getElementById("no-score").style.display = "none";
             document.getElementById("score-container").style.display = "flex"
             document.getElementById("score-minmax").innerHTML = `${scoringResult.score} / ${scoringResult.max}`
             document.getElementById("score-percentage").innerHTML = `${scoringResult.percentage}%`
         } else {
+            document.getElementById("no-score").style.display = "block";
             document.getElementById("score-container").style.display = "none"
         }
     }

@@ -85,7 +85,6 @@
             'https://mozilla.github.io/pdf.js/build/pdf.worker.js';
 
         function extractText(pdf) {
-<<<<<<< HEAD
             var totalPageCount = pdf.numPages;
             var countPromises = [];
             for (
@@ -102,25 +101,12 @@
                                 .map(function (s) {
                                     return s.str;
                                 })
-=======
-            const totalPageCount = pdf.numPages;
-            let promises = [];
-            for (let currentPage = 1; currentPage <= totalPageCount; currentPage++) {
-                const page = pdf.getPage(currentPage);
-                promises.push(
-                    page.then(page => {
-                        let textContent = page.getTextContent();
-                        return textContent.then(text => {
-                            return text.items
-                                .map(s => s.str)
->>>>>>> ee58a54572d078e90938870ff4e97910325712f7
                                 .join(' ');
                         });
                     }),
                 );
             }
 
-<<<<<<< HEAD
             return Promise.all(countPromises).then(function (texts) {
                 return texts.join(' ');
             })
@@ -136,27 +122,11 @@
 
                 //Step 4:turn array buffer into typed array
                 var typedarray = new Uint8Array(this.result);
-=======
-            return Promise.all(promises).then(texts => texts.join(' '));
-        }
-
-        function handleSelectPDF(files) {
-            let file = files[0];
-
-            //Step 2: Read the file using file reader
-            const fileReader = new FileReader();
-
-            fileReader.onload = () => {
-
-                //Step 4:turn array buffer into typed array
-                let typedarray = new Uint8Array(this.result);
->>>>>>> ee58a54572d078e90938870ff4e97910325712f7
 
                 //Step 5:pdfjs should be able to read this
                 const loadingTask = pdfjsLib.getDocument(typedarray);
                 loadingTask.promise.then(pdf => {
                     extractText(pdf).then(text => {
-<<<<<<< HEAD
                         let dois = extractDOIs(text);
                         document.getElementById('add-doi').value = dois[0];
 
@@ -164,21 +134,11 @@
                             console.log(text);
                             console.log(dois);
                         }
-=======
-                        console.log(text);
-                        let dois = extractDOIs(text);
-                        console.log(dois);
-                        document.getElementById('add-doi').value = dois[0];
->>>>>>> ee58a54572d078e90938870ff4e97910325712f7
                     })
                 });
             };
             //Step 3:Read the file as ArrayBuffer
             fileReader.readAsArrayBuffer(file);
-<<<<<<< HEAD
-
-=======
->>>>>>> ee58a54572d078e90938870ff4e97910325712f7
         }
 
         function extractDOIs(text) {
@@ -188,783 +148,783 @@
             return [...new Set(dois)];
         }
     </script>
-</body>
 
-<script>
+    <script>
 
 
-    async function use(...packs) {
+        async function use(...packs) {
 
-        const pool = [];
+            const pool = [];
 
-        const ps = await Promise.all(packs.map(async pack => {
-            const response = await fetch("../packs/" + pack + ".json");
-            return response.json();
-        }));
+            const ps = await Promise.all(packs.map(async pack => {
+                const response = await fetch("../packs/" + pack + ".json");
+                return response.json();
+            }));
 
-        ps.forEach(p => pool.push(...p.elements));
+            ps.forEach(p => pool.push(...p.elements));
 
-        let versions = {};
+            let versions = {};
 
-        ps.forEach(pack => versions[pack.prefix] = pack.version);
+            ps.forEach(pack => versions[pack.prefix] = pack.version);
 
-        let scoringInfos = {}
+            let scoringInfos = {}
 
-        ps.forEach(pack => scoringInfos = { ...scoringInfos, ...pack.scoring })
+            ps.forEach(pack => scoringInfos = { ...scoringInfos, ...pack.scoring })
 
-        return {
-            title: ps[0].title,
-            versions,
-            scoring: scoringInfos,
-            pool
-        };
-    }
+            return {
+                title: ps[0].title,
+                versions,
+                scoring: scoringInfos,
+                pool
+            };
+        }
 
-    function pick(combinedPack, ...ids) {
-        return {
-            title: combinedPack.title,
-            versions: combinedPack.versions,
-            scoring: combinedPack.scoring,
-            elements: ids.length <= 0 ? combinedPack.pool : ids.map(id => combinedPack.pool.find(item => item.id === id))
-        };
-    }
+        function pick(combinedPack, ...ids) {
+            return {
+                title: combinedPack.title,
+                versions: combinedPack.versions,
+                scoring: combinedPack.scoring,
+                elements: ids.length <= 0 ? combinedPack.pool : ids.map(id => combinedPack.pool.find(item => item.id === id))
+            };
+        }
 
-    function pickByPrefix(combinedPack, prefix) {
-        return {
-            title: combinedPack.title,
-            versions: combinedPack.versions,
-            scoring: combinedPack.scoring,
-            elements: combinedPack.pool.filter(item => item.id.startsWith(prefix))
-        };
-    }
+        function pickByPrefix(combinedPack, prefix) {
+            return {
+                title: combinedPack.title,
+                versions: combinedPack.versions,
+                scoring: combinedPack.scoring,
+                elements: combinedPack.pool.filter(item => item.id.startsWith(prefix))
+            };
+        }
 
-    function pickByCondition(combinedPack, condition) {
-        return {
-            title: combinedPack.title,
-            scoring: combinedPack.scoring,
-            elements: combinedPack.pool.filter(item => condition(item))
-        };
-    }
+        function pickByCondition(combinedPack, condition) {
+            return {
+                title: combinedPack.title,
+                scoring: combinedPack.scoring,
+                elements: combinedPack.pool.filter(item => condition(item))
+            };
+        }
 
-    function pickExclude(combinedPack, ...ids) {
-        return pickByCondition(combinedPack, item => !ids.includes(item.id));
-    }
-</script>
+        function pickExclude(combinedPack, ...ids) {
+            return pickByCondition(combinedPack, item => !ids.includes(item.id));
+        }
+    </script>
 
-<script src="menu.js"></script>
+    <script src="menu.js"></script>
 
-<script>
-    const MODE_PREVIEW = "preview";
+    <script>
+        const MODE_PREVIEW = "preview";
 
-    let elems = [];
-    let tabs = [];
+        let elems = [];
+        let tabs = [];
 
-    let formTypes;
+        let formTypes;
 
-    const getVersion = type => formTypes[type].versions[prefixes[type]];
+        const getVersion = type => formTypes[type].versions[prefixes[type]];
 
-    const getDefaultValues = type => {
-        let defaultValues = {};
+        const getDefaultValues = type => {
+            let defaultValues = {};
 
-        for (element of formTypes[type].elements) {
-            if (element.default) {
-                defaultValues[element.id] = element.default;
+            for (element of formTypes[type].elements) {
+                if (element.default) {
+                    defaultValues[element.id] = element.default;
+                }
+            }
+
+            return defaultValues;
+        }
+
+        // Modal
+
+        window.onclick = e => {
+            if (event.target.classList.contains("modal")) {
+                e.target.style.display = "none";
             }
         }
 
-        return defaultValues;
-    }
-
-    // Modal
-
-    window.onclick = e => {
-        if (event.target.classList.contains("modal")) {
-            e.target.style.display = "none";
+        const openAddModal = () => {
+            if (doimagic === "active") {
+                document.getElementById("add-modal").style.display = "block";
+            } else {
+                newTab("pub");
+            }
         }
-    }
 
-    const openAddModal = () => {
-        if (doimagic === "active") {
-            document.getElementById("add-modal").style.display = "block";
-        } else {
-            newTab("pub");
+        const closeAddModal = () => {
+            document.getElementById("add-modal").style.display = "none";
         }
-    }
 
-    const closeAddModal = () => {
-        document.getElementById("add-modal").style.display = "none";
-    }
+        const newTab = type => {
+            let doi = document.getElementById("add-doi").value;
 
-    const newTab = type => {
-        let doi = document.getElementById("add-doi").value;
+            let index = results.length
 
-        let index = results.length
+            results.push({
+                type,
+                version: getVersion(type),
+                created: Date.now(),
+                ...getDefaultValues(type)
+            });
 
-        results.push({
-            type,
-            version: getVersion(type),
-            created: Date.now(),
-            ...getDefaultValues(type)
-        });
+            document.getElementById("tabs").appendChild(createTab(results[results.length - 1], results.length - 1));
 
-        document.getElementById("tabs").appendChild(createTab(results[results.length - 1], results.length - 1));
+            updateTabs();
+            updateInfo();
+            save();
 
-        updateTabs();
-        updateInfo();
-        save();
+            closeAddModal();
 
-        closeAddModal();
+            const tabsElement = document.getElementById("tabs");
+            tabsElement.scrollTo({
+                left: tabsElement.scrollWidth,
+                behavior: "smooth"
+            });
 
-        const tabsElement = document.getElementById("tabs");
-        tabsElement.scrollTo({
-            left: tabsElement.scrollWidth,
-            behavior: "smooth"
-        });
-
-        if (doi) {
-            fetch("https://doi.org/" + doi.trim(), {
-                headers: {
-                    Accept: 'application/vnd.citationstyles.csl+json'
-                }
-            })
-                .then(response => response.json())
-                .then(response => {
-                    if (mode === MODE_PREVIEW) {
-                        console.log(response);
-                    }
-
-                    if (type === "pub" && doimagic === "active") {
-                        results[index].P3 = response.title;
-                        results[index].P4 = response.published["date-parts"][0][0];
-                        results[index].P5 = response.DOI;
-
-                        save();
-
-                        if (currentTab === index) {
-                            location.reload();
-                        }
+            if (doi) {
+                fetch("https://doi.org/" + doi.trim(), {
+                    headers: {
+                        Accept: 'application/vnd.citationstyles.csl+json'
                     }
                 })
+                    .then(response => response.json())
+                    .then(response => {
+                        if (mode === MODE_PREVIEW) {
+                            console.log(response);
+                        }
+
+                        if (type === "pub" && doimagic === "active") {
+                            results[index].P3 = response.title;
+                            results[index].P4 = response.published["date-parts"][0][0];
+                            results[index].P5 = response.DOI;
+
+                            save();
+
+                            if (currentTab === index) {
+                                location.reload();
+                            }
+                        }
+                    })
+            }
         }
-    }
 
-    const save = () => {
-        localStorage.setItem("formdata", JSON.stringify(results))
-    }
+        const save = () => {
+            localStorage.setItem("formdata", JSON.stringify(results))
+        }
 
-    const getSavedData = () => {
-        return JSON.parse(localStorage.getItem("formdata")) || [{ type: "meta" }];
-    }
+        const getSavedData = () => {
+            return JSON.parse(localStorage.getItem("formdata")) || [{ type: "meta" }];
+        }
 
-    const reset = () => {
-        results = {};
-        localStorage.clear();
-        sessionStorage.clear();
-        location.reload();
-    }
-
-    const triggerLoad = () => {
-        fileSelector = document.getElementById("fileInput");
-        fileSelector.click();
-    }
-
-    const handleLoad = async files => {
-        let loadedData = JSON.parse(await files[0].text());
-
-        if (loadedData.every(r => getVersion(r.type) === r.version)) {
-            results = loadedData;
-            save();
+        const reset = () => {
+            results = {};
+            localStorage.clear();
+            sessionStorage.clear();
             location.reload();
-        } else {
-            alert("Error: Could not load data because it was created using an earlier version.");
-        }
-    }
-
-    const exp = () => {
-        let millis = Date.now();
-        results[0].exported = millis;
-        let json = JSON.stringify(results, null, 2);
-        let blob = new Blob([json], { type: "text/json;charset=utf-8" });
-        let filename = `resque_${results[0].M1 ? results[0].M1.toLowerCase() + "_" : ""}${millis}.json`;
-
-        let a = document.getElementById("download");
-        a.innerText = filename;
-        a.download = filename;
-        a.href = (window.URL || window.webkitURL).createObjectURL(blob);
-
-        a.click();
-    }
-
-    const update = e => {
-
-        const formView = document.getElementById("formview");
-        const scrollPre = formView.scrollTop;
-
-        if (e.target.classList.contains("type-radio") || e.target.classList.contains("type-dropdown")) {
-            result[e.target.name] = parseInt(e.target.value);
-        } else if (e.target.classList.contains("type-checkbox")) {
-            result[e.target.id] = e.target.checked;
-        } else if (e.target.classList.contains("type-boolean")) {
-            result[e.target.id] = e.target.value === "true";
-        } else if (e.target.classList.contains("type-textbox")) {
-            result[e.target.id] = e.target.innerText;
-        } else {
-            result[e.target.id] = e.target.value;
         }
 
-        if (mode === MODE_PREVIEW) {
-            console.log(results);
+        const triggerLoad = () => {
+            fileSelector = document.getElementById("fileInput");
+            fileSelector.click();
         }
 
-        save();
-        updateInfo();
-        updateTabs();
-        applyFilters();
+        const handleLoad = async files => {
+            let loadedData = JSON.parse(await files[0].text());
 
-        formView.scrollTop = scrollPre;
-    }
-
-    const updateInfo = () => {
-        const usedSlots = results.length - 1;
-        const maxReached = usedSlots >= max;
-
-        document.getElementById("slot-info").innerText = `${usedSlots} of ${max} slots used${maxReached ? ", you can't add more publications." : ""}`;
-
-        if (usedSlots >= max) {
-            document.getElementById("add-button").style.display = "none"
-        } else {
-            document.getElementById("add-button").style.display = "inherit"
-        }
-
-        tabs.forEach(t => {
-            const content = t.firstChild;
-
-            const index = parseInt(t.getAttribute("data-index"));
-            const result = results[index];
-
-            switch (result.type) {
-                case "meta":
-                    content.innerHTML = `<b>Author</b>`;
-                    break;
-                case "pub":
-                    content.innerHTML = result["P2"] && result["P3"]
-                        ? `<b>Publication ${result["P2"]}</b>`
-                        : "<b>New publication<b>";
-                    break;
-                case "software":
-                    content.innerHTML = `<b>New software project</b>`;
-                    break;
-                case "data":
-                    content.innerHTML = `<b>New data</b>`;
-                    break;
-
-                default:
-                    break;
+            if (loadedData.every(r => getVersion(r.type) === r.version)) {
+                results = loadedData;
+                save();
+                location.reload();
+            } else {
+                alert("Error: Could not load data because it was created using an earlier version.");
             }
-        })
-
-        let scoringResult = score(result);
-
-        if (scoringResult.max > 0) {
-            document.getElementById("no-score").style.display = "none";
-            document.getElementById("score-container").style.display = "flex"
-            document.getElementById("score-minmax").innerHTML = `${scoringResult.score} / ${scoringResult.max}`
-            document.getElementById("score-percentage").innerHTML = `${scoringResult.percentage}%`
-        } else {
-            document.getElementById("no-score").style.display = "block";
-            document.getElementById("score-container").style.display = "none"
         }
-    }
 
-    const preprocessCondition = condition => {
-        let processedCondition = condition
-            .replaceAll(/([\$\w]+)\s*=\|=\s*\[(.*?)\]/g, (match, variable, list) => {
-                return "(" + list.split(",")
-                    .map(value => `${variable} === ${value.trim()}`)
-                    .join(" || ") + ")";
-            })
-            .replaceAll(/([\$\w]+)\s*=&=\s*\[(.*?)\]/g, (match, variable, list) => {
-                return "(" + list.split(",")
-                    .map(value => `${variable} === ${value.trim()}`)
-                    .join(" && ") + ")";
+        const exp = () => {
+            let millis = Date.now();
+            results[0].exported = millis;
+            let json = JSON.stringify(results, null, 2);
+            let blob = new Blob([json], { type: "text/json;charset=utf-8" });
+            let filename = `resque_${results[0].M1 ? results[0].M1.toLowerCase() + "_" : ""}${millis}.json`;
+
+            let a = document.getElementById("download");
+            a.innerText = filename;
+            a.download = filename;
+            a.href = (window.URL || window.webkitURL).createObjectURL(blob);
+
+            a.click();
+        }
+
+        const update = e => {
+
+            const formView = document.getElementById("formview");
+            const scrollPre = formView.scrollTop;
+
+            if (e.target.classList.contains("type-radio") || e.target.classList.contains("type-dropdown")) {
+                result[e.target.name] = parseInt(e.target.value);
+            } else if (e.target.classList.contains("type-checkbox")) {
+                result[e.target.id] = e.target.checked;
+            } else if (e.target.classList.contains("type-boolean")) {
+                result[e.target.id] = e.target.value === "true";
+            } else if (e.target.classList.contains("type-textbox")) {
+                result[e.target.id] = e.target.innerText;
+            } else {
+                result[e.target.id] = e.target.value;
+            }
+
+            if (mode === MODE_PREVIEW) {
+                console.log(results);
+            }
+
+            save();
+            updateInfo();
+            updateTabs();
+            applyFilters();
+
+            formView.scrollTop = scrollPre;
+        }
+
+        const updateInfo = () => {
+            const usedSlots = results.length - 1;
+            const maxReached = usedSlots >= max;
+
+            document.getElementById("slot-info").innerText = `${usedSlots} of ${max} slots used${maxReached ? ", you can't add more publications." : ""}`;
+
+            if (usedSlots >= max) {
+                document.getElementById("add-button").style.display = "none"
+            } else {
+                document.getElementById("add-button").style.display = "inherit"
+            }
+
+            tabs.forEach(t => {
+                const content = t.firstChild;
+
+                const index = parseInt(t.getAttribute("data-index"));
+                const result = results[index];
+
+                switch (result.type) {
+                    case "meta":
+                        content.innerHTML = `<b>Author</b>`;
+                        break;
+                    case "pub":
+                        content.innerHTML = result["P2"] && result["P3"]
+                            ? `<b>Publication ${result["P2"]}</b>`
+                            : "<b>New publication<b>";
+                        break;
+                    case "software":
+                        content.innerHTML = `<b>New software project</b>`;
+                        break;
+                    case "data":
+                        content.innerHTML = `<b>New data</b>`;
+                        break;
+
+                    default:
+                        break;
+                }
             })
 
-        return processedCondition;
-    }
+            let scoringResult = score(result);
 
-    const insertValuesIntoCondition = condition => {
-        return condition.replaceAll(/\$(\w*)/g, `result['$1']`);
-    }
-
-    const evaluateCondition = condition => eval(insertValuesIntoCondition(preprocessCondition(condition)));
-
-    const applyFilters = () => {
-        if (mode === MODE_PREVIEW) {
-            return;
-        }
-
-        for (let elem of elems) {
-            if (!elem.condition) continue;
-
-
-            const domElements = [...document.getElementsByClassName(elem.id)];
-
-            if (evaluateCondition(elem.condition)) {
-                domElements.forEach(de => de.style.display = "")
+            if (scoringResult.max > 0) {
+                document.getElementById("no-score").style.display = "none";
+                document.getElementById("score-container").style.display = "flex"
+                document.getElementById("score-minmax").innerHTML = `${scoringResult.score} / ${scoringResult.max}`
+                document.getElementById("score-percentage").innerHTML = `${scoringResult.percentage}%`
             } else {
-                domElements.forEach(de => de.style.display = "none")
+                document.getElementById("no-score").style.display = "block";
+                document.getElementById("score-container").style.display = "none"
             }
         }
-    }
 
-    const countWords = (text) => {
-        return text.trim() ? text.replace(/[\r\n\t]+/g, " ").split(/\s+/).filter(x => x).length : 0;
-    }
+        const preprocessCondition = condition => {
+            let processedCondition = condition
+                .replaceAll(/([\$\w]+)\s*=\|=\s*\[(.*?)\]/g, (match, variable, list) => {
+                    return "(" + list.split(",")
+                        .map(value => `${variable} === ${value.trim()}`)
+                        .join(" || ") + ")";
+                })
+                .replaceAll(/([\$\w]+)\s*=&=\s*\[(.*?)\]/g, (match, variable, list) => {
+                    return "(" + list.split(",")
+                        .map(value => `${variable} === ${value.trim()}`)
+                        .join(" && ") + ")";
+                })
 
-    const updateWordcount = (textbox, wordcount) => {
-        const words = countWords(textbox.innerText);
+            return processedCondition;
+        }
 
-        if (textbox.hasAttribute("data-maxwords")) {
-            const maxwords = parseInt(textbox.getAttribute("data-maxwords"));
-            wordcount.innerText = words + " / " + maxwords;
+        const insertValuesIntoCondition = condition => {
+            return condition.replaceAll(/\$(\w*)/g, `result['$1']`);
+        }
 
-            if (words <= maxwords) {
-                wordcount.classList.add("wordcount-ok");
-                wordcount.classList.remove("wordcount-warning");
-            } else {
-                wordcount.classList.remove("wordcount-ok");
-                wordcount.classList.add("wordcount-warning");
+        const evaluateCondition = condition => eval(insertValuesIntoCondition(preprocessCondition(condition)));
+
+        const applyFilters = () => {
+            if (mode === MODE_PREVIEW) {
+                return;
             }
-        } else {
-            wordcount.innerText = words;
-        }
-    }
 
-    const textboxWordcount = e => {
-        const wordcount = document.getElementById(e.target.id + "-wordcount");
+            for (let elem of elems) {
+                if (!elem.condition) continue;
 
-        updateWordcount(e.target, wordcount);
-    }
 
-    const showInfo = (e, element) => {
-        const itemInfo = document.getElementById("item-info");
-        const itemBackground = document.getElementById("item-background");
-        const itemBackgroundDetails = document.getElementById("item-background-details");
+                const domElements = [...document.getElementsByClassName(elem.id)];
 
-        if (element.info) {
-            itemInfo.style.color = "#333333";
-            itemInfo.innerHTML = `<b>${element.id}</b>${element.eval_dimension ? '<span id="eval-dimension">' + element.eval_dimension + '</span>' : ""}<br><br>${element.info}`;
-        } else {
-            itemInfo.style.color = "gray";
-            itemInfo.innerHTML = `<b>${element.id}</b>${element.eval_dimension ? '<span id="eval-dimension">' + element.eval_dimension + '</span>' : ""}<br><br><i>No information</i>`;
+                if (evaluateCondition(elem.condition)) {
+                    domElements.forEach(de => de.style.display = "")
+                } else {
+                    domElements.forEach(de => de.style.display = "none")
+                }
+            }
         }
 
-        if (element.background) {
-            itemBackground.innerHTML = element.background;
-            itemBackgroundDetails.style.display = "block";
-            itemBackgroundDetails.removeAttribute("open");
-        } else {
-            itemBackgroundDetails.style.display = "none";
+        const countWords = (text) => {
+            return text.trim() ? text.replace(/[\r\n\t]+/g, " ").split(/\s+/).filter(x => x).length : 0;
         }
-    }
 
-    const createInput = (element) => {
-        elems.push(element);
+        const updateWordcount = (textbox, wordcount) => {
+            const words = countWords(textbox.innerText);
 
-        const creator = {
-            "separator": () => {
-                let separator = document.createElement("hr");
+            if (textbox.hasAttribute("data-maxwords")) {
+                const maxwords = parseInt(textbox.getAttribute("data-maxwords"));
+                wordcount.innerText = words + " / " + maxwords;
 
-                return separator;
-            },
-            "info": () => {
-                let info = document.createElement("p");
-                info.id = element.id;
+                if (words <= maxwords) {
+                    wordcount.classList.add("wordcount-ok");
+                    wordcount.classList.remove("wordcount-warning");
+                } else {
+                    wordcount.classList.remove("wordcount-ok");
+                    wordcount.classList.add("wordcount-warning");
+                }
+            } else {
+                wordcount.innerText = words;
+            }
+        }
 
-                info.innerHTML = element.text;
+        const textboxWordcount = e => {
+            const wordcount = document.getElementById(e.target.id + "-wordcount");
 
-                return info;
-            },
-            "text": () => {
-                let input = document.createElement("input");
-                input.type = "text";
+            updateWordcount(e.target, wordcount);
+        }
 
-                input.placeholder = element.title || '';
+        const showInfo = (e, element) => {
+            const itemInfo = document.getElementById("item-info");
+            const itemBackground = document.getElementById("item-background");
+            const itemBackgroundDetails = document.getElementById("item-background-details");
 
-                return input;
-            },
-            "textbox": () => {
-                let container = document.createElement("div");
-                container.classList.add("textbox-container");
+            if (element.info) {
+                itemInfo.style.color = "#333333";
+                itemInfo.innerHTML = `<b>${element.id}</b>${element.eval_dimension ? '<span id="eval-dimension">' + element.eval_dimension + '</span>' : ""}<br><br>${element.info}`;
+            } else {
+                itemInfo.style.color = "gray";
+                itemInfo.innerHTML = `<b>${element.id}</b>${element.eval_dimension ? '<span id="eval-dimension">' + element.eval_dimension + '</span>' : ""}<br><br><i>No information</i>`;
+            }
 
-                let input = document.createElement("div");
-                input.id = element.id;
-                input.classList.add("textbox", "type-textbox");
-                input.contentEditable = true;
+            if (element.background) {
+                itemBackground.innerHTML = element.background;
+                itemBackgroundDetails.style.display = "block";
+                itemBackgroundDetails.removeAttribute("open");
+            } else {
+                itemBackgroundDetails.style.display = "none";
+            }
+        }
 
-                let wordcount = document.createElement("div");
-                wordcount.id = element.id + "-wordcount";
-                wordcount.classList.add("wordcount");
+        const createInput = (element) => {
+            elems.push(element);
+
+            const creator = {
+                "separator": () => {
+                    let separator = document.createElement("hr");
+
+                    return separator;
+                },
+                "info": () => {
+                    let info = document.createElement("p");
+                    info.id = element.id;
+
+                    info.innerHTML = element.text;
+
+                    return info;
+                },
+                "text": () => {
+                    let input = document.createElement("input");
+                    input.type = "text";
+
+                    input.placeholder = element.title || '';
+
+                    return input;
+                },
+                "textbox": () => {
+                    let container = document.createElement("div");
+                    container.classList.add("textbox-container");
+
+                    let input = document.createElement("div");
+                    input.id = element.id;
+                    input.classList.add("textbox", "type-textbox");
+                    input.contentEditable = true;
+
+                    let wordcount = document.createElement("div");
+                    wordcount.id = element.id + "-wordcount";
+                    wordcount.classList.add("wordcount");
+
+                    if (element.id in result) {
+                        input.innerText = result[element.id];
+                    }
+
+                    if (element.maxwords) {
+                        input.setAttribute("data-maxwords", element.maxwords);
+                        wordcount.classList.add("wordcount-max");
+                    }
+
+                    updateWordcount(input, wordcount);
+
+                    input.addEventListener("input", textboxWordcount);
+                    input.addEventListener("blur", update);
+
+                    container.append(input, wordcount);
+
+                    return container;
+                },
+                "number": () => {
+                    let input = document.createElement("input");
+                    input.type = "number";
+
+                    input.placeholder = element.title || '';
+
+                    return input;
+                },
+                "date": () => {
+                    let input = document.createElement("input");
+                    input.type = "date";
+
+                    input.placeholder = element.title || '';
+
+                    return input;
+                },
+                "dropdown": () => {
+                    let input = document.createElement("select");
+                    input.name = element.id;
+                    input.id = element.id;
+
+                    const values = element.values || element.options;
+
+                    let options = element.options.map((option, index) => {
+                        let opt = document.createElement("option")
+                        opt.value = index;
+                        opt.innerText = option;
+
+                        if (mode === MODE_PREVIEW) {
+                            opt.innerText = `[${index}] ${option}`;
+                        }
+
+                        return opt;
+                    })
+
+                    input.append(...options);
+
+                    return input;
+                },
+                "boolean": () => {
+                    let input = document.createElement("select");
+                    input.name = element.id;
+                    input.id = element.id;
+
+                    let options = element.options.map((option, index) => {
+                        let opt = document.createElement("option")
+                        opt.value = index == 0;
+                        opt.innerText = option;
+
+                        return opt;
+                    })
+
+                    input.append(...options);
+
+                    return input;
+                },
+                "radio": () => {
+                    let input = document.createElement("div");
+                    input.classList.add("radio", element.alignment ? "alignment-" + element.alignment : "alignment-vertical")
+
+                    let options = element.options.map((option, index) => {
+                        let container = document.createElement("div");
+
+                        let label = document.createElement("label");
+
+                        let radio = document.createElement("input");
+                        radio.type = "radio";
+                        radio.value = index;
+                        radio.name = element.id;
+                        radio.classList.add("type-radio");
+
+                        if (mode === MODE_PREVIEW) {
+                            option = `[${index}] ${option}`;
+                        }
+
+                        label.append(radio, option);
+
+                        if (element.id in result && result[element.id] == index) {
+                            radio.checked = true;
+                        }
+
+                        return label;
+                    })
+
+                    input.append(...options);
+
+                    return input;
+                },
+                "checkbox": () => {
+                    let input = document.createElement("div");
+
+                    let options = element.options.map((option, index) => {
+                        let container = document.createElement("div");
+
+                        let label = document.createElement("label");
+
+                        let checkbox = document.createElement("input");
+                        checkbox.type = "checkbox";
+                        checkbox.id = element.id + String.fromCharCode(index + 97);
+                        checkbox.classList.add("type-checkbox");
+
+                        if (mode === MODE_PREVIEW) {
+                            option = `[${checkbox.id}] ${option}`;
+                        }
+
+                        label.append(checkbox, option);
+
+                        // Last option exclusive
+                        if (element.last_option_exclusive) {
+                            // Uncheck others if the last one is checked
+                            if (index === element.options.length - 1) {
+                                checkbox.addEventListener("change", e => {
+                                    if (e.target.checked) {
+                                        element.options.forEach((option, index) => {
+                                            if (index !== element.options.length - 1) {
+                                                let id = element.id + String.fromCharCode(index + 97);
+                                                document.getElementById(id).checked = false;
+                                                update({ ...e, target: document.getElementById(id) })
+                                            }
+                                        })
+                                    }
+                                })
+                            } else {
+                                // Uncheck last one if one of the others is checked
+                                checkbox.addEventListener("change", e => {
+                                    let id = element.id + String.fromCharCode(options.length - 1 + 97);
+
+                                    if (e.target.checked) {
+                                        document.getElementById(id).checked = false;
+                                    }
+
+                                    update({ ...e, target: document.getElementById(id) });
+                                })
+                            }
+                        }
+
+                        if (checkbox.id in result && result[checkbox.id] === true) {
+                            checkbox.checked = true;
+                        }
+
+                        return label;
+                    })
+
+                    input.append(...options);
+
+                    return input;
+                }
+            }
+
+            if (element.type in creator) {
+                let domElement = creator[element.type]();
+
+                domElement.classList.add("type-" + element.type);
+
+                if (element.id) {
+                    domElement.id = element.id;
+                }
+
+                domElement.pattern = element.check;
+
+
+                if (filterTriggers.includes(element.id)) {
+                    domElement.addEventListener('input', update);
+                }
+
 
                 if (element.id in result) {
-                    input.innerText = result[element.id];
+                    domElement.value = result[element.id];
                 }
 
-                if (element.maxwords) {
-                    input.setAttribute("data-maxwords", element.maxwords);
-                    wordcount.classList.add("wordcount-max");
+                let fragment = document.createElement("div");
+
+                if (element.title) {
+                    let title = document.createElement("p");
+                    title.innerText = element.title;
+
+                    title.classList.add(element.id, "title");
+                    fragment.appendChild(title);
+
+                    if (mode === MODE_PREVIEW) {
+                        title.innerText = `[${element.id}] ${title.innerText}`;
+                    }
                 }
 
-                updateWordcount(input, wordcount);
 
-                input.addEventListener("input", textboxWordcount);
-                input.addEventListener("blur", update);
+                domElement.classList.add(element.id);
 
-                container.append(input, wordcount);
+                if (mode === MODE_PREVIEW && element.condition) {
+                    let previewCondition = document.createElement("p");
+                    previewCondition.innerHTML = `[ <i>Condition:</i>  <code>${element.condition}</code> ]`;
+                    fragment.appendChild(previewCondition);
+                }
 
-                return container;
-            },
-            "number": () => {
-                let input = document.createElement("input");
-                input.type = "number";
+                fragment.appendChild(domElement);
 
-                input.placeholder = element.title || '';
+                fragment.title = element.tooltip || "";
+                fragment.addEventListener("click", e => showInfo(e, element));
 
-                return input;
-            },
-            "date": () => {
-                let input = document.createElement("input");
-                input.type = "date";
+                return fragment;
+            } else return "";
+        }
 
-                input.placeholder = element.title || '';
+        const createForm = (form) => {
+            let formElement = document.createElement("form");
 
-                return input;
-            },
-            "dropdown": () => {
-                let input = document.createElement("select");
-                input.name = element.id;
-                input.id = element.id;
+            let domElements = form.elements.map(elem => createInput(elem));
 
-                const values = element.values || element.options;
+            let title = document.createElement("h2");
+            title.innerText = form.title;
 
-                let options = element.options.map((option, index) => {
-                    let opt = document.createElement("option")
-                    opt.value = index;
-                    opt.innerText = option;
+            if (mode === MODE_PREVIEW) {
+                title.innerText = "[Preview] " + title.innerText;
+            }
 
-                    if (mode === MODE_PREVIEW) {
-                        opt.innerText = `[${index}] ${option}`;
+            formElement.append(title, ...domElements);
+
+            formElement.addEventListener('change', update);
+
+            return formElement;
+        }
+
+        const handleTabClick = e => {
+            currentTab = parseInt(e.target.getAttribute("data-index"));
+            sessionStorage.setItem("index", currentTab.toString())
+            result = results[currentTab];
+            updateTabs();
+        }
+
+        const updateTabs = () => {
+            tabs.forEach(t => {
+                if (parseInt(t.getAttribute("data-index")) === currentTab) {
+                    t.classList.add("selected");
+
+                    if (currentTab !== preTab) {
+                        filterTriggers = formTypes[result.type].elements
+                            .filter(element => element.condition)
+                            .map(element => element.condition.match(/\$\w*/g))
+                            .flat()
+                            .map(ids => ids.replaceAll('$', ''));
+
+                        const formView = document.getElementById("formview");
+                        formView.innerHTML = "";
+                        formView.appendChild(createForm(formTypes[result.type]));
+
+                        applyFilters();
+                        updateInfo();
+
+                        preTab = currentTab;
                     }
 
-                    return opt;
-                })
+                } else {
+                    t.classList.remove("selected");
+                }
+            })
+        }
 
-                input.append(...options);
+        const createTab = (result, index) => {
+            let tab = document.createElement("div");
+            tab.classList.add("tab");
 
-                return input;
-            },
-            "boolean": () => {
-                let input = document.createElement("select");
-                input.name = element.id;
-                input.id = element.id;
+            let content = document.createElement("span");
+            tab.appendChild(content);
 
-                let options = element.options.map((option, index) => {
-                    let opt = document.createElement("option")
-                    opt.value = index == 0;
-                    opt.innerText = option;
+            tab.setAttribute("data-index", index);
 
-                    return opt;
-                })
+            tab.addEventListener("click", handleTabClick);
 
-                input.append(...options);
+            tabs.push(tab);
+            return tab;
+        }
 
-                return input;
-            },
-            "radio": () => {
-                let input = document.createElement("div");
-                input.classList.add("radio", element.alignment ? "alignment-" + element.alignment : "alignment-vertical")
+        const score = r => {
+            const scoring = formTypes[r.type].scoring;
 
-                let options = element.options.map((option, index) => {
-                    let container = document.createElement("div");
+            let maxScore = 0;
+            let reachedScore = 0;
 
-                    let label = document.createElement("label");
+            for (indicator in scoring) {
+                if (scoring[indicator].not_applicable && evaluateCondition(scoring[indicator].not_applicable)) {
+                    continue;
+                }
 
-                    let radio = document.createElement("input");
-                    radio.type = "radio";
-                    radio.value = index;
-                    radio.name = element.id;
-                    radio.classList.add("type-radio");
+                maxScore += scoring[indicator].max;
 
-                    if (mode === MODE_PREVIEW) {
-                        option = `[${index}] ${option}`;
-                    }
+                switch (scoring[indicator].op) {
+                    case "sum":
+                        reachedScore += scoring[indicator].points
+                            .filter(p => evaluateCondition(p.condition))
+                            .reduce((sum, next) => sum + next.value, 0);
+                        break;
+                    case "select":
+                        reachedScore += (scoring[indicator].points.find(p => evaluateCondition(p.condition)) || { value: 0 }).value;
+                        break;
+                    default:
+                        break;
+                }
 
-                    label.append(radio, option);
 
-                    if (element.id in result && result[element.id] == index) {
-                        radio.checked = true;
-                    }
+            }
 
-                    return label;
-                })
 
-                input.append(...options);
-
-                return input;
-            },
-            "checkbox": () => {
-                let input = document.createElement("div");
-
-                let options = element.options.map((option, index) => {
-                    let container = document.createElement("div");
-
-                    let label = document.createElement("label");
-
-                    let checkbox = document.createElement("input");
-                    checkbox.type = "checkbox";
-                    checkbox.id = element.id + String.fromCharCode(index + 97);
-                    checkbox.classList.add("type-checkbox");
-
-                    if (mode === MODE_PREVIEW) {
-                        option = `[${checkbox.id}] ${option}`;
-                    }
-
-                    label.append(checkbox, option);
-
-                    // Last option exclusive
-                    if (element.last_option_exclusive) {
-                        // Uncheck others if the last one is checked
-                        if (index === element.options.length - 1) {
-                            checkbox.addEventListener("change", e => {
-                                if (e.target.checked) {
-                                    element.options.forEach((option, index) => {
-                                        if (index !== element.options.length - 1) {
-                                            let id = element.id + String.fromCharCode(index + 97);
-                                            document.getElementById(id).checked = false;
-                                            update({ ...e, target: document.getElementById(id) })
-                                        }
-                                    })
-                                }
-                            })
-                        } else {
-                            // Uncheck last one if one of the others is checked
-                            checkbox.addEventListener("change", e => {
-                                let id = element.id + String.fromCharCode(options.length - 1 + 97);
-
-                                if (e.target.checked) {
-                                    document.getElementById(id).checked = false;
-                                }
-
-                                update({ ...e, target: document.getElementById(id) });
-                            })
-                        }
-                    }
-
-                    if (checkbox.id in result && result[checkbox.id] === true) {
-                        checkbox.checked = true;
-                    }
-
-                    return label;
-                })
-
-                input.append(...options);
-
-                return input;
+            return {
+                max: maxScore,
+                score: reachedScore,
+                relative: reachedScore / maxScore,
+                percentage: ((reachedScore / maxScore) * 100).toFixed(1)
             }
         }
 
-        if (element.type in creator) {
-            let domElement = creator[element.type]();
+        let meta, pub, software, data, max;
 
-            domElement.classList.add("type-" + element.type);
+        let filterTriggers;
 
-            if (element.id) {
-                domElement.id = element.id;
-            }
+        const params = new URLSearchParams(window.location.search);
+        const mode = params.get("mode");
+        const doimagic = params.get("doimagic");
 
-            domElement.pattern = element.check;
+        let results = getSavedData();
 
+        let currentTab = parseInt(sessionStorage.getItem("index") || "0");
+        let preTab = -1;
+        let result = results[currentTab];
 
-            if (filterTriggers.includes(element.id)) {
-                domElement.addEventListener('input', update);
-            }
-
-
-            if (element.id in result) {
-                domElement.value = result[element.id];
-            }
-
-            let fragment = document.createElement("div");
-
-            if (element.title) {
-                let title = document.createElement("p");
-                title.innerText = element.title;
-
-                title.classList.add(element.id, "title");
-                fragment.appendChild(title);
-
-                if (mode === MODE_PREVIEW) {
-                    title.innerText = `[${element.id}] ${title.innerText}`;
-                }
-            }
-
-
-            domElement.classList.add(element.id);
-
-            if (mode === MODE_PREVIEW && element.condition) {
-                let previewCondition = document.createElement("p");
-                previewCondition.innerHTML = `[ <i>Condition:</i>  <code>${element.condition}</code> ]`;
-                fragment.appendChild(previewCondition);
-            }
-
-            fragment.appendChild(domElement);
-
-            fragment.title = element.tooltip || "";
-            fragment.addEventListener("click", e => showInfo(e, element));
-
-            return fragment;
-        } else return "";
-    }
-
-    const createForm = (form) => {
-        let formElement = document.createElement("form");
-
-        let domElements = form.elements.map(elem => createInput(elem));
-
-        let title = document.createElement("h2");
-        title.innerText = form.title;
-
-        if (mode === MODE_PREVIEW) {
-            title.innerText = "[Preview] " + title.innerText;
+        let prefixes = {
+            meta: "M",
+            pub: "P",
+            software: "S",
+            data: "D"
         }
 
-        formElement.append(title, ...domElements);
+        menu().then(m => {
+            formTypes = m;
+            ({ meta, pub, software, data, max } = m);
+            results.forEach((r, index) => {
+                document.getElementById("tabs").appendChild(createTab(r, index));
+            });
 
-        formElement.addEventListener('change', update);
-
-        return formElement;
-    }
-
-    const handleTabClick = e => {
-        currentTab = parseInt(e.target.getAttribute("data-index"));
-        sessionStorage.setItem("index", currentTab.toString())
-        result = results[currentTab];
-        updateTabs();
-    }
-
-    const updateTabs = () => {
-        tabs.forEach(t => {
-            if (parseInt(t.getAttribute("data-index")) === currentTab) {
-                t.classList.add("selected");
-
-                if (currentTab !== preTab) {
-                    filterTriggers = formTypes[result.type].elements
-                        .filter(element => element.condition)
-                        .map(element => element.condition.match(/\$\w*/g))
-                        .flat()
-                        .map(ids => ids.replaceAll('$', ''));
-
-                    const formView = document.getElementById("formview");
-                    formView.innerHTML = "";
-                    formView.appendChild(createForm(formTypes[result.type]));
-
-                    applyFilters();
-                    updateInfo();
-
-                    preTab = currentTab;
-                }
-
-            } else {
-                t.classList.remove("selected");
-            }
+            updateTabs();
+            updateInfo();
+            applyFilters();
         })
-    }
-
-    const createTab = (result, index) => {
-        let tab = document.createElement("div");
-        tab.classList.add("tab");
-
-        let content = document.createElement("span");
-        tab.appendChild(content);
-
-        tab.setAttribute("data-index", index);
-
-        tab.addEventListener("click", handleTabClick);
-
-        tabs.push(tab);
-        return tab;
-    }
-
-    const score = r => {
-        const scoring = formTypes[r.type].scoring;
-
-        let maxScore = 0;
-        let reachedScore = 0;
-
-        for (indicator in scoring) {
-            if (scoring[indicator].not_applicable && evaluateCondition(scoring[indicator].not_applicable)) {
-                continue;
-            }
-
-            maxScore += scoring[indicator].max;
-
-            switch (scoring[indicator].op) {
-                case "sum":
-                    reachedScore += scoring[indicator].points
-                        .filter(p => evaluateCondition(p.condition))
-                        .reduce((sum, next) => sum + next.value, 0);
-                    break;
-                case "select":
-                    reachedScore += (scoring[indicator].points.find(p => evaluateCondition(p.condition)) || { value: 0 }).value;
-                    break;
-                default:
-                    break;
-            }
-
-
-        }
-
-
-        return {
-            max: maxScore,
-            score: reachedScore,
-            relative: reachedScore / maxScore,
-            percentage: ((reachedScore / maxScore) * 100).toFixed(1)
-        }
-    }
-
-    let meta, pub, software, data, max;
-
-    let filterTriggers;
-
-    const params = new URLSearchParams(window.location.search);
-    const mode = params.get("mode");
-    const doimagic = params.get("doimagic");
-
-    let results = getSavedData();
-
-    let currentTab = parseInt(sessionStorage.getItem("index") || "0");
-    let preTab = -1;
-    let result = results[currentTab];
-
-    let prefixes = {
-        meta: "M",
-        pub: "P",
-        software: "S",
-        data: "D"
-    }
-
-    menu().then(m => {
-        formTypes = m;
-        ({ meta, pub, software, data, max } = m);
-        results.forEach((r, index) => {
-            document.getElementById("tabs").appendChild(createTab(r, index));
-        });
-
-        updateTabs();
-        updateInfo();
-        applyFilters();
-    })
-</script>
+    </script>
+</body>
 
 </html>

@@ -312,6 +312,18 @@ hr {
     text-align: left;
 }
 
+.menu-bottom {
+    text-align: center;
+}
+
+.github-link {
+    color: gray;
+}
+
+.github-link:hover {
+    color: #333333;
+}
+
 @media (max-width: 500px) {
     #main {
         flex-direction: column;

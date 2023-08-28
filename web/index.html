@@ -85,6 +85,7 @@
             'https://mozilla.github.io/pdf.js/build/pdf.worker.js';
 
         function extractText(pdf) {
+<<<<<<< HEAD
             var totalPageCount = pdf.numPages;
             var countPromises = [];
             for (
@@ -101,12 +102,25 @@
                                 .map(function (s) {
                                     return s.str;
                                 })
+=======
+            const totalPageCount = pdf.numPages;
+            let promises = [];
+            for (let currentPage = 1; currentPage <= totalPageCount; currentPage++) {
+                const page = pdf.getPage(currentPage);
+                promises.push(
+                    page.then(page => {
+                        let textContent = page.getTextContent();
+                        return textContent.then(text => {
+                            return text.items
+                                .map(s => s.str)
+>>>>>>> ee58a54572d078e90938870ff4e97910325712f7
                                 .join(' ');
                         });
                     }),
                 );
             }
 
+<<<<<<< HEAD
             return Promise.all(countPromises).then(function (texts) {
                 return texts.join(' ');
             })
@@ -122,11 +136,27 @@
 
                 //Step 4:turn array buffer into typed array
                 var typedarray = new Uint8Array(this.result);
+=======
+            return Promise.all(promises).then(texts => texts.join(' '));
+        }
+
+        function handleSelectPDF(files) {
+            let file = files[0];
+
+            //Step 2: Read the file using file reader
+            const fileReader = new FileReader();
+
+            fileReader.onload = () => {
+
+                //Step 4:turn array buffer into typed array
+                let typedarray = new Uint8Array(this.result);
+>>>>>>> ee58a54572d078e90938870ff4e97910325712f7
 
                 //Step 5:pdfjs should be able to read this
                 const loadingTask = pdfjsLib.getDocument(typedarray);
                 loadingTask.promise.then(pdf => {
                     extractText(pdf).then(text => {
+<<<<<<< HEAD
                         let dois = extractDOIs(text);
                         document.getElementById('add-doi').value = dois[0];
 
@@ -134,12 +164,21 @@
                             console.log(text);
                             console.log(dois);
                         }
+=======
+                        console.log(text);
+                        let dois = extractDOIs(text);
+                        console.log(dois);
+                        document.getElementById('add-doi').value = dois[0];
+>>>>>>> ee58a54572d078e90938870ff4e97910325712f7
                     })
                 });
             };
             //Step 3:Read the file as ArrayBuffer
             fileReader.readAsArrayBuffer(file);
+<<<<<<< HEAD
 
+=======
+>>>>>>> ee58a54572d078e90938870ff4e97910325712f7
         }
 
         function extractDOIs(text) {

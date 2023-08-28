@@ -58,8 +58,10 @@
         <!-- Modal content -->
         <div class="modal-content">
             <details class="doi-info">
-                <summary> 🪄 DOI Magic?</summary>
-                <p>If you provide a DOI, some information can be fetched automatically. You can leave it empty if you want to fill in everything manually.</p>
+                <summary> 🪄 Magic?</summary>
+                <p>If you provide a DOI, some information can be fetched automatically. You can leave it empty if you
+                    want to fill in everything manually. You can also open a PDF file and extract the DOI from it.</p>
+                <button onclick="document.getElementById('add-pdf').click()">Extract DOI from PDF</button><br><br>
                 <input id="add-doi" type="text" placeholder="DOI (optional)" />
             </details>
 
@@ -73,6 +75,80 @@
     </div>
     <input id="fileInput" type="file" accept="text/json" style="visibility: hidden" onchange="handleLoad(this.files)" />
     <a id="download" style="visibility: hidden"></a>
+    <input id="add-pdf" type="file" accept="application/pdf" onchange="handleSelectPDF(this.files)"
+        style="visibility: hidden;" />
+
+
+    <script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
+    <script>
+        pdfjsLib.GlobalWorkerOptions.workerSrc =
+            'https://mozilla.github.io/pdf.js/build/pdf.worker.js';
+
+        function extractText(pdf) {
+            var totalPageCount = pdf.numPages;
+            var countPromises = [];
+            for (
+                var currentPage = 1;
+                currentPage <= totalPageCount;
+                currentPage++
+            ) {
+                var page = pdf.getPage(currentPage);
+                countPromises.push(
+                    page.then(function (page) {
+                        var textContent = page.getTextContent();
+                        return textContent.then(function (text) {
+                            return text.items
+                                .map(function (s) {
+                                    return s.str;
+                                })
+                                .join(' ');
+                        });
+                    }),
+                );
+            }
+
+            return Promise.all(countPromises).then(function (texts) {
+                return texts.join(' ');
+            })
+        }
+
+        function handleSelectPDF(files) {
+            var file = files[0];
+
+            //Step 2: Read the file using file reader
+            var fileReader = new FileReader();
+
+            fileReader.onload = function () {
+
+                //Step 4:turn array buffer into typed array
+                var typedarray = new Uint8Array(this.result);
+
+                //Step 5:pdfjs should be able to read this
+                const loadingTask = pdfjsLib.getDocument(typedarray);
+                loadingTask.promise.then(pdf => {
+                    extractText(pdf).then(text => {
+                        let dois = extractDOIs(text);
+                        document.getElementById('add-doi').value = dois[0];
+
+                        if (mode === MODE_PREVIEW) {
+                            console.log(text);
+                            console.log(dois);
+                        }
+                    })
+                });
+            };
+            //Step 3:Read the file as ArrayBuffer
+            fileReader.readAsArrayBuffer(file);
+
+        }
+
+        function extractDOIs(text) {
+            let pattern = /\b10\.\d{4,9}\/[-._;()/:a-zA-Z0-9]+\b/g;
+            const dois = text.match(pattern);
+
+            return [...new Set(dois)];
+        }
+    </script>
 </body>
 
 <script>
@@ -214,11 +290,15 @@
             })
                 .then(response => response.json())
                 .then(response => {
+                    if (mode === MODE_PREVIEW) {
+                        console.log(response);
+                    }
+
                     if (type === "pub" && doimagic === "active") {
                         results[index].P3 = response.title;
                         results[index].P4 = response.published["date-parts"][0][0];
-                        results[index].P5 = doi;
-                        
+                        results[index].P5 = response.DOI;
+
                         save();
 
                         if (currentTab === index) {

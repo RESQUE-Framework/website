@@ -268,10 +268,6 @@
 
             document.getElementById("tabs").appendChild(createTab(results[results.length - 1], results.length - 1));
 
-            updateTabs();
-            updateInfo();
-            save();
-
             closeAddModal();
 
             const tabsElement = document.getElementById("tabs");
@@ -301,9 +297,16 @@
 
                             if (currentTab === index) {
                                 location.reload();
+                            } else {
+                                // Switch to new tab
+                                tabs[results.length - 1].click();
                             }
                         }
                     })
+            } else {
+                // Switch to new tab
+                save();
+                tabs[results.length - 1].click();
             }
         }
 

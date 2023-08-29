@@ -275,12 +275,6 @@
 
             closeAddModal();
 
-            const tabsElement = document.getElementById("tabs");
-            tabsElement.scrollTo({
-                left: tabsElement.scrollWidth,
-                behavior: "smooth"
-            });
-
             if (doi) {
                 fetch("https://doi.org/" + doi.trim(), {
                     headers: {
@@ -305,14 +299,27 @@
                             } else {
                                 // Switch to new tab
                                 tabs[results.length - 1].click();
+
+                                tabsElement.scrollTo({
+                                    top: tabsElement.scrollHeight,
+                                    behavior: "smooth"
+                                });
                             }
                         }
                     })
             } else {
                 // Switch to new tab
                 save();
+                
                 tabs[results.length - 1].click();
+
+                tabsElement.scrollTo({
+                    top: tabsElement.scrollHeight,
+                    behavior: "smooth"
+                });
             }
+
+            const tabsElement = document.getElementsByClassName("tabs-sidebar")[0];
         }
 
         const save = () => {

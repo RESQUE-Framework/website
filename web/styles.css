@@ -54,8 +54,7 @@ body {
     position: relative;
     flex: 1 1 25%;
     border-right: 1px solid lightgray;
-    padding: 16px;
-    padding-top: 0;
+    padding: 0 16px;
     overflow: scroll;
 }
 
@@ -94,6 +93,7 @@ body {
     bottom: 0;
     margin-top: 16px;
     padding-top: 16px;
+    padding-bottom: 16px;
     text-align: center;
     background-color: white;
     border-top: 1px solid lightgray;

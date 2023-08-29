@@ -90,7 +90,7 @@ Such EPs ideally are contributed from a legit academic community and stem from a
 The coding manual is a companion to the rating schemes and gives guidance on how to apply the ratings. It includes examples and a discussion of boundary cases.
 The goal of the coding manual is to increase interrater reliability, in particular when external raters apply the scheme to research outputs (in contrast to applicants rating their own research).
 
-Active development of the manual takes place in a [Google doc](https://docs.google.com/document/d/1jEFQ6Klpgc3uQQMKZDEfGmJLp1WSSVNjadTAHULLJk4/edit?usp=sharing); tagged releases are stored in the folder [/coding_manual](./coding_manual).
+Active development of the manual takes place in a [Google doc (v 0.2)](https://docs.google.com/document/d/1yrBbxwf-kQZvaCnVos06w2_GahK2lyXyP5eHlZXlcw4/edit?usp=sharing); tagged releases are stored in the folder [/coding_manual](./coding_manual).
 
 ### 🧑‍💻 Analysis scripts for R
 We provide R scripts that ...

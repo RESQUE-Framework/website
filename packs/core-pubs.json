@@ -22,7 +22,7 @@
             ]
         },
         "P14": {
-            "not_applicable": "!($P8) || $P14 === 0",
+            "not_applicable": "!($P8) || $P14 === 0 && $P14_explanation",
             "max": 1,
             "op": "select",
             "points": [
@@ -470,7 +470,7 @@
             "type": "radio",
             "title": "Correctness of computational results has been independently verified",
             "options": [
-                "Not applicable",
+                "Not applicable [provide explanation]",
                 "No",
                 "Yes [provide doi or URL to verification report]"
             ],
@@ -479,6 +479,12 @@
             "info": "Info about P14. This is a longer explanation of the indicator.",
             "background": "How do we justify having this indicator?",
             "condition": "$P8"
+        },
+        {
+            "id": "P14_explanation",
+            "type": "text",
+            "title": "⤷ Not Applicable: Explanation",
+            "condition": "$P8 && $P14 === 0"
         },
         {
             "id": "P14_extra",

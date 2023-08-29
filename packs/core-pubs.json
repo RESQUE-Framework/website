@@ -477,7 +477,7 @@
         {
             "id": "P14_extra",
             "type": "text",
-            "title": "DOI or URL to the verification report",
+            "title": "DOI or URL of the verification report",
             "condition": "$P8 && $P14 === 2"
         },
         {
@@ -501,7 +501,7 @@
         {
             "id": "P15_extra",
             "type": "text",
-            "title": "DOI or URL to the script",
+            "title": "DOI or URL of the script",
             "condition": "$P8 && $P15 =|= [2, 3]"
         },
         {
@@ -538,7 +538,7 @@
         {
             "id": "P17_extra",
             "type": "text",
-            "title": "DOI or URL to the open materials",
+            "title": "DOI or URL of the open materials",
             "condition": "$P8 && $P17 =|= [2, 3]"
         },
         {
@@ -567,7 +567,7 @@
         {
             "id": "P18_extra",
             "type": "text",
-            "title": "DOI or URL to the preregistration",
+            "title": "DOI or URL of the preregistration",
             "condition": "$P8 && $P18 =|= [2, 3]"
         },
         {
@@ -620,6 +620,12 @@
             "type": "text",
             "title": "Not applicable: Explanation",
             "condition": "$P8 && $P21 === 0"
+        },
+        {
+            "id": "P21_extra",
+            "type": "text",
+            "title": "DOI or URL of the preregistration",
+            "condition": "$P8 && $P21 === 2"
         },
         {
             "id": "P21P22SEP",

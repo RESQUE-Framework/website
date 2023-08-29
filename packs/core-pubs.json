@@ -97,7 +97,7 @@
     "elements": [
         {
             "id": "P3",
-            "type": "text",
+            "type": "textbox",
             "title": "Paper title (do not provide journal name)"
         },
         {

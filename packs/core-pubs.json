@@ -8,7 +8,7 @@
             "max": 1,
             "op": "select",
             "points": [
-                 { "value": 1, "condition": "$P12 =|= [0, 1] && $P11 === 3" }
+                 { "value": 1, "condition": "$P10a && $P12 =|= [0, 1] && $P11 === 3" }
             ]
         },
         "P13": {
@@ -16,9 +16,9 @@
             "max": 1,
             "op": "sum",
             "points": [
-                 { "value": 0.25, "condition": "$P13a && $P12 =|= [0, 1] && $P11 === 3" },
-                 { "value": 0.5, "condition": "$P13b && $P12 =|= [0, 1] && $P11 === 3" },
-                 { "value": 0.25, "condition": "$P13c && $P12 =|= [0, 1] && $P11 === 3" }
+                 { "value": 0.25, "condition": "$P10a && $P13a && $P12 =|= [0, 1] && $P11 === 3" },
+                 { "value": 0.5, "condition": "$P10a && $P13b && $P12 =|= [0, 1] && $P11 === 3" },
+                 { "value": 0.25, "condition": "$P10a && $P13c && $P12 =|= [0, 1] && $P11 === 3" }
             ]
         },
         "P14": {

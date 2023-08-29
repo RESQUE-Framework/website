@@ -186,8 +186,7 @@
             "id": "P9info",
             "type": "info",
             "text": "<h3>CRediT roles</h3>",
-            "info": "Please indicate your individual contributions to the publication. You can get a description of each role by clicking on the name of each role. Where multiple individuals serve in the same role, the degree of contribution should be specified as 'lead', 'equal', or 'supporting'. (If you are the only person in a specific role, choose 'lead').\n\nlead: You were the single leader for this specific activity\nequal: You contributed equally to this activity, together with one or more other contributors (you should only choose this options, if no other co-author would choose the 'lead' option).\nsupporting: You had a supporting role, not leading.\nno role: You did not contribute to that activity.",
-            "condition": "$P8"
+            "info": "Please indicate your individual contributions to the publication. You can get a description of each role by clicking on the name of each role. Where multiple individuals serve in the same role, the degree of contribution should be specified as 'lead', 'equal', or 'supporting'. (If you are the only person in a specific role, choose 'lead').\n\nlead: You were the single leader for this specific activity\nequal: You contributed equally to this activity, together with one or more other contributors (you should only choose this option if no other co-author would choose the 'lead' option).\nsupporting: You had a supporting role, not leading.\nno role: You did not contribute to that activity."
         },
         {
             "id": "P9a",
@@ -202,8 +201,7 @@
             "default": 3,
             "alignment": "horizontal",
             "tooltip": "Ideas; formulation or evolution of overarching research goals and aims.",
-            "info": "Ideas; formulation or evolution of overarching research goals and aims.",
-            "condition": "$P8"
+            "info": "Ideas; formulation or evolution of overarching research goals and aims."
         },
         {
             "id": "P9b",
@@ -216,8 +214,7 @@
                 "No Role"
             ],
             "default": 3,
-            "alignment": "horizontal",
-            "condition": "$P8"
+            "alignment": "horizontal"
         },
         {
             "id": "P9c",
@@ -230,8 +227,7 @@
                 "No Role"
             ],
             "default": 3,
-            "alignment": "horizontal",
-            "condition": "$P8"
+            "alignment": "horizontal"
         },
         {
             "id": "P9d",
@@ -244,8 +240,7 @@
                 "No Role"
             ],
             "default": 3,
-            "alignment": "horizontal",
-            "condition": "$P8"
+            "alignment": "horizontal"
         },
         {
             "id": "P9e",
@@ -258,8 +253,7 @@
                 "No Role"
             ],
             "default": 3,
-            "alignment": "horizontal",
-            "condition": "$P8"
+            "alignment": "horizontal"
         },
         {
             "id": "P9f",
@@ -272,8 +266,7 @@
                 "No Role"
             ],
             "default": 3,
-            "alignment": "horizontal",
-            "condition": "$P8"
+            "alignment": "horizontal"
         },
         {
             "id": "P9g",
@@ -286,8 +279,7 @@
                 "No Role"
             ],
             "default": 3,
-            "alignment": "horizontal",
-            "condition": "$P8"
+            "alignment": "horizontal"
         },
         {
             "id": "P9h",
@@ -300,8 +292,7 @@
                 "No Role"
             ],
             "default": 3,
-            "alignment": "horizontal",
-            "condition": "$P8"
+            "alignment": "horizontal"
         },
         {
             "id": "P9i",
@@ -314,8 +305,7 @@
                 "No Role"
             ],
             "default": 3,
-            "alignment": "horizontal",
-            "condition": "$P8"
+            "alignment": "horizontal"
         },
         {
             "id": "P9j",
@@ -328,8 +318,7 @@
                 "No Role"
             ],
             "default": 3,
-            "alignment": "horizontal",
-            "condition": "$P8"
+            "alignment": "horizontal"
         },
         {
             "id": "P9k",
@@ -342,8 +331,7 @@
                 "No Role"
             ],
             "default": 3,
-            "alignment": "horizontal",
-            "condition": "$P8"
+            "alignment": "horizontal"
         },
         {
             "id": "P9l",
@@ -356,8 +344,7 @@
                 "No Role"
             ],
             "default": 3,
-            "alignment": "horizontal",
-            "condition": "$P8"
+            "alignment": "horizontal"
         },
         {
             "id": "P9m",
@@ -370,8 +357,7 @@
                 "No Role"
             ],
             "default": 3,
-            "alignment": "horizontal",
-            "condition": "$P8"
+            "alignment": "horizontal"
         },
         {
             "id": "P9n",
@@ -384,8 +370,7 @@
                 "No Role"
             ],
             "default": 3,
-            "alignment": "horizontal",
-            "condition": "$P8"
+            "alignment": "horizontal"
         },
         {
             "id": "P9P10SEP",

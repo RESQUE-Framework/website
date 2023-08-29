@@ -348,6 +348,7 @@
             if (loadedData.every(r => getVersion(r.type) === r.version)) {
                 results = loadedData;
                 save();
+                sessionStorage.clear();
                 location.reload();
             } else {
                 alert("Error: Could not load data because it was created using an earlier version.");

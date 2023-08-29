@@ -96,14 +96,6 @@
     },
     "elements": [
         {
-            "id": "P2",
-            "type": "number",
-            "title": "Paper number (1, 2, 3, ...)",
-            "tooltip": "Number of the paper",
-            "info": "This is a longer explanation. Unfortunately, there is not much to say about this item 😔",
-            "background": "This is the background information. I think we don't even need 'paper number' because we already have a number."
-        },
-        {
             "id": "P3",
             "type": "text",
             "title": "Paper title (do not provide journal name)"

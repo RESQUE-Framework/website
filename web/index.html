@@ -9,22 +9,9 @@
 </head>
 
 <body>
-    <header>
-        <div class="topbar">
-            <p id="slot-info"></p>
-            <div class="tabs-container">
-                <div id="tabs">
-
-                </div>
-                <button class="add-button" id="add-button" onclick="openAddModal()">+</button>
-            </div>
-        </div>
-    </header>
-
     <div id="main">
-        <div id="formview"></div>
-        <div id="menu">
-            <div class="card">
+        <div class="tabs-sidebar">
+            <div class="sidebar-top">
                 <div class="top">
                     <h3>RESQUE</h3>
                     <div id="actions">
@@ -32,6 +19,33 @@
                         <button onclick="triggerLoad()">Load</button>
                         <button onclick="exp()">Export</button>
                     </div>
+                </div>
+                <p id="slot-info"></p>
+            </div>
+            <div class="tabs-container">
+                <div id="tabs">
+
+                </div>
+            </div>
+            <div id="add-container">
+                <div class="doi-input">
+                    <button onclick="document.getElementById('add-pdf').click()">Extract DOI from PDF</button>
+                    <input id="add-doi" type="text" placeholder="DOI (optional)" />
+                </div>
+
+                <div>
+                    <b>Add</b>
+                    <button onclick="newTab('pub')">Publication</button>
+                    <button onclick="newTab('software')">Software</button>
+                    <button onclick="newTab('data')">Data Set</button>
+                </div>
+            </div>
+        </div>
+        <div id="formview"></div>
+        <div id="menu">
+            <div class="card">
+                <div class="top">
+                    <h3>Score</h3>
                 </div>
                 <div id="score-container">
                     <p id="score-percentage"></p>
@@ -57,19 +71,7 @@
 
         <!-- Modal content -->
         <div class="modal-content">
-            <details class="doi-info">
-                <summary> 🪄 Magic?</summary>
-                <p>If you provide a DOI, some information can be fetched automatically. You can leave it empty if you
-                    want to fill in everything manually. You can also open a PDF file and extract the DOI from it.</p>
-                <button onclick="document.getElementById('add-pdf').click()">Extract DOI from PDF</button><br><br>
-                <input id="add-doi" type="text" placeholder="DOI (optional)" />
-            </details>
 
-            <div>
-                <button onclick="newTab('pub')">Publication</button>
-                <button onclick="newTab('software')">Software</button>
-                <button onclick="newTab('data')">Data Set</button>
-            </div>
         </div>
 
     </div>
@@ -255,7 +257,10 @@
         }
 
         const newTab = type => {
-            let doi = document.getElementById("add-doi").value;
+            let doiField = document.getElementById("add-doi");
+            let doi = doiField.value;
+
+            doiField.value = "";
 
             let index = results.length
 
@@ -288,7 +293,7 @@
                             console.log(response);
                         }
 
-                        if (type === "pub" && doimagic === "active") {
+                        if (type === "pub") {
                             results[index].P3 = response.title;
                             results[index].P4 = response.published["date-parts"][0][0];
                             results[index].P5 = response.DOI;
@@ -393,10 +398,14 @@
             document.getElementById("slot-info").innerText = `${usedSlots} of ${max} slots used${maxReached ? ", you can't add more publications." : ""}`;
 
             if (usedSlots >= max) {
-                document.getElementById("add-button").style.display = "none"
+                document.getElementById("add-container").style.display = "none"
             } else {
-                document.getElementById("add-button").style.display = "inherit"
+                document.getElementById("add-container").style.display = "inherit"
             }
+
+            let numberOfPublications = 0;
+            let numberOfSoftwareProjects = 0;
+            let numberOfDataSets = 0;
 
             tabs.forEach(t => {
                 const content = t.firstChild;
@@ -406,18 +415,16 @@
 
                 switch (result.type) {
                     case "meta":
-                        content.innerHTML = `<b>Author</b>`;
+                        content.innerHTML = `<b>Author</b>${result["M1"] ? '<br>' + result["M1"] : ''}`;
                         break;
                     case "pub":
-                        content.innerHTML = result["P2"] && result["P3"]
-                            ? `<b>Publication ${result["P2"]}</b>`
-                            : "<b>New publication<b>";
+                        content.innerHTML = `<b>Publication ${++numberOfPublications}</b>${result["P3"] ? '<br>' + result["P3"] : ''}`
                         break;
                     case "software":
-                        content.innerHTML = `<b>New software project</b>`;
+                        content.innerHTML = `<b>Software Project ${++numberOfSoftwareProjects}</b>${result["S3"] ? '<br>' + result["S3"] : ''}`;
                         break;
                     case "data":
-                        content.innerHTML = `<b>New data</b>`;
+                        content.innerHTML = `<b>Data Set ${++numberOfDataSets}</b>${result["D3"] ? '<br>' + result["D3"] : ''}`;
                         break;
 
                     default:

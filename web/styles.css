@@ -14,8 +14,7 @@ body {
     display: flex;
     flex-direction: row;
     height: 100%;
-    max-width: 1040px;
-    width: 90%;
+    width: 100%;
     margin: 0 auto;
     box-sizing: content-box;
 }
@@ -28,37 +27,76 @@ body {
     margin-bottom: 1rem;
     width: 100%;
     display: block;
+    box-sizing: border-box;
 }
 
-#menu h3 {
+.tabs-sidebar h3, #menu h3 {
     margin: 0;
 }
 
-#formview::-webkit-scrollbar {
+#formview::-webkit-scrollbar, .tabs-sidebar::-webkit-scrollbar {
     display: none;
 }
 
 /* Hide scrollbar for IE, Edge and Firefox */
-#formview {
+#formview, .tabs-sidebar{
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
 }
 
-
 #menu {
-    flex: 1 1 40%;
-    margin-top: 2rem;
+    flex: 1 1 30%;
+    padding: 16px;
+    border-left: 1px solid lightgray;
+}
+
+.tabs-sidebar {
+    position: relative;
+    flex: 1 1 25%;
+    border-right: 1px solid lightgray;
+    padding: 16px;
+    padding-top: 0;
+    overflow: scroll;
+}
+
+.tabs-sidebar p {
+    margin: 8px 0;
+    color: gray;
+    font-size: small;
+}
+
+.sidebar-top {
+    position: sticky;
+    top: 0;
+    background-color: white;
+    padding-top: 16px;
+    padding-bottom: 4px;
+}
+
+.doi-input button {
+    width: 100%;
+    margin-bottom: 4px;
 }
 
 #formview {
-    flex: 1 1 60%;
+    flex: 1 1 45%;
     overflow: auto;
-    margin-right: 2rem;
+    margin: 0 16px;
     padding: 2px;
 }
 
 #formview h2 {
     margin: none;
+}
+
+#add-container {
+    position: sticky;
+    bottom: 0;
+    margin-top: 16px;
+    padding-top: 16px;
+    text-align: center;
+    background-color: white;
+    border-top: 1px solid lightgray;
 }
 
 input[type=text], input[type=number], select, .textbox {
@@ -87,6 +125,7 @@ form {
     align-items: center;
     border-bottom: 1px solid lightgray;
     padding-bottom: 16px;
+    
 }
 
 button {
@@ -141,25 +180,13 @@ button:hover {
     font-weight: bold;
 }
 
-.tabs-container {
-    max-width: 100%;
-    display: flex;
-}
-
-#tabs {
-    display: flex;
-    overflow: scroll;
-}
-
 .tab, .add-button {
     font-size: 11pt;
-    white-space: nowrap;
     background-color: #efefef;
     border-radius: 8px;
     padding: 0.5rem 1rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: 16px;
     cursor: pointer;
-    margin-right: 0.5rem;
 }
 
 .tab:hover, .add-button {
@@ -175,34 +202,8 @@ button:hover {
     pointer-events: none;
 }
 
-#tabs::-webkit-scrollbar {
-    display: none;
-}
-
-/* Hide scrollbar for IE, Edge and Firefox */
-#tabs {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
-}
-
 header {
     border-bottom: 1px solid lightgray;
-}
-
-.topbar {
-    padding: 8px;
-    max-width: 1040px;
-    margin: 0 auto;
-    position: sticky;
-    background-color: white;
-    top: 0;
-}
-
-.topbar p {
-    margin-top: 0;
-    margin-bottom: 8px;
-    color: gray;
-    font-size: small;
 }
 
 #item-info {

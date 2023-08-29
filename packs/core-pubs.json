@@ -156,7 +156,7 @@
         {
             "id": "P8",
             "type": "radio",
-            "title": "Opt-out: Does this contribution fit well into the assessment scheme? (If 'no': Skip all other indicators; the paper will not be included in the scoring but processed manually)",
+            "title": "Does this contribution fit well into the assessment scheme? (If 'no': Skip all other indicators; the paper will not be included in the scoring but processed manually)",
             "options": [
                 "No, it should be processed manually (provide explanation)",
                 "Yes"
@@ -178,7 +178,7 @@
             "id": "P9info",
             "type": "info",
             "text": "<h3>CRediT roles</h3>",
-            "condition": "$P8"
+            "info": "Please indicate your individual contributions to the publication. You can get a description of each role by clicking on the name of each role. Where multiple individuals serve in the same role, the degree of contribution should be specified as 'lead', 'equal', or 'supporting'. (If you are the only person in a specific role, choose 'lead').\n\nlead: You were the single leader for this specific activity\nequal: You contributed equally to this activity, together with one or more other contributors (you should only choose this option if no other co-author would choose the 'lead' option).\nsupporting: You had a supporting role, not leading.\nno role: You did not contribute to that activity."
         },
         {
             "id": "P9a",
@@ -192,7 +192,8 @@
             ],
             "default": 3,
             "alignment": "horizontal",
-            "condition": "$P8"
+            "tooltip": "Ideas; formulation or evolution of overarching research goals and aims.",
+            "info": "Ideas; formulation or evolution of overarching research goals and aims."
         },
         {
             "id": "P9b",
@@ -205,8 +206,7 @@
                 "No Role"
             ],
             "default": 3,
-            "alignment": "horizontal",
-            "condition": "$P8"
+            "alignment": "horizontal"
         },
         {
             "id": "P9c",
@@ -219,8 +219,7 @@
                 "No Role"
             ],
             "default": 3,
-            "alignment": "horizontal",
-            "condition": "$P8"
+            "alignment": "horizontal"
         },
         {
             "id": "P9d",
@@ -233,8 +232,7 @@
                 "No Role"
             ],
             "default": 3,
-            "alignment": "horizontal",
-            "condition": "$P8"
+            "alignment": "horizontal"
         },
         {
             "id": "P9e",
@@ -247,8 +245,7 @@
                 "No Role"
             ],
             "default": 3,
-            "alignment": "horizontal",
-            "condition": "$P8"
+            "alignment": "horizontal"
         },
         {
             "id": "P9f",
@@ -261,8 +258,7 @@
                 "No Role"
             ],
             "default": 3,
-            "alignment": "horizontal",
-            "condition": "$P8"
+            "alignment": "horizontal"
         },
         {
             "id": "P9g",
@@ -275,8 +271,7 @@
                 "No Role"
             ],
             "default": 3,
-            "alignment": "horizontal",
-            "condition": "$P8"
+            "alignment": "horizontal"
         },
         {
             "id": "P9h",
@@ -289,8 +284,7 @@
                 "No Role"
             ],
             "default": 3,
-            "alignment": "horizontal",
-            "condition": "$P8"
+            "alignment": "horizontal"
         },
         {
             "id": "P9i",
@@ -303,8 +297,7 @@
                 "No Role"
             ],
             "default": 3,
-            "alignment": "horizontal",
-            "condition": "$P8"
+            "alignment": "horizontal"
         },
         {
             "id": "P9j",
@@ -317,8 +310,7 @@
                 "No Role"
             ],
             "default": 3,
-            "alignment": "horizontal",
-            "condition": "$P8"
+            "alignment": "horizontal"
         },
         {
             "id": "P9k",
@@ -331,8 +323,7 @@
                 "No Role"
             ],
             "default": 3,
-            "alignment": "horizontal",
-            "condition": "$P8"
+            "alignment": "horizontal"
         },
         {
             "id": "P9l",
@@ -345,8 +336,7 @@
                 "No Role"
             ],
             "default": 3,
-            "alignment": "horizontal",
-            "condition": "$P8"
+            "alignment": "horizontal"
         },
         {
             "id": "P9m",
@@ -359,8 +349,7 @@
                 "No Role"
             ],
             "default": 3,
-            "alignment": "horizontal",
-            "condition": "$P8"
+            "alignment": "horizontal"
         },
         {
             "id": "P9n",
@@ -373,8 +362,7 @@
                 "No Role"
             ],
             "default": 3,
-            "alignment": "horizontal",
-            "condition": "$P8"
+            "alignment": "horizontal"
         },
         {
             "id": "P9P10SEP",
@@ -387,7 +375,7 @@
             "title": "Own data or data reuse (check all that apply)",
             "options": [
                 "Own data collection",
-                "Reuse of existinig data set",
+                "Reuse of existing data set",
                 "Simulated data",
                 "No data"
             ],
@@ -442,7 +430,7 @@
             "options": [
                 "The data set has a globally unique, citable and persistent identifier (e.g., DOI, PURL, ARK)",
                 "All variables are comprehensively described in a codebook with a structured format",
-                "The data set is stored in a structured, open format\\n(e.g., .csv, .tsv, .tab, .txt, .json; not .sav, .xlsx, .pdf)"
+                "The data set is stored in a structured, open format (e.g., .csv, .tsv, .tab, .txt, .json; not .sav, .xlsx, .pdf)"
             ],
             "condition": "$P8 && $P10a && $P11 === 3 && ($P12 =|= [0, 1] || $P12 === 2 && $P12_explanation)"
         },
@@ -605,6 +593,7 @@
                 "No",
                 "Yes"
             ],
+            "info": "As only *preregistered* replication attempts count, you need to provide the DOI or URL of the preregistration. If the paper contains a replication which was not preregistered, please select 'No'.",
             "condition": "$P8"
         },
         {

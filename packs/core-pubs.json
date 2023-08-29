@@ -206,7 +206,9 @@
                 "No Role"
             ],
             "default": 3,
-            "alignment": "horizontal"
+            "alignment": "horizontal",
+            "tooltip": "Management activities to annotate (produce metadata), scrub data and maintain research data (including software code, where it is necessary for interpreting the data itself) for initial use and later re-use.",
+            "info": "Management activities to annotate (produce metadata), scrub data and maintain research data (including software code, where it is necessary for interpreting the data itself) for initial use and later re-use."
         },
         {
             "id": "P9c",
@@ -219,7 +221,9 @@
                 "No Role"
             ],
             "default": 3,
-            "alignment": "horizontal"
+            "alignment": "horizontal",
+            "tooltip": "Application of statistical, mathematical, computational, or other formal techniques to analyse or synthesize study data.",
+            "info": "Application of statistical, mathematical, computational, or other formal techniques to analyse or synthesize study data."
         },
         {
             "id": "P9d",
@@ -232,7 +236,9 @@
                 "No Role"
             ],
             "default": 3,
-            "alignment": "horizontal"
+            "alignment": "horizontal",
+            "tooltip": "Acquisition of the financial support for the project leading to this publication.",
+            "info": "Acquisition of the financial support for the project leading to this publication."
         },
         {
             "id": "P9e",
@@ -245,7 +251,9 @@
                 "No Role"
             ],
             "default": 3,
-            "alignment": "horizontal"
+            "alignment": "horizontal",
+            "tooltip": "Conducting a research and investigation process, specifically performing the experiments, or data/evidence collection.",
+            "info": "Conducting a research and investigation process, specifically performing the experiments, or data/evidence collection."
         },
         {
             "id": "P9f",
@@ -258,7 +266,9 @@
                 "No Role"
             ],
             "default": 3,
-            "alignment": "horizontal"
+            "alignment": "horizontal",
+            "tooltip": "Development or design of methodology; creation of models.",
+            "info": "Development or design of methodology; creation of models."
         },
         {
             "id": "P9g",
@@ -271,7 +281,9 @@
                 "No Role"
             ],
             "default": 3,
-            "alignment": "horizontal"
+            "alignment": "horizontal",
+            "tooltip": "Management and coordination responsibility for the research activity planning and execution.",
+            "info": "Management and coordination responsibility for the research activity planning and execution."
         },
         {
             "id": "P9h",
@@ -284,7 +296,9 @@
                 "No Role"
             ],
             "default": 3,
-            "alignment": "horizontal"
+            "alignment": "horizontal",
+            "tooltip": "Provision of study materials, reagents, materials, patients, laboratory samples, animals, instrumentation, computing resources, or other analysis tools.",
+            "info": "Provision of study materials, reagents, materials, patients, laboratory samples, animals, instrumentation, computing resources, or other analysis tools."
         },
         {
             "id": "P9i",
@@ -297,7 +311,9 @@
                 "No Role"
             ],
             "default": 3,
-            "alignment": "horizontal"
+            "alignment": "horizontal",
+            "tooltip": "Programming, software development; designing computer programs; implementation of the computer code and supporting algorithms; testing of existing code components.",
+            "info": "Programming, software development; designing computer programs; implementation of the computer code and supporting algorithms; testing of existing code components."
         },
         {
             "id": "P9j",
@@ -310,7 +326,9 @@
                 "No Role"
             ],
             "default": 3,
-            "alignment": "horizontal"
+            "alignment": "horizontal",
+            "tooltip": "Oversight and leadership responsibility for the research activity planning and execution, including mentorship external to the core team.",
+            "info": "Oversight and leadership responsibility for the research activity planning and execution, including mentorship external to the core team."
         },
         {
             "id": "P9k",
@@ -323,7 +341,9 @@
                 "No Role"
             ],
             "default": 3,
-            "alignment": "horizontal"
+            "alignment": "horizontal",
+            "tooltip": "Verification, whether as a part of the activity or separate, of the overall replication/reproducibility of results/experiments and other research outputs.",
+            "info": "Verification, whether as a part of the activity or separate, of the overall replication/reproducibility of results/experiments and other research outputs."
         },
         {
             "id": "P9l",
@@ -336,7 +356,9 @@
                 "No Role"
             ],
             "default": 3,
-            "alignment": "horizontal"
+            "alignment": "horizontal",
+            "tooltip": "Preparation, creation and/or presentation of the published work, specifically visualization/data presentation.",
+            "info": "Preparation, creation and/or presentation of the published work, specifically visualization/data presentation."
         },
         {
             "id": "P9m",
@@ -349,7 +371,9 @@
                 "No Role"
             ],
             "default": 3,
-            "alignment": "horizontal"
+            "alignment": "horizontal",
+            "tooltip": "Preparation, creation and/or presentation of the published work, specifically writing the initial draft (including substantive translation).",
+            "info": "Preparation, creation and/or presentation of the published work, specifically writing the initial draft (including substantive translation)."
         },
         {
             "id": "P9n",
@@ -362,7 +386,9 @@
                 "No Role"
             ],
             "default": 3,
-            "alignment": "horizontal"
+            "alignment": "horizontal",
+            "tooltip": "Preparation, creation and/or presentation of the published work by those from the original research group, specifically critical review, commentary or revision – including pre- or post-publication stages.",
+            "info": "Preparation, creation and/or presentation of the published work by those from the original research group, specifically critical review, commentary or revision – including pre- or post-publication stages."
         },
         {
             "id": "P9P10SEP",

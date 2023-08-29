@@ -12,7 +12,7 @@
             ]
         },
         "P13": {
-            "not_applicable": "!($P8) || $P11 === 0 && $P11_explanation",
+            "not_applicable": "!($P8) || $P11 === 0 && $P11_explanation || !($P10a)",
             "max": 1,
             "op": "sum",
             "points": [

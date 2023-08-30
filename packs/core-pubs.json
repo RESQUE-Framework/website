@@ -38,7 +38,7 @@
             ]
         },
         "P16": {
-            "not_applicable": "!($P8)",
+            "not_applicable": "!($P8) || $P15 === 0 && $P15_explanation",
             "max": 1,
             "op": "sum",
             "points": [
@@ -178,7 +178,7 @@
             "id": "P9info",
             "type": "info",
             "text": "<h3>CRediT roles</h3>",
-            "info": "Please indicate your individual contributions to the publication. You can get a description of each role by clicking on the name of each role. Where multiple individuals serve in the same role, the degree of contribution should be specified as 'lead', 'equal', or 'supporting'. (If you are the only person in a specific role, choose 'lead').<br><br>lead: You were the single leader for this specific activity\\nequal: You contributed equally to this activity, together with one or more other contributors (you should only choose this option if no other co-author would choose the 'lead' option).\\nsupporting: You had a supporting role, not leading.\nno role: You did not contribute to that activity."
+            "info": "Please indicate your individual contributions to the publication. You can get a description of each role by clicking on the name of each role. Where multiple individuals serve in the same role, the degree of contribution should be specified as 'lead', 'equal', or 'supporting'. <br><br><ul><li><i>lead</i>: You were the single leader for this specific activity. If you are the only person in a specific role, choose 'lead'.</li><li><i>equal</i>: You contributed equally to this activity, together with one or more other contributors (you should only choose this option if no other co-author would choose the 'lead' option).</li><li><i>supporting</i>: You had a supporting role, not leading.</li><li><i>no role</i>: You did not contribute to that activity.</li></ul>"
         },
         {
             "id": "P9a",
@@ -539,7 +539,7 @@
                 "Yes, parts of material [provide doi or URL]",
                 "Yes, entire material [provide doi or URL]"
             ],
-            "info": "Only choose 'Yes' if the material substantially exceeds the open reproducible scripts.\\nWhen to choose 'Not applicable': If no material has been used in the publication, or the entire material is contained in the open reproducible scripts.",
+            "info": "Only choose 'Yes' if the material substantially exceeds the open reproducible scripts.<br>When to choose 'Not applicable': If no material has been used in the publication, or the entire material is contained in the open reproducible scripts.",
             "condition": "$P8"
         },
         {

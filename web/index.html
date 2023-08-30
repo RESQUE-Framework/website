@@ -524,20 +524,15 @@
         }
 
         const preprocessInfo = (indicatorId, text) => {
-            return text.replaceAll(/\{(.*?)\}(.*?)\{\.\}/g, (match, foundCondition, text) => {
-                let condition = foundCondition;
-
-                 console.log(match)
-                 console.log(condition)
+            return text.replaceAll(/\{(.*?)\|(.*?)\}/g, (match, foundCondition, text) => {
+                let condition = foundCondition.trim();
 
                 if (condition.startsWith(':')) {
                     condition = `$${indicatorId} =|= [${condition.replace(':', '')}]`
                 }
 
-                console.log(condition)
-
                 return evaluateCondition(condition)
-                    ? `<span class="highlight">${text}</span>`
+                    ? `<span class="highlight">${text.trim()}</span>`
                     : text
             });
         }

@@ -178,7 +178,7 @@
             "id": "P9info",
             "type": "info",
             "text": "<h3>CRediT roles</h3>",
-            "info": "Please indicate your individual contributions to the publication. You can get a description of each role by clicking on the name of each role. Where multiple individuals serve in the same role, the degree of contribution should be specified as 'lead', 'equal', or 'supporting'. (If you are the only person in a specific role, choose 'lead').\n\nlead: You were the single leader for this specific activity\nequal: You contributed equally to this activity, together with one or more other contributors (you should only choose this option if no other co-author would choose the 'lead' option).\nsupporting: You had a supporting role, not leading.\nno role: You did not contribute to that activity."
+            "info": "Please indicate your individual contributions to the publication. You can get a description of each role by clicking on the name of each role. Where multiple individuals serve in the same role, the degree of contribution should be specified as 'lead', 'equal', or 'supporting'. (If you are the only person in a specific role, choose 'lead').<br><br>lead: You were the single leader for this specific activity\\nequal: You contributed equally to this activity, together with one or more other contributors (you should only choose this option if no other co-author would choose the 'lead' option).\\nsupporting: You had a supporting role, not leading.\nno role: You did not contribute to that activity."
         },
         {
             "id": "P9a",
@@ -532,13 +532,14 @@
         {
             "id": "P17",
             "type": "radio",
-            "title": "Open materials",
+            "title": "Open materials (beyond the open reproducible scripts entered above)",
             "options": [
                 "Not applicable [provide explanation]",
                 "Not available",
                 "Yes, parts of material [provide doi or URL]",
                 "Yes, entire material [provide doi or URL]"
             ],
+            "info": "Only choose 'Yes' if the material substantially exceeds the open reproducible scripts.\\nWhen to choose 'Not applicable': If no material has been used in the publication, or the entire material is contained in the open reproducible scripts.",
             "condition": "$P8"
         },
         {
@@ -625,7 +626,7 @@
                 "No",
                 "Yes"
             ],
-            "info": "As only *preregistered* replication attempts count, you need to provide the DOI or URL of the preregistration. If the paper contains a replication which was not preregistered, please select 'No'.",
+            "info": "As only <i>preregistered</i> replication attempts count, you need to provide the DOI or URL of the preregistration. If the paper contains a replication which was not preregistered, please select 'No'.",
             "condition": "$P8"
         },
         {

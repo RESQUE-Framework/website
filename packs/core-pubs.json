@@ -539,7 +539,7 @@
                 "Yes, parts of material [provide doi or URL]",
                 "Yes, entire material [provide doi or URL]"
             ],
-            "info": "Only choose 'Yes' if the material substantially exceeds the open reproducible scripts.<br>When to choose 'Not applicable': If no material has been used in the publication, or the entire material is contained in the open reproducible scripts.",
+            "info": "{:2, 3}Only choose 'Yes' if the material substantially exceeds the open reproducible scripts.{.}<br><br>{:0}When to choose 'Not applicable': If no material has been used in the publication, or the entire material is contained in the open reproducible scripts.{.}",
             "condition": "$P8"
         },
         {

@@ -30,18 +30,23 @@ body {
     box-sizing: border-box;
 }
 
-.tabs-sidebar h3, #menu h3 {
+.tabs-sidebar h3,
+#menu h3 {
     margin: 0;
 }
 
-#formview::-webkit-scrollbar, .tabs-sidebar::-webkit-scrollbar {
+#formview::-webkit-scrollbar,
+.tabs-sidebar::-webkit-scrollbar {
     display: none;
 }
 
 /* Hide scrollbar for IE, Edge and Firefox */
-#formview, .tabs-sidebar{
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+#formview,
+.tabs-sidebar {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
 }
 
 #menu {
@@ -99,7 +104,10 @@ body {
     border-top: 1px solid lightgray;
 }
 
-input[type=text], input[type=number], select, .textbox {
+input[type=text],
+input[type=number],
+select,
+.textbox {
     display: block;
     border-radius: 4px;
     border: 1px solid lightgray;
@@ -115,6 +123,7 @@ label {
     margin-right: 8px;
     margin-bottom: 8px;
 }
+
 form {
     margin-bottom: 10rem;
 }
@@ -125,7 +134,7 @@ form {
     align-items: center;
     border-bottom: 1px solid lightgray;
     padding-bottom: 16px;
-    
+
 }
 
 button {
@@ -172,15 +181,15 @@ button:hover {
     bottom: -2rem;
 }
 
-.wordcount-ok {
-}
+.wordcount-ok {}
 
 .wordcount-warning {
     color: darkred;
     font-weight: bold;
 }
 
-.tab, .add-button {
+.tab,
+.add-button {
     font-size: 11pt;
     background-color: #efefef;
     border-radius: 8px;
@@ -189,7 +198,8 @@ button:hover {
     cursor: pointer;
 }
 
-.tab:hover, .add-button {
+.tab:hover,
+.add-button {
     background-color: #dfdfdf;
 }
 
@@ -223,7 +233,7 @@ summary {
 }
 
 summary:hover {
-   color: #333333;
+    color: #333333;
 }
 
 #score-container {
@@ -257,7 +267,7 @@ summary:hover {
 #no-score {
     color: gray;
     font-style: italic;
-    margin-bottom:  0;
+    margin-bottom: 0;
 }
 
 hr {
@@ -279,21 +289,28 @@ hr {
 
 /* The Modal (background) */
 .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    padding-top: 100px;
+    /* Location of the box */
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
     background-color: #33333328;
     backdrop-filter: blur(5px);
-  }
-  
-  /* Modal Content */
-  .modal-content {
+}
+
+/* Modal Content */
+.modal-content {
     background-color: white;
     margin: auto;
     padding: 20px;
@@ -301,8 +318,8 @@ hr {
     text-align: center;
     border-radius: 8px;
     box-shadow: 0 0 8px #ccc;
-  }
-  
+}
+
 
 .doi-info {
     color: gray;
@@ -323,6 +340,18 @@ hr {
 
 .github-link:hover {
     color: #333333;
+}
+
+.highlight {
+    animation: highlight 1s;
+    background-color: yellow;
+}
+
+
+@keyframes highlight {
+    50% {
+        background-color: white;
+    }
 }
 
 @media (max-width: 500px) {

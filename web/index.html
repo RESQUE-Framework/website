@@ -310,7 +310,7 @@
             } else {
                 // Switch to new tab
                 save();
-                
+
                 tabs[results.length - 1].click();
 
                 tabsElement.scrollTo({
@@ -523,6 +523,25 @@
             updateWordcount(e.target, wordcount);
         }
 
+        const preprocessInfo = (indicatorId, text) => {
+            return text.replaceAll(/\{(.*?)\}(.*?)\{\.\}/g, (match, foundCondition, text) => {
+                let condition = foundCondition;
+
+                 console.log(match)
+                 console.log(condition)
+
+                if (condition.startsWith(':')) {
+                    condition = `$${indicatorId} =|= [${condition.replace(':', '')}]`
+                }
+
+                console.log(condition)
+
+                return evaluateCondition(condition)
+                    ? `<span class="highlight">${text}</span>`
+                    : text
+            });
+        }
+
         const showInfo = (e, element) => {
             const itemInfo = document.getElementById("item-info");
             const itemBackground = document.getElementById("item-background");
@@ -530,7 +549,7 @@
 
             if (element.info) {
                 itemInfo.style.color = "#333333";
-                itemInfo.innerHTML = `<b>${element.id}</b>${element.eval_dimension ? '<span id="eval-dimension">' + element.eval_dimension + '</span>' : ""}<br><br>${element.info}`;
+                itemInfo.innerHTML = `<b>${element.id}</b>${element.eval_dimension ? '<span id="eval-dimension">' + element.eval_dimension + '</span>' : ""}<br><br>${preprocessInfo(element.id, element.info)}`;
             } else {
                 itemInfo.style.color = "gray";
                 itemInfo.innerHTML = `<b>${element.id}</b>${element.eval_dimension ? '<span id="eval-dimension">' + element.eval_dimension + '</span>' : ""}<br><br><i>No information</i>`;
@@ -797,6 +816,7 @@
                 fragment.appendChild(domElement);
 
                 fragment.title = element.tooltip || "";
+                fragment.addEventListener("click", update);
                 fragment.addEventListener("click", e => showInfo(e, element));
 
                 return fragment;

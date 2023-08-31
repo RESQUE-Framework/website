@@ -532,7 +532,7 @@
             updateWordcount(e.target, wordcount);
         }
 
-        const preprocessInfo = (indicatorId, text) => {
+        const partialHighlight = (indicatorId, text) => {
             return text.replaceAll(/\{(.*?)\|(.*?)\}/g, (match, foundCondition, text) => {
                 let condition = foundCondition.trim();
 
@@ -553,7 +553,7 @@
 
             if (element.info) {
                 itemInfo.style.color = "#333333";
-                itemInfo.innerHTML = `<b>${element.id}</b>${element.eval_dimension ? '<span id="eval-dimension">' + element.eval_dimension + '</span>' : ""}<br><br>${preprocessInfo(element.id, element.info)}`;
+                itemInfo.innerHTML = `<b>${element.id}</b>${element.eval_dimension ? '<span id="eval-dimension">' + element.eval_dimension + '</span>' : ""}<br><br>${partialHighlight(element.id, element.info)}`;
             } else {
                 itemInfo.style.color = "gray";
                 itemInfo.innerHTML = `<b>${element.id}</b>${element.eval_dimension ? '<span id="eval-dimension">' + element.eval_dimension + '</span>' : ""}<br><br><i>No information</i>`;

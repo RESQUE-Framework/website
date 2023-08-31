@@ -849,32 +849,36 @@
         const handleTabClick = e => {
             currentTab = parseInt(e.target.getAttribute("data-index"));
             sessionStorage.setItem("index", currentTab.toString())
-            result = results[currentTab];
+
+            if (currentTab !== preTab) {
+                loadForm(currentTab);
+                preTab = currentTab;
+            }
+
             updateTabs();
+        }
+
+        const loadForm = index => {
+            result = results[index];
+
+            filterTriggers = formTypes[result.type].elements
+                .filter(element => element.condition)
+                .map(element => element.condition.match(/\$\w*/g))
+                .flat()
+                .map(ids => ids.replaceAll('$', ''));
+
+            const formView = document.getElementById("formview");
+            formView.innerHTML = "";
+            formView.appendChild(createForm(formTypes[result.type]));
+
+            applyFilters();
+            updateInfo();
         }
 
         const updateTabs = () => {
             tabs.forEach(t => {
                 if (parseInt(t.getAttribute("data-index")) === currentTab) {
                     t.classList.add("selected");
-
-                    if (currentTab !== preTab) {
-                        filterTriggers = formTypes[result.type].elements
-                            .filter(element => element.condition)
-                            .map(element => element.condition.match(/\$\w*/g))
-                            .flat()
-                            .map(ids => ids.replaceAll('$', ''));
-
-                        const formView = document.getElementById("formview");
-                        formView.innerHTML = "";
-                        formView.appendChild(createForm(formTypes[result.type]));
-
-                        applyFilters();
-                        updateInfo();
-
-                        preTab = currentTab;
-                    }
-
                 } else {
                     t.classList.remove("selected");
                 }
@@ -962,6 +966,7 @@
                 document.getElementById("tabs").appendChild(createTab(r, index));
             });
 
+            loadForm(currentTab);
             updateTabs();
             updateInfo();
             applyFilters();

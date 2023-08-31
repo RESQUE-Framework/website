@@ -6,6 +6,23 @@
             "id": "M1",
             "type": "text",
             "title": "Last name"
+        },
+        {
+            "id": "M2",
+            "type": "text",
+            "title": "Name of external rater (optional)"
+        },
+        {
+            "id": "M_date_created",
+            "type": "info",
+            "title": "Date Created",
+            "text": "$date_created@datetime"
+        },
+        {
+            "id": "M_last_change",
+            "type": "info",
+            "title": "Last Change",
+            "text": "$date_modified@datetime"
         }
     ]
 }

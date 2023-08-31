@@ -372,8 +372,18 @@
 
         const update = e => {
 
-            const formView = document.getElementById("formview");
-            const scrollPre = formView.scrollTop;
+            if (e.type !== 'click') {
+                // Save date_created
+                if (!results[0].date_created) {
+                    results[0].date_created = Date.now();
+
+                    if (mode === MODE_PREVIEW) {
+                        console.log("First change: date_created saved.");
+                    }
+                }
+
+                results[0].date_modified = Date.now();
+            }
 
             if (e.target.classList.contains("type-radio") || e.target.classList.contains("type-dropdown")) {
                 result[e.target.name] = parseInt(e.target.value);

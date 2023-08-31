@@ -396,7 +396,12 @@
             updateTabs();
             applyFilters();
 
-            formView.scrollTop = scrollPre;
+            // Prevent reload on click events
+            // update is only triggered by click events to show correct info on the right
+            // it is not relevant for results/displaying data 
+            if (formTypes[result.type].elements.some(elem => elem.type === 'info' && /\$[a-zA-Z0-9_]+/.test(elem.text)) && e.type !== 'click') {
+                loadForm({ index: currentTab, preserveScrollHeight: true });
+            }
         }
 
         const updateInfo = () => {
@@ -568,6 +573,27 @@
             }
         }
 
+        const insertValuesIntoText = text => {
+            return text
+                .replaceAll(/\$([a-zA-Z0-9_]+)@([a-zA-Z0-9_]+)/g, (match, variable, type) => {
+                    switch (type.trim()) {
+                        case 'datetime': {
+                            const millis = parseInt(result[variable.trim()]);
+                            return millis ? new Date(millis).toLocaleString() : '...';
+                        }
+                        case 'date': {
+                            const millis = parseInt(result[variable.trim()]);
+                            return millis ? new Date(millis).toLocaleDateString() : '...';
+                        }
+                    }
+                })
+                .replaceAll(/\$([a-zA-Z0-9_]+)/g, (match, variable) => {
+                    return result[variable.trim()];
+                });
+        }
+
+        const preprocessText = text => insertValuesIntoText(partialHighlight(null, text));
+
         const createInput = (element) => {
             elems.push(element);
 
@@ -581,7 +607,7 @@
                     let info = document.createElement("p");
                     info.id = element.id;
 
-                    info.innerHTML = element.text;
+                    info.innerHTML = preprocessText(element.text);
 
                     return info;
                 },
@@ -851,15 +877,19 @@
             sessionStorage.setItem("index", currentTab.toString())
 
             if (currentTab !== preTab) {
-                loadForm(currentTab);
+                loadForm({ index: currentTab });
                 preTab = currentTab;
             }
 
             updateTabs();
         }
 
-        const loadForm = index => {
-            result = results[index];
+        const loadForm = options => {
+            console.log(options)
+            result = results[options.index];
+
+            const formView = document.getElementById("formview");
+            const scrollPre = formView.scrollTop;
 
             filterTriggers = formTypes[result.type].elements
                 .filter(element => element.condition)
@@ -867,9 +897,12 @@
                 .flat()
                 .map(ids => ids.replaceAll('$', ''));
 
-            const formView = document.getElementById("formview");
             formView.innerHTML = "";
             formView.appendChild(createForm(formTypes[result.type]));
+
+            if (options.preserveScrollHeight) {
+                formView.scrollHeight = scrollPre;
+            }
 
             applyFilters();
             updateInfo();
@@ -966,7 +999,7 @@
                 document.getElementById("tabs").appendChild(createTab(r, index));
             });
 
-            loadForm(currentTab);
+            loadForm({ index: currentTab });
             updateTabs();
             updateInfo();
             applyFilters();

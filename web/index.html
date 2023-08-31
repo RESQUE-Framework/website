@@ -271,6 +271,8 @@
                 ...getDefaultValues(type)
             });
 
+            results[0].date_modified = Date.now();
+
             document.getElementById("tabs").appendChild(createTab(results[results.length - 1], results.length - 1));
 
             closeAddModal();
@@ -405,12 +407,12 @@
             updateInfo();
             updateTabs();
             applyFilters();
-
-            // Prevent reload on click events
-            // update is only triggered by click events to show correct info on the right
-            // it is not relevant for results/displaying data 
-            if (formTypes[result.type].elements.some(elem => elem.type === 'info' && /\$[a-zA-Z0-9_]+/.test(elem.text)) && e.type !== 'click') {
-                loadForm({ index: currentTab, preserveScrollHeight: true });
+            
+            // Update info items with value insertion
+            for (elem of elems) {
+                if (elem.type === 'info' && /\$[a-zA-Z0-9_]+/.test(elem.text)) {
+                    document.getElementById(elem.id).innerHTML = preprocessText(elem.text);
+                } 
             }
         }
 
@@ -438,7 +440,7 @@
 
                 switch (result.type) {
                     case "meta":
-                        content.innerHTML = `<b>Author</b>${result["M1"] ? '<br>' + result["M1"] : ''}`;
+                        content.innerHTML = `<b>Author / Metadata</b>${result["M1"] ? '<br>' + result["M1"] : ''}`;
                         break;
                     case "pub":
                         content.innerHTML = `<b>Publication ${++numberOfPublications}</b>${result["P3"] ? '<br>' + result["P3"] : ''}`

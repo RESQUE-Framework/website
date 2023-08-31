@@ -1,5 +1,5 @@
 {
-    "version": "0.2",
+    "version": "0.2.1",
     "prefix": "P",
     "title": "Publication",
     "scoring": {
@@ -96,6 +96,12 @@
     },
     "elements": [
         {
+            "id": "P_info",
+            "type": "info",
+            "title": "Information",
+            "text": "Publication number: $number<br>Date created: $date_added@datetime"
+        },
+        {
             "id": "P3",
             "type": "textbox",
             "title": "Paper title (do not provide journal name)"
@@ -106,9 +112,16 @@
             "title": "Year of publication"
         },
         {
-            "id": "P5",
+            "id": "doi",
             "type": "text",
             "title": "DOI"
+        },
+        {
+            "id": "P_top_papers",
+            "type": "global_checkbox",
+            "title": "Top papers: currently selected: global$P_top_papers@count/3",
+            "text": "This is one of my best papers.",
+            "max": 3
         },
         {
             "id": "P5P6SEP",
@@ -175,7 +188,7 @@
             "condition": "$P8"
         },
         {
-            "id": "P9info",
+            "id": "P9_info",
             "type": "info",
             "text": "<h3>CRediT roles</h3>",
             "info": "Please indicate your individual contributions to the publication. You can get a description of each role by clicking on the name of each role. Where multiple individuals serve in the same role, the degree of contribution should be specified as 'lead', 'equal', or 'supporting'. <br><br><ul><li><i>lead</i>: You were the single leader for this specific activity. If you are the only person in a specific role, choose 'lead'.</li><li><i>equal</i>: You contributed equally to this activity, together with one or more other contributors (you should only choose this option if no other co-author would choose the 'lead' option).</li><li><i>supporting</i>: You had a supporting role, not leading.</li><li><i>no role</i>: You did not contribute to that activity.</li></ul>"

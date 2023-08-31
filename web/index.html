@@ -230,6 +230,9 @@
             for (element of formTypes[type].elements) {
                 if (element.default) {
                     defaultValues[element.id] = element.default;
+                } else if (element.type === "global_checkbox") {
+                    // Create a field in meta.globals
+                    results[0].globals[element.id] = [];
                 }
             }
 
@@ -264,10 +267,25 @@
 
             let index = results.length
 
+            let number;
+
+            switch(type) {
+                case "pub":
+                    number = ++results[0].publications;
+                    break
+                case "software":
+                    number = ++results[0].software_projects;
+                    break
+                case "data":
+                    number = ++results[0].data_sets;
+                    break
+            }
+
             results.push({
                 type,
                 version: getVersion(type),
-                created: Date.now(),
+                number,
+                date_added: Date.now(),
                 ...getDefaultValues(type)
             });
 
@@ -276,6 +294,8 @@
             document.getElementById("tabs").appendChild(createTab(results[results.length - 1], results.length - 1));
 
             closeAddModal();
+
+            const tabsElement = document.getElementsByClassName("tabs-sidebar")[0];
 
             if (doi) {
                 fetch("https://doi.org/" + doi.trim(), {
@@ -292,7 +312,7 @@
                         if (type === "pub") {
                             results[index].P3 = response.title;
                             results[index].P4 = response.published["date-parts"][0][0];
-                            results[index].P5 = response.DOI;
+                            results[index].doi = response.DOI;
 
                             save();
 
@@ -320,8 +340,6 @@
                     behavior: "smooth"
                 });
             }
-
-            const tabsElement = document.getElementsByClassName("tabs-sidebar")[0];
         }
 
         const save = () => {
@@ -329,7 +347,7 @@
         }
 
         const getSavedData = () => {
-            return JSON.parse(localStorage.getItem("formdata")) || [{ type: "meta" }];
+            return JSON.parse(localStorage.getItem("formdata")) || [{ type: "meta", globals: {}, publications: 0, software_projects: 0, data_sets: 0 }];
         }
 
         const reset = () => {
@@ -359,7 +377,7 @@
 
         const exp = () => {
             let millis = Date.now();
-            results[0].exported = millis;
+            results[0].date_exported = millis;
             let json = JSON.stringify(results, null, 2);
             let blob = new Blob([json], { type: "text/json;charset=utf-8" });
             let filename = `resque_${results[0].M1 ? results[0].M1.toLowerCase() + "_" : ""}${millis}.json`;
@@ -373,7 +391,6 @@
         }
 
         const update = e => {
-
             if (e.type !== 'click') {
                 // Save date_created
                 if (!results[0].date_created) {
@@ -391,6 +408,21 @@
                 result[e.target.name] = parseInt(e.target.value);
             } else if (e.target.classList.contains("type-checkbox")) {
                 result[e.target.id] = e.target.checked;
+            } else if (e.target.classList.contains("type-global_checkbox")) {
+                if (e.target.checked && e.type !== 'click') {
+                    const max = formTypes[result.type].elements.find(elem => elem.id === e.target.id).max
+                    if (results[0].globals[e.target.id].length < max && !results[0].globals[e.target.id].includes(result.doi)) {
+                        results[0].globals[e.target.id].push(result.doi);
+                    } else {
+                        e.target.checked = false;
+                        alert(`You already selected ${max} papers. Please deselect one of them to select a new one.`)
+                    }
+                }
+                else
+                    results[0].globals[e.target.id] =
+                        results[0].globals[e.target.id].filter(value => value !== result.doi);
+
+                result[e.target.id] = e.target.checked;
             } else if (e.target.classList.contains("type-boolean")) {
                 result[e.target.id] = e.target.value === "true";
             } else if (e.target.classList.contains("type-textbox")) {
@@ -407,12 +439,23 @@
             updateInfo();
             updateTabs();
             applyFilters();
-            
+            rerenderDynamicValues();
+        }
+
+        const rerenderDynamicValues = () => {
             // Update info items with value insertion
             for (elem of elems) {
-                if (elem.type === 'info' && /\$[a-zA-Z0-9_]+/.test(elem.text)) {
-                    document.getElementById(elem.id).innerHTML = preprocessText(elem.text);
-                } 
+                // Do not reload if click event (click events are only relevant for the info box)
+                if(elem.type === 'info' && /\$[a-zA-Z0-9_]+/.test(elem.text)) {
+                    let domElement = document.getElementById(elem.id);
+                    domElement.innerHTML = preprocessText(elem.text);
+
+                    if (/\$[a-zA-Z0-9_]+@papers/.test(elem.text)) {
+                        domElement.childNodes.forEach(t => t.addEventListener('click', handleTabClick));
+                    }
+                } else if (/\$[a-zA-Z0-9_]+/.test(elem.title)) {
+                    document.querySelector("."+ elem.id + ".title").innerHTML = preprocessText(elem.title);
+                }
             }
         }
 
@@ -428,10 +471,6 @@
                 document.getElementById("add-container").style.display = "inherit"
             }
 
-            let numberOfPublications = 0;
-            let numberOfSoftwareProjects = 0;
-            let numberOfDataSets = 0;
-
             tabs.forEach(t => {
                 const content = t.firstChild;
 
@@ -443,13 +482,13 @@
                         content.innerHTML = `<b>Author / Metadata</b>${result["M1"] ? '<br>' + result["M1"] : ''}`;
                         break;
                     case "pub":
-                        content.innerHTML = `<b>Publication ${++numberOfPublications}</b>${result["P3"] ? '<br>' + result["P3"] : ''}`
+                        content.innerHTML = `<b>Publication ${result["number"]}</b>${result["P3"] ? '<br>' + result["P3"] : ''}`
                         break;
                     case "software":
-                        content.innerHTML = `<b>Software Project ${++numberOfSoftwareProjects}</b>${result["S3"] ? '<br>' + result["S3"] : ''}`;
+                        content.innerHTML = `<b>Software Project ${result["number"]}</b>${result["S3"] ? '<br>' + result["S3"] : ''}`;
                         break;
                     case "data":
-                        content.innerHTML = `<b>Data Set ${++numberOfDataSets}</b>${result["D3"] ? '<br>' + result["D3"] : ''}`;
+                        content.innerHTML = `<b>Data Set ${result["number"]}</b>${result["D3"] ? '<br>' + result["D3"] : ''}`;
                         break;
 
                     default:
@@ -586,18 +625,38 @@
         }
 
         const insertValuesIntoText = text => {
-            return text
-                .replaceAll(/\$([a-zA-Z0-9_]+)@([a-zA-Z0-9_]+)/g, (match, variable, type) => {
-                    switch (type.trim()) {
-                        case 'datetime': {
-                            const millis = parseInt(result[variable.trim()]);
-                            return millis ? new Date(millis).toLocaleString() : '...';
-                        }
-                        case 'date': {
-                            const millis = parseInt(result[variable.trim()]);
-                            return millis ? new Date(millis).toLocaleDateString() : '...';
-                        }
+            const processType = {
+                datetime: (value) => {
+                    const millis = parseInt(value);
+                    return millis ? new Date(millis).toLocaleString() : '...';
+                },
+                date: (value) => {
+                    const millis = parseInt(value);
+                    return millis ? new Date(millis).toLocaleDateString() : '...';
+                },
+                count: (value) => value.length,
+                papers: (value) => {
+                    if (!value || value.length <= 0) {
+                        return "<i>No papers</i>";
                     }
+
+                    const papersToDisplay = tabs
+                        .filter(t => value.includes(results[parseInt(t.getAttribute("data-index"))].doi))
+                        .map(t => {
+                            t.classList.remove("selected");
+                            return t.outerHTML;
+                        });
+
+                    return papersToDisplay.join("");
+                },
+                default: (value) => 'Unknown type'
+            }
+            return text
+                .replaceAll(/global\$([a-zA-Z0-9_]+)@([a-zA-Z0-9_]+)/g, (match, variable, type) => {
+                    return processType[type.trim()](results[0].globals[variable.trim()]);
+                })
+                .replaceAll(/\$([a-zA-Z0-9_]+)@([a-zA-Z0-9_]+)/g, (match, variable, type) => {
+                    return processType[type.trim()](result[variable.trim()]);
                 })
                 .replaceAll(/\$([a-zA-Z0-9_]+)/g, (match, variable) => {
                     return result[variable.trim()];
@@ -808,6 +867,25 @@
                     input.append(...options);
 
                     return input;
+                },
+                "global_checkbox": () => {
+                    let container = document.createElement("div");
+
+                    let label = document.createElement("label");
+
+                    let checkbox = document.createElement("input");
+                    checkbox.type = "checkbox";
+                    checkbox.id = element.id;
+                    checkbox.classList.add("type-global_checkbox");
+
+                    if (result[element.id]) {
+                        checkbox.checked = result[element.id];
+                    }
+
+                    label.append(checkbox, element.text);
+                    container.appendChild(label);
+
+                    return container;
                 }
             }
 
@@ -836,7 +914,7 @@
 
                 if (element.title) {
                     let title = document.createElement("p");
-                    title.innerText = element.title;
+                    title.innerText = preprocessText(element.title);
 
                     title.classList.add(element.id, "title");
                     fragment.appendChild(title);
@@ -897,7 +975,7 @@
         }
 
         const loadForm = options => {
-            console.log(options)
+            elems = [];
             result = results[options.index];
 
             const formView = document.getElementById("formview");
@@ -918,6 +996,7 @@
 
             applyFilters();
             updateInfo();
+            rerenderDynamicValues();
         }
 
         const updateTabs = () => {

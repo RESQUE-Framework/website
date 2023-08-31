@@ -13,15 +13,27 @@
             "title": "Name of external rater (optional)"
         },
         {
+            "id": "M_top_papers",
+            "type": "info",
+            "title": "Top papers",
+            "text": "global$P_top_papers@papers"
+        },
+        {
+            "id": "M_number_of_objects",
+            "type": "info",
+            "title": "Objects",
+            "text": "Publications: $publications<br>Software projects: $software_projects<br>Data sets: $data_sets"
+        },
+        {
             "id": "M_date_created",
             "type": "info",
-            "title": "Date Created",
+            "title": "Date created",
             "text": "$date_created@datetime"
         },
         {
             "id": "M_last_change",
             "type": "info",
-            "title": "Last Change",
+            "title": "Last change",
             "text": "$date_modified@datetime"
         }
     ]

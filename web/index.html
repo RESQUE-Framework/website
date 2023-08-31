@@ -230,9 +230,6 @@
             for (element of formTypes[type].elements) {
                 if (element.default) {
                     defaultValues[element.id] = element.default;
-                } else if (element.type === "global_checkbox") {
-                    // Create a field in meta.globals
-                    results[0].globals[element.id] = [];
                 }
             }
 
@@ -269,7 +266,7 @@
 
             let number;
 
-            switch(type) {
+            switch (type) {
                 case "pub":
                     number = ++results[0].publications;
                     break
@@ -347,7 +344,7 @@
         }
 
         const getSavedData = () => {
-            return JSON.parse(localStorage.getItem("formdata")) || [{ type: "meta", globals: {}, publications: 0, software_projects: 0, data_sets: 0 }];
+            return JSON.parse(localStorage.getItem("formdata")) || [{ type: "meta", publications: 0, software_projects: 0, data_sets: 0 }];
         }
 
         const reset = () => {
@@ -391,38 +388,35 @@
         }
 
         const update = e => {
-            if (e.type !== 'click') {
-                // Save date_created
-                if (!results[0].date_created) {
-                    results[0].date_created = Date.now();
+            // Save date_created
+            if (!results[0].date_created) {
+                results[0].date_created = Date.now();
 
-                    if (mode === MODE_PREVIEW) {
-                        console.log("First change: date_created saved.");
-                    }
+                if (mode === MODE_PREVIEW) {
+                    console.log("First change: date_created saved.");
                 }
-
-                results[0].date_modified = Date.now();
             }
+
+            results[0].date_modified = Date.now();
+
+            let elem = elems.find(elem => elem.id === e.target.id);
 
             if (e.target.classList.contains("type-radio") || e.target.classList.contains("type-dropdown")) {
                 result[e.target.name] = parseInt(e.target.value);
+                elem = elems.find(elem => elem.id === e.target.name);
             } else if (e.target.classList.contains("type-checkbox")) {
-                result[e.target.id] = e.target.checked;
-            } else if (e.target.classList.contains("type-global_checkbox")) {
-                if (e.target.checked && e.type !== 'click') {
-                    const max = formTypes[result.type].elements.find(elem => elem.id === e.target.id).max
-                    if (results[0].globals[e.target.id].length < max && !results[0].globals[e.target.id].includes(result.doi)) {
-                        results[0].globals[e.target.id].push(result.doi);
-                    } else {
+                if (e.target.id === "P_top_papera") {
+                    const count = results.filter(r => r.type === "pub" && r["P_top_papera"]).length;
+
+                    if (e.target.checked && count >= maxTopPapers) {
                         e.target.checked = false;
-                        alert(`You already selected ${max} papers. Please deselect one of them to select a new one.`)
+                        alert("You already selected three best papers. Please deselect one of them to select a new one.");
                     }
                 }
-                else
-                    results[0].globals[e.target.id] =
-                        results[0].globals[e.target.id].filter(value => value !== result.doi);
 
                 result[e.target.id] = e.target.checked;
+                
+                elem = elems.find(elem => elem.id === e.target.id.slice(0, e.target.id.length - 1));
             } else if (e.target.classList.contains("type-boolean")) {
                 result[e.target.id] = e.target.value === "true";
             } else if (e.target.classList.contains("type-textbox")) {
@@ -440,13 +434,14 @@
             updateTabs();
             applyFilters();
             rerenderDynamicValues();
+            showInfo(e, elem);
         }
 
         const rerenderDynamicValues = () => {
             // Update info items with value insertion
             for (elem of elems) {
                 // Do not reload if click event (click events are only relevant for the info box)
-                if(elem.type === 'info' && /\$[a-zA-Z0-9_]+/.test(elem.text)) {
+                if (elem.type === 'info' && /\$[a-zA-Z0-9_]+/.test(elem.text)) {
                     let domElement = document.getElementById(elem.id);
                     domElement.innerHTML = preprocessText(elem.text);
 
@@ -454,7 +449,7 @@
                         domElement.childNodes.forEach(t => t.addEventListener('click', handleTabClick));
                     }
                 } else if (/\$[a-zA-Z0-9_]+/.test(elem.title)) {
-                    document.querySelector("."+ elem.id + ".title").innerHTML = preprocessText(elem.title);
+                    document.querySelector("." + elem.id + ".title").innerHTML = preprocessText(elem.title);
                 }
             }
         }
@@ -634,26 +629,33 @@
                     const millis = parseInt(value);
                     return millis ? new Date(millis).toLocaleDateString() : '...';
                 },
-                count: (value) => value.length,
+                default: (value) => 'Unknown type'
+            }
+
+            const globals = {
+                paper_count: (value) => results.filter(r => r.type === 'pub' && r[value]).length,
+
                 papers: (value) => {
-                    if (!value || value.length <= 0) {
-                        return "<i>No papers</i>";
+                    let topPapers = results.filter(r => r.type === 'pub' && r[value]);
+                    let dois = topPapers.map(paper => paper.doi);
+
+                    if (topPapers.length <= 0) {
+                        return "<i>No papers selected</i>";
                     }
 
                     const papersToDisplay = tabs
-                        .filter(t => value.includes(results[parseInt(t.getAttribute("data-index"))].doi))
+                        .filter(t => dois.includes(results[parseInt(t.getAttribute("data-index"))].doi))
                         .map(t => {
                             t.classList.remove("selected");
                             return t.outerHTML;
                         });
 
                     return papersToDisplay.join("");
-                },
-                default: (value) => 'Unknown type'
+                }
             }
             return text
                 .replaceAll(/global\$([a-zA-Z0-9_]+)@([a-zA-Z0-9_]+)/g, (match, variable, type) => {
-                    return processType[type.trim()](results[0].globals[variable.trim()]);
+                    return globals[type.trim()](variable.trim());
                 })
                 .replaceAll(/\$([a-zA-Z0-9_]+)@([a-zA-Z0-9_]+)/g, (match, variable, type) => {
                     return processType[type.trim()](result[variable.trim()]);
@@ -936,7 +938,6 @@
                 fragment.appendChild(domElement);
 
                 fragment.title = element.tooltip || "";
-                fragment.addEventListener("click", update);
                 fragment.addEventListener("click", e => showInfo(e, element));
 
                 return fragment;
@@ -1062,7 +1063,7 @@
             }
         }
 
-        let meta, pub, software, data, max;
+        let meta, pub, software, data, max, maxTopPapers;
 
         let filterTriggers;
 
@@ -1085,7 +1086,7 @@
 
         menu().then(m => {
             formTypes = m;
-            ({ meta, pub, software, data, max } = m);
+            ({ meta, pub, software, data, max, maxTopPapers } = m);
             results.forEach((r, index) => {
                 document.getElementById("tabs").appendChild(createTab(r, index));
             });

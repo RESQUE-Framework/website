@@ -117,11 +117,10 @@
             "title": "DOI"
         },
         {
-            "id": "P_top_papers",
-            "type": "global_checkbox",
-            "title": "Top papers: currently selected: global$P_top_papers@count/3",
-            "text": "This is one of my best papers.",
-            "max": 3
+            "id": "P_top_paper",
+            "type": "checkbox",
+            "title": "Top papers: currently selected: global$P_top_papera@paper_count/3",
+            "options": [ "This is one of my best papers." ]
         },
         {
             "id": "P5P6SEP",

@@ -43,7 +43,7 @@
         </div>
         <div id="formview"></div>
         <div id="menu">
-            <div class="card">
+            <div class="card" id="score-box">
                 <div class="top">
                     <h3>Score</h3>
                 </div>
@@ -440,7 +440,16 @@
                 }
             })
 
+            if (result.type === 'meta') {
+                // Hide the score box and skip updating score values
+                document.getElementById('score-box').style.display = "none";
+                return;
+            }
+
             let scoringResult = score(result);
+
+            // Show score box
+            document.getElementById('score-box').style.display = "";
 
             if (scoringResult.max > 0) {
                 document.getElementById("no-score").style.display = "none";

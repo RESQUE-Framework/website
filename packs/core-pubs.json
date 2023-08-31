@@ -1,5 +1,5 @@
 {
-    "version": "0.2.1",
+    "version": "0.2",
     "prefix": "P",
     "title": "Publication",
     "scoring": {
@@ -98,8 +98,7 @@
         {
             "id": "P_info",
             "type": "info",
-            "title": "Information",
-            "text": "Publication number: $number<br>Date created: $date_added@datetime"
+            "text": "Date added: $date_added@datetime"
         },
         {
             "id": "P3",

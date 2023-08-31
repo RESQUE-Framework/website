@@ -264,24 +264,9 @@
 
             let index = results.length
 
-            let number;
-
-            switch (type) {
-                case "pub":
-                    number = ++results[0].publications;
-                    break
-                case "software":
-                    number = ++results[0].software_projects;
-                    break
-                case "data":
-                    number = ++results[0].data_sets;
-                    break
-            }
-
             results.push({
                 type,
                 version: getVersion(type),
-                number,
                 date_added: Date.now(),
                 ...getDefaultValues(type)
             });
@@ -415,7 +400,7 @@
                 }
 
                 result[e.target.id] = e.target.checked;
-                
+
                 elem = elems.find(elem => elem.id === e.target.id.slice(0, e.target.id.length - 1));
             } else if (e.target.classList.contains("type-boolean")) {
                 result[e.target.id] = e.target.value === "true";
@@ -466,6 +451,10 @@
                 document.getElementById("add-container").style.display = "inherit"
             }
 
+            let numberOfPublications = 0;
+            let numberOfSoftwareProjects = 0;
+            let numberOfDataSets = 0;
+
             tabs.forEach(t => {
                 const content = t.firstChild;
 
@@ -477,13 +466,13 @@
                         content.innerHTML = `<b>Author / Metadata</b>${result["M1"] ? '<br>' + result["M1"] : ''}`;
                         break;
                     case "pub":
-                        content.innerHTML = `<b>Publication ${result["number"]}</b>${result["P3"] ? '<br>' + result["P3"] : ''}`
+                        content.innerHTML = `<b>Publication ${++numberOfPublications}</b>${result["P3"] ? '<br>' + result["P3"] : ''}`
                         break;
                     case "software":
-                        content.innerHTML = `<b>Software Project ${result["number"]}</b>${result["S3"] ? '<br>' + result["S3"] : ''}`;
+                        content.innerHTML = `<b>Software Project ${++numberOfSoftwareProjects}</b>${result["S3"] ? '<br>' + result["S3"] : ''}`;
                         break;
                     case "data":
-                        content.innerHTML = `<b>Data Set ${result["number"]}</b>${result["D3"] ? '<br>' + result["D3"] : ''}`;
+                        content.innerHTML = `<b>Data Set ${++numberOfDataSets}</b>${result["D3"] ? '<br>' + result["D3"] : ''}`;
                         break;
 
                     default:

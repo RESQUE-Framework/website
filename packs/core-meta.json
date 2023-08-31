@@ -19,12 +19,6 @@
             "text": "global$P_top_papera@papers"
         },
         {
-            "id": "M_number_of_objects",
-            "type": "info",
-            "title": "Objects",
-            "text": "Publications: $publications<br>Software projects: $software_projects<br>Data sets: $data_sets"
-        },
-        {
             "id": "M_date_created",
             "type": "info",
             "title": "Date created",

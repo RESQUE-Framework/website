@@ -391,7 +391,7 @@
                 elem = elems.find(elem => elem.id === e.target.name);
             } else if (e.target.classList.contains("type-checkbox")) {
                 if (e.target.id === "P_top_papera") {
-                    const count = results.filter(r => r.type === "pub" && r["P_top_papera"]).length;
+                    const count = results.filter(r => r.type === "pub" && r["P_top_papera"] === true).length;
 
                     if (e.target.checked && count >= maxTopPapers) {
                         e.target.checked = false;
@@ -622,18 +622,22 @@
             }
 
             const globals = {
-                paper_count: (value) => results.filter(r => r.type === 'pub' && r[value]).length,
+                paper_count: (value) => results.filter(r => r.type === 'pub' && r[value] === true).length,
 
                 papers: (value) => {
-                    let topPapers = results.filter(r => r.type === 'pub' && r[value]);
-                    let dois = topPapers.map(paper => paper.doi);
+                    let topPapers = results.map((r, index) => {
+                        r.position = index;
+                        return r;
+                    }).filter(r => r.type === 'pub' && r[value] === true);
+
+                    let positions = topPapers.map(paper => paper.position);
 
                     if (topPapers.length <= 0) {
                         return "<i>No papers selected</i>";
                     }
 
                     const papersToDisplay = tabs
-                        .filter(t => dois.includes(results[parseInt(t.getAttribute("data-index"))].doi))
+                        .filter((tab, index) => positions.includes(index))
                         .map(t => {
                             t.classList.remove("selected");
                             return t.outerHTML;

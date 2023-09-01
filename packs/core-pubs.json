@@ -452,7 +452,8 @@
                 "ZK1 (scientific use file)",
                 "ZK2 (restricted access) [provide explanation]"
             ],
-            "condition": "$P8 && $P10a && $P11 === 3"
+            "condition": "$P8 && $P10a && $P11 === 3",
+            "info": "Eine Beschreibung"
         },
         {
             "id": "P12_explanation",

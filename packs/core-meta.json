@@ -3,29 +3,29 @@
     "title": "Author / Metadata",
     "elements": [
         {
-            "id": "M1",
+            "id": "LastName",
             "type": "text",
             "title": "Last name"
         },
         {
-            "id": "M2",
+            "id": "ExternalRater",
             "type": "text",
             "title": "Name of external rater (optional)"
         },
         {
-            "id": "M_top_papers",
+            "id": "TopPapers",
             "type": "info",
             "title": "Top papers",
-            "text": "global$P_top_papera@papers"
+            "text": "global$TopPaper_Select@papers"
         },
         {
-            "id": "M_date_created",
+            "id": "DateCreated",
             "type": "info",
             "title": "Date created",
             "text": "$date_created@datetime"
         },
         {
-            "id": "M_last_change",
+            "id": "LastChange",
             "type": "info",
             "title": "Last change",
             "text": "$date_modified@datetime"

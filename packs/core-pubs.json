@@ -96,30 +96,30 @@
     },
     "elements": [
         {
-            "id": "P_info",
+            "id": "P_Info",
             "type": "info",
             "text": "Date added: $date_added@datetime"
         },
         {
-            "id": "P3",
+            "id": "Title",
             "type": "textbox",
             "title": "Paper title (do not provide journal name)"
         },
         {
-            "id": "P4",
+            "id": "Year",
             "type": "number",
             "title": "Year of publication"
         },
         {
-            "id": "doi",
+            "id": "DOI",
             "type": "text",
             "title": "DOI"
         },
         {
-            "id": "P_top_paper",
+            "id": "TopPaper",
             "type": "checkbox",
-            "title": "Top papers: currently selected: global$P_top_papera@paper_count/3",
-            "options": [ "This is one of my best papers." ]
+            "title": "Top papers: currently selected: global$TopPaper_Select@paper_count/3",
+            "options": [ {"id": "Select", "text": "This is one of my best papers." } ]
         },
         {
             "id": "P5P6SEP",
@@ -135,7 +135,8 @@
                 "(Mainly) Theoretical contribution / Review",
                 "Simulation",
                 "Other (please specify)"
-            ]
+            ],
+            "info": "Ask yourself: What is the paper mainly?"
         },
         {
             "id": "P6_other",
@@ -407,17 +408,43 @@
             "condition": "$P8"
         },
         {
-            "id": "P10",
-            "type": "checkbox",
-            "title": "Own data or data reuse (check all that apply)",
-            "options": [
-                "Own data collection",
-                "Reuse of existing data set",
-                "Simulated data",
-                "No data"
-            ],
-            "last_option_exclusive": true,
+            "id": "P_Data",
+            "type": "radio",
+            "title": "Does this paper use any kind of data in a substantive way (new data, reuse of existing data, or simulated data?)",
+            "options": [ "No", "Yes" ],
             "condition": "$P8"
+        },
+        {
+            "id": "P_Data_Source",
+            "type": "checkbox",
+            "title": "What kind of data do you use? (check all that apply)",
+            "options": [
+                { "id": "NewOwn", "text": "Own new data collection" },
+                { "id": "ReuseOwn", "text": "Reuse of own existing data set" },
+                { "id": "ReuseOther", "text": "Reuse of someone else's existing data set" },
+                { "id": "Simulated", "text": "Simulated data" }
+            ],
+            "min_selected": 1,
+            "info": "Data set acquisition often is a collaborative enterprise with different contributor roles. { $P_Data_Source_ReuseOwn | Select 'Reuse of own existing data set' only, if you would qualify as a co-author with substantive contributions in a stand-alone data set publication of that data set. }",
+            "condition": "$P8 && $P_Data"
+        },
+        {
+            "id": "P_Data_Type",
+            "type": "checkbox",
+            "title": "Type of data (check all that apply)",
+            "options": [
+                { "id": "Questionnaire", "text": "Questionnaire" },
+                { "id": "Behavioral", "text": "Behavioral" },
+                { "id": "Physiological / Biological", "text": "Physiological" },
+                { "id": "OtherType", "text": "Other [please specify]" }
+            ],
+            "condition": "$P8 && $P_Data"
+        },
+        {
+            "id": "P_Data_Type_Other",
+            "type": "text",
+            "title": "Type of data: Other",
+            "condition": "$P8 && $P_Data && $P_Data_Type_OtherType"
         },
         {
             "id": "P11",
@@ -452,7 +479,8 @@
                 "ZK1 (scientific use file)",
                 "ZK2 (restricted access) [provide explanation]"
             ],
-            "condition": "$P8 && $P10a && $P11 === 3"
+            "condition": "$P8 && $P10a && $P11 === 3",
+            "info": "Eine Beschreibung {:0, 1 | ok} {:2 | not ok}"
         },
         {
             "id": "P12_explanation",

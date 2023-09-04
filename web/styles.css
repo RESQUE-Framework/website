@@ -53,6 +53,7 @@ body {
     flex: 1 1 30%;
     padding: 16px;
     border-left: 1px solid lightgray;
+    position: relative;
 }
 
 .tabs-sidebar {
@@ -82,11 +83,19 @@ body {
     margin-bottom: 4px;
 }
 
-#formview {
+#formview-container {
+    position: relative;
     flex: 1 1 45%;
-    overflow: auto;
     margin: 0 16px;
-    padding: 2px;
+    transform: scale(1);
+    height: 100vh;
+    overflow: hidden;
+}
+
+#formview {
+    height: 100%;
+    overflow: scroll;
+    padding: 4px;
 }
 
 #formview h2 {
@@ -351,6 +360,35 @@ hr {
 @keyframes highlight {
     50% {
         background-color: white;
+    }
+}
+
+#saving {
+    position: fixed;
+    top: 1rem;
+    right: 0;
+    margin-left: auto;
+    width: fit-content;
+    color: #333333;
+    background-color: #efefef;
+    border-radius: 8px;
+    padding: 8px 16px;
+    z-index: 2;
+}
+
+.animate.pop {
+    animation: pop 200ms;
+}
+
+@keyframes pop {
+    0% {
+        opacity: 0;
+        transform: scale(0.5, 0.5);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1, 1);
     }
 }
 

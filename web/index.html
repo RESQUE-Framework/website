@@ -41,9 +41,12 @@
                 </div>
             </div>
         </div>
-        <div id="formview"></div>
+        <div id="formview-container">
+            <div id="saving" class="animate pop" style="display: none;"></div>
+            <div id="formview"></div>
+        </div>
         <div id="menu">
-            <div class="card" id="score-box">
+            <div class="card animate pop" id="score-box">
                 <div class="top">
                     <h3>Score</h3>
                 </div>
@@ -372,6 +375,28 @@
             a.click();
         }
 
+        const showSaving = () => {
+            let saving = document.getElementById("saving");
+
+            if (saving.style.display !== "none") {
+                return;
+            }
+
+            saving.innerText = "Saving changes...";
+
+            saving.style.display = "block";
+
+            new Promise(r => setTimeout(r, 750))
+                .then(() => {
+                    saving.innerText = "Done ✅";
+                });
+
+            new Promise(r => setTimeout(r, 1500))
+                .then(() => {
+                    saving.style.display = "none";
+                });
+        }
+
         const update = e => {
             // Save date_created
             if (!results[0].date_created) {
@@ -420,6 +445,7 @@
             applyFilters();
             rerenderDynamicValues();
             showInfo(e, elem);
+            showSaving();
         }
 
         const rerenderDynamicValues = () => {
@@ -432,9 +458,9 @@
 
                     if (/\$[a-zA-Z0-9_]+@papers/.test(elem.text)) {
                         const tabWidth = tabs[0].clientWidth;
-                        domElement.childNodes.forEach(t => { 
+                        domElement.childNodes.forEach(t => {
                             t.addEventListener('click', handleTabClick);
-                            t.setAttribute("style", "width:"+tabWidth);
+                            t.setAttribute("style", "width:" + tabWidth);
                         });
                     }
                 } else if (/\$[a-zA-Z0-9_]+/.test(elem.title)) {
@@ -818,7 +844,7 @@
 
                         let checkbox = document.createElement("input");
                         checkbox.type = "checkbox";
-                        checkbox.id = element.id + '_' + (option.id ? option.id :  String.fromCharCode(index + 97));
+                        checkbox.id = element.id + '_' + (option.id ? option.id : String.fromCharCode(index + 97));
                         checkbox.classList.add("type-checkbox");
 
                         let text = typeof option === 'string' ? option : option.text;

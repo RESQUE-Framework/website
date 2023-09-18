@@ -15,7 +15,7 @@
                 <div class="top">
                     <h3>RESQUE</h3>
                     <div id="actions">
-                        <button onclick="reset()">Reset</button>
+                        <button onclick="reset()">Clear</button>
                         <button onclick="triggerLoad()">Load</button>
                         <button onclick="exp()">Export</button>
                     </div>
@@ -55,8 +55,10 @@
                     <p id="score-dot">•</p>
                     <p id="score-minmax"></p>
                 </div>
-                <p id="warning-score-too-low">⚠️ Many indicators are not applicable. Manual processing of this publication is recommended.</p>
-                <p id="no-score">No score - applicant requests manual processing</p>            </div>
+                <p id="warning-score-too-low">⚠️ Many indicators are not applicable. Manual processing of this
+                    publication is recommended.</p>
+                <p id="no-score">No score - applicant requests manual processing</p>
+            </div>
             <div class="card">
                 <p id="item-info">Click on an indicator to see detailed information</p>
                 <details id="item-background-details">
@@ -65,16 +67,58 @@
                 </details>
             </div>
             <div class="menu-bottom">
-                <a class="github-link" href="https://github.com/nicebread/RESQUE">GitHub</a>
+                <span onclick="openInfoModal()" class="fakelink">What is RESQUE? / Help</span> • <a class="github-link"
+                    href="https://github.com/nicebread/RESQUE">GitHub</a>
             </div>
         </div>
     </div>
     </div>
-    <div id="add-modal" class="modal">
-
+    <div id="info-modal" class="modal">
         <!-- Modal content -->
         <div class="modal-content">
+            <button onclick="closeInfoModal()" id="add-modal-continue">Continue</button>
 
+            <h2>👋🏻 Welcome to RESQUE!</h2>
+            <p>...</p>
+            <hr>
+            <h3>👀 How to use?</h3>
+            <details>
+                <summary>How do I add a new publication / software project / data set?</summary>
+                Normally, you would use the buttons in the sidebar on the left.
+                <br>
+                For this time, you can do it here:
+                <br><br>
+                <button onclick="newTab('pub')">New Publication</button>
+                <button onclick="newTab('software')">New Software Project</button>
+                <button onclick="newTab('data')">New Data Set</button>
+            </details>
+            <details>
+                <summary>How do I export my data?</summary>
+                Just click on the <button onclick="exp()">Export</button> button here or in the top left corner of this website.
+            </details>
+            <details>
+                <summary>How do I load data I previously exported?</summary>
+                You can use the <button onclick="triggerLoad()">Load</button> button here or in the top left corner of this website.
+            </details>
+            <details>
+                <summary>How can I clear all information I entered?</summary>
+                You can delete all data stored in the browser by clicking on the <button onclick="reset()">Clear</button> button here or in the top left corner of this website.
+            </details>
+            <details>
+                <summary>What should I do if I want to use RESQUE on a shared/public computer?</summary>
+                Make sure you clear your data after use.
+            </details>
+            <hr>
+            <h3>🔒 Privacy • <span class="sub">Is my data stored privately in a safe location?</span></h3>
+            <p>
+                <b>Nothing leaves your device.</b>
+                <br>
+                We use the <a href="https://www.wikiwand.com/en/Web_storage">Web Storage API</a> supported by all major browsers. Your data is only stored in the browser.
+                <br><br>
+                The data is processed only locally. Your score is calculated in the browser. The local PDF files you
+                open
+                on this website are <i>not</i> uploaded to a server.
+            </p>
         </div>
 
     </div>
@@ -247,16 +291,12 @@
             }
         }
 
-        const openAddModal = () => {
-            if (doimagic === "active") {
-                document.getElementById("add-modal").style.display = "block";
-            } else {
-                newTab("pub");
-            }
+        const openInfoModal = () => {
+            document.getElementById("info-modal").style.display = "block";
         }
 
-        const closeAddModal = () => {
-            document.getElementById("add-modal").style.display = "none";
+        const closeInfoModal = () => {
+            document.getElementById("info-modal").style.display = "none";
         }
 
         const newTab = type => {
@@ -277,8 +317,6 @@
             results[0].date_modified = Date.now();
 
             document.getElementById("tabs").appendChild(createTab(results[results.length - 1], results.length - 1));
-
-            closeAddModal();
 
             const tabsElement = document.getElementsByClassName("tabs-sidebar")[0];
 
@@ -560,10 +598,7 @@
             return condition.replaceAll(/\$(\w*)/g, `result['$1']`);
         }
 
-        const evaluateCondition = condition => {
-            console.log(condition);
-            return eval(insertValuesIntoCondition(preprocessCondition(condition)));
-        }
+        const evaluateCondition = condition => eval(insertValuesIntoCondition(preprocessCondition(condition)));
 
         const applyFilters = () => {
             if (mode === MODE_PREVIEW) {
@@ -1120,6 +1155,10 @@
             pub: "P",
             software: "S",
             data: "D"
+        }
+
+        if (!localStorage.getItem("formdata")) {
+            openInfoModal();
         }
 
         menu().then(m => {

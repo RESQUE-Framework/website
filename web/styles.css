@@ -245,6 +245,10 @@ summary {
     cursor: pointer;
 }
 
+details {
+    margin-bottom: 1rem;
+}
+
 summary:hover {
     color: #333333;
 }
@@ -283,6 +287,13 @@ summary:hover {
     margin-bottom: 0;
 }
 
+.sub {
+    color: gray;
+    font-style: italic;
+    font-size: 10pt;
+    vertical-align: middle;
+}
+
 hr {
     border: none;
     border-top: 1px solid lightgray;
@@ -318,21 +329,32 @@ hr {
     /* Full height */
     overflow: auto;
     /* Enable scroll if needed */
-    background-color: #33333328;
+    background-color: #33333315;
     backdrop-filter: blur(5px);
 }
 
 /* Modal Content */
 .modal-content {
+    position: relative;
     background-color: white;
     margin: auto;
-    padding: 20px;
-    width: 360px;
-    text-align: center;
+    padding: 16px;
+    width: 740px;
     border-radius: 8px;
     box-shadow: 0 0 8px #ccc;
+    max-height: 70vh;
+    overflow: auto;
 }
 
+.modal-content h2 {
+    margin-top: 0;
+}
+
+#add-modal-continue {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+}
 
 .doi-info {
     color: gray;
@@ -378,6 +400,16 @@ hr {
     border-radius: 8px;
     padding: 8px 16px;
     z-index: 2;
+}
+
+.fakelink {
+    text-decoration: underline;
+    color: gray;
+    cursor: pointer;
+}
+
+.fakelink:hover {
+    color: #333333;
 }
 
 .animate.pop {

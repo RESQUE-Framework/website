@@ -55,8 +55,8 @@
                     <p id="score-dot">•</p>
                     <p id="score-minmax"></p>
                 </div>
-                <p id="no-score">No score - applicant requests manual processing</p>
-            </div>
+                <p id="warning-score-too-low">⚠️ Many indicators are not applicable. Manual processing of this publication is recommended.</p>
+                <p id="no-score">No score - applicant requests manual processing</p>            </div>
             <div class="card">
                 <p id="item-info">Click on an indicator to see detailed information</p>
                 <details id="item-background-details">
@@ -517,6 +517,14 @@
             }
 
             let scoringResult = score(result);
+
+            if (scoringResult.max < 5) {
+                document.getElementById('warning-score-too-low').style.display = 'block';
+                document.getElementById('score-box').classList.add('warning');
+            } else {
+                document.getElementById('warning-score-too-low').style.display = 'none';
+                document.getElementById('score-box').classList.remove('warning');
+            }
 
             // Show score box
             document.getElementById('score-box').style.display = "";

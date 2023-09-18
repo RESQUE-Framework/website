@@ -30,6 +30,10 @@ body {
     box-sizing: border-box;
 }
 
+.card.warning {
+    background-color: #ffa50015;
+}
+
 .tabs-sidebar h3,
 #menu h3 {
     margin: 0;

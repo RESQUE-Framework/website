@@ -65,13 +65,14 @@ Furthermore, there are 6 additional commentaries (in German) published in the [P
 ## Resources
 
 ### ☑️ Rating sheets (core set)
-Versioned releases of the rating sheets are provided as offline Excel files in the folder [/rating_sheets](/rating_sheets). The goal is to make data entry for applicants and hiring committees as easy and frictionless as possible.
+Versioned releases of the rating sheets have so far been provided as offline Excel files in the folder [/rating_sheets](/rating_sheets). 
+With the goal to make data entry for applicants and hiring committees as easy and frictionless as possible, we now develop a web form that allows to enter and store the data in a JSON format.
 
 There are three separate sheets for ...
 
-- Publications, preprints, book chapters, etc. (**RESQUE-Pubs**): [Current release (v0.1)](/rating_sheets/RESQUE_pubs_v0_1.xlsx) - [Development version](https://docs.google.com/spreadsheets/d/1SUhwiZnhFCjy5COga3utGO15KT2wD4Pk/edit?usp=sharing&ouid=108982640291853577145&rtpof=true&sd=true)
-- Data sets (**RESQUE-Data**): [Current release (v0.1)](/rating_sheets/RESQUE_data-sets_v0_1.xlsx) - Development version
-- Research software (**RESQUE-Software**): [Current release (v0.1)](/rating_sheets/RESQUE_software_v0_1.xlsx) - Development version
+- Publications, preprints, book chapters, etc. (**RESQUE-Pubs**): [Current release (xlsx; v0.1)](/rating_sheets/RESQUE_pubs_v0_1.xlsx) - [Development version 0.2; xlsx](https://docs.google.com/spreadsheets/d/1SUhwiZnhFCjy5COga3utGO15KT2wD4Pk/edit?usp=sharing&ouid=108982640291853577145&rtpof=true&sd=true)  - [Development version 0.3, web form](https://nicebread.github.io/RESQUE/web/)
+- Data sets (**RESQUE-Data**): [Current release (v0.1)](/rating_sheets/RESQUE_data-sets_v0_1.xlsx)
+- Research software (**RESQUE-Software**): [Current release (v0.1)](/rating_sheets/RESQUE_software_v0_1.xlsx) - [Development version 0.2, xlsx](https://docs.google.com/spreadsheets/d/1jGWPokhqCk2IjT--0E1CvKnVBkOArM-O/edit?usp=sharing&ouid=108982640291853577145&rtpof=true&sd=true)
 
 The rating sheets are versioned. Indicators from the core set start with the prefix "P" (Publications), "D" (Data) or "S" (Software).
 

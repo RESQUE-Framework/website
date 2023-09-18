@@ -412,11 +412,11 @@
             let elem = elems.find(elem => elem.id === e.target.id);
 
             if (e.target.classList.contains("type-radio") || e.target.classList.contains("type-dropdown")) {
-                result[e.target.name] = parseInt(e.target.value);
+                result[e.target.name] = e.target.value;
                 elem = elems.find(elem => elem.id === e.target.name);
             } else if (e.target.classList.contains("type-checkbox")) {
-                if (e.target.id === "TopPaper_Select") {
-                    const count = results.filter(r => r.type === "pub" && r["TopPaper_Select"] === true).length;
+                if (e.target.id === "P_TopPaper_Select") {
+                    const count = results.filter(r => r.type === "pub" && r["P_TopPaper_Select"] === true).length;
 
                     if (e.target.checked && count >= maxTopPapers) {
                         e.target.checked = false;
@@ -552,7 +552,10 @@
             return condition.replaceAll(/\$(\w*)/g, `result['$1']`);
         }
 
-        const evaluateCondition = condition => eval(insertValuesIntoCondition(preprocessCondition(condition)));
+        const evaluateCondition = condition => {
+            console.log(condition);
+            return eval(insertValuesIntoCondition(preprocessCondition(condition)));
+        }
 
         const applyFilters = () => {
             if (mode === MODE_PREVIEW) {
@@ -813,17 +816,19 @@
 
                         let radio = document.createElement("input");
                         radio.type = "radio";
-                        radio.value = index;
+                        radio.value = option.id;
                         radio.name = element.id;
                         radio.classList.add("type-radio");
 
+                        let optionText = option.text;
+
                         if (mode === MODE_PREVIEW) {
-                            option = `[${index}] ${option}`;
+                            optionText = `[${option.id}] ${optionText}`;
                         }
 
-                        label.append(radio, option);
+                        label.append(radio, optionText);
 
-                        if (element.id in result && result[element.id] == index) {
+                        if (element.id in result && result[element.id] === option.id) {
                             radio.checked = true;
                         }
 

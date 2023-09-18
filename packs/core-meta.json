@@ -16,7 +16,7 @@
             "id": "TopPapers",
             "type": "info",
             "title": "Top papers",
-            "text": "global$TopPaper_Select@papers"
+            "text": "global$P_TopPaper_Select@papers"
         },
         {
             "id": "DateCreated",

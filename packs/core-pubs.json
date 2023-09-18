@@ -3,94 +3,154 @@
     "prefix": "P",
     "title": "Publication",
     "scoring": {
-        "P12": {
-            "not_applicable": "!($P8) || $P11 === 0 && $P11_explanation || !($P10a)",
+        "P_Data_Open_AccessLevel": {
+            "not_applicable": "$P_Suitable === 'No' || $P_Data_Open === 'NotApplicable' && $P_Data_Open_NAExplanation || $P_Data === 'No'",
             "max": 1,
             "op": "select",
             "points": [
-                 { "value": 1, "condition": "$P10a && $P12 =|= [0, 1] && $P11 === 3" }
+                {
+                    "value": 1,
+                    "condition": "$P_Data === 'Yes' && $P_Data_Source_NewOwn && $P_Data_Open === 'YesEntire' && $P_Data_Open_AccessLevel =|= ['ZK0', 'ZK1']"
+                }
             ]
         },
-        "P13": {
-            "not_applicable": "!($P8) || $P11 === 0 && $P11_explanation || !($P10a)",
+        "P_Data_Open_FAIR": {
+            "not_applicable": "$P_Suitable === 'No' || $P_Data_Open === 'NotApplicable' && $P_Data_Open_NAExplanation || $P_Data === 'No'",
             "max": 1,
             "op": "sum",
             "points": [
-                 { "value": 0.25, "condition": "$P10a && $P13a && $P12 =|= [0, 1] && $P11 === 3" },
-                 { "value": 0.5, "condition": "$P10a && $P13b && $P12 =|= [0, 1] && $P11 === 3" },
-                 { "value": 0.25, "condition": "$P10a && $P13c && $P12 =|= [0, 1] && $P11 === 3" }
+                {
+                    "value": 0.25,
+                    "condition": "$P_Data_Open_FAIR_PersistentIdentifier && $P_Data === 'Yes' && $P_Data_Source_NewOwn && $P_Data_Open === 'YesEntire' && $P_Data_Open_AccessLevel =|= ['ZK0', 'ZK1']"
+                },
+                {
+                    "value": 0.5,
+                    "condition": "$P_Data_Open_FAIR_Codebook && $P_Data === 'Yes' && $P_Data_Source_NewOwn && $P_Data_Open === 'YesEntire' && $P_Data_Open_AccessLevel =|= ['ZK0', 'ZK1']"
+                },
+                {
+                    "value": 0.25,
+                    "condition": "$P_Data_Open_FAIR_StructuredOpenFormat && $P_Data === 'Yes' && $P_Data_Source_NewOwn && $P_Data_Open === 'YesEntire' && $P_Data_Open_AccessLevel =|= ['ZK0', 'ZK1']"
+                }
             ]
         },
-        "P14": {
-            "not_applicable": "!($P8) || $P14 === 0 && $P14_explanation",
+        "P_IndependentVerification": {
+            "not_applicable": "$P_Suitable === 'No' || $P_IndependentVerification === 'NotApplicable' && $P_IndependentVerification_NAExplanation",
             "max": 1,
             "op": "select",
             "points": [
-                 { "value": 1, "condition": "$P14 === 2 && $P14_extra" }
+                {
+                    "value": 1,
+                    "condition": "$P_IndependentVerification === 'Yes' && $P_IndependentVerification_Identifier"
+                }
             ]
         },
-        "P15": {
-            "not_applicable": "!($P8) || $P15 === 0 && $P15_explanation",
+        "P_ReproducibleScripts": {
+            "not_applicable": "$P_Suitable === 'No' || $P_ReproducibleScripts === 'NotApplicable' && $P_ReproducibleScripts_NAExplanation",
             "max": 1,
             "op": "select",
             "points": [
-                 { "value": 1, "condition": "$P15 === 3 && $P15_extra" }
+                {
+                    "value": 1,
+                    "condition": "$P_ReproducibleScripts === 'YesEntire' && $P_ReproducibleScripts_Identifier"
+                }
             ]
         },
-        "P16": {
-            "not_applicable": "!($P8) || $P15 === 0 && $P15_explanation",
+        "P_ReproducibleScripts_FAIR": {
+            "not_applicable": "$P_Suitable === 'No' || $P_ReproducibleScripts === 'NotApplicable' && $P_ReproducibleScripts_NAExplanation",
             "max": 1,
             "op": "sum",
             "points": [
-                 { "value": 0.20, "condition": "$P16a && $P15 =|= [2, 3]" },
-                 { "value": 0.20, "condition": "$P16b && $P15 =|= [2, 3]" },
-                 { "value": 0.20, "condition": "$P16c && $P15 =|= [2, 3]" },
-                 { "value": 0.20, "condition": "$P16d && $P15 =|= [2, 3]" },
-                 { "value": 0.20, "condition": "$P16e && $P15 =|= [2, 3]" }
+                {
+                    "value": 0.20,
+                    "condition": "$P_ReproducibleScripts_FAIR_TimestampedRepository && $P_ReproducibleScripts =|= ['YesParts', 'YesEntire']"
+                },
+                {
+                    "value": 0.20,
+                    "condition": "$P_ReproducibleScripts_FAIR_VersionControl && $P_ReproducibleScripts =|= ['YesParts', 'YesEntire']"
+                },
+                {
+                    "value": 0.20,
+                    "condition": "$P_ReproducibleScripts_FAIR_ReproducibleManuscripts && $P_ReproducibleScripts =|= ['YesParts', 'YesEntire']"
+                },
+                {
+                    "value": 0.20,
+                    "condition": "$P_ReproducibleScripts_FAIR_Documentation && $P_ReproducibleScripts =|= ['YesParts', 'YesEntire']"
+                },
+                {
+                    "value": 0.20,
+                    "condition": "$P_ReproducibleScripts_FAIR_ReproducibleSoftwareEnvironments && $P_ReproducibleScripts =|= ['YesParts', 'YesEntire']"
+                }
             ]
         },
-        "P17": {
-            "not_applicable": "!($P8) || $P17 === 0 && $P17_explanation",
+        "P_OpenMaterials": {
+            "not_applicable": "$P_Suitable === 'No' || $P_OpenMaterials === 'NotApplicable' && $P_OpenMaterials_NAExplanation",
             "max": 1,
             "op": "select",
             "points": [
-                 { "value": 1, "condition": "$P17 === 3 && $P17_extra" }
+                {
+                    "value": 1,
+                    "condition": "$P_OpenMaterials === 'YesEntire' && $P_OpenMaterials_Identifier"
+                }
             ]
         },
-        "P18": {
-            "not_applicable": "!($P8) || $P18 === 0 && $P18_explanation",
+        "P_Preregistration": {
+            "not_applicable": "$P_Suitable === 'No' || $P_Preregistration === 'NotApplicable' && $P_Preregistration_NAExplanation",
             "max": 2,
             "op": "select",
             "points": [
-                 { "value": 1, "condition": "$P18 === 2 && $P18_extra" },
-                 { "value": 2, "condition": "$P18 === 3 && $P18_extra" }
+                {
+                    "value": 1,
+                    "condition": "$P_Preregistration === 'Yes' && $P_Preregistration_Identifier"
+                },
+                {
+                    "value": 2,
+                    "condition": "$P_Preregistration === 'RegisteredReport' && $P_Preregistration_Identifier"
+                }
             ]
         },
-        "P19": {
-            "not_applicable": "!($P8) || $P18 === 0 && $P18_explanation",
+        "P_Preregistration_Content": {
+            "not_applicable": "$P_Suitable === 'No' || $P_Preregistration === 'NotApplicable' && $P_Preregistration_NAExplanation",
             "max": 1,
             "op": "sum",
             "points": [
-                 { "value": 0.25, "condition": "$P19a" },
-                 { "value": 0.25, "condition": "$P19b" },
-                 { "value": 0.25, "condition": "$P19c" },
-                 { "value": 0.25, "condition": "$P19d" }
+                {
+                    "value": 0.25,
+                    "condition": "$P_Preregistration_Content_SampleSizePlanning"
+                },
+                {
+                    "value": 0.25,
+                    "condition": "$P_Preregistration_Content_Hypotheses"
+                },
+                {
+                    "value": 0.25,
+                    "condition": "$P_Preregistration_Content_Operationalizations"
+                },
+                {
+                    "value": 0.25,
+                    "condition": "$P_Preregistration_Content_AnalysisPlan"
+                }
             ]
         },
-        "P20": {
-            "not_applicable": "!($P8) || $P20 === 0 && $P20_explanation",
+        "P_FormalModeling": {
+            "not_applicable": "$P_Suitable === 'No' || $P_FormalModeling === 'NotApplicable' && $P_FormalModeling_NAExplanation",
             "max": 2,
             "op": "select",
             "points": [
-                { "value": 2, "condition": "$P20 === 2" }
+                {
+                    "value": 2,
+                    "condition": "$P_FormalModeling === 'Yes'"
+                }
             ]
         },
-        "P21": {
-            "not_applicable": "!($P8) || $P21 === 0 && $P21_explanation",
+        "P_PreregisteredReplication": {
+            "not_applicable": "$P_Suitable === 'No' || $P_PreregisteredReplication === 'NotApplicable' && $P_PreregisteredReplication_NAExplanation",
             "max": 1,
             "op": "select",
             "points": [
-                { "value": 1, "condition": "$P21 === 2" }
+                {
+                    "value": 1,
+                    "condition": "$P_PreregisteredReplication === 'Yes' && $P_PreregisteredReplication_Identifier"
+                }
             ]
         }
     },
@@ -116,288 +176,506 @@
             "title": "DOI"
         },
         {
-            "id": "TopPaper",
+            "id": "P_TopPaper",
             "type": "checkbox",
-            "title": "Top papers: currently selected: global$TopPaper_Select@paper_count/3",
-            "options": [ {"id": "Select", "text": "This is one of my best papers." } ]
+            "title": "Top papers: currently selected: global$P_TopPaper_Select@paper_count/3",
+            "options": [
+                {
+                    "id": "Select",
+                    "text": "This is one of my best papers."
+                }
+            ]
         },
         {
             "id": "P5P6SEP",
             "type": "separator"
         },
         {
-            "id": "P6",
+            "id": "P_TypeMethod",
             "type": "checkbox",
             "title": "Publication type (check all that apply)",
             "options": [
-                "Empirical paper",
-                "Meta-Analysis",
-                "(Mainly) Theoretical contribution / Review",
-                "Simulation",
-                "Other (please specify)"
+                {
+                    "id": "Empirical",
+                    "text": "Empirical paper"
+                },
+                {
+                    "id": "MetaAnalysis",
+                    "text": "Meta-Analysis"
+                },
+                {
+                    "id": "Theoretical",
+                    "text": "(Mainly) Theoretical contribution / Review"
+                },
+                {
+                    "id": "Simulation",
+                    "text": "Simulation"
+                },
+                {
+                    "id": "OtherMethod",
+                    "text": "Other (please specify)"
+                }
             ],
             "info": "Ask yourself: What is the paper mainly?"
         },
         {
-            "id": "P6_other",
+            "id": "P_TypeMethod_Other",
             "type": "text",
             "title": "Publication type: Other",
-            "condition": "$P6e === true"
+            "condition": "$P_TypeMethod_OtherMethod"
         },
         {
-            "id": "P7",
+            "id": "P_TypePublication",
             "type": "radio",
             "title": "Publication type",
             "options": [
-                "Published paper / Paper in press",
-                "Preprint",
-                "Conference proceeding",
-                "Stage 1 registered report with IPA",
-                "Monograph",
-                "Book chapter",
-                "Test or instrument",
-                "Other (please specify)"
+                {
+                    "id": "PublishedPaper",
+                    "text": "Published paper / Paper in press"
+                },
+                {
+                    "id": "Preprint",
+                    "text": "Preprint"
+                },
+                {
+                    "id": "ConferenceProceeding",
+                    "text": "Conference proceeding"
+                },
+                {
+                    "id": "RegisteredReport",
+                    "text": "Stage 1 registered report with IPA"
+                },
+                {
+                    "id": "Monograph",
+                    "text": "Monograph"
+                },
+                {
+                    "id": "BookChapter",
+                    "text": "Book chapter"
+                },
+                {
+                    "id": "TestOrInstrument",
+                    "text": "Test or instrument"
+                },
+                {
+                    "id": "OtherPublication",
+                    "text": "Other (please specify)"
+                }
             ]
         },
         {
-            "id": "P7_other",
+            "id": "P_TypePublication_Other",
             "type": "text",
             "title": "Publication type: Other",
-            "condition": "$P7 === 7"
+            "condition": "$P_TypePublication === 'OtherPublication'"
         },
         {
-            "id": "P8",
+            "id": "P_Suitable",
             "type": "radio",
-            "title": "Does this contribution fit well into the assessment scheme? (If 'no': Skip all other indicators; the paper will not be included in the scoring but processed manually)",
+            "title": "Does this contribution fit well into the assessment scheme? (If 'No': Skip all other indicators; the paper will not be included in the scoring but processed manually)",
             "options": [
-                "No, it should be processed manually (provide explanation)",
-                "Yes"
+                {
+                    "id": "No",
+                    "text": "No, it should be processed manually (provide explanation)"
+                },
+                {
+                    "id": "Yes",
+                    "text": "Yes"
+                }
             ],
-            "default": 1
+            "default": "Yes"
         },
         {
-            "id": "P8_explanation",
+            "id": "P_Suitable_Explanation",
             "type": "text",
             "title": "Opt-out: Explanation",
-            "condition": "!($P8)"
+            "condition": "$P_Suitable === 'No'"
         },
         {
             "id": "P8P9SEP",
             "type": "separator",
-            "condition": "$P8"
+            "condition": "$P_Suitable === 'Yes'"
         },
         {
-            "id": "P9_info",
+            "id": "P_CRediT_Info",
             "type": "info",
             "text": "<h3>CRediT roles</h3>",
             "info": "Please indicate your individual contributions to the publication. You can get a description of each role by clicking on the name of each role. Where multiple individuals serve in the same role, the degree of contribution should be specified as 'lead', 'equal', or 'supporting'. <br><br><ul><li><i>lead</i>: You were the single leader for this specific activity. If you are the only person in a specific role, choose 'lead'.</li><li><i>equal</i>: You contributed equally to this activity, together with one or more other contributors (you should only choose this option if no other co-author would choose the 'lead' option).</li><li><i>supporting</i>: You had a supporting role, not leading.</li><li><i>no role</i>: You did not contribute to that activity.</li></ul>"
         },
         {
-            "id": "P9a",
+            "id": "P_CRediT_Conceptualization",
             "type": "radio",
             "title": "Conceptualization",
             "options": [
-                "Lead",
-                "Equal",
-                "Support",
-                "No Role"
+                {
+                    "id": "Lead",
+                    "text": "Lead"
+                },
+                {
+                    "id": "Equal",
+                    "text": "Equal"
+                },
+                {
+                    "id": "Support",
+                    "text": "Support"
+                },
+                {
+                    "id": "NoRole",
+                    "text": "No Role"
+                }
             ],
-            "default": 3,
+            "default": "NoRole",
             "alignment": "horizontal",
             "tooltip": "Ideas; formulation or evolution of overarching research goals and aims.",
             "info": "Ideas; formulation or evolution of overarching research goals and aims."
         },
         {
-            "id": "P9b",
+            "id": "P_CRediT_DataCuration",
             "type": "radio",
             "title": "Data curation",
             "options": [
-                "Lead",
-                "Equal",
-                "Support",
-                "No Role"
+                {
+                    "id": "Lead",
+                    "text": "Lead"
+                },
+                {
+                    "id": "Equal",
+                    "text": "Equal"
+                },
+                {
+                    "id": "Support",
+                    "text": "Support"
+                },
+                {
+                    "id": "NoRole",
+                    "text": "No Role"
+                }
             ],
-            "default": 3,
+            "default": "NoRole",
             "alignment": "horizontal",
             "tooltip": "Management activities to annotate (produce metadata), scrub data and maintain research data (including software code, where it is necessary for interpreting the data itself) for initial use and later re-use.",
             "info": "Management activities to annotate (produce metadata), scrub data and maintain research data (including software code, where it is necessary for interpreting the data itself) for initial use and later re-use."
         },
         {
-            "id": "P9c",
+            "id": "P_CRediT_FormalAnalysis",
             "type": "radio",
             "title": "Formal analysis",
             "options": [
-                "Lead",
-                "Equal",
-                "Support",
-                "No Role"
+                {
+                    "id": "Lead",
+                    "text": "Lead"
+                },
+                {
+                    "id": "Equal",
+                    "text": "Equal"
+                },
+                {
+                    "id": "Support",
+                    "text": "Support"
+                },
+                {
+                    "id": "NoRole",
+                    "text": "No Role"
+                }
             ],
-            "default": 3,
+            "default": "NoRole",
             "alignment": "horizontal",
             "tooltip": "Application of statistical, mathematical, computational, or other formal techniques to analyse or synthesize study data.",
             "info": "Application of statistical, mathematical, computational, or other formal techniques to analyse or synthesize study data."
         },
         {
-            "id": "P9d",
+            "id": "P_CRediT_FundingAcquisition",
             "type": "radio",
             "title": "Funding acquisition",
             "options": [
-                "Lead",
-                "Equal",
-                "Support",
-                "No Role"
+                {
+                    "id": "Lead",
+                    "text": "Lead"
+                },
+                {
+                    "id": "Equal",
+                    "text": "Equal"
+                },
+                {
+                    "id": "Support",
+                    "text": "Support"
+                },
+                {
+                    "id": "NoRole",
+                    "text": "No Role"
+                }
             ],
-            "default": 3,
+            "default": "NoRole",
             "alignment": "horizontal",
             "tooltip": "Acquisition of the financial support for the project leading to this publication.",
             "info": "Acquisition of the financial support for the project leading to this publication."
         },
         {
-            "id": "P9e",
+            "id": "P_CRediT_Investigation",
             "type": "radio",
             "title": "Investigation",
             "options": [
-                "Lead",
-                "Equal",
-                "Support",
-                "No Role"
+                {
+                    "id": "Lead",
+                    "text": "Lead"
+                },
+                {
+                    "id": "Equal",
+                    "text": "Equal"
+                },
+                {
+                    "id": "Support",
+                    "text": "Support"
+                },
+                {
+                    "id": "NoRole",
+                    "text": "No Role"
+                }
             ],
-            "default": 3,
+            "default": "NoRole",
             "alignment": "horizontal",
             "tooltip": "Conducting a research and investigation process, specifically performing the experiments, or data/evidence collection.",
             "info": "Conducting a research and investigation process, specifically performing the experiments, or data/evidence collection."
         },
         {
-            "id": "P9f",
+            "id": "P_CRediT_Methodology",
             "type": "radio",
             "title": "Methodology",
             "options": [
-                "Lead",
-                "Equal",
-                "Support",
-                "No Role"
+                {
+                    "id": "Lead",
+                    "text": "Lead"
+                },
+                {
+                    "id": "Equal",
+                    "text": "Equal"
+                },
+                {
+                    "id": "Support",
+                    "text": "Support"
+                },
+                {
+                    "id": "NoRole",
+                    "text": "No Role"
+                }
             ],
-            "default": 3,
+            "default": "NoRole",
             "alignment": "horizontal",
             "tooltip": "Development or design of methodology; creation of models.",
             "info": "Development or design of methodology; creation of models."
         },
         {
-            "id": "P9g",
+            "id": "P_CRediT_ProjectAdministration",
             "type": "radio",
             "title": "Project administration",
             "options": [
-                "Lead",
-                "Equal",
-                "Support",
-                "No Role"
+                {
+                    "id": "Lead",
+                    "text": "Lead"
+                },
+                {
+                    "id": "Equal",
+                    "text": "Equal"
+                },
+                {
+                    "id": "Support",
+                    "text": "Support"
+                },
+                {
+                    "id": "NoRole",
+                    "text": "No Role"
+                }
             ],
-            "default": 3,
+            "default": "NoRole",
             "alignment": "horizontal",
             "tooltip": "Management and coordination responsibility for the research activity planning and execution.",
             "info": "Management and coordination responsibility for the research activity planning and execution."
         },
         {
-            "id": "P9h",
+            "id": "P_CRediT_Resources",
             "type": "radio",
             "title": "Resources",
             "options": [
-                "Lead",
-                "Equal",
-                "Support",
-                "No Role"
+                {
+                    "id": "Lead",
+                    "text": "Lead"
+                },
+                {
+                    "id": "Equal",
+                    "text": "Equal"
+                },
+                {
+                    "id": "Support",
+                    "text": "Support"
+                },
+                {
+                    "id": "NoRole",
+                    "text": "No Role"
+                }
             ],
-            "default": 3,
+            "default": "NoRole",
             "alignment": "horizontal",
             "tooltip": "Provision of study materials, reagents, materials, patients, laboratory samples, animals, instrumentation, computing resources, or other analysis tools.",
             "info": "Provision of study materials, reagents, materials, patients, laboratory samples, animals, instrumentation, computing resources, or other analysis tools."
         },
         {
-            "id": "P9i",
+            "id": "P_CRediT_Software",
             "type": "radio",
             "title": "Software",
             "options": [
-                "Lead",
-                "Equal",
-                "Support",
-                "No Role"
+                {
+                    "id": "Lead",
+                    "text": "Lead"
+                },
+                {
+                    "id": "Equal",
+                    "text": "Equal"
+                },
+                {
+                    "id": "Support",
+                    "text": "Support"
+                },
+                {
+                    "id": "NoRole",
+                    "text": "No Role"
+                }
             ],
-            "default": 3,
+            "default": "NoRole",
             "alignment": "horizontal",
             "tooltip": "Programming, software development; designing computer programs; implementation of the computer code and supporting algorithms; testing of existing code components.",
             "info": "Programming, software development; designing computer programs; implementation of the computer code and supporting algorithms; testing of existing code components."
         },
         {
-            "id": "P9j",
+            "id": "P_CRediT_Supervision",
             "type": "radio",
             "title": "Supervision",
             "options": [
-                "Lead",
-                "Equal",
-                "Support",
-                "No Role"
+                {
+                    "id": "Lead",
+                    "text": "Lead"
+                },
+                {
+                    "id": "Equal",
+                    "text": "Equal"
+                },
+                {
+                    "id": "Support",
+                    "text": "Support"
+                },
+                {
+                    "id": "NoRole",
+                    "text": "No Role"
+                }
             ],
-            "default": 3,
+            "default": "NoRole",
             "alignment": "horizontal",
             "tooltip": "Oversight and leadership responsibility for the research activity planning and execution, including mentorship external to the core team.",
             "info": "Oversight and leadership responsibility for the research activity planning and execution, including mentorship external to the core team."
         },
         {
-            "id": "P9k",
+            "id": "P_CRediT_Validation",
             "type": "radio",
             "title": "Validation",
             "options": [
-                "Lead",
-                "Equal",
-                "Support",
-                "No Role"
+                {
+                    "id": "Lead",
+                    "text": "Lead"
+                },
+                {
+                    "id": "Equal",
+                    "text": "Equal"
+                },
+                {
+                    "id": "Support",
+                    "text": "Support"
+                },
+                {
+                    "id": "NoRole",
+                    "text": "No Role"
+                }
             ],
-            "default": 3,
+            "default": "NoRole",
             "alignment": "horizontal",
             "tooltip": "Verification, whether as a part of the activity or separate, of the overall replication/reproducibility of results/experiments and other research outputs.",
             "info": "Verification, whether as a part of the activity or separate, of the overall replication/reproducibility of results/experiments and other research outputs."
         },
         {
-            "id": "P9l",
+            "id": "P_CRediT_Visualization",
             "type": "radio",
             "title": "Visualization",
             "options": [
-                "Lead",
-                "Equal",
-                "Support",
-                "No Role"
+                {
+                    "id": "Lead",
+                    "text": "Lead"
+                },
+                {
+                    "id": "Equal",
+                    "text": "Equal"
+                },
+                {
+                    "id": "Support",
+                    "text": "Support"
+                },
+                {
+                    "id": "NoRole",
+                    "text": "No Role"
+                }
             ],
-            "default": 3,
+            "default": "NoRole",
             "alignment": "horizontal",
             "tooltip": "Preparation, creation and/or presentation of the published work, specifically visualization/data presentation.",
             "info": "Preparation, creation and/or presentation of the published work, specifically visualization/data presentation."
         },
         {
-            "id": "P9m",
+            "id": "P_CRediT_WritingOriginalDraft",
             "type": "radio",
             "title": "Writing - original draft",
             "options": [
-                "Lead",
-                "Equal",
-                "Support",
-                "No Role"
+                {
+                    "id": "Lead",
+                    "text": "Lead"
+                },
+                {
+                    "id": "Equal",
+                    "text": "Equal"
+                },
+                {
+                    "id": "Support",
+                    "text": "Support"
+                },
+                {
+                    "id": "NoRole",
+                    "text": "No Role"
+                }
             ],
-            "default": 3,
+            "default": "NoRole",
             "alignment": "horizontal",
             "tooltip": "Preparation, creation and/or presentation of the published work, specifically writing the initial draft (including substantive translation).",
             "info": "Preparation, creation and/or presentation of the published work, specifically writing the initial draft (including substantive translation)."
         },
         {
-            "id": "P9n",
+            "id": "P_CRediT_WritingReviewEditing",
             "type": "radio",
             "title": "Writing - review & editing",
             "options": [
-                "Lead",
-                "Equal",
-                "Support",
-                "No Role"
+                {
+                    "id": "Lead",
+                    "text": "Lead"
+                },
+                {
+                    "id": "Equal",
+                    "text": "Equal"
+                },
+                {
+                    "id": "Support",
+                    "text": "Support"
+                },
+                {
+                    "id": "NoRole",
+                    "text": "No Role"
+                }
             ],
-            "default": 3,
+            "default": "NoRole",
             "alignment": "horizontal",
             "tooltip": "Preparation, creation and/or presentation of the published work by those from the original research group, specifically critical review, commentary or revision – including pre- or post-publication stages.",
             "info": "Preparation, creation and/or presentation of the published work by those from the original research group, specifically critical review, commentary or revision – including pre- or post-publication stages."
@@ -405,315 +683,476 @@
         {
             "id": "P9P10SEP",
             "type": "separator",
-            "condition": "$P8"
+            "condition": "$P_Suitable === 'Yes'"
         },
         {
             "id": "P_Data",
             "type": "radio",
             "title": "Does this paper use any kind of data in a substantive way (new data, reuse of existing data, or simulated data?)",
-            "options": [ "No", "Yes" ],
-            "condition": "$P8"
+            "options": [
+                {
+                    "id": "No",
+                    "text": "No"
+                },
+                {
+                    "id": "Yes",
+                    "text": "Yes"
+                }
+            ],
+            "condition": "$P_Suitable === 'Yes'"
         },
         {
             "id": "P_Data_Source",
             "type": "checkbox",
             "title": "What kind of data do you use? (check all that apply)",
             "options": [
-                { "id": "NewOwn", "text": "Own new data collection" },
-                { "id": "ReuseOwn", "text": "Reuse of own existing data set" },
-                { "id": "ReuseOther", "text": "Reuse of someone else's existing data set" },
-                { "id": "Simulated", "text": "Simulated data" }
+                {
+                    "id": "NewOwn",
+                    "text": "Own new data collection"
+                },
+                {
+                    "id": "ReuseOwn",
+                    "text": "Reuse of own existing data set"
+                },
+                {
+                    "id": "ReuseOther",
+                    "text": "Reuse of someone else's existing data set"
+                },
+                {
+                    "id": "Simulated",
+                    "text": "Simulated data"
+                }
             ],
             "min_selected": 1,
             "info": "Data set acquisition often is a collaborative enterprise with different contributor roles. { $P_Data_Source_ReuseOwn | Select 'Reuse of own existing data set' only, if you would qualify as a co-author with substantive contributions in a stand-alone data set publication of that data set. }",
-            "condition": "$P8 && $P_Data"
+            "condition": "$P_Suitable === 'Yes' && $P_Data === 'Yes'"
         },
         {
             "id": "P_Data_Type",
             "type": "checkbox",
             "title": "Type of data (check all that apply)",
             "options": [
-                { "id": "Questionnaire", "text": "Questionnaire" },
-                { "id": "Behavioral", "text": "Behavioral" },
-                { "id": "Physiological / Biological", "text": "Physiological" },
-                { "id": "OtherType", "text": "Other [please specify]" }
+                {
+                    "id": "Questionnaire",
+                    "text": "Questionnaire"
+                },
+                {
+                    "id": "Behavioral",
+                    "text": "Behavioral"
+                },
+                {
+                    "id": "Physiological / Biological",
+                    "text": "Physiological"
+                },
+                {
+                    "id": "OtherType",
+                    "text": "Other [please specify]"
+                }
             ],
-            "condition": "$P8 && $P_Data"
+            "condition": "$P_Suitable === 'Yes' && $P_Data === 'Yes'"
         },
         {
             "id": "P_Data_Type_Other",
             "type": "text",
             "title": "Type of data: Other",
-            "condition": "$P8 && $P_Data && $P_Data_Type_OtherType"
+            "condition": "$P_Suitable === 'Yes' && $P_Data === 'Yes' && $P_Data_Type_OtherType"
         },
         {
-            "id": "P11",
+            "id": "P_Data_Open",
             "type": "radio",
             "title": "⤷ Is the raw data available in a repository that also controls data access (not upon request)",
             "options": [
-                "Not applicable [provide explanation]",
-                "Not available",
-                "Yes, parts of data [provide doi or URL]",
-                "Yes, entire data [provide doi or URL]"
+                {
+                    "id": "NotApplicable",
+                    "text": "Not applicable [provide explanation]"
+                },
+                {
+                    "id": "NotAvailable",
+                    "text": "Not available"
+                },
+                {
+                    "id": "YesParts",
+                    "text": "Yes, parts of data [provide doi or URL]"
+                },
+                {
+                    "id": "YesEntire",
+                    "text": "Yes, entire data [provide doi or URL]"
+                }
             ],
-            "condition": "$P8 && $P10a"
+            "condition": "$P_Suitable === 'Yes' && $P_Data === 'Yes' && $P_Data_Source_NewOwn"
         },
         {
-            "id": "P11_explanation",
+            "id": "P_Data_Open_NAExplanation",
             "type": "text",
             "title": "⤷ Not Applicable: Explanation",
-            "condition": "$P8 && $P10a && $P11 === 0"
+            "condition": "$P_Suitable === 'Yes' && $P_Data === 'Yes' && $P_Data_Source_NewOwn && $P_Data_Open === 'NotApplicable'"
         },
         {
-            "id": "P11_extra",
+            "id": "P_Data_Open_Identifier",
             "type": "text",
             "title": "⤷ DOI or URL",
-            "condition": "$P8 && $P10a && $P11 =|= [2, 3]"
+            "condition": "$P_Suitable === 'Yes' && $P_Data === 'Yes' && $P_Data_Source_NewOwn && $P_Data_Open =|= ['YesParts', 'YesEntire']"
         },
         {
-            "id": "P12",
+            "id": "P_Data_Open_AccessLevel",
             "type": "radio",
             "title": "⤷ Access level",
             "options": [
-                "ZK0 (open data)",
-                "ZK1 (scientific use file)",
-                "ZK2 (restricted access) [provide explanation]"
+                {
+                    "id": "ZK0",
+                    "text": "ZK0 (open data)"
+                },
+                {
+                    "id": "ZK1",
+                    "text": "ZK1 (scientific use file)"
+                },
+                {
+                    "id": "ZK2",
+                    "text": "ZK2 (restricted access) [provide explanation]"
+                }
             ],
-            "condition": "$P8 && $P10a && $P11 === 3",
-            "info": "Eine Beschreibung {:0, 1 | ok} {:2 | not ok}"
+            "condition": "$P_Suitable === 'Yes' && $P_Data === 'Yes' && $P_Data_Source_NewOwn && $P_Data_Open === 'YesEntire'"
         },
         {
-            "id": "P12_explanation",
+            "id": "P_Data_Open_AccessLevel_ZK2Explanation",
             "type": "text",
             "title": "⤷ Access level ZK2: Explanation",
-            "condition": "$P8 && $P10a && $P11 === 3 && $P12 === 2"
+            "condition": "$P_Suitable === 'Yes' && $P_Data === 'Yes' && $P_Data_Source_NewOwn && $P_Data_Open === 'YesEntire' && $P_Data_Open_AccessLevel === 'ZK2'"
         },
         {
-            "id": "P13",
+            "id": "P_Data_Open_FAIR",
             "type": "checkbox",
             "title": "⤷ FAIR format",
             "options": [
-                "The data set has a globally unique, citable and persistent identifier (e.g., DOI, PURL, ARK)",
-                "All variables are comprehensively described in a codebook with a structured format",
-                "The data set is stored in a structured, open format (e.g., .csv, .tsv, .tab, .txt, .json; not .sav, .xlsx, .pdf)"
+                {
+                    "id": "PersistentIdentifier",
+                    "text": "The data set has a globally unique, citable and persistent identifier (e.g., DOI, PURL, ARK)"
+                },
+                {
+                    "id": "Codebook",
+                    "text": "All variables are comprehensively described in a codebook with a structured format"
+                },
+                {
+                    "id": "StructuredOpenFormat",
+                    "text": "The data set is stored in a structured, open format (e.g., .csv, .tsv, .tab, .txt, .json; not .sav, .xlsx, .pdf)"
+                }
             ],
-            "condition": "$P8 && $P10a && $P11 === 3 && ($P12 =|= [0, 1] || $P12 === 2 && $P12_explanation)"
+            "condition": "$P_Suitable === 'Yes' && $P_Data === 'Yes' && $P_Data_Source_NewOwn && $P_Data_Open === 'YesEntire' && ($P_Data_Open_AccessLevel =|= ['ZK0', 'ZK1'] || $P_Data_Open_AccessLevel === 'ZK2' && $P_Data_Open_AccessLevel_ZK2Explanation)"
         },
         {
             "id": "P13P14SEP",
             "type": "separator",
-            "condition": "$P8"
+            "condition": "$P_Suitable === 'Yes'"
         },
         {
-            "id": "P14",
+            "id": "P_IndependentVerification",
             "type": "radio",
             "title": "Correctness of computational results has been independently verified",
             "options": [
-                "Not applicable [provide explanation]",
-                "No",
-                "Yes [provide doi or URL to verification report]"
+                {
+                    "id": "NotApplicable",
+                    "text": "Not applicable [provide explanation]"
+                },
+                {
+                    "id": "No",
+                    "text": "No"
+                },
+                {
+                    "id": "Yes",
+                    "text": "Yes [provide doi or URL to verification report]"
+                }
             ],
             "eval_dimension": "rigor",
             "tooltip": "Tooltip for P14",
             "info": "Info about P14. This is a longer explanation of the indicator.",
             "background": "How do we justify having this indicator?",
-            "condition": "$P8"
+            "condition": "$P_Suitable === 'Yes'"
         },
         {
-            "id": "P14_explanation",
+            "id": "P_IndependentVerification_NAExplanation",
             "type": "text",
             "title": "⤷ Not Applicable: Explanation",
-            "condition": "$P8 && $P14 === 0"
+            "condition": "$P_Suitable === 'Yes' && $P_IndependentVerification === 'NotApplicable'"
         },
         {
-            "id": "P14_extra",
+            "id": "P_IndependentVerification_Identifier",
             "type": "text",
             "title": "DOI or URL of the verification report",
-            "condition": "$P8 && $P14 === 2"
+            "condition": "$P_Suitable === 'Yes' && $P_IndependentVerification === 'Yes'"
         },
         {
-            "id": "P15",
+            "id": "P_ReproducibleScripts",
             "type": "radio",
             "title": "Open reproducible scripts",
             "options": [
-                "Not applicable [provide explanation]",
-                "Not available",
-                "Yes, parts of scripts [provide doi or URL]",
-                "Yes, entire scripts [provide doi or URL]"
+                {
+                    "id": "NotApplicable",
+                    "text": "Not applicable [provide explanation]"
+                },
+                {
+                    "id": "NotAvailable",
+                    "text": "Not available"
+                },
+                {
+                    "id": "YesParts",
+                    "text": "Yes, parts of scripts [provide doi or URL]"
+                },
+                {
+                    "id": "YesEntire",
+                    "text": "Yes, entire scripts [provide doi or URL]"
+                }
             ],
-            "condition": "$P8"
+            "condition": "$P_Suitable === 'Yes'"
         },
         {
-            "id": "P15_explanation",
+            "id": "P_ReproducibleScripts_NAExplanation",
             "type": "text",
             "title": "Not applicable: Explanation",
-            "condition": "$P8 && $P15 === 0"
+            "condition": "$P_Suitable === 'Yes' && $P_ReproducibleScripts === 'NotApplicable'"
         },
         {
-            "id": "P15_extra",
+            "id": "P_ReproducibleScripts_Identifier",
             "type": "text",
             "title": "DOI or URL of the script",
-            "condition": "$P8 && $P15 =|= [2, 3]"
+            "condition": "$P_Suitable === 'Yes' && $P_ReproducibleScripts =|= ['YesParts', 'YesEntire']"
         },
         {
-            "id": "P16",
+            "id": "P_ReproducibleScripts_FAIR",
             "type": "checkbox",
             "title": "⤷ FAIR format",
             "options": [
-                "Timestamped repository",
-                "Version control",
-                "Reproducible manuscripts (e.g. with R Markdown)",
-                "Proper documentation of code",
-                "Reproducible software environments (e.g. conda environment, renv environment in R)"
+                {
+                    "id": "TimestampedRepository",
+                    "text": "Timestamped repository"
+                },
+                {
+                    "id": "VersionControl",
+                    "text": "Version control"
+                },
+                {
+                    "id": "ReproducibleManuscripts",
+                    "text": "Reproducible manuscripts (e.g. with R Markdown)"
+                },
+                {
+                    "id": "Documentation",
+                    "text": "Proper documentation of code"
+                },
+                {
+                    "id": "ReproducibleSoftwareEnvironments",
+                    "text": "Reproducible software environments (e.g. conda environment, renv environment in R)"
+                }
             ],
-            "condition": "$P8 && $P15 =|= [2, 3]"
+            "condition": "$P_Suitable === 'Yes' && $P_ReproducibleScripts =|= ['YesParts', 'YesEntire']"
         },
         {
-            "id": "P17",
+            "id": "P_OpenMaterials",
             "type": "radio",
             "title": "Open materials (beyond the open reproducible scripts entered above)",
             "options": [
-                "Not applicable [provide explanation]",
-                "Not available",
-                "Yes, parts of material [provide doi or URL]",
-                "Yes, entire material [provide doi or URL]"
+                {
+                    "id": "NotApplicable",
+                    "text": "Not applicable [provide explanation]"
+                },
+                {
+                    "id": "NotAvailable",
+                    "text": "Not available"
+                },
+                {
+                    "id": "YesParts",
+                    "text": "Yes, parts of material [provide doi or URL]"
+                },
+                {
+                    "id": "YesEntire",
+                    "text": "Yes, entire material [provide doi or URL]"
+                }
             ],
-            "info": "{ :2, 3 | Only choose 'Yes' if the material substantially exceeds the open reproducible scripts. }<br><br>{:0 | When to choose 'Not applicable': If no material has been used in the publication, or the entire material is contained in the open reproducible scripts. }",
-            "condition": "$P8"
+            "info": "{ :'YesParts', 'YesEntire' | Only choose 'Yes' if the material substantially exceeds the open reproducible scripts. }<br><br>{:0 | When to choose 'Not applicable': If no material has been used in the publication, or the entire material is contained in the open reproducible scripts. }",
+            "condition": "$P_Suitable === 'Yes'"
         },
         {
-            "id": "P17_explanation",
+            "id": "P_OpenMaterials_NAExplanation",
             "type": "text",
             "title": "Not applicable: Explanation",
-            "condition": "$P8 && $P17 === 0"
+            "condition": "$P_Suitable === 'Yes' && $P_OpenMaterials === 'NotApplicable'"
         },
         {
-            "id": "P17_extra",
+            "id": "P_OpenMaterials_Identifier",
             "type": "text",
             "title": "DOI or URL of the open materials",
-            "condition": "$P8 && $P17 =|= [2, 3]"
+            "condition": "$P_Suitable === 'Yes' && $P_OpenMaterials =|= ['YesParts', 'YesEntire']"
         },
         {
             "id": "P17P18SEP",
             "type": "separator",
-            "condition": "$P8"
+            "condition": "$P_Suitable === 'Yes'"
         },
         {
-            "id": "P18",
+            "id": "P_Preregistration",
             "type": "radio",
             "title": "Preregistration",
             "options": [
-                "Not applicable [provide explanation]",
-                "No",
-                "Yes (but not RR) [provide doi or URL]",
-                "Registered Report  [provide doi or URL]"
+                {
+                    "id": "NotApplicable",
+                    "text": "Not applicable [provide explanation]"
+                },
+                {
+                    "id": "No",
+                    "text": "No"
+                },
+                {
+                    "id": "Yes",
+                    "text": "Yes (but not RR) [provide doi or URL]"
+                },
+                {
+                    "id": "RegisteredReport",
+                    "text": "Registered Report [provide doi or URL]"
+                }
             ],
-            "condition": "$P8"
+            "condition": "$P_Suitable === 'Yes'"
         },
         {
-            "id": "P18_explanation",
+            "id": "P_Preregistration_NAExplanation",
             "type": "text",
             "title": "Not applicable: Explanation",
-            "condition": "$P8 && ($P18 === 0)"
+            "condition": "$P_Suitable === 'Yes' && $P_Preregistration === 'NotApplicable'"
         },
         {
-            "id": "P18_extra",
+            "id": "P_Preregistration_Identifier",
             "type": "text",
             "title": "DOI or URL of the preregistration",
-            "condition": "$P8 && $P18 =|= [2, 3]"
+            "condition": "$P_Suitable === 'Yes' && $P_Preregistration =|= ['Yes', 'RegisteredReport']"
         },
         {
-            "id": "P19",
+            "id": "P_Preregistration_Content",
             "type": "checkbox",
             "title": "⤷ What has been preregistered? (check all that apply)",
             "options": [
-                "Sample size planning (typically: an a priori power analysis)",
-                "Hypotheses",
-                "Operationalizations",
-                "Analysis Plan"
+                {
+                    "id": "SampleSizePlanning",
+                    "text": "Sample size planning (typically: an a priori power analysis)"
+                },
+                {
+                    "id": "Hypotheses",
+                    "text": "Hypotheses"
+                },
+                {
+                    "id": "Operationalizations",
+                    "text": "Operationalizations"
+                },
+                {
+                    "id": "AnalysisPlan",
+                    "text": "Analysis Plan"
+                }
             ],
-            "condition": "$P8 && $P18 =|= [2, 3]"
+            "condition": "$P_Suitable === 'Yes' && $P_Preregistration =|= ['Yes', 'RegisteredReport']"
         },
         {
             "id": "P19P20SEP",
             "type": "separator",
-            "condition": "$P8"
+            "condition": "$P_Suitable === 'Yes'"
         },
         {
-            "id": "P20",
+            "id": "P_FormalModeling",
             "type": "radio",
             "title": "Formal modeling of a theory",
             "options": [
-                "Not applicable [provide explanation]",
-                "No",
-                "Yes"
+                {
+                    "id": "NotApplicable",
+                    "text": "Not applicable [provide explanation]"
+                },
+                {
+                    "id": "No",
+                    "text": "No"
+                },
+                {
+                    "id": "Yes",
+                    "text": "Yes"
+                }
             ],
-            "condition": "$P8"
+            "condition": "$P_Suitable === 'Yes'"
         },
         {
-            "id": "P20_explanation",
+            "id": "P_FormalModeling_NAExplanation",
             "type": "text",
             "title": "Not applicable: Explanation",
-            "condition": "$P8 && $P20 === 0"
+            "condition": "$P_Suitable === 'Yes' && $P_FormalModeling === 'NotApplicable'"
         },
         {
-            "id": "P21",
+            "id": "P_PreregisteredReplication",
             "type": "radio",
             "title": "The paper contains a preregistered replication attempt (either direct/close or conceptual)",
             "options": [
-                "Not applicable [provide explanation]",
-                "No",
-                "Yes"
+                {
+                    "id": "NotApplicable",
+                    "text": "Not applicable [provide explanation]"
+                },
+                {
+                    "id": "No",
+                    "text": "No"
+                },
+                {
+                    "id": "Yes",
+                    "text": "Yes"
+                }
             ],
             "info": "As only <i>preregistered</i> replication attempts count, you need to provide the DOI or URL of the preregistration. If the paper contains a replication which was not preregistered, please select 'No'.",
-            "condition": "$P8"
+            "condition": "$P_Suitable === 'Yes'"
         },
         {
-            "id": "P21_explanation",
+            "id": "P_PreregisteredReplication_NAExplanation",
             "type": "text",
             "title": "Not applicable: Explanation",
-            "condition": "$P8 && $P21 === 0"
+            "condition": "$P_Suitable === 'Yes' && $P_PreregisteredReplication === 'NotApplicable'"
         },
         {
-            "id": "P21_extra",
+            "id": "P_PreregisteredReplication_Identifier",
             "type": "text",
             "title": "DOI or URL of the preregistration",
-            "condition": "$P8 && $P21 === 2"
+            "condition": "$P_Suitable === 'Yes' && $P_PreregisteredReplication === 'Yes'"
         },
         {
             "id": "P21P22SEP",
             "type": "separator",
-            "condition": "$P8"
+            "condition": "$P_Suitable === 'Yes'"
         },
         {
-            "id": "P22",
+            "id": "P_PowerConsiderations",
             "type": "textbox",
             "title": "Please report all considerations regarding statistical power (assumed effect size, power, N, ...)",
-            "condition": "$P8"
+            "condition": "$P_Suitable === 'Yes'"
         },
         {
-            "id": "P23",
+            "id": "P_OpenScienceBadges",
             "type": "checkbox",
             "title": "Official open science badges awarded by journal? (check all that apply)",
             "options": [
-                "Open Data",
-                "Open Material",
-                "Preregistration"
+                {
+                    "id": "OpenData",
+                    "text": "Open Data"
+                },
+                {
+                    "id": "OpenMaterial",
+                    "text": "Open Material"
+                },
+                {
+                    "id": "Preregistration",
+                    "text": "Preregistration"
+                }
             ],
-            "condition": "$P8"
+            "condition": "$P_Suitable === 'Yes'"
         },
         {
-            "id": "P24",
+            "id": "P_SampleSize",
             "type": "textbox",
             "title": "Sample size (if applicable, differentiate by levels / items / ...)",
-            "condition": "$P8"
+            "condition": "$P_Suitable === 'Yes'"
         },
         {
-            "id": "P25",
+            "id": "P_Merit",
             "type": "textbox",
             "maxwords": 150,
             "title": "Merit / impact statement (narrative, max. 150 words)",
-            "condition": "$P8"
+            "condition": "$P_Suitable === 'Yes'"
         }
     ]
 }

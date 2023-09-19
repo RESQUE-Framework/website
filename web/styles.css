@@ -167,6 +167,8 @@ button {
     padding: 0.25rem 0.5rem;
     cursor: pointer;
     font-weight: bold;
+
+    transition: 150ms;
 }
 
 button:hover {
@@ -396,6 +398,35 @@ hr {
     background-color: yellow;
 }
 
+dialog {
+    border-radius: 8px;
+    border: none;
+    padding: 16px;
+    box-shadow: 0 0 2px #ccc;
+
+    position: fixed;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    top: 25vh;
+}
+
+dialog h3 {
+    margin: 0;
+}
+
+button.critical {
+    background-color: firebrick;
+    color: #efefef;
+}
+
+button.critical:hover {
+    background-color: firebrick;
+    color: #efefef;
+
+    /* transform: scale(1.03); */
+    box-shadow: 0 0 8px firebrick;
+}
 
 @keyframes highlight {
     50% {

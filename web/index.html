@@ -15,7 +15,7 @@
                 <div class="top">
                     <h3>RESQUE</h3>
                     <div id="actions">
-                        <button onclick="reset()">Clear</button>
+                        <button onclick="showClearModal()">Clear</button>
                         <button onclick="triggerLoad()">Load</button>
                         <button onclick="exp()">Export</button>
                     </div>
@@ -67,8 +67,8 @@
                 </details>
             </div>
             <div class="menu-bottom">
-                <span onclick="openInfoModal()" class="fakelink">What is RESQUE? / Help / Privacy</span> • <a class="github-link"
-                    href="https://github.com/nicebread/RESQUE">GitHub</a>
+                <span onclick="showInfoModal()" class="fakelink">What is RESQUE? / Help / Privacy</span> • <a
+                    class="github-link" href="https://github.com/nicebread/RESQUE">GitHub</a>
             </div>
         </div>
     </div>
@@ -79,7 +79,11 @@
             <button onclick="closeInfoModal()" id="add-modal-continue">Continue</button>
 
             <h2>👋🏻 Welcome to the RESQUE tool!</h2>
-            <p>We need to change the way we assess research - with a focus on quality (over quantity). The <a href="https://github.com/nicebread/RESQUE">RESearch QUality Evaluation (RESQUE)</a> framework provides an evaluation scheme for publications, data sets, and research software. With this tool, you can enter the necessary information for your best research outputs, export a profile that shows your research style, and use it for your CV or in hiring and tenure committees.</p>
+            <p>We need to change the way we assess research - with a focus on quality (over quantity). The <a
+                    href="https://github.com/nicebread/RESQUE">RESearch QUality Evaluation (RESQUE)</a> framework
+                provides an evaluation scheme for publications, data sets, and research software. With this tool, you
+                can enter the necessary information for your best research outputs, export a profile that shows your
+                research style, and use it for your CV or in hiring and tenure committees.</p>
             <hr>
             <h3>👀 How to use the RESQUE tool?</h3>
             <details>
@@ -94,34 +98,46 @@
             </details>
             <details>
                 <summary>How do I export my data?</summary>
-                Clicking on the <button onclick="exp()">Export</button> button here or in the top left corner of this website exports a <code>.json</code> file. You can save this on your computer and share it with others. 
+                Clicking on the <button onclick="exp()">Export</button> button here or in the top left corner of this
+                website exports a <code>.json</code> file. You can save this on your computer and share it with others.
             </details>
             <details>
                 <summary>How do I load data I previously exported?</summary>
-                You can use the <button onclick="triggerLoad()">Load</button> button here or in the top left corner of this website.
+                You can use the <button onclick="triggerLoad()">Load</button> button here or in the top left corner of
+                this website.
             </details>
             <details>
                 <summary>How can I clear all information I entered?</summary>
-                You can delete all data stored in the browser by clicking on the <button onclick="reset()">Clear</button> button here or in the top left corner of this website.
+                You can delete all data stored in the browser by clicking on the <button
+                    onclick="showClearModal()">Clear</button> button here or in the top left corner of this website.
             </details>
             <details>
                 <summary>What should I do if I want to use RESQUE on a shared/public computer?</summary>
-                Whenever you open this website, it loads the locally stored data. On public computers, make sure that you clear your data after you exported them.
+                Whenever you open this website, it loads the locally stored data. On public computers, make sure that
+                you clear your data after you exported them.
             </details>
             <hr>
             <h3>🔒 Privacy • <span class="sub">Is my data stored privately in a safe location?</span></h3>
             <p>
                 <b>Nothing leaves your device.</b>
                 <br>
-                We use the <a href="https://www.wikiwand.com/en/Web_storage">Web Storage API</a> supported by all major browsers. Although the website itself is hosted on a server, your data is <i>only</i> stored and processed in the local browser:
+                We use the <a href="https://www.wikiwand.com/en/Web_storage">Web Storage API</a> supported by all major
+                browsers. Although the website itself is hosted on a server, your data is <i>only</i> stored and
+                processed in the local browser:
                 <br><br>
-                The data is processed only locally. Your score is calculated in the browser. The local PDF files you open on this website are <i>not</i> uploaded to a server.
+                The data is processed only locally. Your score is calculated in the browser. The local PDF files you
+                open on this website are <i>not</i> uploaded to a server.
                 <br><br>
                 This software is 100% free of trackers.
             </p>
         </div>
 
     </div>
+    <dialog id="clear-modal">
+        <h3>⚠️ Warning!</h3>
+        <p><b>This will delete all of your local data.</b><br><br>Do you want to export the data to a file first?</p><br>
+        <button onclick="closeClearModal()">Cancel</button> <button onclick="exp()">Export data to local file</button> <button onclick="reset()" class="critical">Clear all data</button>
+    </dialog>
     <input id="fileInput" type="file" accept="text/json" style="visibility: hidden" onchange="handleLoad(this.files)" />
     <a id="download" style="visibility: hidden"></a>
     <input id="add-pdf" type="file" accept="application/pdf" onchange="handleSelectPDF(this.files)"
@@ -291,7 +307,15 @@
             }
         }
 
-        const openInfoModal = () => {
+        const showClearModal = () => {
+            document.getElementById("clear-modal").showModal();
+        }
+
+        const closeClearModal = () => {
+            document.getElementById("clear-modal").close();
+        }
+
+        const showInfoModal = () => {
             document.getElementById("info-modal").style.display = "block";
         }
 
@@ -1158,7 +1182,7 @@
         }
 
         if (!localStorage.getItem("formdata")) {
-            openInfoModal();
+            showInfoModal();
         }
 
         menu().then(m => {

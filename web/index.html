@@ -556,7 +556,7 @@
 
             let scoringResult = score(result);
 
-            if (scoringResult.max < 5) {
+            if (scoringResult.max < 5 && scoringResult.max > 0) {
                 document.getElementById('warning-score-too-low').style.display = 'block';
                 document.getElementById('score-box').classList.add('warning');
             } else {

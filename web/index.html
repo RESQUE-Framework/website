@@ -67,7 +67,7 @@
                 </details>
             </div>
             <div class="menu-bottom">
-                <span onclick="openInfoModal()" class="fakelink">What is RESQUE? / Help</span> • <a class="github-link"
+                <span onclick="openInfoModal()" class="fakelink">What is RESQUE? / Help / Privacy</span> • <a class="github-link"
                     href="https://github.com/nicebread/RESQUE">GitHub</a>
             </div>
         </div>
@@ -78,10 +78,10 @@
         <div class="modal-content">
             <button onclick="closeInfoModal()" id="add-modal-continue">Continue</button>
 
-            <h2>👋🏻 Welcome to RESQUE!</h2>
-            <p>...</p>
+            <h2>👋🏻 Welcome to the RESQUE tool!</h2>
+            <p>We need to change the way we assess research - with a focus on quality (over quantity). The <a href="https://github.com/nicebread/RESQUE">RESearch QUality Evaluation (RESQUE)</a> framework provides an evaluation scheme for publications, data sets, and research software. With this tool, you can enter the necessary information for your best research outputs, export a profile that shows your research style, and use it for your CV or in hiring and tenure committees.</p>
             <hr>
-            <h3>👀 How to use?</h3>
+            <h3>👀 How to use the RESQUE tool?</h3>
             <details>
                 <summary>How do I add a new publication / software project / data set?</summary>
                 Normally, you would use the buttons in the sidebar on the left.
@@ -94,7 +94,7 @@
             </details>
             <details>
                 <summary>How do I export my data?</summary>
-                Just click on the <button onclick="exp()">Export</button> button here or in the top left corner of this website.
+                Clicking on the <button onclick="exp()">Export</button> button here or in the top left corner of this website exports a <code>.json</code> file. You can save this on your computer and share it with others. 
             </details>
             <details>
                 <summary>How do I load data I previously exported?</summary>
@@ -106,18 +106,18 @@
             </details>
             <details>
                 <summary>What should I do if I want to use RESQUE on a shared/public computer?</summary>
-                Make sure you clear your data after use.
+                Whenever you open this website, it loads the locally stored data. On public computers, make sure that you clear your data after you exported them.
             </details>
             <hr>
             <h3>🔒 Privacy • <span class="sub">Is my data stored privately in a safe location?</span></h3>
             <p>
                 <b>Nothing leaves your device.</b>
                 <br>
-                We use the <a href="https://www.wikiwand.com/en/Web_storage">Web Storage API</a> supported by all major browsers. Your data is only stored in the browser.
+                We use the <a href="https://www.wikiwand.com/en/Web_storage">Web Storage API</a> supported by all major browsers. Although the website itself is hosted on a server, your data is <i>only</i> stored and processed in the local browser:
                 <br><br>
-                The data is processed only locally. Your score is calculated in the browser. The local PDF files you
-                open
-                on this website are <i>not</i> uploaded to a server.
+                The data is processed only locally. Your score is calculated in the browser. The local PDF files you open on this website are <i>not</i> uploaded to a server.
+                <br><br>
+                This software is 100% free of trackers.
             </p>
         </div>
 

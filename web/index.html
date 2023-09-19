@@ -135,8 +135,10 @@
     </div>
     <dialog id="clear-modal">
         <h3>⚠️ Warning!</h3>
-        <p><b>This will delete all of your local data.</b><br><br>Do you want to export the data to a file first?</p><br>
-        <button onclick="closeClearModal()">Cancel</button> <button onclick="exp()">Export data to local file</button> <button onclick="reset()" class="critical">Clear all data</button>
+        <p><b>This will delete all of your local data.</b><br><br>Do you want to export the data to a file first?</p>
+        <br>
+        <button onclick="closeClearModal()">Cancel</button> <button onclick="exp()">Export data to local file</button>
+        <button onclick="reset()" class="critical">Clear all data</button>
     </dialog>
     <input id="fileInput" type="file" accept="text/json" style="visibility: hidden" onchange="handleLoad(this.files)" />
     <a id="download" style="visibility: hidden"></a>
@@ -489,6 +491,19 @@
                     if (e.target.checked && count >= maxTopPapers) {
                         e.target.checked = false;
                         alert("You already selected three best papers. Please deselect one of them to select a new one.");
+                    }
+                }
+
+                if (!e.target.checked && e.target.getAttribute("data-min-selected")) {
+                    const minSelected = parseInt(e.target.getAttribute("data-min-selected"));
+
+                    const prefix = e.target.id.substring(0, e.target.id.lastIndexOf('_'));
+
+                    const selected = Object.entries(result).filter(([key, value]) => key.startsWith(prefix) && value === true);
+
+                    if (selected.length <= minSelected) {
+                        e.target.checked = true;
+                        alert(`You should select at least ${minSelected} option(s). Please select another option before deselecting this one.`);
                     }
                 }
 
@@ -932,6 +947,9 @@
                         }
 
                         label.append(checkbox, text);
+
+
+                        checkbox.setAttribute("data-min-selected", element.min_selected);
 
                         // Last option exclusive
                         if (element.last_option_exclusive) {

@@ -39,12 +39,14 @@ body {
     margin: 0;
 }
 
+#menu::-webkit-scrollbar,
 #formview::-webkit-scrollbar,
 .tabs-sidebar::-webkit-scrollbar {
     display: none;
 }
 
 /* Hide scrollbar for IE, Edge and Firefox */
+#menu,
 #formview,
 .tabs-sidebar {
     -ms-overflow-style: none;
@@ -58,6 +60,13 @@ body {
     padding: 16px;
     border-left: 1px solid lightgray;
     position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+#info-box {
+    overflow: auto;
+    flex: 0 1 min-content;
 }
 
 .tabs-sidebar {
@@ -251,6 +260,11 @@ details {
 
 summary:hover {
     color: #333333;
+}
+
+#score-box {
+    top: 0;
+    position: sticky
 }
 
 #score-container {

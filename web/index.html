@@ -292,7 +292,13 @@
 
             for (element of formTypes[type].elements) {
                 if (element.default) {
-                    defaultValues[element.id] = element.default;
+                    if (element.type !== 'checkbox') {
+                        defaultValues[element.id] = element.default;
+                    } else {
+                        element.default.forEach((optionId) => {
+                            defaultValues[element.id + '_' + optionId] = true;
+                        })
+                    }
                 }
             }
 

@@ -725,6 +725,9 @@
                 }
             ],
             "min_selected": 1,
+            "default": [
+                "NewOwn"
+            ],
             "info": "Data set acquisition often is a collaborative enterprise with different contributor roles. { $P_Data_Source_ReuseOwn | Select 'Reuse of own existing data set' only, if you would qualify as a co-author with substantive contributions in a stand-alone data set publication of that data set. }",
             "condition": "$P_Suitable === 'Yes' && $P_Data === 'Yes'"
         },

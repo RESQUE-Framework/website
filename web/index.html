@@ -72,7 +72,6 @@
             </div>
         </div>
     </div>
-    </div>
     <div id="info-modal" class="modal">
         <!-- Modal content -->
         <div class="modal-content">
@@ -131,7 +130,6 @@
                 This software is 100% free of trackers.
             </p>
         </div>
-
     </div>
     <dialog id="clear-modal">
         <h3>⚠️ Warning!</h3>
@@ -140,11 +138,21 @@
         <button onclick="closeClearModal()">Cancel</button> <button onclick="exp()">Export data to local file</button>
         <button onclick="reset()" class="critical">Clear all data</button>
     </dialog>
+
+    <div id="mobile">
+        <div class="card">
+            This window is too small for the <b>RESQUE</b> tool.
+            <br><br> Please visit <a href="https://nicebread.github.io/RESQUE/web">nicebread.github.io/RESQUE/web</a> on
+            a computer. If you are already on a computer, please make this window larger.
+            <hr>
+            <a class="github-link" href="https://github.com/nicebread/RESQUE">GitHub</a>
+        </div>
+    </div>
+
     <input id="fileInput" type="file" accept="text/json" style="visibility: hidden" onchange="handleLoad(this.files)" />
     <a id="download" style="visibility: hidden"></a>
     <input id="add-pdf" type="file" accept="application/pdf" onchange="handleSelectPDF(this.files)"
         style="visibility: hidden;" />
-
 
     <script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
     <script>

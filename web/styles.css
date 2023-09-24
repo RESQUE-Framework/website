@@ -473,18 +473,19 @@ button.critical:hover {
     }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 840px) {
     #main {
-        flex-direction: column;
-        overflow: auto;
+        display: none;
     }
 
-    #formview {
-        width: 100%;
-        overflow: initial;
+    #info-modal {
+        width: 0;
+        height: 0;
+        display: none;
     }
 
-    #menu {
-        width: 100%;
+    #mobile {
+        width: 90%;
+        margin: 1rem auto;
     }
 }

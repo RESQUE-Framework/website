@@ -863,13 +863,11 @@
                 },
                 {
                     "id": "Yes",
-                    "text": "Yes [provide doi or URL to verification report]"
+                    "text": "Yes [provide doi or URL to verification report / certificate]"
                 }
             ],
             "eval_dimension": "rigor",
-            "tooltip": "Tooltip for P14",
-            "info": "Info about P14. This is a longer explanation of the indicator.",
-            "background": "How do we justify having this indicator?",
+            "info": "'In the context of mathematics, Stodden et al. distinguish between <b>verification</b> and <b>validation</b>; following their definition, <b>a CODECHECK [or reproducibility check] ensures verification of computational results, i.e., checking that code generates the output it claims to create</b>, but <i>not</i> a validation, i.e., checking that the code implements the right algorithm [or statistical model] to solve the specific research problem.' (see <a href='https://f1000research.com/articles/10-253/v2'>Nüst & Eglen, 2021</a>). {:'Yes' | The bonus point is only given when a public verification report/certificate with a persistent identifier is available.}",
             "condition": "$P_Suitable === 'Yes'"
         },
         {

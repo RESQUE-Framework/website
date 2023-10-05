@@ -918,12 +918,25 @@
                     "text": "No"
                 },
                 {
-                    "id": "Yes",
-                    "text": "Yes [provide doi or URL to verification report / certificate]"
+                    "id": "WorkflowReproducible",
+                    "text": "Workflow reproducibility / code completeness check"
+                },
+                {
+                    "id": "MainResultsReproducible",
+                    "text": "Reproducibility of main results has been independently verified using the original code"
+                },
+                {
+                    "id": "AllResultsReproducible",
+                    "text": "Reproducibility of all numerical results has been independently verified using the original code"
+                },
+                {
+                    "id": "AnalysisReplication",
+                    "text": "Analysis replication (independent implementation & verification)"
                 }
             ],
             "eval_dimension": "rigor",
-            "info": "'In the context of mathematics, Stodden et al. distinguish between <i>verification</i> and <i>validation</i>; following their definition, <b>a CODECHECK [or reproducibility check] ensures verification of computational results, i.e., checking that code generates the output it claims to create</b>, but <i>not</i> a validation, i.e., checking that the code implements the right algorithm [or statistical model] to solve the specific research problem.' (see <a href='https://f1000research.com/articles/10-253/v2'>Nüst & Eglen, 2021</a>). <br><br>{:'Yes' | The bonus point is only given when a public verification report/certificate with a persistent identifier is available.}",
+            "info": "<ul><li>{:'WorkflowReproducible' | <b>Workflow reproducibility / code completeness check</b>: Code runs without errors or critical warnings on another machine by another person (without comparing the numbers).}</li><li>{:'MainResultsReproducible' | <b>Reproducibility of main results has been independently verified using the original code</b>: Someone compared the <i>figures and main results</i> and asserts a sufficient correspondence with the reported main results.}</li><li>{:'AllResultsReproducible' | <b>Reproducibility of <i>all numerical results</i> has been independently verified using the original code</b>: Someone compared <i>all figures and numbers</i> and asserts a sufficient correspondence with the reported results.}</li><li>{:'AnalysisReplication' | <b>Analysis replication (independent implementation)</b>: Somebody independently implemented the analyses, without looking at the original code, and asserts a sufficient correspondence with the reported main results.}</li></ul><br><br>{:'WorkflowReproducible', 'MainResultsReproducible', 'AllResultsReproducible', 'AnalysisReplication' | The bonus point is only given when a public verification report/certificate with a persistent identifier is available.}",
+            "background": "'In the context of mathematics, Stodden et al. distinguish between <i>verification</i> and <i>validation</i>; following their definition, <b>a CODECHECK [or reproducibility check] ensures verification of computational results, i.e., checking that code generates the output it claims to create</b>, but <i>not</i> a validation, i.e., checking that the code implements the right algorithm [or statistical model] to solve the specific research problem.' (see <a href='https://f1000research.com/articles/10-253/v2'>Nüst & Eglen, 2021</a>).",
             "condition": "$P_Suitable === 'Yes'"
         },
         {
@@ -935,8 +948,8 @@
         {
             "id": "P_IndependentVerification_Identifier",
             "type": "text",
-            "title": "DOI or URL of the verification report",
-            "condition": "$P_Suitable === 'Yes' && $P_IndependentVerification === 'Yes'"
+            "title": "⤷ DOI or URL of the verification report",
+            "condition": "$P_Suitable === 'Yes' && $P_IndependentVerification =|= ['WorkflowReproducible', 'MainResultsReproducible', 'AllResultsReproducible', 'AnalysisReplication']"
         },
         {
             "id": "P_ReproducibleScripts",
@@ -965,13 +978,13 @@
         {
             "id": "P_ReproducibleScripts_NAExplanation",
             "type": "text",
-            "title": "Not applicable: Explanation",
+            "title": "⤷ Not applicable: Explanation",
             "condition": "$P_Suitable === 'Yes' && $P_ReproducibleScripts === 'NotApplicable'"
         },
         {
             "id": "P_ReproducibleScripts_Identifier",
             "type": "text",
-            "title": "DOI or URL of the script",
+            "title": "⤷ DOI or URL of the script",
             "condition": "$P_Suitable === 'Yes' && $P_ReproducibleScripts =|= ['YesParts', 'YesEntire']"
         },
         {
@@ -1030,13 +1043,13 @@
         {
             "id": "P_OpenMaterials_NAExplanation",
             "type": "text",
-            "title": "Not applicable: Explanation",
+            "title": "⤷ Not applicable: Explanation",
             "condition": "$P_Suitable === 'Yes' && $P_OpenMaterials === 'NotApplicable'"
         },
         {
             "id": "P_OpenMaterials_Identifier",
             "type": "text",
-            "title": "DOI or URL of the open materials",
+            "title": "⤷ DOI or URL of the open materials",
             "condition": "$P_Suitable === 'Yes' && $P_OpenMaterials =|= ['YesParts', 'YesEntire']"
         },
         {
@@ -1071,13 +1084,13 @@
         {
             "id": "P_Preregistration_NAExplanation",
             "type": "text",
-            "title": "Not applicable: Explanation",
+            "title": "⤷ Not applicable: Explanation",
             "condition": "$P_Suitable === 'Yes' && $P_Preregistration === 'NotApplicable'"
         },
         {
             "id": "P_Preregistration_Identifier",
             "type": "text",
-            "title": "DOI or URL of the preregistration",
+            "title": "⤷ DOI or URL of the preregistration",
             "condition": "$P_Suitable === 'Yes' && $P_Preregistration =|= ['Yes', 'RegisteredReport']"
         },
         {
@@ -1132,7 +1145,7 @@
         {
             "id": "P_FormalModeling_NAExplanation",
             "type": "text",
-            "title": "Not applicable: Explanation",
+            "title": "⤷ Not applicable: Explanation",
             "condition": "$P_Suitable === 'Yes' && $P_FormalModeling === 'NotApplicable'"
         },
         {
@@ -1159,13 +1172,13 @@
         {
             "id": "P_PreregisteredReplication_NAExplanation",
             "type": "text",
-            "title": "Not applicable: Explanation",
+            "title": "⤷ Not applicable: Explanation",
             "condition": "$P_Suitable === 'Yes' && $P_PreregisteredReplication === 'NotApplicable'"
         },
         {
             "id": "P_PreregisteredReplication_Identifier",
             "type": "text",
-            "title": "DOI or URL of the preregistration",
+            "title": "⤷ DOI or URL of the preregistration",
             "condition": "$P_Suitable === 'Yes' && $P_PreregisteredReplication === 'Yes'"
         },
         {

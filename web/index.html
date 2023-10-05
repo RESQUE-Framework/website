@@ -17,7 +17,7 @@
                     <div id="actions">
                         <button onclick="showClearModal()">Clear</button>
                         <button onclick="triggerLoad()">Load</button>
-                        <button onclick="exp()">Export</button>
+                        <button onclick="exp()">Save to file ...</button>
                     </div>
                 </div>
                 <p id="slot-info"></p>
@@ -82,7 +82,7 @@
                     href="https://github.com/nicebread/RESQUE">RESearch QUality Evaluation (RESQUE)</a> framework
                 provides an evaluation scheme for publications, data sets, and research software. With this tool, you
                 can enter the necessary information for your best research outputs, export a profile that shows your
-                research style, and use it for your CV or in hiring and tenure committees.</p>
+                research style (<i>not implemented yet</i>), and use it for your CV or in hiring and tenure committees.</p>
             <hr>
             <h3>👀 How to use the RESQUE tool?</h3>
             <details>
@@ -96,12 +96,11 @@
                 <button onclick="newTab('data')">New Data Set</button>
             </details>
             <details>
-                <summary>How do I export my data?</summary>
-                Clicking on the <button onclick="exp()">Export</button> button here or in the top left corner of this
-                website exports a <code>.json</code> file. You can save this on your computer and share it with others.
+                <summary>How do I save my data?</summary>
+                Clicking on the <button onclick="exp()">Save as file ...</button> button here or in the top left corner of this website exports a <code>.json</code> file. You can save this on your computer and share it with others.
             </details>
             <details>
-                <summary>How do I load data I previously exported?</summary>
+                <summary>How do I load data I previously saved?</summary>
                 You can use the <button onclick="triggerLoad()">Load</button> button here or in the top left corner of
                 this website.
             </details>
@@ -113,7 +112,7 @@
             <details>
                 <summary>What should I do if I want to use RESQUE on a shared/public computer?</summary>
                 Whenever you open this website, it loads the locally stored data. On public computers, make sure that
-                you clear your data after you exported them.
+                you clear your data after you saved them as a file.
             </details>
             <hr>
             <h3>🔒 Privacy • <span class="sub">Is my data stored privately in a safe location?</span></h3>
@@ -133,9 +132,9 @@
     </div>
     <dialog id="clear-modal">
         <h3>⚠️ Warning!</h3>
-        <p><b>This will delete all of your local data.</b><br><br>Do you want to export the data to a file first?</p>
+        <p><b>This will delete all of your local data.</b><br><br>Do you want to save the data to a file first?</p>
         <br>
-        <button onclick="closeClearModal()">Cancel</button> <button onclick="exp()">Export data to local file</button>
+        <button onclick="closeClearModal()">Cancel</button> <button onclick="exp()">Save data to local file</button>
         <button onclick="reset()" class="critical">Clear all data</button>
     </dialog>
 

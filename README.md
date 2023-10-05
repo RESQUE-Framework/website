@@ -148,9 +148,10 @@ Please note and respect our [Code of Conduct](/CODE_OF_CONDUCT.md).
 
 This project is a community effort with many contributors, including:
 
-- Alp Kaan Aksu
-- Maximilian Ernst
-- Aaron Peikert
+- Alp Kaan Aksu (for programming the web form [aut])
+- Maximilian Ernst (software indicators [ctb])
+- Aaron Peikert (software indicators [ctb])
+- Daniel Nüst (code verification indicator [ctb])
 - TODO add all others
 
 ... all who wrote [comments](#commentaries) with many constructive suggestions

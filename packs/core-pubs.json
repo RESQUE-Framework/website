@@ -868,15 +868,16 @@
                 },
                 {
                     "id": "ZK2",
-                    "text": "ZK2 (restricted access) [provide explanation]"
+                    "text": "ZK2 (restricted access) [provide justification]"
                 }
             ],
+            "info": "For information about access levels, see <a href='https://rdc-psychology.org/access-data'>here</a>. <br> <ul><li>{:'ZK0' | <b>ZK0 / Sharing level 0 (“open for public use”)</b>: Neither access to nor use of the data is restricted in any way. Research data provided in this category are typically licensed through standard licenses (e.g., CC-BY-SA 4.0)}</li><li>{:'ZK1' | <b>ZK1 / Sharing level 1 (“open for scientific use”)</b>: Data re-use is limited to exclusively scientific purposes by means of a general use license. Proof of affiliation with a scientific institution and a brief description of the intended use must be provided.}</li><li>{:'ZK2' | <b>ZK2 / Sharing level 2 (“restricted scientific use”)</b>: Comparable to ZK1, access and re-use is restricted to scientific purposes. In contrast to ZK1, however, individual license agreements are made that may contain other restrictions.}</li></ul>",
             "condition": "$P_Suitable === 'Yes' && $P_Data === 'Yes' && $P_Data_Source_NewOwn && $P_Data_Open === 'YesEntire'"
         },
         {
             "id": "P_Data_Open_AccessLevel_ZK2Explanation",
             "type": "text",
-            "title": "⤷ Access level ZK2: Explanation",
+            "title": "⤷ Access level ZK2: Justification for restricted access",
             "condition": "$P_Suitable === 'Yes' && $P_Data === 'Yes' && $P_Data_Source_NewOwn && $P_Data_Open === 'YesEntire' && $P_Data_Open_AccessLevel === 'ZK2'"
         },
         {
@@ -1202,8 +1203,7 @@
             "id": "P_Merit",
             "type": "textbox",
             "maxwords": 150,
-            "title": "Merit / impact statement (narrative, max. 150 words)",
-            "condition": "$P_Suitable === 'Yes'"
+            "title": "Merit / impact statement (narrative, max. 150 words)"
         }
     ]
 }

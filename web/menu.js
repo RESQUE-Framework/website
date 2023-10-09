@@ -1,15 +1,25 @@
 async function menu() {
     return {
-        max: 12,
+        config: {
+            max: 12,
+            maxTopPapers: 3,
+            minROWarningThreshold: 5,
+        },
 
-        maxTopPapers: 3,
+        meta: pick(await use({
+            minIndicatorsWarningThreshold: 5
+        }, "core-meta")),
 
-        meta: pick(await use("core-meta")),
+        pub: pick(await use({
+            minIndicatorsWarningThreshold: 5
+        }, "core-pubs")),
 
-        pub: pick(await use("core-pubs")),
+        software: pick(await use({
+            minIndicatorsWarningThreshold: 5
+        }, "core-software")),
 
-        software: pick(await use("core-software")),
-
-        data: pick(await use("core-data"))
+        data: pick(await use({
+            minIndicatorsWarningThreshold: 5
+        }, "core-data"))
     }
 }

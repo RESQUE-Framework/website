@@ -203,7 +203,7 @@
                 loadingTask.promise.then(pdf => {
                     extractText(pdf).then(text => {
                         let dois = extractDOIs(text);
-                        document.getElementById('add-doi').value = dois[0];
+                        document.getElementById('add-doi').value = dois[0];                    
 
                         if (mode === MODE_PREVIEW) {
                             console.log(text);
@@ -227,7 +227,7 @@
     <script>
 
 
-        async function use(...packs) {
+        async function use(config, ...packs) {
 
             const pool = [];
 
@@ -250,7 +250,8 @@
                 title: ps[0].title,
                 versions,
                 scoring: scoringInfos,
-                pool
+                pool,
+                config
             };
         }
 
@@ -259,6 +260,7 @@
                 title: combinedPack.title,
                 versions: combinedPack.versions,
                 scoring: combinedPack.scoring,
+                config: combinedPack.config,
                 elements: ids.length <= 0 ? combinedPack.pool : ids.map(id => combinedPack.pool.find(item => item.id === id))
             };
         }
@@ -268,6 +270,7 @@
                 title: combinedPack.title,
                 versions: combinedPack.versions,
                 scoring: combinedPack.scoring,
+                config: combinedPack.config,
                 elements: combinedPack.pool.filter(item => item.id.startsWith(prefix))
             };
         }
@@ -276,6 +279,7 @@
             return {
                 title: combinedPack.title,
                 scoring: combinedPack.scoring,
+                config: combinedPack.config,
                 elements: combinedPack.pool.filter(item => condition(item))
             };
         }
@@ -296,6 +300,12 @@
         let formTypes;
 
         const getVersion = type => formTypes[type].versions[prefixes[type]];
+
+        const getConfig = (type) => ({
+            ...formTypes[type].config,
+            ...globalConfig,
+            ...queryConfig
+        })
 
         const getDefaultValues = type => {
             let defaultValues = {};
@@ -496,7 +506,7 @@
                 if (e.target.id === "P_TopPaper_Select") {
                     const count = results.filter(r => r.type === "pub" && r["P_TopPaper_Select"] === true).length;
 
-                    if (e.target.checked && count >= maxTopPapers) {
+                    if (e.target.checked && count >= config.maxTopPapers) {
                         e.target.checked = false;
                         alert("You already selected three best papers. Please deselect one of them to select a new one.");
                     }
@@ -562,11 +572,11 @@
 
         const updateInfo = () => {
             const usedSlots = results.length - 1;
-            const maxReached = usedSlots >= max;
+            const maxReached = usedSlots >= config.max;
 
-            document.getElementById("slot-info").innerText = `${usedSlots} of ${max} slots used${maxReached ? ", you can't add more publications." : ""}`;
+            document.getElementById("slot-info").innerText = `${usedSlots} of ${config.max} slots used${maxReached ? ", you can't add more publications." : ""}`;
 
-            if (usedSlots >= max) {
+            if (usedSlots >= config.max) {
                 document.getElementById("add-container").style.display = "none"
             } else {
                 document.getElementById("add-container").style.display = "inherit"
@@ -609,7 +619,7 @@
 
             let scoringResult = score(result);
 
-            if (scoringResult.max < 5 && scoringResult.max > 0) {
+            if (scoringResult.max < config.minIndicatorsWarningThreshold && scoringResult.max > 0) {
                 document.getElementById('warning-score-too-low').style.display = 'block';
                 document.getElementById('score-box').classList.add('warning');
             } else {
@@ -1108,6 +1118,8 @@
             elems = [];
             result = results[options.index];
 
+            config = getConfig(result.type);
+
             const formView = document.getElementById("formview");
             const scrollPre = formView.scrollTop;
 
@@ -1192,11 +1204,16 @@
             }
         }
 
-        let meta, pub, software, data, max, maxTopPapers;
+        let meta, pub, software, data;
 
         let filterTriggers;
 
+        let config, globalConfig, queryConfig;
+
         const params = new URLSearchParams(window.location.search);
+
+        queryConfig = Object.fromEntries(params.entries());
+
         const mode = params.get("mode");
         const doimagic = params.get("doimagic");
 
@@ -1219,7 +1236,10 @@
 
         menu().then(m => {
             formTypes = m;
-            ({ meta, pub, software, data, max, maxTopPapers } = m);
+            console.log(JSON.stringify(formTypes['pub'].elements.map(e => e.id), null, 2));
+            console.log(JSON.stringify(indentations(formTypes['pub'].elements.map(e => e.id)), null, 2));
+
+            ({ meta, pub, software, data, config: globalConfig } = m);
             results.forEach((r, index) => {
                 document.getElementById("tabs").appendChild(createTab(r, index));
             });

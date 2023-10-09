@@ -438,7 +438,7 @@
         }
 
         const getSavedData = () => {
-            return JSON.parse(localStorage.getItem("formdata")) || [{ type: "meta", publications: 0, software_projects: 0, data_sets: 0 }];
+            return JSON.parse(localStorage.getItem("formdata")) || [{ type: "meta" }];
         }
 
         const reset = () => {
@@ -526,7 +526,7 @@
 
                     if (e.target.checked && count >= config.maxTopPapers) {
                         e.target.checked = false;
-                        alert("You already selected three best papers. Please deselect one of them to select a new one.");
+                        alert(`You already selected ${config.maxTopPapers} best papers. Please deselect one of them to select a new one.`);
                     }
                 }
 
@@ -805,13 +805,19 @@
             }
             return text
                 .replaceAll(/global\$([a-zA-Z0-9_]+)@([a-zA-Z0-9_]+)/g, (match, variable, type) => {
-                    return globals[type.trim()](variable.trim());
+                    return globals[type](variable);
                 })
-                .replaceAll(/\$([a-zA-Z0-9_]+)@([a-zA-Z0-9_]+)/g, (match, variable, type) => {
-                    return processType[type.trim()](result[variable.trim()]);
+                .replaceAll(/config\$([a-zA-Z0-9_]+)/g, (match, variable) => {
+                    return config[variable];
+                })
+                .replaceAll(/config\$([a-zA-Z0-9_]+)@([a-zA-Z0-9_]+)/g, (match, variable, type) => {
+                    return processType[type](config[variable]);
+                })
+                .replaceAll(/\$([a-zA-Z0-9_]+?)@([a-zA-Z0-9_]+)/g, (match, variable, type) => {
+                    return processType[type](result[variable]);
                 })
                 .replaceAll(/\$([a-zA-Z0-9_]+)/g, (match, variable) => {
-                    return result[variable.trim()];
+                    return result[variable];
                 });
         }
 

@@ -1255,7 +1255,6 @@
         menu().then(m => {
             formTypes = m;
             console.log(JSON.stringify(formTypes['pub'].elements.map(e => e.id), null, 2));
-            console.log(JSON.stringify(indentations(formTypes['pub'].elements.map(e => e.id)), null, 2));
 
             ({ meta, pub, software, data, config: globalConfig } = m);
             results.forEach((r, index) => {

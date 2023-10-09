@@ -12,9 +12,10 @@ Stable releases are tagged here and are mirrored to a [project on OSF](https://o
 **Table of content:**
 
 - [RESQUE: The Research Quality Evaluation scheme for psychological research](#resque-the-research-quality-evaluation-scheme-for-psychological-research)
-  - [Publications and commentaries by the scientific community](#publications-and-commentaries-by-the-scientific-community)
+  - [Publications, presentations, and commentaries by the scientific community](#publications-presentations-and-commentaries-by-the-scientific-community)
     - [Publications](#publications)
     - [Commentaries](#commentaries)
+    - [Presentations](#presentations)
   - [Resources](#resources)
     - [☑️ Rating sheets (core set)](#️-rating-sheets-core-set)
     - [☑︎ Rating sheets (expansion packs)](#︎-rating-sheets-expansion-packs)
@@ -26,7 +27,7 @@ Stable releases are tagged here and are mirrored to a [project on OSF](https://o
     - [... as applicants](#-as-applicants)
   - [🚀 How to contribute](#-how-to-contribute)
 
-## Publications and commentaries by the scientific community
+## Publications, presentations, and commentaries by the scientific community
 
 ### Publications
 
@@ -62,26 +63,36 @@ Furthermore, there are 6 additional commentaries (in German) published in the [P
 - Stroebe, W., & Strack, F. (2023). Kommentare zu Gärtner, A. et al. (2023). Empfehlungen zur Bewertung wissenschaftlicher Leistungen bei Berufungsverfahren in der Psychologie: Zweierlei Maß? Warum manche Psychologen den Gebrauch von quantitativen Indikatoren der Forschungsqualität ablehnen. Psychologische Rundschau, 74(3), 175–179. [https://doi.org/10.1026/0033-3042/a000631](https://doi.org/10.1026/0033-3042/a000631)
 
 
+### Presentations
+
+To get an overview about the RESQUE project, you can look at our presentation slides:
+
+- Schönbrodt (2023-03): [Responsible Research Assessment: A practical recommendation for the evaluation of research quality beyond h-index and journal impact factors](./presentations/Schoenbrodt-2023-03-Responsible_Research_Assessment.pdf)
+
+
+
 ## Resources
 
 ### ☑️ Rating sheets (core set)
 Versioned releases of the rating sheets have so far been provided as offline Excel files in the folder [/rating_sheets](/rating_sheets). 
-With the goal to make data entry for applicants and hiring committees as easy and frictionless as possible, we now develop a web form that allows to enter and store the data in a JSON format.
+**These are now deprecated and only kept as an archive!**
 
-There are three separate sheets for ...
+With the goal to make data entry for applicants and hiring committees as easy and frictionless as possible, we now develop a [web form](https://nicebread.github.io/RESQUE/web/) that allows to enter and store the data in a JSON format.
 
-- Publications, preprints, book chapters, etc. (**RESQUE-Pubs**): [Current release (xlsx; v0.1)](/rating_sheets/RESQUE_pubs_v0_1.xlsx) - [Development version 0.2; xlsx](https://docs.google.com/spreadsheets/d/1SUhwiZnhFCjy5COga3utGO15KT2wD4Pk/edit?usp=sharing&ouid=108982640291853577145&rtpof=true&sd=true)  - [Development version 0.3, web form](https://nicebread.github.io/RESQUE/web/)
+We provide three rating schemes for ...
+
+- Publications, preprints, book chapters, etc. (**RESQUE-Pubs**): [Development version 0.3, web form](https://nicebread.github.io/RESQUE/web/)
 - Data sets (**RESQUE-Data**): [Current release (v0.1)](/rating_sheets/RESQUE_data-sets_v0_1.xlsx)
 - Research software (**RESQUE-Software**): [Current release (v0.1)](/rating_sheets/RESQUE_software_v0_1.xlsx) - [Development version 0.2, xlsx](https://docs.google.com/spreadsheets/d/1jGWPokhqCk2IjT--0E1CvKnVBkOArM-O/edit?usp=sharing&ouid=108982640291853577145&rtpof=true&sd=true)
+
+The web form currently only implemented *RESQUE-Pubs*.
 
 The rating sheets are versioned. Indicators from the core set start with the prefix "P" (Publications), "D" (Data) or "S" (Software).
 
 ### ☑︎ Rating sheets (expansion packs)
 
-One purpose of this central landing page is to collect disciplinary **expansion packs (EPs)** with specific indicators that are relevant for a subfield. Here is a minimal technical specification for expansion packs, in order to increase interoperability:
-
-- Use xlsx files, comparable to the RESQUE core sheets
-- Each indicator gets a unique ID, starting with a prefix specific to the expansion pack (e.g., "CP1", "CP2" for the "Clinical Psychology" expansion pack).
+One purpose of this central landing page is to collect disciplinary **expansion packs (EPs)** with specific indicators that are relevant for a subfield. 
+If you plan to provide an expansion pack, please [get in contact](#🚀-how-to-contribute) with us (we will help to implement that in the web form).
 
 Such EPs ideally are contributed from a legit academic community and stem from a consensus process. Before including EPs in this project, we do a minimal review for suitability.
 
@@ -137,9 +148,10 @@ Please note and respect our [Code of Conduct](/CODE_OF_CONDUCT.md).
 
 This project is a community effort with many contributors, including:
 
-- Alp Kaan Aksu
-- Maximilian Ernst
-- Aaron Peikert
+- Alp Kaan Aksu (for programming the web form [aut])
+- Maximilian Ernst (software indicators [aut, ctb])
+- Aaron Peikert (software indicators [aut, ctb])
+- Daniel Nüst (code verification indicator [ctb])
 - TODO add all others
 
 ... all who wrote [comments](#commentaries) with many constructive suggestions

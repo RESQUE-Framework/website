@@ -6,6 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RESQUE</title>
     <link rel="stylesheet" href="styles.css" />
+
+    <!-- Matomo -->
+    <script>
+        var _paq = window._paq = window._paq || [];
+        /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+        _paq.push(["setDomains", ["*.nicebread.github.io/RESQUE/web"]]);
+        _paq.push(["setDoNotTrack", true]);
+        _paq.push(['trackPageView']);
+        _paq.push(['enableLinkTracking']);
+        (function() {
+        var u="//tellmi.psy.lmu.de/matomo/";
+        _paq.push(['setTrackerUrl', u+'matomo.php']);
+        _paq.push(['setSiteId', '6']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+        })();
+    </script>
+    <!-- End Matomo Code -->
+  
 </head>
 
 <body>
@@ -17,7 +36,7 @@
                     <div id="actions">
                         <button onclick="showClearModal()">Clear</button>
                         <button onclick="triggerLoad()">Load</button>
-                        <button onclick="exp()">Export</button>
+                        <button onclick="exp()">Save to file ...</button>
                     </div>
                 </div>
                 <p id="slot-info"></p>
@@ -82,7 +101,7 @@
                     href="https://github.com/nicebread/RESQUE">RESearch QUality Evaluation (RESQUE)</a> framework
                 provides an evaluation scheme for publications, data sets, and research software. With this tool, you
                 can enter the necessary information for your best research outputs, export a profile that shows your
-                research style, and use it for your CV or in hiring and tenure committees.</p>
+                research style (<i>not implemented yet</i>), and use it for your CV or in hiring and tenure committees.</p>
             <hr>
             <h3>👀 How to use the RESQUE tool?</h3>
             <details>
@@ -96,12 +115,11 @@
                 <button onclick="newTab('data')">New Data Set</button>
             </details>
             <details>
-                <summary>How do I export my data?</summary>
-                Clicking on the <button onclick="exp()">Export</button> button here or in the top left corner of this
-                website exports a <code>.json</code> file. You can save this on your computer and share it with others.
+                <summary>How do I save my data?</summary>
+                Clicking on the <button onclick="exp()">Save as file ...</button> button here or in the top left corner of this website exports a <code>.json</code> file. You can save this on your computer and share it with others.
             </details>
             <details>
-                <summary>How do I load data I previously exported?</summary>
+                <summary>How do I load data I previously saved?</summary>
                 You can use the <button onclick="triggerLoad()">Load</button> button here or in the top left corner of
                 this website.
             </details>
@@ -113,12 +131,12 @@
             <details>
                 <summary>What should I do if I want to use RESQUE on a shared/public computer?</summary>
                 Whenever you open this website, it loads the locally stored data. On public computers, make sure that
-                you clear your data after you exported them.
+                you clear your data after you saved them as a file.
             </details>
             <hr>
             <h3>🔒 Privacy • <span class="sub">Is my data stored privately in a safe location?</span></h3>
             <p>
-                <b>Nothing leaves your device.</b>
+                <b>No data leaves your device.</b>
                 <br>
                 We use the <a href="https://www.wikiwand.com/en/Web_storage">Web Storage API</a> supported by all major
                 browsers. Although the website itself is hosted on a server, your data is <i>only</i> stored and
@@ -127,15 +145,15 @@
                 The data is processed only locally. Your score is calculated in the browser. The local PDF files you
                 open on this website are <i>not</i> uploaded to a server.
                 <br><br>
-                This software is 100% free of trackers.
+                To get a sense of how many users we have, we do a very basic access logging with Matomo. You are not identifiable by the logged information; none of your entered data is tracked; no cookies or third party trackers are used.
             </p>
         </div>
     </div>
     <dialog id="clear-modal">
         <h3>⚠️ Warning!</h3>
-        <p><b>This will delete all of your local data.</b><br><br>Do you want to export the data to a file first?</p>
+        <p><b>This will delete all of your local data.</b><br><br>Do you want to save the data to a file first?</p>
         <br>
-        <button onclick="closeClearModal()">Cancel</button> <button onclick="exp()">Export data to local file</button>
+        <button onclick="closeClearModal()">Cancel</button> <button onclick="exp()">Save data to local file</button>
         <button onclick="reset()" class="critical">Clear all data</button>
     </dialog>
 

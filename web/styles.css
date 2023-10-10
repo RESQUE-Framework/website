@@ -269,11 +269,32 @@ summary:hover {
     position: sticky
 }
 
+#score-box .sub {
+    margin: 0;
+}
+
 #score-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#current-score-container {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 1rem;
+}
+
+#overall-score {
+    margin-left: 16px;
+    padding-left: 16px;
+    border-left: 1px solid lightgray;
+}
+
+#overall-score-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #score-minmax {
@@ -283,7 +304,7 @@ summary:hover {
     margin: 0;
 }
 
-#score-percentage {
+#score-percentage, #overall-score-percentage {
     margin: 0;
     text-align: center;
     font-weight: bold;
@@ -298,9 +319,8 @@ summary:hover {
 }
 
 #no-score {
-    color: gray;
-    font-style: italic;
-    margin-bottom: 0;
+    margin-top: 4px;
+    text-align: center;
 }
 
 .sub {

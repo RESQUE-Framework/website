@@ -15,16 +15,16 @@
         _paq.push(["setDoNotTrack", true]);
         _paq.push(['trackPageView']);
         _paq.push(['enableLinkTracking']);
-        (function() {
-        var u="//tellmi.psy.lmu.de/matomo/";
-        _paq.push(['setTrackerUrl', u+'matomo.php']);
-        _paq.push(['setSiteId', '6']);
-        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-        g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+        (function () {
+            var u = "//tellmi.psy.lmu.de/matomo/";
+            _paq.push(['setTrackerUrl', u + 'matomo.php']);
+            _paq.push(['setSiteId', '6']);
+            var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
+            g.async = true; g.src = u + 'matomo.js'; s.parentNode.insertBefore(g, s);
         })();
     </script>
     <!-- End Matomo Code -->
-  
+
 </head>
 
 <body>
@@ -66,17 +66,27 @@
         </div>
         <div id="menu">
             <div class="card animate pop" id="score-box">
-                <div class="top">
-                    <h3>Score</h3>
-                </div>
                 <div id="score-container">
-                    <p id="score-percentage"></p>
-                    <p id="score-dot">•</p>
-                    <p id="score-minmax"></p>
+                    <div id="current-score">
+                        <span class="sub">Current Research Output</span>
+                        <span id="no-score">Applicant requests<br>manual processing</span>
+
+                        <div id="current-score-container">
+                            <p id="score-percentage"></p>
+                            <p id="score-dot">•</p>
+                            <p id="score-minmax"></p>
+                        </div>
+                    </div>
+                    <div id="overall-score">
+                        <span class="sub">Overall Score (mean)</span>
+                        <div id="overall-score-container">
+                            <p id="overall-score-percentage">X.X%</p>
+                        </div>
+                    </div>
                 </div>
                 <p id="warning-score-too-low">⚠️ Many indicators are not applicable. Manual processing of this
                     publication is recommended.</p>
-                <p id="no-score">No score - applicant requests manual processing</p>
+                <p id="warning-min-ro-threshold">⚠️ Please provide at least <span id="minROWarningThreshold"></span> research contributions that can be scored (e.g. by adding more empirical papers, data sets, or software contributions)</p>
             </div>
             <div id="info-box" class="card">
                 <p id="item-info">Click on an indicator to see detailed information</p>
@@ -101,7 +111,8 @@
                     href="https://github.com/nicebread/RESQUE">RESearch QUality Evaluation (RESQUE)</a> framework
                 provides an evaluation scheme for publications, data sets, and research software. With this tool, you
                 can enter the necessary information for your best research outputs, export a profile that shows your
-                research style (<i>not implemented yet</i>), and use it for your CV or in hiring and tenure committees.</p>
+                research style (<i>not implemented yet</i>), and use it for your CV or in hiring and tenure committees.
+            </p>
             <hr>
             <h3>👀 How to use the RESQUE tool?</h3>
             <details>
@@ -116,7 +127,9 @@
             </details>
             <details>
                 <summary>How do I save my data?</summary>
-                Clicking on the <button onclick="exp()">Save as file ...</button> button here or in the top left corner of this website exports a <code>.json</code> file. You can save this on your computer and share it with others.
+                Clicking on the <button onclick="exp()">Save as file ...</button> button here or in the top left corner
+                of this website exports a <code>.json</code> file. You can save this on your computer and share it with
+                others.
             </details>
             <details>
                 <summary>How do I load data I previously saved?</summary>
@@ -145,7 +158,9 @@
                 The data is processed only locally. Your score is calculated in the browser. The local PDF files you
                 open on this website are <i>not</i> uploaded to a server.
                 <br><br>
-                To get a sense of how many users we have, we do a very basic access logging with Matomo. You are not identifiable by the logged information; none of your entered data is tracked; no cookies or third party trackers are used.
+                To get a sense of how many users we have, we do a very basic access logging with Matomo. You are not
+                identifiable by the logged information; none of your entered data is tracked; no cookies or third party
+                trackers are used.
             </p>
         </div>
     </div>
@@ -221,7 +236,7 @@
                 loadingTask.promise.then(pdf => {
                     extractText(pdf).then(text => {
                         let dois = extractDOIs(text);
-                        document.getElementById('add-doi').value = dois[0];                    
+                        document.getElementById('add-doi').value = dois[0];
 
                         if (mode === MODE_PREVIEW) {
                             console.log(text);
@@ -635,28 +650,47 @@
                 return;
             }
 
-            let scoringResult = score(result);
+            let scores = scoreAll(results);
+            let scorables = scores.scores.filter(s => s.max && s.max > 0)
+            let scoringResult = scores.scores[currentTab];
 
-            if (scoringResult.max < config.minIndicatorsWarningThreshold && scoringResult.max > 0) {
+            const minIndicatorsWarning = scoringResult.max < config.minIndicatorsWarningThreshold && scoringResult.max > 0;
+            const minROWarning = scorables.length < config.minROWarningThreshold;
+
+            if (minIndicatorsWarning) {
                 document.getElementById('warning-score-too-low').style.display = 'block';
-                document.getElementById('score-box').classList.add('warning');
             } else {
                 document.getElementById('warning-score-too-low').style.display = 'none';
+            }
+
+            if (minROWarning) {
+                document.getElementById('minROWarningThreshold').innerText = config.minROWarningThreshold;
+                document.getElementById('warning-min-ro-threshold').style.display = 'block';
+            } else {
+                document.getElementById('warning-min-ro-threshold').style.display = 'none';
+            }
+
+            if ([minIndicatorsWarning, minROWarning].some(bool => bool)) {
+                document.getElementById('score-box').classList.add('warning');
+            } else {
                 document.getElementById('score-box').classList.remove('warning');
             }
+
 
             // Show score box
             document.getElementById('score-box').style.display = "";
 
             if (scoringResult.max > 0) {
                 document.getElementById("no-score").style.display = "none";
-                document.getElementById("score-container").style.display = "flex"
+                document.getElementById("current-score-container").style.display = "flex"
                 document.getElementById("score-minmax").innerHTML = `${scoringResult.score} / ${scoringResult.max}`
-                document.getElementById("score-percentage").innerHTML = `${scoringResult.percentage}%`
+                document.getElementById("score-percentage").innerText = `${scoringResult.percentage}%`
             } else {
                 document.getElementById("no-score").style.display = "block";
-                document.getElementById("score-container").style.display = "none"
+                document.getElementById("current-score-container").style.display = "none"
             }
+
+            document.getElementById("overall-score-percentage").innerText = `${scores.overall.percentage}%`
         }
 
         const preprocessCondition = condition => {
@@ -676,10 +710,14 @@
         }
 
         const insertValuesIntoCondition = condition => {
-            return condition.replaceAll(/\$(\w*)/g, `result['$1']`);
+            return condition.replaceAll(/\$(\w*)/g, `context['$1']`);
         }
 
-        const evaluateCondition = condition => eval(insertValuesIntoCondition(preprocessCondition(condition)));
+        const evaluateCondition = condition => evaluateConditionInContext(condition, result);
+
+        const evaluateConditionInContext = (condition, context) => {
+            return eval(insertValuesIntoCondition(preprocessCondition(condition)))
+        }
 
         const applyFilters = () => {
             if (mode === MODE_PREVIEW) {
@@ -1190,14 +1228,36 @@
             return tab;
         }
 
+        const scoreAll = rs => {
+            const scores = rs.map(r => score(r));
+
+            const validScores = scores.filter(s => Object.keys(s).length && s.max > 0)
+
+            const relative = validScores
+                .map(s => s.relative)
+                .reduce((sum, current) => sum + current, 0) / validScores.length
+
+            return {
+                scores,
+                overall: {
+                    relative,
+                    percentage: (relative * 100).toFixed(1)
+                }
+            };
+        }
+
         const score = r => {
             const scoring = formTypes[r.type].scoring;
+
+            if (!Object.keys(scoring).length) {
+                return {};
+            }
 
             let maxScore = 0;
             let reachedScore = 0;
 
             for (indicator in scoring) {
-                if (scoring[indicator].not_applicable && evaluateCondition(scoring[indicator].not_applicable)) {
+                if (scoring[indicator].not_applicable && evaluateConditionInContext(scoring[indicator].not_applicable, r)) {
                     continue;
                 }
 
@@ -1206,11 +1266,11 @@
                 switch (scoring[indicator].op) {
                     case "sum":
                         reachedScore += scoring[indicator].points
-                            .filter(p => evaluateCondition(p.condition))
+                            .filter(p => evaluateConditionInContext(p.condition, r))
                             .reduce((sum, next) => sum + next.value, 0);
                         break;
                     case "select":
-                        reachedScore += (scoring[indicator].points.find(p => evaluateCondition(p.condition)) || { value: 0 }).value;
+                        reachedScore += (scoring[indicator].points.find(p => evaluateConditionInContext(p.condition, r)) || { value: 0 }).value;
                         break;
                     default:
                         break;

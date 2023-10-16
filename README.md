@@ -9,6 +9,8 @@ This repository is used for continuous development, versioning, and issue tracki
 Stable releases are tagged here and are mirrored to a [project on OSF](https://osf.io/4wynr/wiki/home/).
 (The OSF project is intended to be a landing page for end-users not acquainted with Github).
 
+Join our [free mailing list](https://www.listserv.dfn.de/sympa/info/psy-dora) to receive news and updates about the RESQUE framework and rating sheets!  
+
 **Table of content:**
 
 - [RESQUE: The Research Quality Evaluation scheme for psychological research](#resque-the-research-quality-evaluation-scheme-for-psychological-research)

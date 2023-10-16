@@ -271,6 +271,12 @@ summary:hover {
 
 #score-box .sub {
     margin: 0;
+    font-style: normal;
+    text-align: center;
+}
+
+#score-box p {
+    margin-bottom: 0;
 }
 
 #score-container {
@@ -335,14 +341,21 @@ hr {
     border-top: 1px solid lightgray;
 }
 
-#eval-dimension {
-    color: gray;
+.tag {
+    color: #000000a0;
     font-size: small;
     font-weight: bold;
-    background-color: #efefef;
+    background-color: #0000000d;
     padding: 0.125rem 0.5rem;
     border-radius: 99px;
     margin-left: 8px;
+    text-align: c;
+}
+
+#ro-count-container {
+    text-align: center;
+    margin-top: 16px;
+    margin-bottom: 0;
 }
 
 /* Modal */

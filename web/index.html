@@ -80,10 +80,11 @@
                     <div id="overall-score">
                         <span class="sub">Overall Score (mean)</span>
                         <div id="overall-score-container">
-                            <p id="overall-score-percentage">X.X%</p>
+                            <p id="overall-score-percentage"></p>
                         </div>
                     </div>
                 </div>
+                <p id="ro-count-container"><span class="tag"><span id="scoredROs"></span> scored research outputs</span></p>
                 <p id="warning-score-too-low">⚠️ Many indicators are not applicable. Manual processing of this
                     publication is recommended.</p>
                 <p id="warning-min-ro-threshold">⚠️ Please provide at least <span id="minROWarningThreshold"></span> research contributions that can be scored (e.g. by adding more empirical papers, data sets, or software contributions)</p>
@@ -690,6 +691,7 @@
                 document.getElementById("current-score-container").style.display = "none"
             }
 
+            document.getElementById("scoredROs").innerText = scorables.length;
             document.getElementById("overall-score-percentage").innerText = `${scores.overall.percentage}%`
         }
 

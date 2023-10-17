@@ -1119,6 +1119,39 @@
             "condition": "$P_Suitable === 'Yes' && $P_Preregistration =|= ['Yes', 'RegisteredReport']"
         },
         {
+            "id": "P_PreregisteredReplication",
+            "type": "radio",
+            "title": "⤷ The paper contains a preregistered replication attempt (either direct/close or conceptual)",
+            "options": [
+                {
+                    "id": "NotApplicable",
+                    "text": "Not applicable [provide explanation]"
+                },
+                {
+                    "id": "No",
+                    "text": "No"
+                },
+                {
+                    "id": "Yes",
+                    "text": "Yes"
+                }
+            ],
+            "info": "As only <i>preregistered</i> replication attempts count, you need to provide the DOI or URL of the preregistration. If the paper contains a replication which was not preregistered, please select 'No'.<br><br>If the paper was preregistered, but does not contain a replication, select 'No'.",
+            "condition": "$P_Suitable === 'Yes' && $P_Preregistration =|= ['Yes', 'RegisteredReport']"
+        },
+        {
+            "id": "P_PreregisteredReplication_NAExplanation",
+            "type": "text",
+            "title": "⤷ Not applicable: Explanation",
+            "condition": "$P_Suitable === 'Yes' && $P_Preregistration =|= ['Yes', 'RegisteredReport'] && $P_PreregisteredReplication === 'NotApplicable'"
+        },
+        {
+            "id": "P_PreregisteredReplication_Identifier",
+            "type": "text",
+            "title": "⤷ DOI or URL of the preregistration of the replication",
+            "condition": "$P_Suitable === 'Yes' && $P_Preregistration =|= ['Yes', 'RegisteredReport'] && $P_PreregisteredReplication === 'Yes'"
+        },
+        {
             "id": "P19P20SEP",
             "type": "separator",
             "condition": "$P_Suitable === 'Yes'"
@@ -1148,40 +1181,7 @@
             "type": "text",
             "title": "⤷ Not applicable: Explanation",
             "condition": "$P_Suitable === 'Yes' && $P_FormalModeling === 'NotApplicable'"
-        },
-        {
-            "id": "P_PreregisteredReplication",
-            "type": "radio",
-            "title": "The paper contains a preregistered replication attempt (either direct/close or conceptual)",
-            "options": [
-                {
-                    "id": "NotApplicable",
-                    "text": "Not applicable [provide explanation]"
-                },
-                {
-                    "id": "No",
-                    "text": "No"
-                },
-                {
-                    "id": "Yes",
-                    "text": "Yes"
-                }
-            ],
-            "info": "As only <i>preregistered</i> replication attempts count, you need to provide the DOI or URL of the preregistration. If the paper contains a replication which was not preregistered, please select 'No'.",
-            "condition": "$P_Suitable === 'Yes'"
-        },
-        {
-            "id": "P_PreregisteredReplication_NAExplanation",
-            "type": "text",
-            "title": "⤷ Not applicable: Explanation",
-            "condition": "$P_Suitable === 'Yes' && $P_PreregisteredReplication === 'NotApplicable'"
-        },
-        {
-            "id": "P_PreregisteredReplication_Identifier",
-            "type": "text",
-            "title": "⤷ DOI or URL of the preregistration",
-            "condition": "$P_Suitable === 'Yes' && $P_PreregisteredReplication === 'Yes'"
-        },
+        },        
         {
             "id": "P21P22SEP",
             "type": "separator",

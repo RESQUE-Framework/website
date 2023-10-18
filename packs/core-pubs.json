@@ -1017,6 +1017,31 @@
             "condition": "$P_Suitable === 'Yes' && $P_ReproducibleScripts =|= ['YesParts', 'YesEntire']"
         },
         {
+            "id": "P_ReproducibleScripts_TIER4",
+            "type": "checkbox",
+            "title": "⤷ Reproducibility Standards",
+            "options": [
+                {
+                    "id": "Sufficiency",
+                    "text": "Sufficiency: Project contains everything necessary to reproduce the results (all data, scripts, and supplementary information)"
+                },
+                {
+                    "id": "SoupToNuts:",
+                    "text": "Soup-to-Nuts: The entire analysis pipeline is contained, including preprocessing of the primary (raw) data."
+                },
+                {
+                    "id": "Portability",
+                    "text": "Portability: Any user is able to run the scripts on their own computer/workspace"
+                },
+                {
+                    "id": "OneClickReproducibility",
+                    "text": "(Almost) One-click reproducibility"
+                }
+            ],
+            "info": "<ul><li> {:'Sufficiency' | <b>Sufficiency</b>: The documentation for a project should contain all the data, scripts, and supplementary information necessary to enable any user (with access to and basic proficiency in the software used) to reproduce all the results presented in the report without undue difficulty. The user should not have to seek assistance from the person who conducted the study.} </li><li> {:'SoupToNuts' |  <b>Soup-to-nuts</b>: The documentation should include scripts that reproduce all the computations required for both (i) the steps of processing necessary to prepare the data for analysis, and (ii) the analysis or procedures performed with the processed data that generate the results. } </li><li> {:'Portability' |  <b>Portability</b>: Provided the necessary software is installed, any user should be able to copy the project folder, with the hierarchy of subfolders and files it contains intact, onto their own computer or workspace, and then run the scripts that reproduce the project locally. } </li><li> {:'OneClickReproducibility' |  <b>(Almost) One-click reproducibility</b>: Reproducing all the computations required to generate the results of a study should require (almost) nothing other than executing a single Master Script. } </li></ul><br><br>These items are inspired by the <a href='https://www.projecttier.org/tier-protocol/protocol-4-0/'>TIER Protocol 4.0</a>. Some of the help text is quoted from there.",
+            "condition": "$P_Suitable === 'Yes' && $P_ReproducibleScripts =|= ['YesParts', 'YesEntire']"
+        },
+        {
             "id": "P_OpenMaterials",
             "type": "radio",
             "title": "Open materials (beyond the open reproducible scripts entered above)",
@@ -1038,7 +1063,7 @@
                     "text": "Yes, entire material [provide doi or URL]"
                 }
             ],
-            "info": "{ :'YesParts', 'YesEntire' | Only choose 'Yes' if the material substantially exceeds the open reproducible scripts. }<br><br>{:0 | When to choose 'Not applicable': If no material has been used in the publication, or the entire material is contained in the open reproducible scripts. }",
+            "info": "{:'YesParts', 'YesEntire' | Only choose 'Yes' if the material substantially exceeds the open reproducible scripts. }<br><br>{:0 | When to choose 'Not applicable': If no material has been used in the publication, or the entire material is contained in the open reproducible scripts. }",
             "condition": "$P_Suitable === 'Yes'"
         },
         {

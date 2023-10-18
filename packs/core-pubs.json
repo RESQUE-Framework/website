@@ -1035,7 +1035,7 @@
                 },
                 {
                     "id": "OneClickReproducibility",
-                    "text": "(Almost) One-click reproducibility"
+                    "text": "(Almost) One-click reproducibility with a master script (or equivalent)"
                 }
             ],
             "info": "<ul><li> {:'Sufficiency' | <b>Sufficiency</b>: The documentation for a project should contain all the data, scripts, and supplementary information necessary to enable any user (with access to and basic proficiency in the software used) to reproduce all the results presented in the report without undue difficulty. The user should not have to seek assistance from the person who conducted the study.} </li><li> {:'SoupToNuts' |  <b>Soup-to-nuts</b>: The documentation should include scripts that reproduce all the computations required for both (i) the steps of processing necessary to prepare the data for analysis, and (ii) the analysis or procedures performed with the processed data that generate the results. } </li><li> {:'Portability' |  <b>Portability</b>: Provided the necessary software is installed, any user should be able to copy the project folder, with the hierarchy of subfolders and files it contains intact, onto their own computer or workspace, and then run the scripts that reproduce the project locally. } </li><li> {:'OneClickReproducibility' |  <b>(Almost) One-click reproducibility</b>: Reproducing all the computations required to generate the results of a study should require (almost) nothing other than executing a single Master Script. } </li></ul><br><br>These items are inspired by the <a href='https://www.projecttier.org/tier-protocol/protocol-4-0/'>TIER Protocol 4.0</a>. Some of the help text is quoted from there.",

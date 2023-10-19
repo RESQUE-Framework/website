@@ -5,7 +5,7 @@
         {
             "id": "LastName",
             "type": "text",
-            "title": "Last name"
+            "title": "Last name of applicant"
         },
         {
             "id": "ExternalRater",

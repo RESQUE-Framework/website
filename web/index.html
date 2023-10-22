@@ -790,10 +790,10 @@
 
             if (element.info) {
                 itemInfo.style.color = "#333333";
-                itemInfo.innerHTML = `<b>${element.id}</b>${element.eval_dimension ? '<span id="eval-dimension">' + element.eval_dimension + '</span>' : ""}<br><br>${partialHighlight(element.id, element.info)}`;
+                itemInfo.innerHTML = `<b>${element.id}</b>${element.eval_dimension ? '<span id="eval-dimension" class="tag">' + element.eval_dimension + '</span>' : ""}<br><br>${partialHighlight(element.id, element.info)}`;
             } else {
                 itemInfo.style.color = "gray";
-                itemInfo.innerHTML = `<b>${element.id}</b>${element.eval_dimension ? '<span id="eval-dimension">' + element.eval_dimension + '</span>' : ""}<br><br><i>No information</i>`;
+                itemInfo.innerHTML = `<b>${element.id}</b>${element.eval_dimension ? '<span id="eval-dimension" class="tag">' + element.eval_dimension + '</span>' : ""}<br><br><i>No information</i>`;
             }
 
             if (element.background) {
@@ -940,15 +940,13 @@
                     input.name = element.id;
                     input.id = element.id;
 
-                    const values = element.values || element.options;
-
-                    let options = element.options.map((option, index) => {
+                    let options = element.options.map((option) => {
                         let opt = document.createElement("option")
-                        opt.value = index;
-                        opt.innerText = option;
+                        opt.value = option.id;
+                        opt.innerText = option.text;
 
                         if (mode === MODE_PREVIEW) {
-                            opt.innerText = `[${index}] ${option}`;
+                            opt.innerText = `[${option.id}] ${option.text}`;
                         }
 
                         return opt;
@@ -1025,7 +1023,7 @@
                         let text = typeof option === 'string' ? option : option.text;
 
                         if (mode === MODE_PREVIEW) {
-                            text = `[${checkbox.id}] ${option}`;
+                            text = `[${checkbox.id}] ${option.text}`;
                         }
 
                         label.append(checkbox, text);
@@ -1259,6 +1257,10 @@
             let reachedScore = 0;
 
             for (indicator in scoring) {
+                if (indicator === 'post') {
+                    // skip post
+                    continue;
+                }
                 if (scoring[indicator].not_applicable && evaluateConditionInContext(scoring[indicator].not_applicable, r)) {
                     continue;
                 }
@@ -1281,6 +1283,14 @@
 
             }
 
+            if(scoring.post) {
+                scoring.post.forEach(transformation => {
+                    if (evaluateConditionInContext(transformation.condition, r)) {
+                        console.log(transformation.factor)
+                        reachedScore *= transformation.factor;
+                    }
+                })
+            }
 
             return {
                 max: maxScore,

@@ -986,6 +986,7 @@
             "id": "P_ReproducibleScripts_Identifier",
             "type": "text",
             "title": "⤷ DOI or URL of the script",
+            "info": "If multiple sources are available, provide the link to the primary source only. E.g. if both Github and OSF links are available, provide the Github link, as OSF only mirrors the content from Github.",
             "condition": "$P_Suitable === 'Yes' && $P_ReproducibleScripts =|= ['YesParts', 'YesEntire']"
         },
         {
@@ -1229,6 +1230,12 @@
             "type": "textbox",
             "maxwords": 150,
             "title": "Merit / impact statement (narrative, max. 150 words)"
+        },
+        {
+            "id": "P_GeneralComments",
+            "type": "textbox",
+            "maxwords": 500,
+            "title": "General comments (max. 500 words)"
         }
     ]
 }

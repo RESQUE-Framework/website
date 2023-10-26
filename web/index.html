@@ -338,7 +338,8 @@
         const getConfig = (type) => ({
             ...formTypes[type].config,
             ...globalConfig,
-            ...queryConfig
+            ...queryConfig.global,
+            ...queryConfig[type]
         })
 
         const getDefaultValues = type => {
@@ -1300,6 +1301,36 @@
             }
         }
 
+        function getQueryConfig(params) {
+            let queryConfig = {
+                global: {},
+            };
+
+            params.forEach((value, key) => {
+                if (key.includes(':')) {
+                    const parts = key.split(':');
+
+                    let location = queryConfig;
+
+                    parts.forEach((part, index) => {
+                        if (index === parts.length - 1) {
+                            // Set the parameter
+                            location[part] = value;
+                        } else {
+                            // Navigate into the correct location
+                            location[part] = location[part] ?? {};
+                            location = location[part];
+                        }
+                    })
+                } else {
+                    // Global config parameter
+                    queryConfig.global[key] = value;
+                }
+            })
+
+            return queryConfig;
+        }
+
         let meta, pub, software, data;
 
         let filterTriggers;
@@ -1308,7 +1339,7 @@
 
         const params = new URLSearchParams(window.location.search);
 
-        queryConfig = Object.fromEntries(params.entries());
+        queryConfig = getQueryConfig(params);
 
         const mode = params.get("mode");
         const doimagic = params.get("doimagic");

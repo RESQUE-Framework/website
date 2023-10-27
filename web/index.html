@@ -34,7 +34,7 @@
                 <div class="top">
                     <h3>RESQUE</h3>
                     <div id="actions">
-                        <button onclick="showClearModal()">Clear</button>
+                        <button onclick="showModal('clear-modal')">Clear</button>
                         <button onclick="triggerLoad()">Load</button>
                         <button onclick="exp()">Save to file ...</button>
                     </div>
@@ -140,7 +140,8 @@
             <details>
                 <summary>How can I clear all information I entered?</summary>
                 You can delete all data stored in the browser by clicking on the <button
-                    onclick="showClearModal()">Clear</button> button here or in the top left corner of this website.
+                    onclick="showModal('clear-modal')">Clear</button> button here or in the top left corner of this
+                website.
             </details>
             <details>
                 <summary>What should I do if I want to use RESQUE on a shared/public computer?</summary>
@@ -169,8 +170,22 @@
         <h3>⚠️ Warning!</h3>
         <p><b>This will delete all of your local data.</b><br><br>Do you want to save the data to a file first?</p>
         <br>
-        <button onclick="closeClearModal()">Cancel</button> <button onclick="exp()">Save data to local file</button>
+        <button onclick="closeModal('clear-modal')">Cancel</button> <button onclick="exp()">Save data to local
+            file</button>
         <button onclick="reset()" class="critical">Clear all data</button>
+    </dialog>
+
+    <dialog id="config-incompatible-modal">
+        <h3>Incompatible configuration</h3>
+        <p>You have old data present, which was created using a different configuration. Do you want to load it, or
+            start with a fresh form?</p>
+        <p>Your data might be incompatible with the current configuration and lead to unexpected behavior.
+        </p>
+        <br>
+        <div class="buttons">
+            <button onclick="saveCurrentQueryConfig(); closeModal('config-incompatible-modal')">Use old data</button>
+            <button onclick="showModal('clear-modal')" class="critical">Clear everything and start fresh</button>
+        </div>
     </dialog>
 
     <div id="mobile">
@@ -189,6 +204,7 @@
         style="visibility: hidden;" />
 
     <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/object-hash@3.0.0/dist/object_hash.min.js"></script>
     <script>
         pdfjsLib.GlobalWorkerOptions.workerSrc =
             'https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js';
@@ -368,12 +384,12 @@
             }
         }
 
-        const showClearModal = () => {
-            document.getElementById("clear-modal").showModal();
+        const showModal = (id) => {
+            document.getElementById(id).showModal();
         }
 
-        const closeClearModal = () => {
-            document.getElementById("clear-modal").close();
+        const closeModal = (id) => {
+            document.getElementById(id).close();
         }
 
         const showInfoModal = () => {
@@ -1331,6 +1347,11 @@
             return queryConfig;
         }
 
+        function saveCurrentQueryConfig() {
+            results[0].queryConfig = queryConfig;
+            save();
+        }
+
         let meta, pub, software, data;
 
         let filterTriggers;
@@ -1368,6 +1389,16 @@
             results.forEach((r, index) => {
                 document.getElementById("tabs").appendChild(createTab(r, index));
             });
+
+            if (!results[0].queryConfig) {
+                // save query config
+                saveCurrentQueryConfig();
+            }
+
+            // Check config compatibility
+            if (objectHash(results[0].queryConfig) !== objectHash(queryConfig)) {
+                showModal('config-incompatible-modal');
+            }
 
             loadForm({ index: currentTab });
             updateTabs();

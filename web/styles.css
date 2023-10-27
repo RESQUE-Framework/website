@@ -436,6 +436,7 @@ dialog {
     border: none;
     padding: 16px;
     box-shadow: 0 0 2px #ccc;
+    max-width: 460px;
 
     position: fixed;
     left: 0;
@@ -446,6 +447,10 @@ dialog {
 
 dialog h3 {
     margin: 0;
+}
+
+dialog .buttons {
+    text-align: center;
 }
 
 button.critical {

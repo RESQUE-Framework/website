@@ -734,8 +734,10 @@
 
         const evaluateCondition = condition => evaluateConditionInContext(condition, result);
 
-        const evaluateConditionInContext = (condition, context) => {
-            return eval(insertValuesIntoCondition(preprocessCondition(condition)))
+        const evaluateConditionInContext = (condition, context) => { 
+            const exists = id => !!id && id !== "";
+
+            return eval(insertValuesIntoCondition(preprocessCondition(condition)));
         }
 
         const applyFilters = () => {

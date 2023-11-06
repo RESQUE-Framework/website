@@ -70,7 +70,7 @@ Furthermore, there are 6 additional commentaries (in German) published in the [P
 To get an overview about the RESQUE project, you can look at our presentation slides:
 
 - Schönbrodt (2023-03): [Responsible Research Assessment: A practical recommendation for the evaluation of research quality beyond h-index and journal impact factors](./presentations/Schoenbrodt-2023-03-Responsible_Research_Assessment.pdf)
-
+- Gärtner (2023-09): [Responsible Research Assessment II: The RESQUE web form for hiring and promotion](./presentations/Gärtner-2023-Responsible_Research_Assessment_II.pdf)
 
 
 ## Resources

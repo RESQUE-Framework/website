@@ -888,6 +888,7 @@
             const creator = {
                 "separator": () => {
                     let separator = document.createElement("hr");
+                    separator.setAttribute("style", "height:3px;border:none;color:#333;background-color:#333;");
 
                     return separator;
                 },

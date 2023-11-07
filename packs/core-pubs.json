@@ -321,8 +321,7 @@
         },
         {
             "id": "P8P9bSEP",
-            "type": "separator",
-            "condition": "$P_Suitable === 'Yes'"
+            "type": "separator"
         },
         {
             "id": "P_CRediT_Info",
@@ -930,7 +929,8 @@
                     "text": "The data set is stored in a structured, open format (e.g., .csv, .tsv, .tab, .txt, .json; not .sav, .xlsx, .pdf)"
                 }
             ],
-            "condition": "$P_Suitable === 'Yes' && $P_Data === 'Yes' && ($P_Data_Source_NewOwn || $P_Data_Source_ReuseCompilation || $P_Data_Source_ReuseOwn) && $P_Data_Open === 'YesEntire' && ($P_Data_Open_AccessLevel =|= ['ZK0', 'ZK1'] || $P_Data_Open_AccessLevel === 'ZK2' && $P_Data_Open_AccessLevel_ZK2Explanation)"
+            "condition": "$P_Suitable === 'Yes' && $P_Data === 'Yes' && ($P_Data_Source_NewOwn || $P_Data_Source_ReuseCompilation || $P_Data_Source_ReuseOwn) && $P_Data_Open === 'YesEntire' && ($P_Data_Open_AccessLevel =|= ['ZK0', 'ZK1'] || $P_Data_Open_AccessLevel === 'ZK2' && $P_Data_Open_AccessLevel_ZK2Explanation)",
+            "info": "<ul><li>Persistent identifier: Data in an OSF project do count, as we consider OSF URLs to be persistent.</li></ul>"
         },
         {
             "id": "P13P14SEP",
@@ -1265,6 +1265,10 @@
             "type": "textbox",
             "title": "Sample size (if applicable, differentiate by levels / items / ...)",
             "condition": "$P_Suitable === 'Yes'"
+        },
+        {
+            "id": "MeritSEP",
+            "type": "separator"
         },
         {
             "id": "P_Merit",

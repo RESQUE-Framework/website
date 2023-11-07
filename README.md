@@ -150,7 +150,7 @@ Please note and respect our [Code of Conduct](/CODE_OF_CONDUCT.md).
 
 This project is a community effort with many contributors, including:
 
-- Alp Kaan Aksu (for designing and programming the web form [aut])
+- Alp Kaan Aksu (for designing and programming the web form and the form builder [aut])
 - Maximilian Ernst (software indicators [aut, ctb])
 - Aaron Peikert (software indicators [aut, ctb])
 - Daniel Nüst (code verification indicator [ctb])

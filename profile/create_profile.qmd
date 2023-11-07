@@ -24,10 +24,12 @@ library(dplyr)
 library(tidyr)
 library(stringr)
 library(ggplot2)
+library(scales)
 library(forcats)
 library(wordcloud)
 library(knitr)
 library(openalexR)
+library(tibble)
 
 unCamel <- function(x) gsub("([A-Z]){1}", " \\1", x) |> str_trim()
 
@@ -104,6 +106,34 @@ The `r nrow(dat[dat$type == "Publication", ])` publications had the following ty
 ```{r}
 kable(table(dat[dat$type == "Publication", "P_TypePublication"]))
 ```
+
+And the following methodological type:
+
+```{r}
+dat_tM <- dat %>% select(contains("P_TypeMethod"))
+
+# add missing columns
+expected_columns<- c(
+  P_TypeMethod_Empirical = FALSE,
+  P_TypeMethod_MetaAnalysis = FALSE, 
+  P_TypeMethod_Theoretical = FALSE, 
+  P_TypeMethod_Simulation = FALSE,
+  P_TypeMethod_OtherMethod = FALSE
+
+)
+# adding those columns to df1
+dat_tM <- add_column(dat_tM, !!!expected_columns[setdiff(names(expected_columns), names(dat_tM))])
+
+dat_tM_tab <- pivot_longer(dat_tM, everything()) %>% 
+  group_by(name) %>% 
+  summarise(paper_count=sum(value, na.rm=TRUE))
+
+dat_tM_tab$name <- str_replace(dat_tM_tab$name, "P_TypeMethod_", "") |> unCamel()
+
+colnames(dat_tM_tab) <- c("Type of method", "# papers")
+kable(dat_tM_tab)
+```
+
 
 ### Team science in publications?
 
@@ -254,6 +284,40 @@ repl_tab <- table(pubs$replication) |> prop.table() |> as.data.frame() %>%
 ```
 
 
+## What has been preregistered?
+
+```{r}
+prereg_pubs <- pubs[pubs$P_Preregistration %in% c("Yes", "RegisteredReport"), ]
+
+prereg_content <- prereg_pubs %>% select(contains("P_Preregistration_Content"))
+
+# add missing columns
+expected_columns<- c(
+  P_Preregistration_Content_SampleSizePlanning = FALSE,
+  P_Preregistration_Content_Hypotheses = FALSE, 
+  P_Preregistration_Content_Operationalizations = FALSE, 
+  P_Preregistration_Content_AnalysisPlan = FALSE
+
+)
+# adding those columns to df1
+prereg_content <- add_column(prereg_content, !!!expected_columns[setdiff(names(expected_columns), names(prereg_content))])
+
+prereg_content_tab <- pivot_longer(prereg_content, everything()) %>% 
+  group_by(name) %>% 
+  summarise(preregs=sum(value)) %>% 
+  mutate(preregs = preregs/nrow(prereg_content))
+
+prereg_content_tab$name <- str_replace(prereg_content_tab$name, "P_Preregistration_Content_", "") |> unCamel()
+```
+
+`r nrow(prereg_pubs)` of `r nrow(pubs)` eligible publications had preregistrations. The following components have been preregistered (relative to `r nrow(prereg_pubs)` preregistrations):
+
+```{r}
+# TODO: Print percentages for y axis, remove legend
+ggplot(prereg_content_tab, aes(x=name, y=preregs, fill=name)) + geom_bar(stat="identity") + coord_flip()
+```
+
+
 
 ## "Not applicable" justifications
 
@@ -316,3 +380,4 @@ if (all(c("P_Data_Open_AccessLevel", "P_Data_Open_AccessLevel_ZK2Explanation") %
 }
 
 ```
+

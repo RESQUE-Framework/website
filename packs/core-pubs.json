@@ -297,6 +297,34 @@
             "condition": "$P_Suitable === 'Yes'"
         },
         {
+            "id": "P_MultiStudy",
+            "type": "radio",
+            "title": "Is this paper a multi-study paper?",
+            "options": [
+                {
+                    "id": "No",
+                    "text": "No (only a single study is reported)"
+                },
+                {
+                    "id": "Yes",
+                    "text": "Yes"
+                }
+            ],
+            "condition": "$P_Suitable === 'Yes'",
+            "info": "{:'Yes' | In multi-study papers, sometimes the studies have very different properties (e.g., one is preregistered but the others are not). Therefore, in multi-study papers you need to select <i>one specific study</i> which then is rated.<br><br>If you want to include multiple studies from a single multi-study paper, they need to be entered in multiple slots of the rating scheme (as separate publications). In this case, the ratings for all items which are on the paper level (and not on the study level) might be repeated, such as the formal modeling of a theory.}"
+        },
+        {
+            "id": "P_MultiStudy_Selected",
+            "type": "number",
+            "title": "Which of the multiple studies is rated? (Enter a number)",
+            "condition": "$P_Suitable === 'Yes' && $P_MultiStudy === 'Yes'"
+        },
+        {
+            "id": "P8P9bSEP",
+            "type": "separator",
+            "condition": "$P_Suitable === 'Yes'"
+        },
+        {
             "id": "P_CRediT_Info",
             "type": "info",
             "text": "<h3>CRediT roles</h3>",

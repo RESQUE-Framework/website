@@ -122,11 +122,11 @@ Make sure that the version of the R scripts match the version of the rating shee
 
 TODO
 
-- Explicate the "menu approach"
+- Explicate the "menu approach" - see the [Form Builder](https://nicebread.github.io/RESQUE/web/builder)
 - Show recommended paragraph in job ad
 - cf. Lange et al.: Commit to weights and indicator sets when publishing the job ad; we recommend to publish the weights and indicators along with the ad.
 - Instructions for applicants
-- How to aggregate the xlsx files
+
 
 ### ...as tenure track committees
 
@@ -150,7 +150,7 @@ Please note and respect our [Code of Conduct](/CODE_OF_CONDUCT.md).
 
 This project is a community effort with many contributors, including:
 
-- Alp Kaan Aksu (for programming the web form [aut])
+- Alp Kaan Aksu (for designing and programming the web form [aut])
 - Maximilian Ernst (software indicators [aut, ctb])
 - Aaron Peikert (software indicators [aut, ctb])
 - Daniel Nüst (code verification indicator [ctb])

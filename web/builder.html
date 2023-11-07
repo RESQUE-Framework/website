@@ -21,13 +21,13 @@
 
     <div style="width: 95%; max-width: 740px; margin: 0 auto;">
         <h2>Global parameters</h2>
-        <p class="title">Number of slots (maximum number for research outputs)</p>
+        <p class="title">Number of slots (maximum number of submittable research outputs; default: 10)</p>
         <input type="number" placeholder="Number of slots" oninput="changeParameter('max', this.value)" />
 
-        <p class="title">Number of top papers (maximum number of 'best research outputs')</p>
+        <p class="title">Number of top papers (maximum number of 'best research outputs'; default: 3)</p>
         <input type="number" placeholder="Number of top papers" oninput="changeParameter('maxTopPapers', this.value)" />
 
-        <p class="title">Threshold for 'number of required research outputs' warning</p>
+        <p class="title">Threshold for 'number of required research outputs' warning (default: 5)</p>
         <input type="number" placeholder="Number of research outputs"
             oninput="changeParameter('minROWarningThreshold', this.value)" />
 
@@ -35,15 +35,15 @@
 
         <h2>Parameters for specific research outputs</h2>
         <h3>Publications</h3>
-        <p class="title">Score threshold for 'too many indicators are not applicable' warning</p>
+        <p class="title">Score threshold for 'too many indicators are not applicable' warning (default: 5)</p>
         <input type="number" placeholder="Score threshold for 'too many indicators are not applicable' warning" oninput="changeParameter('pub:minIndicatorsWarningThreshold', this.value)">
 
         <h3>Sofware Projects</h3>
-        <p class="title">Score threshold for 'too many indicators are not applicable' warning</p>
+        <p class="title">Score threshold for 'too many indicators are not applicable' warning (default: 5)</p>
         <input type="number" placeholder="Score threshold for 'too many indicators are not applicable' warning" oninput="changeParameter('software:minIndicatorsWarningThreshold', this.value)">
 
         <h3>Data Sets</h3>
-        <p class="title">Score threshold for 'too many indicators are not applicable' warning</p>
+        <p class="title">Score threshold for 'too many indicators are not applicable' warning (default: 5)</p>
         <input type="number" placeholder="Score threshold for 'too many indicators are not applicable' warning" oninput="changeParameter('data:minIndicatorsWarningThreshold', this.value)">
     </div>
 
@@ -53,7 +53,7 @@
         displayLink(URL);
 
         let defaults = {
-            max: "12",
+            max: "10",
             maxTopPapers: "3",
             minROWarningThreshold: "5",
             "pubs.minIndicatorsWarningThreshold": "5",

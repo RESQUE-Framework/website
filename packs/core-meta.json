@@ -8,15 +8,44 @@
             "title": "Last name"
         },
         {
-            "id": "ExternalRater",
+            "id": "FirstName",
             "type": "text",
-            "title": "Name of external rater (optional)"
+            "title": "First name"
+        },
+        {
+            "id": "RaterType",
+            "type": "radio",
+            "title": "Who enters the data?",
+            "options": [
+                {
+                    "id": "Applicant",
+                    "text": "I am the applicant & a co-author of these research outputs"
+                },
+                {
+                    "id": "External",
+                    "text": "I am an external rater"
+                }
+            ]
+        },
+        {
+            "id": "ExternalRaterName",
+            "type": "text",
+            "title": "Name of external rater (optional)",
+            "condition": "$RaterType === 'External'"
+        },
+        {
+            "id": "METASEP1",
+            "type": "separator"
         },
         {
             "id": "TopPapers",
             "type": "info",
-            "title": "Top papers",
+            "title": "The following papers were selected as 'Top Papers':",
             "text": "global$P_TopPaper_Select@papers"
+        },
+        {
+            "id": "METASEP2",
+            "type": "separator"
         },
         {
             "id": "DateCreated",

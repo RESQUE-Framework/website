@@ -1213,12 +1213,6 @@
             "condition": "$P_Suitable === 'Yes' && $P_Preregistration =|= ['Yes', 'RegisteredReport'] && $P_PreregisteredReplication === 'NotApplicable'"
         },
         {
-            "id": "P_PreregisteredReplication_Identifier",
-            "type": "text",
-            "title": "⤷ DOI or URL of the preregistration of the replication",
-            "condition": "$P_Suitable === 'Yes' && $P_Preregistration =|= ['Yes', 'RegisteredReport'] && $P_PreregisteredReplication === 'Yes'"
-        },
-        {
             "id": "P19P20SEP",
             "type": "separator",
             "condition": "$P_Suitable === 'Yes'"

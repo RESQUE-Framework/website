@@ -13,6 +13,11 @@
             "title": "First name"
         },
         {
+            "id": "ORCID",
+            "type": "text",
+            "title": "ORCID identifier (as full link, e.g. https://orcid.org/0000-0002-1825-0097)"
+        },
+        {
             "id": "RaterType",
             "type": "radio",
             "title": "Who enters the data?",

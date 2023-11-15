@@ -1261,20 +1261,43 @@
             "condition": "$P_Suitable === 'Yes'"
         },
         {
-            "id": "MeritSEP",
-            "type": "separator"
-        },
-        {
             "id": "P_Merit",
             "type": "textbox",
             "maxwords": 150,
             "title": "Merit / impact statement (narrative, max. 150 words)"
         },
         {
+            "id": "MeritSEP",
+            "type": "separator"
+        },
+        {
             "id": "P_GeneralComments",
             "type": "textbox",
             "maxwords": 500,
-            "title": "General comments (max. 500 words)"
+            "title": "(optional) General comments (max. 500 words)"
+        },
+        {
+            "id": "P_SchemeFit",
+            "type": "dropdown",
+            "title": "(optional) How well did the scheme (except your merit statement) cover the merits of this research output?",
+            "options": [
+                {
+                    "id": "0",
+                    "text": "Not at all"
+                },
+                {
+                    "id": "1",
+                    "text": "Slightly: Some merits were covered"
+                },
+                {
+                    "id": "2",
+                    "text": "Moderately: Many merits covered; some aspects missing"
+                },
+                {
+                    "id": "3",
+                    "text": "Very well: Most merits covered"
+                }
+            ]            
         }
     ]
 }

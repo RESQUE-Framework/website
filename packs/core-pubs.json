@@ -4,152 +4,152 @@
     "title": "Publication",
     "scoring": {
         "P_Data_Open_AccessLevel": {
-            "not_applicable": "$P_Suitable === 'No' || $P_Data_Open === 'NotApplicable' && exists($P_Data_Open_NAExplanation) || $P_Data === 'No'",
+            "not_applicable": "($P_Suitable === 'No') || (($P_Data_Open === 'NotApplicable') && (exists($P_Data_Open_NAExplanation))) || ($P_Data === 'No')",
             "max": 1,
             "op": "select",
             "points": [
                 {
                     "value": 1,
-                    "condition": "$P_Data === 'Yes' && $P_Data_Source_NewOwn && $P_Data_Open === 'YesEntire' && $P_Data_Open_AccessLevel =|= ['ZK0', 'ZK1']"
+                    "condition": "($P_Data === 'Yes') && ($P_Data_Source_NewOwn) && ($P_Data_Open === 'YesEntire') && ($P_Data_Open_AccessLevel =|= ['ZK0', 'ZK1'])"
                 }
             ]
         },
         "P_Data_Open_FAIR": {
-            "not_applicable": "$P_Suitable === 'No' || $P_Data_Open === 'NotApplicable' && exists($P_Data_Open_NAExplanation) || $P_Data === 'No'",
+            "not_applicable": "($P_Suitable === 'No') || (($P_Data_Open === 'NotApplicable') && (exists($P_Data_Open_NAExplanation))) || ($P_Data === 'No')",
             "max": 1,
             "op": "sum",
             "points": [
                 {
                     "value": 0.25,
-                    "condition": "exists($P_Data_Open_FAIR_PersistentIdentifier) && $P_Data === 'Yes' && $P_Data_Source_NewOwn && $P_Data_Open === 'YesEntire' && $P_Data_Open_AccessLevel =|= ['ZK0', 'ZK1']"
+                    "condition": "(exists($P_Data_Open_FAIR_PersistentIdentifier)) && ($P_Data === 'Yes') && ($P_Data_Source_NewOwn) && ($P_Data_Open === 'YesEntire') && ($P_Data_Open_AccessLevel =|= ['ZK0', 'ZK1'])"
                 },
                 {
                     "value": 0.5,
-                    "condition": "$P_Data_Open_FAIR_Codebook && $P_Data === 'Yes' && $P_Data_Source_NewOwn && $P_Data_Open === 'YesEntire' && $P_Data_Open_AccessLevel =|= ['ZK0', 'ZK1']"
+                    "condition": "($P_Data_Open_FAIR_Codebook) && ($P_Data === 'Yes') && ($P_Data_Source_NewOwn) && ($P_Data_Open === 'YesEntire') && ($P_Data_Open_AccessLevel =|= ['ZK0', 'ZK1'])"
                 },
                 {
                     "value": 0.25,
-                    "condition": "$P_Data_Open_FAIR_StructuredOpenFormat && $P_Data === 'Yes' && $P_Data_Source_NewOwn && $P_Data_Open === 'YesEntire' && $P_Data_Open_AccessLevel =|= ['ZK0', 'ZK1']"
+                    "condition": "($P_Data_Open_FAIR_StructuredOpenFormat) && ($P_Data === 'Yes') && ($P_Data_Source_NewOwn) && ($P_Data_Open === 'YesEntire') && ($P_Data_Open_AccessLevel =|= ['ZK0', 'ZK1'])"
                 }
             ]
         },
         "P_IndependentVerification": {
-            "not_applicable": "$P_Suitable === 'No' || $P_IndependentVerification === 'NotApplicable' && exists($P_IndependentVerification_NAExplanation)",
+            "not_applicable": "($P_Suitable === 'No') || (($P_IndependentVerification === 'NotApplicable') && (exists($P_IndependentVerification_NAExplanation)))",
             "max": 1,
             "op": "select",
             "points": [
                 {
                     "value": 1,
-                    "condition": "$P_IndependentVerification === 'Yes' && exists($P_IndependentVerification_Identifier)"
+                    "condition": "($P_IndependentVerification === 'Yes') && (exists($P_IndependentVerification_Identifier))"
                 }
             ]
         },
         "P_ReproducibleScripts": {
-            "not_applicable": "$P_Suitable === 'No' || $P_ReproducibleScripts === 'NotApplicable' && exists($P_ReproducibleScripts_NAExplanation)",
+            "not_applicable": "($P_Suitable === 'No') || (($P_ReproducibleScripts === 'NotApplicable') && (exists($P_ReproducibleScripts_NAExplanation)))",
             "max": 1,
             "op": "select",
             "points": [
                 {
                     "value": 1,
-                    "condition": "$P_ReproducibleScripts === 'YesEntire' && exists($P_ReproducibleScripts_Identifier)"
+                    "condition": "($P_ReproducibleScripts === 'YesEntire') && (exists($P_ReproducibleScripts_Identifier))"
                 }
             ]
         },
         "P_ReproducibleScripts_FAIR": {
-            "not_applicable": "$P_Suitable === 'No' || $P_ReproducibleScripts === 'NotApplicable' && exists($P_ReproducibleScripts_NAExplanation)",
+            "not_applicable": "($P_Suitable === 'No') || (($P_ReproducibleScripts === 'NotApplicable') && (exists($P_ReproducibleScripts_NAExplanation)))",
             "max": 1,
             "op": "sum",
             "points": [
                 {
                     "value": 0.20,
-                    "condition": "$P_ReproducibleScripts_FAIR_TimestampedRepository && $P_ReproducibleScripts =|= ['YesParts', 'YesEntire']"
+                    "condition": "($P_ReproducibleScripts_FAIR_TimestampedRepository) && ($P_ReproducibleScripts =|= ['YesParts', 'YesEntire'])"
                 },
                 {
                     "value": 0.20,
-                    "condition": "$P_ReproducibleScripts_FAIR_VersionControl && $P_ReproducibleScripts =|= ['YesParts', 'YesEntire']"
+                    "condition": "($P_ReproducibleScripts_FAIR_VersionControl) && ($P_ReproducibleScripts =|= ['YesParts', 'YesEntire'])"
                 },
                 {
                     "value": 0.20,
-                    "condition": "$P_ReproducibleScripts_FAIR_ReproducibleManuscripts && $P_ReproducibleScripts =|= ['YesParts', 'YesEntire']"
+                    "condition": "($P_ReproducibleScripts_FAIR_ReproducibleManuscripts) && ($P_ReproducibleScripts =|= ['YesParts', 'YesEntire'])"
                 },
                 {
                     "value": 0.20,
-                    "condition": "$P_ReproducibleScripts_FAIR_Documentation && $P_ReproducibleScripts =|= ['YesParts', 'YesEntire']"
+                    "condition": "($P_ReproducibleScripts_FAIR_Documentation) && ($P_ReproducibleScripts =|= ['YesParts', 'YesEntire'])"
                 },
                 {
                     "value": 0.20,
-                    "condition": "$P_ReproducibleScripts_FAIR_ReproducibleSoftwareEnvironments && $P_ReproducibleScripts =|= ['YesParts', 'YesEntire']"
+                    "condition": "($P_ReproducibleScripts_FAIR_ReproducibleSoftwareEnvironments) && ($P_ReproducibleScripts =|= ['YesParts', 'YesEntire'])"
                 }
             ]
         },
         "P_OpenMaterials": {
-            "not_applicable": "$P_Suitable === 'No' || $P_OpenMaterials === 'NotApplicable' && exists($P_OpenMaterials_NAExplanation)",
+            "not_applicable": "($P_Suitable === 'No') || (($P_OpenMaterials === 'NotApplicable') && (exists($P_OpenMaterials_NAExplanation)))",
             "max": 1,
             "op": "select",
             "points": [
                 {
                     "value": 1,
-                    "condition": "$P_OpenMaterials === 'YesEntire' && exists($P_OpenMaterials_Identifier)"
+                    "condition": "($P_OpenMaterials === 'YesEntire') && (exists($P_OpenMaterials_Identifier))"
                 }
             ]
         },
         "P_Preregistration": {
-            "not_applicable": "$P_Suitable === 'No' || $P_Preregistration === 'NotApplicable' && exists($P_Preregistration_NAExplanation)",
+            "not_applicable": "($P_Suitable === 'No') || (($P_Preregistration === 'NotApplicable') && (exists($P_Preregistration_NAExplanation)))",
             "max": 2,
             "op": "select",
             "points": [
                 {
                     "value": 1,
-                    "condition": "$P_Preregistration === 'Yes' && exists($P_Preregistration_Identifier)"
+                    "condition": "($P_Preregistration === 'Yes') && (exists($P_Preregistration_Identifier))"
                 },
                 {
                     "value": 2,
-                    "condition": "$P_Preregistration === 'RegisteredReport' && exists($P_Preregistration_Identifier)"
+                    "condition": "($P_Preregistration === 'RegisteredReport') && (exists($P_Preregistration_Identifier))"
                 }
             ]
         },
         "P_Preregistration_Content": {
-            "not_applicable": "$P_Suitable === 'No' || $P_Preregistration === 'NotApplicable' && exists($P_Preregistration_NAExplanation)",
+            "not_applicable": "($P_Suitable === 'No') || (($P_Preregistration === 'NotApplicable') && (exists($P_Preregistration_NAExplanation)))",
             "max": 1,
             "op": "sum",
             "points": [
                 {
                     "value": 0.25,
-                    "condition": "$P_Preregistration_Content_SampleSizePlanning"
+                    "condition": "($P_Preregistration_Content_SampleSizePlanning)"
                 },
                 {
                     "value": 0.25,
-                    "condition": "$P_Preregistration_Content_Hypotheses"
+                    "condition": "($P_Preregistration_Content_Hypotheses)"
                 },
                 {
                     "value": 0.25,
-                    "condition": "$P_Preregistration_Content_Operationalizations"
+                    "condition": "($P_Preregistration_Content_Operationalizations)"
                 },
                 {
                     "value": 0.25,
-                    "condition": "$P_Preregistration_Content_AnalysisPlan"
+                    "condition": "($P_Preregistration_Content_AnalysisPlan)"
                 }
             ]
         },
         "P_FormalModeling": {
-            "not_applicable": "$P_Suitable === 'No' || $P_FormalModeling === 'NotApplicable' && exists($P_FormalModeling_NAExplanation)",
+            "not_applicable": "($P_Suitable === 'No') || (($P_FormalModeling === 'NotApplicable') && (exists($P_FormalModeling_NAExplanation)))",
             "max": 2,
             "op": "select",
             "points": [
                 {
                     "value": 2,
-                    "condition": "$P_FormalModeling === 'Yes'"
+                    "condition": "($P_FormalModeling === 'Yes')"
                 }
             ]
         },
         "P_PreregisteredReplication": {
-            "not_applicable": "$P_Suitable === 'No' || $P_PreregisteredReplication === 'NotApplicable' && exists($P_PreregisteredReplication_NAExplanation)",
+            "not_applicable": "($P_Suitable === 'No') || (($P_PreregisteredReplication === 'NotApplicable') && (exists($P_PreregisteredReplication_NAExplanation)))",
             "max": 1,
             "op": "select",
             "points": [
                 {
                     "value": 1,
-                    "condition": "$P_PreregisteredReplication === 'Yes' && exists($P_PreregisteredReplication_Identifier)"
+                    "condition": "($P_PreregisteredReplication === 'Yes') && (exists($P_PreregisteredReplication_Identifier))"
                 }
             ]
         }

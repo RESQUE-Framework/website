@@ -245,7 +245,9 @@ header {
     margin: 0;
 }
 
-#item-background-details {
+#item-background-details,
+#tip-external-details
+{
     color: gray;
     display: none;
     margin-top: 1rem;

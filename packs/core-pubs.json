@@ -283,7 +283,8 @@
                     "text": "Yes"
                 }
             ],
-            "default": "Yes"
+            "default": "Yes",
+            "tip_external": "A tip for the external reviewer."
         },
         {
             "id": "P_Suitable_Explanation",

@@ -95,6 +95,10 @@
                     <summary>Background information</summary>
                     <span id="item-background"></span>
                 </details>
+                <details id="tip-external-details">
+                    <summary>Tips for external raters</summary>
+                    <span id="tip-external"></span>
+                </details>
             </div>
             <div class="menu-bottom">
                 <span onclick="showInfoModal()" class="fakelink">What is RESQUE? / Help / Privacy</span> • <a
@@ -804,8 +808,12 @@
 
         const showInfo = (e, element) => {
             const itemInfo = document.getElementById("item-info");
+
             const itemBackground = document.getElementById("item-background");
             const itemBackgroundDetails = document.getElementById("item-background-details");
+
+            const tipExternal = document.getElementById("tip-external");
+            const tipExternalDetails = document.getElementById("tip-external-details");
 
             if (element.info) {
                 itemInfo.style.color = "#333333";
@@ -821,6 +829,14 @@
                 itemBackgroundDetails.removeAttribute("open");
             } else {
                 itemBackgroundDetails.style.display = "none";
+            }
+
+            if (element.tip_external) {
+                tipExternal.innerHTML = element.tip_external;
+                tipExternalDetails.style.display = "block";
+                tipExternalDetails.removeAttribute("open");
+            } else {
+                tipExternalDetails.style.display = "none";
             }
         }
 

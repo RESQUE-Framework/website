@@ -161,6 +161,11 @@
             "text": "Date added: $date_added@datetime"
         },
         {
+            "id": "DOI",
+            "type": "text",
+            "title": "DOI"
+        },
+        {
             "id": "Title",
             "type": "textbox",
             "title": "Paper title (do not provide journal name)"
@@ -169,11 +174,6 @@
             "id": "Year",
             "type": "number",
             "title": "Year of publication"
-        },
-        {
-            "id": "DOI",
-            "type": "text",
-            "title": "DOI"
         },
         {
             "id": "P_TopPaper",

@@ -130,7 +130,7 @@ score <- function(research_output) {
             if (indicator$op == "sum") {
                 sum(values)
             } else if (indicator$op == "select") {
-                values[[1]]
+                max(values)
             } else {
                 0
             }

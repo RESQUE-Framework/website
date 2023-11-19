@@ -34,7 +34,7 @@
                 <div class="top">
                     <h3>RESQUE</h3>
                     <div id="actions">
-                        <button onclick="showClearModal()">Clear</button>
+                        <button onclick="showModal('clear-modal')">Clear</button>
                         <button onclick="triggerLoad()">Load</button>
                         <button onclick="exp()">Save to file ...</button>
                     </div>
@@ -68,7 +68,7 @@
             <div class="card animate pop" id="score-box">
                 <div id="score-container">
                     <div id="current-score">
-                        <span class="sub">Current Research Output</span>
+                        <span class="sub">Rigor Score of selected research output</span>
                         <span id="no-score">Applicant requests<br>manual processing</span>
 
                         <div id="current-score-container">
@@ -78,19 +78,16 @@
                         </div>
                     </div>
                     <div id="overall-score">
-                        <span class="sub">Overall Score (mean)</span>
+                        <span class="sub">Overall Rigor Score (mean)</span>
                         <div id="overall-score-container">
                             <p id="overall-score-percentage"></p>
                         </div>
                     </div>
                 </div>
-                <p id="ro-count-container"><span class="tag"><span id="scoredROs"></span> scored research outputs</span>
-                </p>
+                <p id="ro-count-container"><span class="tag"><span id="scoredROs"></span> scored research outputs</span></p>
                 <p id="warning-score-too-low">⚠️ Many indicators are not applicable. Manual processing of this
                     publication is recommended.</p>
-                <p id="warning-min-ro-threshold">⚠️ Please provide at least <span id="minROWarningThreshold"></span>
-                    research contributions that can be scored (e.g. by adding more empirical papers, data sets, or
-                    software contributions)</p>
+                <p id="warning-min-ro-threshold">⚠️ Please provide at least <span id="minROWarningThreshold"></span> research contributions that can be scored (e.g. by adding more empirical papers, data sets, or software contributions)</p>
             </div>
             <div id="info-box" class="card">
                 <p id="item-info">Click on an indicator to see detailed information</p>
@@ -147,7 +144,8 @@
             <details>
                 <summary>How can I clear all information I entered?</summary>
                 You can delete all data stored in the browser by clicking on the <button
-                    onclick="showClearModal()">Clear</button> button here or in the top left corner of this website.
+                    onclick="showModal('clear-modal')">Clear</button> button here or in the top left corner of this
+                website.
             </details>
             <details>
                 <summary>What should I do if I want to use RESQUE on a shared/public computer?</summary>
@@ -176,8 +174,22 @@
         <h3>⚠️ Warning!</h3>
         <p><b>This will delete all of your local data.</b><br><br>Do you want to save the data to a file first?</p>
         <br>
-        <button onclick="closeClearModal()">Cancel</button> <button onclick="exp()">Save data to local file</button>
+        <button onclick="closeModal('clear-modal')">Cancel</button> <button onclick="exp()">Save data to local
+            file</button>
         <button onclick="reset()" class="critical">Clear all data</button>
+    </dialog>
+
+    <dialog id="config-incompatible-modal">
+        <h3>Incompatible configuration</h3>
+        <p>You have old data present, which was created using a different configuration. Do you want to load it, or
+            start with a fresh form?</p>
+        <p>Your data might be incompatible with the current configuration and lead to unexpected behavior.
+        </p>
+        <br>
+        <div class="buttons">
+            <button onclick="saveCurrentQueryConfig(); closeModal('config-incompatible-modal')">Use old data</button>
+            <button onclick="showModal('clear-modal')" class="critical">Clear everything and start fresh</button>
+        </div>
     </dialog>
 
     <div id="mobile">
@@ -196,6 +208,7 @@
         style="visibility: hidden;" />
 
     <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/object-hash@3.0.0/dist/object_hash.min.js"></script>
     <script>
         pdfjsLib.GlobalWorkerOptions.workerSrc =
             'https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js';
@@ -243,7 +256,6 @@
                 const loadingTask = pdfjsLib.getDocument(typedarray);
                 loadingTask.promise.then(pdf => {
                     extractText(pdf).then(text => {
-                        console.log(text);
                         let dois = extractDOIs(text);
                         document.getElementById('add-doi').value = dois[0];
 
@@ -368,54 +380,6 @@
             return defaultValues;
         }
 
-        const idDepth = id => (id.match(/_/g) || []).length;
-
-        const isParent = (idParent, idChild) => {
-            if (idDepth(idChild) - idDepth(idParent) !== 1) {
-                return false;
-            }
-
-            const childPrefix = idChild.substring(0, idChild.lastIndexOf('_'));
-
-            return childPrefix === idParent;
-        }
-
-        const hasCommonParent = (id1, id2) => id1.substring(0, id1.lastIndexOf('_')) === id2.substring(0, id2.lastIndexOf('_'));;
-
-        const indentations = idList => {
-            let listPath = [];
-
-            let result = [];
-
-            let currentList = result;
-
-            for (let i = 0; i < idList.length; i++) {
-                if (i - 1 >= 0 && isParent(idList[i - 1], idList[i])) {
-                    if (currentList[0] !== idList[i]) {
-                        listPath.push(currentList);
-                        let subList = [];
-                        currentList.push(subList);
-                        currentList = subList;
-
-                        currentList.push(idList[i]);
-                    }
-                } else if ((i - 1 >= 0 && hasCommonParent(idList[i - 1], idList[i]))) {
-                    currentList.push(idList[i])
-                } else {
-                    while (listPath.length > 0) {
-                        currentList = listPath.pop();
-
-                        if (hasCommonParent(idList[i], currentList[0]))
-                            break;
-                    }
-
-                    currentList.push(idList[i]);
-                }
-            }
-
-            return result;
-        }
-
         // Modal
 
         window.onclick = e => {
@@ -424,12 +388,12 @@
             }
         }
 
-        const showClearModal = () => {
-            document.getElementById("clear-modal").showModal();
+        const showModal = (id) => {
+            document.getElementById(id).showModal();
         }
 
-        const closeClearModal = () => {
-            document.getElementById("clear-modal").close();
+        const closeModal = (id) => {
+            document.getElementById(id).close();
         }
 
         const showInfoModal = () => {
@@ -438,48 +402,6 @@
 
         const closeInfoModal = () => {
             document.getElementById("info-modal").style.display = "none";
-        }
-
-        const fetchInformationUsingDOI = async (doi) => {
-            return await fetch("https://doi.org/" + doi, {
-                headers: {
-                    Accept: 'application/vnd.citationstyles.csl+json'
-                }
-            })
-                .then(response => response.json())
-                .then(response => {
-                    if (mode === MODE_PREVIEW) {
-                        console.log(response);
-                    }
-
-                    return {
-                        title: response.title,
-                        year: response.published["date-parts"][0][0],
-                        DOI: response.DOI
-                    }
-                })
-                .catch(() => {
-                    return {
-                        title: doi ? '⚠️ <b>Invalid DOI:</b> ' + doi : undefined,
-                        year: undefined,
-                        DOI: doi
-                    }
-                })
-        }
-
-        const displayInformation = async (doi) => {
-
-            const publicationInformation = await fetchInformationUsingDOI(doi);
-
-            result.Title = publicationInformation.title;
-            result.Year = publicationInformation.year;
-            result.DOI = publicationInformation.DOI;
-
-            save();
-
-            rerenderDynamicValues();
-            updateTabs();
-
         }
 
         const newTab = type => {
@@ -504,7 +426,37 @@
             const tabsElement = document.getElementsByClassName("tabs-sidebar")[0];
 
             if (doi) {
-                const publicationInformation = fetchInformationUsingDOI(doi.trim());
+                fetch("https://doi.org/" + doi.trim(), {
+                    headers: {
+                        Accept: 'application/vnd.citationstyles.csl+json'
+                    }
+                })
+                    .then(response => response.json())
+                    .then(response => {
+                        if (mode === MODE_PREVIEW) {
+                            console.log(response);
+                        }
+
+                        if (type === "pub") {
+                            results[index].Title = response.title;
+                            results[index].Year = response.published["date-parts"][0][0];
+                            results[index].DOI = response.DOI;
+
+                            save();
+
+                            if (currentTab === index) {
+                                location.reload();
+                            } else {
+                                // Switch to new tab
+                                tabs[results.length - 1].click();
+
+                                tabsElement.scrollTo({
+                                    top: tabsElement.scrollHeight,
+                                    behavior: "smooth"
+                                });
+                            }
+                        }
+                    })
             } else {
                 // Switch to new tab
                 save();
@@ -685,6 +637,35 @@
                 document.getElementById("add-container").style.display = "inherit"
             }
 
+            let numberOfPublications = 0;
+            let numberOfSoftwareProjects = 0;
+            let numberOfDataSets = 0;
+
+            tabs.forEach(t => {
+                const content = t.firstChild;
+
+                const index = parseInt(t.getAttribute("data-index"));
+                const result = results[index];
+
+                switch (result.type) {
+                    case "meta":
+                        content.innerHTML = `<b>Author / Metadata</b>${result["LastName"] ? '<br>' + result["LastName"] : ''}`;
+                        break;
+                    case "pub":
+                        content.innerHTML = `<b>Publication ${++numberOfPublications}</b>${result["Title"] ? '<br>' + result["Title"] : ''}`
+                        break;
+                    case "software":
+                        content.innerHTML = `<b>Software Project ${++numberOfSoftwareProjects}</b>${result["Title"] ? '<br>' + result["Title"] : ''}`;
+                        break;
+                    case "data":
+                        content.innerHTML = `<b>Data Set ${++numberOfDataSets}</b>${result["Title"] ? '<br>' + result["Title"] : ''}`;
+                        break;
+
+                    default:
+                        break;
+                }
+            })
+
             if (result.type === 'meta') {
                 // Hide the score box and skip updating score values
                 document.getElementById('score-box').style.display = "none";
@@ -757,8 +738,10 @@
 
         const evaluateCondition = condition => evaluateConditionInContext(condition, result);
 
-        const evaluateConditionInContext = (condition, context) => {
-            return eval(insertValuesIntoCondition(preprocessCondition(condition)))
+        const evaluateConditionInContext = (condition, context) => { 
+            const exists = id => !!id && id !== "";
+
+            return eval(insertValuesIntoCondition(preprocessCondition(condition)));
         }
 
         const applyFilters = () => {
@@ -909,12 +892,11 @@
                     return processType[type](result[variable]);
                 })
                 .replaceAll(/\$([a-zA-Z0-9_]+)/g, (match, variable) => {
-                    return result[variable] ?? '...';
+                    return result[variable];
                 });
         }
 
         const preprocessText = text => insertValuesIntoText(partialHighlight(null, text));
-
 
         const createInput = (element) => {
             elems.push(element);
@@ -922,6 +904,7 @@
             const creator = {
                 "separator": () => {
                     let separator = document.createElement("hr");
+                    separator.setAttribute("style", "height:3px;border:none;color:#333;background-color:#333;");
 
                     return separator;
                 },
@@ -1145,12 +1128,6 @@
                 }
             }
 
-            const actions = {
-                fetch_doi: () => {
-                    displayInformation(result['DOI']);
-                }
-            };
-
             if (element.type in creator) {
                 let domElement = creator[element.type]();
 
@@ -1160,11 +1137,8 @@
                     domElement.id = element.id;
                 }
 
-                // domElement.pattern = element.check;
+                domElement.pattern = element.check;
 
-                if (element.onchange) {
-                    domElement.onblur = actions[element.onchange];
-                }
 
                 if (filterTriggers.includes(element.id)) {
                     domElement.addEventListener('input', update);
@@ -1266,38 +1240,11 @@
         }
 
         const updateTabs = () => {
-            let numberOfPublications = 0;
-            let numberOfSoftwareProjects = 0;
-            let numberOfDataSets = 0;
-
             tabs.forEach(t => {
                 if (parseInt(t.getAttribute("data-index")) === currentTab) {
                     t.classList.add("selected");
                 } else {
                     t.classList.remove("selected");
-                }
-
-                const content = t.firstChild;
-
-                const index = parseInt(t.getAttribute("data-index"));
-                const result = results[index];
-
-                switch (result.type) {
-                    case "meta":
-                        content.innerHTML = `<b>Author / Metadata</b>${result["LastName"] ? '<br>' + result["LastName"] : ''}`;
-                        break;
-                    case "pub":
-                        content.innerHTML = `<b>Publication ${++numberOfPublications}</b>${result["Title"] ? '<br>' + result["Title"] : ''}`
-                        break;
-                    case "software":
-                        content.innerHTML = `<b>Software Project ${++numberOfSoftwareProjects}</b>${result["Title"] ? '<br>' + result["Title"] : ''}`;
-                        break;
-                    case "data":
-                        content.innerHTML = `<b>Data Set ${++numberOfDataSets}</b>${result["Title"] ? '<br>' + result["Title"] : ''}`;
-                        break;
-
-                    default:
-                        break;
                 }
             })
         }
@@ -1372,7 +1319,7 @@
 
             }
 
-            if (scoring.post) {
+            if(scoring.post) {
                 scoring.post.forEach(transformation => {
                     if (evaluateConditionInContext(transformation.condition, r)) {
                         console.log(transformation.factor)
@@ -1419,6 +1366,11 @@
             return queryConfig;
         }
 
+        function saveCurrentQueryConfig() {
+            results[0].queryConfig = queryConfig;
+            save();
+        }
+
         let meta, pub, software, data;
 
         let filterTriggers;
@@ -1456,6 +1408,16 @@
             results.forEach((r, index) => {
                 document.getElementById("tabs").appendChild(createTab(r, index));
             });
+
+            if (!results[0].queryConfig) {
+                // save query config
+                saveCurrentQueryConfig();
+            }
+
+            // Check config compatibility
+            if (objectHash(results[0].queryConfig) !== objectHash(queryConfig)) {
+                showModal('config-incompatible-modal');
+            }
 
             loadForm({ index: currentTab });
             updateTabs();

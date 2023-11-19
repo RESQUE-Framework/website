@@ -162,5 +162,26 @@ score_all <- function(research_outputs) {
     )
 }
 
+# Score all research outputs from a file
+# Reads the research outputs from the specified file and scores them (using score_all)
+# Returns a list with the following elements:
+# - scores: a list of scores for each research output
+# - scored_research_outputs: the number of research outputs that were scored
+# - overall_score: the average score of all scored research outputs
+score_all_from_file <- function(path) {
+    research_outputs <- read_json(path)
+    score_all(research_outputs)
+}
+
+# ====== Example ======
+
+# Example: score multiple research outputs
 # research_outputs <- read_json("profile/data/resque_1697454489129.json")
 # score_all(research_outputs)
+
+# Example: score a single research output
+# research_output <- research_outputs[[1]]
+# score(research_output)
+
+# Example: score all research outputs from a file
+# score_all_from_file("profile/data/resque_1697454489129.json")

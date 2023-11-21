@@ -99,10 +99,16 @@ evaluate_condition_in_context <- function(condition, context) {
 score <- function(research_output) {
     scoring <- get_scoring_information(research_output)
 
+    indicators <- list()
+
     max_score <- 0
     reached_score <- 0
 
-    for (indicator in scoring) {
+    for (indicator_index in seq_along(scoring)) {
+        indicator <- scoring[[indicator_index]]
+        # Get indicator name using the index
+        indicator_name <- names(scoring)[indicator_index]
+
         # Handle 'not applicable' condition
         # Skip this indicator if the 'not applicable' condition is met
         if (evaluate_condition_in_context(
@@ -126,17 +132,23 @@ score <- function(research_output) {
         )
 
         # Apply the specified operation to the values
-        reached_score <- reached_score +
-            if (indicator$op == "sum") {
-                sum(values)
-            } else if (indicator$op == "select") {
-                max(values)
-            } else {
-                0
-            }
+        indicator_score <- if (indicator$op == "sum") {
+            sum(values)
+        } else if (indicator$op == "select") {
+            max(values)
+        } else {
+            0
+        }
+
+        # Add the indicator score to the reached score
+        reached_score <- reached_score + indicator_score
+
+        # Add the indicator score to the indicator score list
+        indicators <- c(indicators, setNames(list(indicator_score), indicator_name))
     }
 
     list(
+        indicators = indicators,
         max_score = max_score,
         score = reached_score,
         relative_score = reached_score / max_score
@@ -184,4 +196,4 @@ score_all_from_file <- function(path) {
 # score(research_output)
 
 # Example: score all research outputs from a file
-# score_all_from_file("profile/data/resque_1697454489129.json")
+# scores <- score_all_from_file("profile/data/resque_1696782133298.json")

@@ -144,7 +144,7 @@ score <- function(research_output) {
         reached_score <- reached_score + indicator_score
 
         # Add the indicator score to the indicator score list
-        indicators <- c(indicators, setNames(list(indicator_score), indicator_name))
+        indicators <- c(indicators, setNames(list(list(value = indicator_score, max = indicator$max), indicator_name))
     }
 
     list(

@@ -144,7 +144,7 @@ score <- function(research_output) {
         reached_score <- reached_score + indicator_score
 
         # Add the indicator score to the indicator score list
-        indicators <- c(indicators, setNames(list(list(value = indicator_score, max = indicator$max), indicator_name))
+        indicators <- c(indicators, setNames(list(list(value = indicator_score, max = indicator$max)), indicator_name))
     }
 
     list(
@@ -196,4 +196,4 @@ score_all_from_file <- function(path) {
 # score(research_output)
 
 # Example: score all research outputs from a file
-# scores <- score_all_from_file("profile/data/resque_1696782133298.json")
+scores <- score_all_from_file("profile/data/resque_1696782133298.json")

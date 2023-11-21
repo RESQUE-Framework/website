@@ -19,6 +19,10 @@ TODOs:
 
 
 ```{r}
+
+resque_file <- "profile/data/resque_1696782133298.json"
+# resque_file <- "profile/data/resque_1697454489129.json"
+
 library(jsonlite)
 library(dplyr)
 library(tidyr)
@@ -33,6 +37,8 @@ library(tibble)
 
 unCamel <- function(x) gsub("([A-Z]){1}", " \\1", x) |> str_trim()
 
+source("profile/score.R")
+
 theme_singlebar <- theme_minimal() + theme(
   axis.text = element_blank(),       # Remove axis text
   axis.title = element_blank(),      # Remove axis title
@@ -45,8 +51,8 @@ theme_singlebar <- theme_minimal() + theme(
   plot.margin = margin(t=0, b=-200, l=0, r=0, unit="pt")
 )
 
-dat0 <- read_json("data/resque_1696782133298.json", simplifyVector = TRUE)
-#dat0 <- read_json("data/resque_1697454489129.json", simplifyVector = TRUE)
+dat0 <- read_json(resque_file, simplifyVector = TRUE)
+scores <- score_all_from_file(resque_file)
 meta <- dat0[1, ]
 dat <- dat0[-1, ]
 

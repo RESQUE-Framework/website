@@ -1182,6 +1182,10 @@
                 {
                     "id": "AnalysisPlan",
                     "text": "Analysis Plan"
+                },
+                {
+                    "id": "InferentialCriteria",
+                    "text": "Inferential criteria (e.g., defining your alpha level)"
                 }
             ],
             "condition": "$P_Suitable === 'Yes' && $P_Preregistration =|= ['Yes', 'RegisteredReport']"

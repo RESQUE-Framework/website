@@ -702,6 +702,7 @@
             // Show score box
             document.getElementById('score-box').style.display = "";
 
+            // scoringResult.max is 0 if (a) users opt-out and request manual processing, or (b) select "not applicable" for each indicator.
             if (scoringResult.max > 0) {
                 document.getElementById("no-score").style.display = "none";
                 document.getElementById("current-score-container").style.display = "flex"

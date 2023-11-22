@@ -20,8 +20,8 @@ TODOs:
 
 ```{r}
 
-resque_file <- "profile/data/resque_1696782133298.json"
-# resque_file <- "profile/data/resque_1697454489129.json"
+resque_file <- "data/resque_1696782133298.json"
+# resque_file <- "data/resque_1697454489129.json"
 
 library(jsonlite)
 library(dplyr)
@@ -35,9 +35,10 @@ library(knitr)
 library(openalexR)
 library(tibble)
 
-unCamel <- function(x) gsub("([A-Z]){1}", " \\1", x) |> str_trim()
 
-source("profile/score.R")
+
+source("score.R")
+source("profile_helpers.R")
 
 theme_singlebar <- theme_minimal() + theme(
   axis.text = element_blank(),       # Remove axis text
@@ -52,9 +53,15 @@ theme_singlebar <- theme_minimal() + theme(
 )
 
 dat0 <- read_json(resque_file, simplifyVector = TRUE)
-scores <- score_all_from_file(resque_file)
 meta <- dat0[1, ]
 dat <- dat0[-1, ]
+
+# read the scores
+scores <- score_all_from_file(resque_file)
+
+# remove the first element: This is the meta-information which has no scores
+# Now each list entry is one publication, in the same order as in `dat`
+scores$scores <- scores$scores[-1]
 
 # Create nice factor labels
 dat$type <- factor(dat$type, levels=c("pub", "data", "software"), labels=c("Publication", "Data set", "Research software"))
@@ -92,7 +99,7 @@ ct_ordered <- as.data.frame.matrix(credit_tab) %>%
 credit$Role <- factor(credit$Role, levels = rev(rownames(ct_ordered)))
 ```
 
-This document summarizes the research style of a scientist - **the "fingerprint" of how research is conducted**, when only the best work is submitted to this analysis.
+**This document summarizes the research style of `r meta$LastName` - the *"fingerprint" of how research is conducted*, when only the best work is submitted to this analysis.**
 
 Some parts of this profile are purely descriptive. For example, it is summarized whether researchers focus on lab or field studies, whether they predominantly work with psychophysiological data or rather focus on questionnaire studies. 
 
@@ -207,6 +214,59 @@ ggplot(credit, aes(x = Role, fill = Degree)) +
 ```{r}
 wordcloud(ct_ordered$Role, freq = ct_ordered$weight, scale = c(2, .1), min.freq = 0.4, random.order = FALSE)
 ```
+
+
+# Rigor profile overview
+
+```{r}
+
+# Which outputs should be scored?
+score_list <- scores$scores[dat$P_Suitable == "Yes"]
+n_scorable <- length(score_list)
+
+scores_all <- get_indicators(score_list, "P")
+#table(names(scores_all))
+
+scores_data <- get_indicators(score_list, "Data")
+scores_prereg <- get_indicators(score_list, "Prereg")
+scores_reproScript <- get_indicators(score_list, "ReproducibleScripts|IndependentVerification")
+scores_FormalModeling <- get_indicators(score_list, "FormalModeling")
+scores_OpenMaterials <- get_indicators(score_list, "OpenMaterials")
+
+# TODO: Divide by maximum score
+rel_scores_data <- sum(scores_data) / n_scorable
+rel_scores_prereg <- sum(scores_prereg) / n_scorable
+rel_scores_reproScript <- sum(scores_reproScript) / n_scorable
+rel_scores_FormalModeling <- sum(scores_FormalModeling) / n_scorable
+rel_scores_OpenMaterials <- sum(scores_OpenMaterials) / n_scorable
+
+
+radar_dat <- tibble(
+	dimension = factor(1:5, labels=c("Open Data", "Preregistration", "Reproducible Code \n& Verification", "Formal\nModeling", "Open Materials")),
+	max_points = c(1, 2, 1, 2, 1),
+	gained_points = c(rel_scores_data, rel_scores_prereg, rel_scores_reproScript, rel_scores_FormalModeling, rel_scores_OpenMaterials),
+	relative_score = gained_points/max_points,
+	xstart = c(0, cumsum(max_points)[1:(length(max_points)-1)]),
+	xend = cumsum(max_points),
+  xmid = (xend-xstart)/2 + xstart
+)
+
+p1 <- radar_dat %>% ggplot() + 
+geom_rect(aes(xmin=xstart, xmax=xend, ymin=0, ymax=relative_score, fill=dimension)) + 
+coord_polar("x", start=0) + 
+geom_hline(yintercept=1, col="grey80") + geom_hline(yintercept=0.5, col="grey60") +
+xlab("") + ylab("") + ggtitle("Researcher A", subtitle = paste0("Overall score = ", round(sum(radar_dat$gained_points), 2))) +
+scale_x_continuous(labels = NULL, breaks = NULL) + scale_y_continuous(labels = NULL, breaks = NULL, limits=c(0, 1)) + theme_void() +
+guides(fill=guide_legend("Quality Dimension")) +
+scale_fill_brewer(palette="Set3") +
+geom_text(aes(x=xmid, y=0.7, label = dimension), vjust = -0.5)
+
+p1
+```
+
+
+
+
 
 # Open Data in Publications
 

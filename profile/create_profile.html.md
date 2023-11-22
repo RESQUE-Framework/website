@@ -95,21 +95,7 @@ And the following methodological type:
 ### Team science in publications?
 
 
-7 out of 10 submitted publications could be automatically retrieved with openAlex.
-
-::: {.callout-caution collapse="true"}
-
-## The following papers could *not* be retrieved by openAlex:
-
-
-
-|   |Title                                                                                                   |Year |doi                |P_TypePublication |
-|:--|:-------------------------------------------------------------------------------------------------------|:----|:------------------|:-----------------|
-|4  |Visual Argument Structure Tool (VAST) Version 1.0                                                       |2023 |[https://doi.org/NA](https://doi.org/NA)|Published Paper   |
-|6  |Ten steps toward a better personality science – how quality may be rewarded more in research evaluation |2022 |[https://doi.org/NA](https://doi.org/NA)|Published Paper   |
-|10 |A mathematical model of person judgment (part 1)                                                        |2023 |[https://doi.org/NA](https://doi.org/NA)|Preprint          |
-
-:::
+10 out of 10 submitted publications could be automatically retrieved with openAlex.
 
 ::: {.cell}
 ::: {.cell-output-display}
@@ -118,8 +104,8 @@ And the following methodological type:
 |Team category                | Frequency|   %|
 |:----------------------------|---------:|---:|
 |Single authored              |         0|  0%|
-|Small team (<= 5 co-authors) |         6| 86%|
-|Large team (6-15 co-authors) |         1| 14%|
+|Small team (<= 5 co-authors) |         9| 90%|
+|Large team (6-15 co-authors) |         1| 10%|
 |Big Team (> 15 co-authors)   |         0|  0%|
 
 
@@ -145,6 +131,40 @@ Based on 10 submitted publications, this is the self-reported contributorship pr
 :::
 
 
+
+# Rigor profile overview
+
+
+::: {.cell}
+::: {.cell-output .cell-output-stdout}
+
+```
+
+   P_Data_Open_AccessLevel           P_Data_Open_FAIR 
+                         5                          5 
+          P_FormalModeling  P_IndependentVerification 
+                         7                          7 
+           P_OpenMaterials P_PreregisteredReplication 
+                         7                          7 
+         P_Preregistration  P_Preregistration_Content 
+                         7                          7 
+     P_ReproducibleScripts P_ReproducibleScripts_FAIR 
+                         7                          7 
+```
+
+
+:::
+
+::: {.cell-output-display}
+![](create_profile_files/figure-html/unnamed-chunk-9-1.png){width=672}
+:::
+:::
+
+
+
+
+
+
 # Open Data in Publications
 
 Out of 7 suitable publications, 6 had empirical data. These represent the base for the following analyses.
@@ -164,7 +184,7 @@ TBD
 
 ::: {.cell}
 ::: {.cell-output-display}
-![](create_profile_files/figure-html/unnamed-chunk-10-1.png){width=960}
+![](create_profile_files/figure-html/unnamed-chunk-11-1.png){width=960}
 :::
 :::
 
@@ -174,7 +194,7 @@ TBD
 
 ::: {.cell}
 ::: {.cell-output-display}
-![](create_profile_files/figure-html/unnamed-chunk-11-1.png){width=960}
+![](create_profile_files/figure-html/unnamed-chunk-12-1.png){width=960}
 :::
 :::
 
@@ -183,7 +203,7 @@ TBD
 
 ::: {.cell}
 ::: {.cell-output-display}
-![](create_profile_files/figure-html/unnamed-chunk-12-1.png){width=960}
+![](create_profile_files/figure-html/unnamed-chunk-13-1.png){width=960}
 :::
 :::
 
@@ -202,7 +222,7 @@ TBD
 
 ::: {.cell}
 ::: {.cell-output-display}
-![](create_profile_files/figure-html/unnamed-chunk-14-1.png){width=672}
+![](create_profile_files/figure-html/unnamed-chunk-15-1.png){width=672}
 :::
 :::
 
@@ -231,8 +251,8 @@ These are all claims of non-applicability from this applicant:
 
 |Title                                                                                                   |Year |P_Suitable |P_Suitable_Explanation                      |
 |:-------------------------------------------------------------------------------------------------------|:----|:----------|:-------------------------------------------|
-|[Visual Argument Structure Tool (VAST) Version 1.0](https://open.lnu.se/index.php/metapsychology/article/view/2911)|2023 |No         |This is an entirely conceptual contribution |
-|[Ten steps toward a better personality science – how quality may be rewarded more in research evaluation](https://ps.psychopen.eu/index.php/ps/article/view/6029)|2022 |No         |Purely conceptual contribution              |
+|[Visual Argument Structure Tool (VAST) Version 1.0](https://doi.org/10.15626/MP.2021.2911)              |2023 |No         |This is an entirely conceptual contribution |
+|[Ten steps toward a better personality science – how quality may be rewarded more in research evaluation](https://doi.org/10.5964/ps.6029)|2022 |No         |Purely conceptual contribution              |
 |[The judgment of personality: an overview of current empirical research findings](https://doi.org/10.5964/ps.6043)|2021 |No         |Review Paper                                |
 
 

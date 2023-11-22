@@ -3,7 +3,7 @@
 The **Research Quality Evaluation (RESQUE)** framework provides recommendations for a responsible research assessment that does not rely on flawed metrics such as the journal impact factor or the h-index. It provides objective quality and impact indicators for three types of research outputs:
 (a) publications of empirical studies, (b) published data sets and (c) research software. It is primarily developed for the field of psychology, but might be easily transferred to neighbouring empirical scientific fields.
 
-In the spirit of [CoARA](https://coara.eu), it recognises diverse academic outputs, emphasizes quality over quantity, and combines qualitative peer review by responsible use of quantitative indicators. Its main intended use is to aid decisions in hiring and tenure committees.
+In the spirit of [CoARA](https://coara.eu), it recognises diverse academic outputs, emphasizes quality over quantity, and combines qualitative peer review by responsible use of quantitative indicators. Its main intended use is to aid decisions in hiring and tenure committees: The indicators and the algorithmic approach do not make decisions; in contrast we value human expertise by automating recommendations and thereby aiding human decisions with valid input variables.
 
 This repository is used for continuous development, versioning, and issue tracking.
 Stable releases are tagged here and are mirrored to a [project on OSF](https://osf.io/4wynr/wiki/home/).
@@ -70,7 +70,7 @@ Furthermore, there are 6 additional commentaries (in German) published in the [P
 To get an overview about the RESQUE project, you can look at our presentation slides:
 
 - Schönbrodt (2023-03): [Responsible Research Assessment: A practical recommendation for the evaluation of research quality beyond h-index and journal impact factors](./presentations/Schoenbrodt-2023-03-Responsible_Research_Assessment.pdf)
-
+- Gärtner (2023-09): [Responsible Research Assessment II: The RESQUE web form for hiring and promotion](./presentations/Gaertner-2023-09-Responsible_Research_Assessment_II.pdf)
 
 
 ## Resources
@@ -122,11 +122,11 @@ Make sure that the version of the R scripts match the version of the rating shee
 
 TODO
 
-- Explicate the "menu approach"
+- Explicate the "menu approach" - see the [Form Builder](https://nicebread.github.io/RESQUE/web/builder)
 - Show recommended paragraph in job ad
 - cf. Lange et al.: Commit to weights and indicator sets when publishing the job ad; we recommend to publish the weights and indicators along with the ad.
 - Instructions for applicants
-- How to aggregate the xlsx files
+
 
 ### ...as tenure track committees
 
@@ -150,7 +150,7 @@ Please note and respect our [Code of Conduct](/CODE_OF_CONDUCT.md).
 
 This project is a community effort with many contributors, including:
 
-- Alp Kaan Aksu (for programming the web form [aut])
+- Alp Kaan Aksu (for designing and programming the web form and the form builder [aut])
 - Maximilian Ernst (software indicators [aut, ctb])
 - Aaron Peikert (software indicators [aut, ctb])
 - Daniel Nüst (code verification indicator [ctb])

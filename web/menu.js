@@ -1,7 +1,7 @@
 async function menu() {
     return {
         config: {
-            max: 12,
+            max: 10,
             maxTopPapers: 3,
             minROWarningThreshold: 5,
         },

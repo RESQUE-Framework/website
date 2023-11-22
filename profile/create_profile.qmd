@@ -1,0 +1,383 @@
+---
+title: "RESQUE Research Profile"
+format: html
+embed-resources: true
+execute:
+  echo: false
+  message: false
+  warning: false
+  keep-md: true
+---
+
+<!-- 
+
+TODOs:
+
+ - The accompanying R-scripts support this manual step by presenting a concise overview of all “not applicable” claims of all applicants.
+
+ -->
+
+
+```{r}
+library(jsonlite)
+library(dplyr)
+library(tidyr)
+library(stringr)
+library(ggplot2)
+library(scales)
+library(forcats)
+library(wordcloud)
+library(knitr)
+library(openalexR)
+library(tibble)
+
+unCamel <- function(x) gsub("([A-Z]){1}", " \\1", x) |> str_trim()
+
+theme_singlebar <- theme_minimal() + theme(
+  axis.text = element_blank(),       # Remove axis text
+  axis.title = element_blank(),      # Remove axis title
+  axis.ticks = element_blank(),      # Remove ticks
+  panel.grid.major = element_blank(),# Remove major grid
+  panel.grid.minor = element_blank(),# Remove minor grid
+  axis.line = element_blank(),        # Remove axis line
+  plot.title = element_text(face="bold", margin = margin(t = 0, b = -100, unit = "pt")),              # move plot title closer to bar
+  panel.spacing.x=unit(1, "lines"),   # add some extra space on the left side to make text labels visible
+  plot.margin = margin(t=0, b=-200, l=0, r=0, unit="pt")
+)
+
+dat0 <- read_json("data/resque_1696782133298.json", simplifyVector = TRUE)
+#dat0 <- read_json("data/resque_1697454489129.json", simplifyVector = TRUE)
+meta <- dat0[1, ]
+dat <- dat0[-1, ]
+
+# Create nice factor labels
+dat$type <- factor(dat$type, levels=c("pub", "data", "software"), labels=c("Publication", "Data set", "Research software"))
+
+dat$P_TypePublication <- unCamel(dat$P_TypePublication)
+dat$P_ReproducibleScripts <- unCamel(dat$P_ReproducibleScripts)
+
+# Split the research outputs into types, reduce to suitable submissions
+pubs <- dat %>% filter(type == "Publication", P_Suitable == "Yes")
+
+credit <- dat %>%
+    select(contains("CRediT")) %>%
+    pivot_longer(everything(), names_prefix = "P_CRediT_")
+
+colnames(credit) <- c("Role", "Degree")
+credit$Degree <- factor(credit$Degree, levels = rev(c("Lead", "Equal", "Support", "NoRole", "NA")), labels = rev(c("Lead", "Equal", "Support", "NoRole", "not applicable")))
+
+# add space to camelCase; make nice labels
+credit$Role <- unCamel(credit$Role)
+credit$Role[credit$Role == "Writing Review Editing"] <- "Writing: Review & Editing"
+credit$Role[credit$Role == "Writing Original Draft"]  <- "Writing: Original draft"
+
+credit_tab <- table(credit$Role, credit$Degree)
+
+ct_ordered <- as.data.frame.matrix(credit_tab) %>%
+    mutate(
+        LeadEqual = Lead + Equal,
+        Sum = Lead + Equal + Support + NoRole,
+        # normalized weight: All "Lead" (=max) would be 1
+        weight = (Lead * 4 + Equal * 3 + Support * 1) / (Sum * 4),
+        Role = rownames(.)
+    ) %>%
+    arrange(-LeadEqual, -Support)
+
+credit$Role <- factor(credit$Role, levels = rev(rownames(ct_ordered)))
+```
+
+This document summarizes the research style of a scientist - **the "fingerprint" of how research is conducted**, when only the best work is submitted to this analysis.
+
+Some parts of this profile are purely descriptive. For example, it is summarized whether researchers focus on lab or field studies, whether they predominantly work with psychophysiological data or rather focus on questionnaire studies. 
+
+Other parts are, to some extent, normative: Research that is reproducible, which allows independent auditing because it provides open data and scripts, or prevents biases by preregistration is, *ceteris paribus*, better than research that does not have these aspects. Research outputs with these objective quality criteria of methodological rigor can gain "bonus points" which are summed across all provided research outputs.
+
+## Submitted research outputs
+
+`r nrow(dat)` research outputs have been submitted. The following table shows the types of submitted outputs, and whether they have been flagged as suitable for the rating sheet (*yes*) or not (*no*).
+
+```{r}
+kable(table(dat$type, dat$P_Suitable))
+```
+
+
+The `r nrow(dat[dat$type == "Publication", ])` publications had the following types:
+
+```{r}
+kable(table(dat[dat$type == "Publication", "P_TypePublication"]))
+```
+
+And the following methodological type:
+
+```{r}
+dat_tM <- dat %>% select(contains("P_TypeMethod"))
+
+# add missing columns
+expected_columns<- c(
+  P_TypeMethod_Empirical = FALSE,
+  P_TypeMethod_MetaAnalysis = FALSE, 
+  P_TypeMethod_Theoretical = FALSE, 
+  P_TypeMethod_Simulation = FALSE,
+  P_TypeMethod_OtherMethod = FALSE
+
+)
+# adding those columns to df1
+dat_tM <- add_column(dat_tM, !!!expected_columns[setdiff(names(expected_columns), names(dat_tM))])
+
+dat_tM_tab <- pivot_longer(dat_tM, everything()) %>% 
+  group_by(name) %>% 
+  summarise(paper_count=sum(value, na.rm=TRUE))
+
+dat_tM_tab$name <- str_replace(dat_tM_tab$name, "P_TypeMethod_", "") |> unCamel()
+
+colnames(dat_tM_tab) <- c("Type of method", "# papers")
+kable(dat_tM_tab)
+```
+
+
+### Team science in publications?
+
+```{r}
+#| results: "asis"
+
+all_pubs <- dat[dat$type == "Publication", ]
+
+# clean the dois:
+dois <- all_pubs$DOI
+dois <- dois %>% 
+  str_replace_all("doi: ", "") %>% 
+  str_replace_all(" ", "") %>% 
+  str_trim()
+
+dois_normalized <- str_extract(dois, pattern="10.\\d{4,9}/[-._;()/:a-z0-9A-Z]+")
+all_pubs$doi_links <- paste0("https://doi.org/", dois_normalized)
+all_pubs$doi <- paste0("[", all_pubs$doi_links, "](", all_pubs$doi_links, ")")
+
+all_papers <- oa_fetch(entity = "works", doi = all_pubs$doi_links)
+
+cat(paste0(nrow(all_papers), " out of ", nrow(all_pubs), " submitted publications could be automatically retrieved with openAlex.\n"))
+
+if (nrow(all_papers) < nrow(all_pubs)) {
+  cat('\n::: {.callout-caution collapse="true"}\n
+## The following papers could *not* be retrieved by openAlex:\n\n')
+  all_pubs[!all_pubs$doi_links %in% all_papers$doi, ] %>% 
+    select(Title, Year, doi, P_TypePublication) %>% 
+    kable() %>% 
+    print()
+
+  cat("\n:::\n")
+}
+
+all_papers$n_authors <- sapply(all_papers$author, nrow)
+
+all_papers$team_category <- cut(all_papers$n_authors, breaks=c(0, 1, 5, 15, Inf), labels=c("Single authored", "Small team (<= 5 co-authors)", "Large team (6-15 co-authors)", "Big Team (> 15 co-authors)"))
+
+team_tab <- table(all_papers$team_category) |> as.data.frame()
+team_tab$perc <- paste0(round(team_tab$Freq*100 / nrow(all_papers)), "%")
+colnames(team_tab) <- c("Team category", "Frequency", "%")
+```
+
+```{r}
+kable(team_tab, align=c("l", "r", "r"))
+```
+
+## Contributorship profile (CRediT roles)
+
+Based on `r nrow(dat)` submitted publications, this is the self-reported contributorship profile:
+
+```{r}
+ggplot(credit, aes(x = Role, fill = Degree)) +
+    geom_bar(stat = "count") +
+    coord_flip() +
+    scale_fill_manual(values = rev(c("grey90", "indianred1", "khaki2", "green3", "green4")), breaks = rev(c("not applicable", "NoRole", "Support", "Equal", "Lead"))) +
+    theme_minimal() + xlab("") + ylab("# of publications") + 
+    theme(axis.text.y = element_text(size = 14)) + 
+    # force whole integers on x-axis
+    scale_y_continuous(breaks = function(x) seq(floor(min(x)), ceiling(max(x)), by = 1))
+
+```
+
+
+```{r}
+wordcloud(ct_ordered$Role, freq = ct_ordered$weight, scale = c(2, .1), min.freq = 0.4, random.order = FALSE)
+```
+
+# Open Data in Publications
+
+Out of `r nrow(pubs)` suitable publications, `r sum(pubs$P_Data == "Yes")` had empirical data. These represent the base for the following analyses.
+
+TBD
+
+## Correctness of computational results has been independently verified
+
+```{r}
+IV <- dat %>% 
+  filter(!is.na(P_TypeMethod_Empirical) & P_TypeMethod_Empirical == TRUE)
+
+```
+
+`r nrow(IV)` papers had empirical data. Of these analysis have been independently verified for computational correctness:
+
+```{r}
+#| fig-width: 10
+#| fig-height: 4
+
+IV$IV <- factor(IV$P_IndependentVerification, levels=c("NotApplicable", "No", "WorkflowReproducible", "MainResultsReproducible", "AllResultsReproducible", "AnalysisReplication"), labels=c("not applicable", "No", "Workflow/technical repro", "Main results verified", "All results verified", "Independent Reimplementation"))
+
+IV_tab <- table(IV$IV) |> prop.table() |> as.data.frame() %>%
+  mutate(perc = round(Freq*100)) %>% 
+  filter(perc > 0)
+
+ ggplot(IV_tab, aes(x = "x", y = perc, fill = Var1)) +
+  geom_col(width=0.35) +
+  scale_y_discrete(expand=expand_scale(add = c(10, 10))) +
+  scale_fill_manual(values = rev(c("grey80", "indianred1", "darkseagreen1", "darkolivegreen2", "chartreuse2", "green1")), breaks=rev(c("not applicable", "No", "Workflow/technical repro", "Main results verified", "All results verified", "Independent Reimplementation")), guide=FALSE) +
+  geom_text(aes(label = paste0(gsub(" ", "\n", Var1), ":\n", round(perc), "%")), position = position_stack(vjust = 0.5), size=6) +
+  theme_singlebar + coord_flip()
+```
+
+
+## Was the research preregistered / a registered report?
+```{r}
+#| fig-width: 10
+#| fig-height: 4
+
+pubs$P_Preregistration2 <- factor(pubs$P_Preregistration, levels=c("No", "Yes", "RegisteredReport"), labels=c("Not preregistered", "Pre- registration", "Registered Report"))
+
+prereg_tab <- table(pubs$P_Preregistration2) |> prop.table() |> as.data.frame() %>%
+  mutate(perc = round(Freq*100))
+
+# give missing categories a minimal width to make them visible
+prereg_tab$perc[prereg_tab$perc == 0] <- 0.2
+
+ ggplot(prereg_tab, aes(x = "x", y = perc, fill = Var1)) +
+  ggtitle(paste0("n=", nrow(pubs), " publications")) +
+  geom_col(width=0.35) +
+  scale_y_discrete(expand=expand_scale(add = c(10, 10))) +
+  scale_fill_manual(values = rev(c("#FED976", "#90c916", "green4")), breaks=rev(c("Not preregistered", "Pre- registration", "Registered Report")), guide=FALSE) +
+  geom_text(aes(label = paste0(gsub(" ", "\n", Var1), ":\n", round(perc), "%")), position = position_stack(vjust = 0.5), size=6) +
+  theme_singlebar + coord_flip()
+
+```
+
+## Replication: The publication contained a preregistered replication attempt (either direct/close or conceptual)
+```{r}
+#| fig-width: 10
+#| fig-height: 4
+
+pubs$replication <- factor(pubs$P_PreregisteredReplication, levels=c("No", "Yes", "NotApplicable"), labels=c("No", "Yes", "not applicable"))
+
+# fix some logical dependencies
+pubs$replication[is.na(pubs$replication) & pubs$P_Preregistration2 == "Not preregistered"] <- "No"
+
+repl_tab <- table(pubs$replication) |> prop.table() |> as.data.frame() %>%
+  mutate(perc = round(Freq*100)) %>% 
+  filter(perc > 0)
+
+ ggplot(repl_tab, aes(x = "x", y = perc, fill = Var1)) +
+  ggtitle(paste0("n=", nrow(pubs), " publications")) +
+  geom_col(width=0.35) +
+  scale_y_discrete(expand=expand_scale(add = c(10, 10))) +
+  scale_fill_manual(values = rev(c("#FED976", "#90c916", "grey80")), breaks=rev(c("No", "Yes", "not applicable")), guide=FALSE) +
+  geom_text(aes(label = paste0(gsub(" ", "\n", Var1), ":\n", round(perc), "%")), position = position_stack(vjust = 0.5), size=6) +
+  theme_singlebar + coord_flip()
+```
+
+
+## What has been preregistered?
+
+```{r}
+prereg_pubs <- pubs[pubs$P_Preregistration %in% c("Yes", "RegisteredReport"), ]
+
+prereg_content <- prereg_pubs %>% select(contains("P_Preregistration_Content"))
+
+# add missing columns
+expected_columns<- c(
+  P_Preregistration_Content_SampleSizePlanning = FALSE,
+  P_Preregistration_Content_Hypotheses = FALSE, 
+  P_Preregistration_Content_Operationalizations = FALSE, 
+  P_Preregistration_Content_AnalysisPlan = FALSE
+
+)
+# adding those columns to df1
+prereg_content <- add_column(prereg_content, !!!expected_columns[setdiff(names(expected_columns), names(prereg_content))])
+
+prereg_content_tab <- pivot_longer(prereg_content, everything()) %>% 
+  group_by(name) %>% 
+  summarise(preregs=sum(value)) %>% 
+  mutate(preregs = preregs/nrow(prereg_content))
+
+prereg_content_tab$name <- str_replace(prereg_content_tab$name, "P_Preregistration_Content_", "") |> unCamel()
+```
+
+`r nrow(prereg_pubs)` of `r nrow(pubs)` eligible publications had preregistrations. The following components have been preregistered (relative to `r nrow(prereg_pubs)` preregistrations):
+
+```{r}
+# TODO: Print percentages for y axis, remove legend
+ggplot(prereg_content_tab, aes(x=name, y=preregs, fill=name)) + geom_bar(stat="identity") + coord_flip()
+```
+
+
+
+## "Not applicable" justifications
+
+Choosing "not applicable" indicates that an indicator *principally* cannot be attained by a research output. To avoid bias against certain research fields, the points of such non-applicable indicators are removed from the maximum points and therefore do not lower the computed relative rigor score. However, in order to prevent gaming of this scheme, any "not applicable" claim needs to be justified. Only when the justification is accepted by the committee, the point is removed. With no or insufficent justification, in contrast, the indicator is set to "not available" (=0 points) and the maximum points are not adjusted.
+
+These are all claims of non-applicability from this applicant:
+
+
+```{r, results='asis'}
+
+# cols with "NotApplicable"
+cols_with_NotApplicable <- apply(dat, 2, function(col) any(col == "NotApplicable")) |> na.omit()
+colnames_with_NotApplicable <- names(cols_with_NotApplicable)[cols_with_NotApplicable == TRUE]
+
+for (i in colnames_with_NotApplicable) {
+  # add corresponding explanation
+  cat(paste0("### ", i, "\n\n"))
+
+  NotAppl <- dat[dat[, i] == "NotApplicable", c("Title", "Year", "DOI", i, paste0(i, "_NAExplanation"))]
+  NotAppl <- NotAppl[!is.na(NotAppl[, i]), ]
+  rownames(NotAppl) <- NULL
+
+  NotAppl$Title <- paste0("[", NotAppl$Title, "](", NotAppl$DOI, ")")
+  NotAppl$DOI <- NULL
+
+  # beware: within for-loops, kable() needs an explicit `print`
+  print(kable(NotAppl))
+}
+```
+
+```{r, results='asis'}
+# Two extra explanations: 
+# (1) P_Suitable_Explanation 
+# --> general opt-out of this research output
+# (2) P_Data_Open_AccessLevel_ZK2Explanation
+# --> Justification for restricted access (ZK2)
+
+if (all(c("P_Suitable", "P_Suitable_Explanation") %in% colnames(dat))) {
+  P_Suitable_tab <- dat %>% 
+    select(Title0=Title, Year, DOI, P_Suitable, P_Suitable_Explanation)
+    
+  P_Suitable_tab$Title <- paste0("[", P_Suitable_tab$Title, "](", P_Suitable_tab$DOI, ")")
+
+  P_Suitable_tab <- P_Suitable_tab %>% 
+    filter(P_Suitable == "No") %>% 
+    select(Title, Year, P_Suitable, P_Suitable_Explanation)
+
+  cat("### 'This output is generally not suitable for the assessment scheme'\n")
+  kable(P_Suitable_tab)
+}
+
+if (all(c("P_Data_Open_AccessLevel", "P_Data_Open_AccessLevel_ZK2Explanation") %in% colnames(dat))) {
+  # TODO: Show table
+  dat[, c("P_Data_Open_AccessLevel", "P_Data_Open_AccessLevel_ZK2Explanation")]
+
+  cat("\n\n### Justification for open data access level >= 2")
+  #kable(P_Suitable_tab)
+
+  print("WARNING: Not implemented yet")
+}
+
+```
+

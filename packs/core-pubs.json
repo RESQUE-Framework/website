@@ -4,152 +4,152 @@
     "title": "Publication",
     "scoring": {
         "P_Data_Open_AccessLevel": {
-            "not_applicable": "$P_Suitable === 'No' || $P_Data_Open === 'NotApplicable' && $P_Data_Open_NAExplanation || $P_Data === 'No'",
+            "not_applicable": "($P_Suitable === 'No') || (($P_Data_Open === 'NotApplicable') && (exists($P_Data_Open_NAExplanation))) || ($P_Data === 'No')",
             "max": 1,
             "op": "select",
             "points": [
                 {
                     "value": 1,
-                    "condition": "$P_Data === 'Yes' && $P_Data_Source_NewOwn && $P_Data_Open === 'YesEntire' && $P_Data_Open_AccessLevel =|= ['ZK0', 'ZK1']"
+                    "condition": "($P_Data === 'Yes') && ($P_Data_Source_NewOwn) && ($P_Data_Open === 'YesEntire') && ($P_Data_Open_AccessLevel =|= ['ZK0', 'ZK1'])"
                 }
             ]
         },
         "P_Data_Open_FAIR": {
-            "not_applicable": "$P_Suitable === 'No' || $P_Data_Open === 'NotApplicable' && $P_Data_Open_NAExplanation || $P_Data === 'No'",
+            "not_applicable": "($P_Suitable === 'No') || (($P_Data_Open === 'NotApplicable') && (exists($P_Data_Open_NAExplanation))) || ($P_Data === 'No')",
             "max": 1,
             "op": "sum",
             "points": [
                 {
                     "value": 0.25,
-                    "condition": "$P_Data_Open_FAIR_PersistentIdentifier && $P_Data === 'Yes' && $P_Data_Source_NewOwn && $P_Data_Open === 'YesEntire' && $P_Data_Open_AccessLevel =|= ['ZK0', 'ZK1']"
+                    "condition": "(exists($P_Data_Open_FAIR_PersistentIdentifier)) && ($P_Data === 'Yes') && ($P_Data_Source_NewOwn) && ($P_Data_Open === 'YesEntire') && ($P_Data_Open_AccessLevel =|= ['ZK0', 'ZK1'])"
                 },
                 {
                     "value": 0.5,
-                    "condition": "$P_Data_Open_FAIR_Codebook && $P_Data === 'Yes' && $P_Data_Source_NewOwn && $P_Data_Open === 'YesEntire' && $P_Data_Open_AccessLevel =|= ['ZK0', 'ZK1']"
+                    "condition": "($P_Data_Open_FAIR_Codebook) && ($P_Data === 'Yes') && ($P_Data_Source_NewOwn) && ($P_Data_Open === 'YesEntire') && ($P_Data_Open_AccessLevel =|= ['ZK0', 'ZK1'])"
                 },
                 {
                     "value": 0.25,
-                    "condition": "$P_Data_Open_FAIR_StructuredOpenFormat && $P_Data === 'Yes' && $P_Data_Source_NewOwn && $P_Data_Open === 'YesEntire' && $P_Data_Open_AccessLevel =|= ['ZK0', 'ZK1']"
+                    "condition": "($P_Data_Open_FAIR_StructuredOpenFormat) && ($P_Data === 'Yes') && ($P_Data_Source_NewOwn) && ($P_Data_Open === 'YesEntire') && ($P_Data_Open_AccessLevel =|= ['ZK0', 'ZK1'])"
                 }
             ]
         },
         "P_IndependentVerification": {
-            "not_applicable": "$P_Suitable === 'No' || $P_IndependentVerification === 'NotApplicable' && $P_IndependentVerification_NAExplanation",
+            "not_applicable": "($P_Suitable === 'No') || (($P_IndependentVerification === 'NotApplicable') && (exists($P_IndependentVerification_NAExplanation)))",
             "max": 1,
             "op": "select",
             "points": [
                 {
                     "value": 1,
-                    "condition": "$P_IndependentVerification === 'Yes' && $P_IndependentVerification_Identifier"
+                    "condition": "($P_IndependentVerification === 'Yes') && (exists($P_IndependentVerification_Identifier))"
                 }
             ]
         },
         "P_ReproducibleScripts": {
-            "not_applicable": "$P_Suitable === 'No' || $P_ReproducibleScripts === 'NotApplicable' && $P_ReproducibleScripts_NAExplanation",
+            "not_applicable": "($P_Suitable === 'No') || (($P_ReproducibleScripts === 'NotApplicable') && (exists($P_ReproducibleScripts_NAExplanation)))",
             "max": 1,
             "op": "select",
             "points": [
                 {
                     "value": 1,
-                    "condition": "$P_ReproducibleScripts === 'YesEntire' && $P_ReproducibleScripts_Identifier"
+                    "condition": "($P_ReproducibleScripts === 'YesEntire') && (exists($P_ReproducibleScripts_Identifier))"
                 }
             ]
         },
         "P_ReproducibleScripts_FAIR": {
-            "not_applicable": "$P_Suitable === 'No' || $P_ReproducibleScripts === 'NotApplicable' && $P_ReproducibleScripts_NAExplanation",
+            "not_applicable": "($P_Suitable === 'No') || (($P_ReproducibleScripts === 'NotApplicable') && (exists($P_ReproducibleScripts_NAExplanation)))",
             "max": 1,
             "op": "sum",
             "points": [
                 {
                     "value": 0.20,
-                    "condition": "$P_ReproducibleScripts_FAIR_TimestampedRepository && $P_ReproducibleScripts =|= ['YesParts', 'YesEntire']"
+                    "condition": "($P_ReproducibleScripts_FAIR_TimestampedRepository) && ($P_ReproducibleScripts =|= ['YesParts', 'YesEntire'])"
                 },
                 {
                     "value": 0.20,
-                    "condition": "$P_ReproducibleScripts_FAIR_VersionControl && $P_ReproducibleScripts =|= ['YesParts', 'YesEntire']"
+                    "condition": "($P_ReproducibleScripts_FAIR_VersionControl) && ($P_ReproducibleScripts =|= ['YesParts', 'YesEntire'])"
                 },
                 {
                     "value": 0.20,
-                    "condition": "$P_ReproducibleScripts_FAIR_ReproducibleManuscripts && $P_ReproducibleScripts =|= ['YesParts', 'YesEntire']"
+                    "condition": "($P_ReproducibleScripts_FAIR_ReproducibleManuscripts) && ($P_ReproducibleScripts =|= ['YesParts', 'YesEntire'])"
                 },
                 {
                     "value": 0.20,
-                    "condition": "$P_ReproducibleScripts_FAIR_Documentation && $P_ReproducibleScripts =|= ['YesParts', 'YesEntire']"
+                    "condition": "($P_ReproducibleScripts_FAIR_Documentation) && ($P_ReproducibleScripts =|= ['YesParts', 'YesEntire'])"
                 },
                 {
                     "value": 0.20,
-                    "condition": "$P_ReproducibleScripts_FAIR_ReproducibleSoftwareEnvironments && $P_ReproducibleScripts =|= ['YesParts', 'YesEntire']"
+                    "condition": "($P_ReproducibleScripts_FAIR_ReproducibleSoftwareEnvironments) && ($P_ReproducibleScripts =|= ['YesParts', 'YesEntire'])"
                 }
             ]
         },
         "P_OpenMaterials": {
-            "not_applicable": "$P_Suitable === 'No' || $P_OpenMaterials === 'NotApplicable' && $P_OpenMaterials_NAExplanation",
+            "not_applicable": "($P_Suitable === 'No') || (($P_OpenMaterials === 'NotApplicable') && (exists($P_OpenMaterials_NAExplanation)))",
             "max": 1,
             "op": "select",
             "points": [
                 {
                     "value": 1,
-                    "condition": "$P_OpenMaterials === 'YesEntire' && $P_OpenMaterials_Identifier"
+                    "condition": "($P_OpenMaterials === 'YesEntire') && (exists($P_OpenMaterials_Identifier))"
                 }
             ]
         },
         "P_Preregistration": {
-            "not_applicable": "$P_Suitable === 'No' || $P_Preregistration === 'NotApplicable' && $P_Preregistration_NAExplanation",
+            "not_applicable": "($P_Suitable === 'No') || (($P_Preregistration === 'NotApplicable') && (exists($P_Preregistration_NAExplanation)))",
             "max": 2,
             "op": "select",
             "points": [
                 {
                     "value": 1,
-                    "condition": "$P_Preregistration === 'Yes' && $P_Preregistration_Identifier"
+                    "condition": "($P_Preregistration === 'Yes') && (exists($P_Preregistration_Identifier))"
                 },
                 {
                     "value": 2,
-                    "condition": "$P_Preregistration === 'RegisteredReport' && $P_Preregistration_Identifier"
+                    "condition": "($P_Preregistration === 'RegisteredReport') && (exists($P_Preregistration_Identifier))"
                 }
             ]
         },
         "P_Preregistration_Content": {
-            "not_applicable": "$P_Suitable === 'No' || $P_Preregistration === 'NotApplicable' && $P_Preregistration_NAExplanation",
+            "not_applicable": "($P_Suitable === 'No') || (($P_Preregistration === 'NotApplicable') && (exists($P_Preregistration_NAExplanation)))",
             "max": 1,
             "op": "sum",
             "points": [
                 {
                     "value": 0.25,
-                    "condition": "$P_Preregistration_Content_SampleSizePlanning"
+                    "condition": "($P_Preregistration_Content_SampleSizePlanning)"
                 },
                 {
                     "value": 0.25,
-                    "condition": "$P_Preregistration_Content_Hypotheses"
+                    "condition": "($P_Preregistration_Content_Hypotheses)"
                 },
                 {
                     "value": 0.25,
-                    "condition": "$P_Preregistration_Content_Operationalizations"
+                    "condition": "($P_Preregistration_Content_Operationalizations)"
                 },
                 {
                     "value": 0.25,
-                    "condition": "$P_Preregistration_Content_AnalysisPlan"
+                    "condition": "($P_Preregistration_Content_AnalysisPlan)"
                 }
             ]
         },
         "P_FormalModeling": {
-            "not_applicable": "$P_Suitable === 'No' || $P_FormalModeling === 'NotApplicable' && $P_FormalModeling_NAExplanation",
+            "not_applicable": "($P_Suitable === 'No') || (($P_FormalModeling === 'NotApplicable') && (exists($P_FormalModeling_NAExplanation)))",
             "max": 2,
             "op": "select",
             "points": [
                 {
                     "value": 2,
-                    "condition": "$P_FormalModeling === 'Yes'"
+                    "condition": "($P_FormalModeling === 'Yes')"
                 }
             ]
         },
         "P_PreregisteredReplication": {
-            "not_applicable": "$P_Suitable === 'No' || $P_PreregisteredReplication === 'NotApplicable' && $P_PreregisteredReplication_NAExplanation",
+            "not_applicable": "($P_Suitable === 'No') || (($P_PreregisteredReplication === 'NotApplicable') && (exists($P_PreregisteredReplication_NAExplanation)))",
             "max": 1,
             "op": "select",
             "points": [
                 {
                     "value": 1,
-                    "condition": "$P_PreregisteredReplication === 'Yes' && $P_PreregisteredReplication_Identifier"
+                    "condition": "($P_PreregisteredReplication === 'Yes') && (exists($P_PreregisteredReplication_Identifier))"
                 }
             ]
         }
@@ -161,6 +161,11 @@
             "text": "Date added: $date_added@datetime"
         },
         {
+            "id": "DOI",
+            "type": "text",
+            "title": "DOI"
+        },
+        {
             "id": "Title",
             "type": "textbox",
             "title": "Paper title (do not provide journal name)"
@@ -169,11 +174,6 @@
             "id": "Year",
             "type": "number",
             "title": "Year of publication"
-        },
-        {
-            "id": "DOI",
-            "type": "text",
-            "title": "DOI"
         },
         {
             "id": "P_TopPaper",
@@ -283,7 +283,8 @@
                     "text": "Yes"
                 }
             ],
-            "default": "Yes"
+            "default": "Yes",
+            "tip_external": "A tip for the external reviewer."
         },
         {
             "id": "P_Suitable_Explanation",
@@ -295,6 +296,33 @@
             "id": "P8P9SEP",
             "type": "separator",
             "condition": "$P_Suitable === 'Yes'"
+        },
+        {
+            "id": "P_MultiStudy",
+            "type": "radio",
+            "title": "Is this paper a multi-study paper?",
+            "options": [
+                {
+                    "id": "No",
+                    "text": "No (only a single study is reported)"
+                },
+                {
+                    "id": "Yes",
+                    "text": "Yes"
+                }
+            ],
+            "condition": "$P_Suitable === 'Yes'",
+            "info": "{:'Yes' | In multi-study papers, sometimes the studies have very different properties (e.g., one is preregistered but the others are not). Therefore, in multi-study papers you need to select <i>one specific study</i> which then is rated.<br><br>If you want to include multiple studies from a single multi-study paper, they need to be entered in multiple slots of the rating scheme (as separate publications). In this case, the ratings for all items which are on the paper level (and not on the study level) might be repeated, such as the formal modeling of a theory.}"
+        },
+        {
+            "id": "P_MultiStudy_Selected",
+            "type": "number",
+            "title": "Which of the multiple studies is rated? (Enter a number)",
+            "condition": "$P_Suitable === 'Yes' && $P_MultiStudy === 'Yes'"
+        },
+        {
+            "id": "P8P9bSEP",
+            "type": "separator"
         },
         {
             "id": "P_CRediT_Info",
@@ -776,6 +804,10 @@
                     "text": "Reuse of someone else's existing data set"
                 },
                 {
+                    "id": "ReuseCompilation",
+                    "text": "Aggregating (own or other's) existing data sets"
+                },
+                {
                     "id": "Simulated",
                     "text": "Simulated data"
                 }
@@ -784,7 +816,7 @@
             "default": [
                 "NewOwn"
             ],
-            "info": "Data set acquisition often is a collaborative enterprise with different contributor roles. { $P_Data_Source_ReuseOwn | Select 'Reuse of own existing data set' only, if you would qualify as a co-author with substantive contributions in a stand-alone data set publication of that data set. }",
+            "info": "Data set acquisition often is a collaborative enterprise with different contributor roles. { $P_Data_Source_ReuseOwn | Select 'Reuse of own existing data set' only, if you would qualify as a co-author with substantive contributions in a stand-alone data set publication of that data set. Otherwise, select 'Reuse of someone else's existing data set'.}",
             "condition": "$P_Suitable === 'Yes' && $P_Data === 'Yes'"
         },
         {
@@ -839,19 +871,19 @@
                     "text": "Yes, entire data [provide doi or URL]"
                 }
             ],
-            "condition": "$P_Suitable === 'Yes' && $P_Data === 'Yes' && $P_Data_Source_NewOwn"
+            "condition": "$P_Suitable === 'Yes' && $P_Data === 'Yes' && ($P_Data_Source_NewOwn || $P_Data_Source_ReuseCompilation || $P_Data_Source_ReuseOwn)"
         },
         {
             "id": "P_Data_Open_NAExplanation",
             "type": "text",
             "title": "⤷ Not Applicable: Explanation",
-            "condition": "$P_Suitable === 'Yes' && $P_Data === 'Yes' && $P_Data_Source_NewOwn && $P_Data_Open === 'NotApplicable'"
+            "condition": "$P_Suitable === 'Yes' && $P_Data === 'Yes' && ($P_Data_Source_NewOwn || $P_Data_Source_ReuseCompilation || $P_Data_Source_ReuseOwn) && $P_Data_Open === 'NotApplicable'"
         },
         {
             "id": "P_Data_Open_Identifier",
             "type": "text",
             "title": "⤷ DOI or URL",
-            "condition": "$P_Suitable === 'Yes' && $P_Data === 'Yes' && $P_Data_Source_NewOwn && $P_Data_Open =|= ['YesParts', 'YesEntire']"
+            "condition": "$P_Suitable === 'Yes' && $P_Data === 'Yes' && ($P_Data_Source_NewOwn || $P_Data_Source_ReuseCompilation || $P_Data_Source_ReuseOwn) && $P_Data_Open =|= ['YesParts', 'YesEntire']"
         },
         {
             "id": "P_Data_Open_AccessLevel",
@@ -872,13 +904,13 @@
                 }
             ],
             "info": "For information about access levels, see <a href='https://rdc-psychology.org/access-data'>here</a>. <br> <ul><li>{:'ZK0' | <b>ZK0 / Sharing level 0 (“open for public use”)</b>: Neither access to nor use of the data is restricted in any way. Research data provided in this category are typically licensed through standard licenses (e.g., CC-BY-SA 4.0)}</li><li>{:'ZK1' | <b>ZK1 / Sharing level 1 (“open for scientific use”)</b>: Data re-use is limited to exclusively scientific purposes by means of a general use license. Proof of affiliation with a scientific institution and a brief description of the intended use must be provided.}</li><li>{:'ZK2' | <b>ZK2 / Sharing level 2 (“restricted scientific use”)</b>: Comparable to ZK1, access and re-use is restricted to scientific purposes. In contrast to ZK1, however, individual license agreements are made that may contain other restrictions.}</li></ul>",
-            "condition": "$P_Suitable === 'Yes' && $P_Data === 'Yes' && $P_Data_Source_NewOwn && $P_Data_Open =|= ['YesEntire', 'YesParts']"
+            "condition": "$P_Suitable === 'Yes' && $P_Data === 'Yes' && ($P_Data_Source_NewOwn || $P_Data_Source_ReuseCompilation || $P_Data_Source_ReuseOwn) && $P_Data_Open =|= ['YesEntire', 'YesParts']"
         },
         {
             "id": "P_Data_Open_AccessLevel_ZK2Explanation",
             "type": "text",
             "title": "⤷ Access level ZK2: Justification for restricted access",
-            "condition": "$P_Suitable === 'Yes' && $P_Data === 'Yes' && $P_Data_Source_NewOwn && $P_Data_Open === 'YesEntire' && $P_Data_Open_AccessLevel === 'ZK2'"
+            "condition": "$P_Suitable === 'Yes' && $P_Data === 'Yes' && ($P_Data_Source_NewOwn || $P_Data_Source_ReuseCompilation || $P_Data_Source_ReuseOwn) && $P_Data_Open === 'YesEntire' && $P_Data_Open_AccessLevel === 'ZK2'"
         },
         {
             "id": "P_Data_Open_FAIR",
@@ -898,59 +930,13 @@
                     "text": "The data set is stored in a structured, open format (e.g., .csv, .tsv, .tab, .txt, .json; not .sav, .xlsx, .pdf)"
                 }
             ],
-            "condition": "$P_Suitable === 'Yes' && $P_Data === 'Yes' && $P_Data_Source_NewOwn && $P_Data_Open === 'YesEntire' && ($P_Data_Open_AccessLevel =|= ['ZK0', 'ZK1'] || $P_Data_Open_AccessLevel === 'ZK2' && $P_Data_Open_AccessLevel_ZK2Explanation)"
+            "condition": "$P_Suitable === 'Yes' && $P_Data === 'Yes' && ($P_Data_Source_NewOwn || $P_Data_Source_ReuseCompilation || $P_Data_Source_ReuseOwn) && $P_Data_Open === 'YesEntire' && ($P_Data_Open_AccessLevel =|= ['ZK0', 'ZK1'] || $P_Data_Open_AccessLevel === 'ZK2' && $P_Data_Open_AccessLevel_ZK2Explanation)",
+            "info": "<ul><li>Persistent identifier: Data in an OSF project do count, as we consider OSF URLs to be persistent.</li></ul>"
         },
         {
             "id": "P13P14SEP",
             "type": "separator",
             "condition": "$P_Suitable === 'Yes'"
-        },
-        {
-            "id": "P_IndependentVerification",
-            "type": "radio",
-            "title": "Correctness of computational results has been independently verified",
-            "options": [
-                {
-                    "id": "NotApplicable",
-                    "text": "Not applicable [provide explanation]"
-                },
-                {
-                    "id": "No",
-                    "text": "No"
-                },
-                {
-                    "id": "WorkflowReproducible",
-                    "text": "Workflow reproducibility / code completeness check"
-                },
-                {
-                    "id": "MainResultsReproducible",
-                    "text": "Computational reproducibility of MAIN results has been indepedently verified using the original code"
-                },
-                {
-                    "id": "AllResultsReproducible",
-                    "text": "Computational reproducibility of ALL numerical results has been independently verified using the original code"
-                },
-                {
-                    "id": "AnalysisReplication",
-                    "text": "Analysis replication (independent implementation & verification)"
-                }
-            ],
-            "eval_dimension": "rigor",
-            "info": "<ul><li>{:'WorkflowReproducible' | <b>Workflow reproducibility / code completeness check</b>: Code runs without errors or critical warnings on another machine by another person (without comparing the numbers). This is also known as <i>process reproducibility</i>.}</li><li>{:'MainResultsReproducible' | <b>Computational reproducibility of main results has been independently verified using the original code</b>: Someone compared the <i>figures and main results</i> and asserts a sufficient correspondence with the reported main results.}</li><li>{:'AllResultsReproducible' | <b>Computational reproducibility of <i>all numerical results</i> has been independently verified using the original code</b>: Someone compared <i>all figures and numbers</i> and asserts a sufficient correspondence with the reported results.}</li><li>{:'AnalysisReplication' | <b>Analysis replication (independent implementation)</b>: Somebody independently implemented the analyses, without looking at the original code, and asserts a sufficient correspondence with the reported main results.}</li></ul><br><br>{:'WorkflowReproducible', 'MainResultsReproducible', 'AllResultsReproducible', 'AnalysisReplication' | The bonus point is only given when a public verification report/certificate with a persistent identifier is available.}",
-            "background": "'In the context of mathematics, Stodden et al. distinguish between <i>verification</i> and <i>validation</i>; following their definition, <b>a CODECHECK [or reproducibility check] ensures verification of computational results, i.e., checking that code generates the output it claims to create</b>, but <i>not</i> a validation, i.e., checking that the code implements the right algorithm [or statistical model] to solve the specific research problem.' (see <a href='https://f1000research.com/articles/10-253/v2'>Nüst & Eglen, 2021</a>).",
-            "condition": "$P_Suitable === 'Yes'"
-        },
-        {
-            "id": "P_IndependentVerification_NAExplanation",
-            "type": "text",
-            "title": "⤷ Not Applicable: Explanation",
-            "condition": "$P_Suitable === 'Yes' && $P_IndependentVerification === 'NotApplicable'"
-        },
-        {
-            "id": "P_IndependentVerification_Identifier",
-            "type": "text",
-            "title": "⤷ DOI or URL of the verification report",
-            "condition": "$P_Suitable === 'Yes' && $P_IndependentVerification =|= ['WorkflowReproducible', 'MainResultsReproducible', 'AllResultsReproducible', 'AnalysisReplication']"
         },
         {
             "id": "P_ReproducibleScripts",
@@ -986,6 +972,7 @@
             "id": "P_ReproducibleScripts_Identifier",
             "type": "text",
             "title": "⤷ DOI or URL of the script",
+            "info": "If multiple sources are available, provide the link to the primary source only. E.g. if both Github and OSF links are available, provide the Github link, as OSF only mirrors the content from Github.",
             "condition": "$P_Suitable === 'Yes' && $P_ReproducibleScripts =|= ['YesParts', 'YesEntire']"
         },
         {
@@ -1034,12 +1021,68 @@
                     "text": "Soup-to-Nuts: The entire analysis pipeline is contained, including preprocessing of the primary (raw) data."
                 },
                 {
+                    "id": "Portability",
+                    "text": "Portability: Any user is able to run the scripts on their own computer/workspace"
+                },
+                {
                     "id": "OneClickReproducibility",
                     "text": "(Almost) One-click reproducibility with a master script (or equivalent)"
                 }
             ],
-            "info": "<ul><li> {$P_ReproducibleScripts_TIER4_Sufficiency | <b>Sufficiency</b>: The documentation for a project should contain all the data, scripts, and supplementary information necessary to enable any user (with access to and basic proficiency in the software used) to reproduce all the results presented in the report without undue difficulty. The user should not have to seek assistance from the person who conducted the study.} </li><li> {$P_ReproducibleScripts_TIER4_SoupToNuts |  <b>Soup-to-nuts</b>: The documentation should include scripts that reproduce all the computations required for both (i) the steps of processing necessary to prepare the data for analysis, and (ii) the analysis or procedures performed with the processed data that generate the results. } </li><li> {$P_ReproducibleScripts_TIER4_OneClickReproducibility |  <b>(Almost) One-click reproducibility</b>: Reproducing all the computations required to generate the results of a study should require (almost) nothing other than executing a single Master Script. } </li></ul><br><br>These items are inspired by the <a href='https://www.projecttier.org/tier-protocol/protocol-4-0/'>TIER Protocol 4.0</a>. Some of the help text is quoted from there. <i>Portability</i> is not listed here, as this is covered in the indicator <code>WorkflowReproducible</code> of <code>P_IndependentVerification</code>.",
+            "info": "<ul><li> {$P_ReproducibleScripts_TIER4_Sufficiency | <b>Sufficiency</b>: The documentation for a project should contain all the data, scripts, and supplementary information necessary to enable any user (with access to and basic proficiency in the software used) to reproduce all the results presented in the report without undue difficulty. The user should not have to seek assistance from the person who conducted the study.} </li><li> {$P_ReproducibleScripts_TIER4_SoupToNuts |  <b>Soup-to-nuts</b>: The documentation should include scripts that reproduce all the computations required for both (i) the steps of processing necessary to prepare the data for analysis, and (ii) the analysis or procedures performed with the processed data that generate the results. } </li><li> {:'Portability' |  <b>Portability</b>: Provided the necessary software is installed, any user should be able to copy the project folder, with the hierarchy of subfolders and files it contains intact, onto their own computer or workspace, and then run the scripts that reproduce the project locally. Note that the <i>Portability</i> claim is an assertion by the submitting author; whether portability has been independently verified is covered in indicator <i>P_IndependentVerification (Workflow reproducibility)</i>.} </li><li> {$P_ReproducibleScripts_TIER4_OneClickReproducibility |  <b>(Almost) One-click reproducibility</b>: Reproducing all the computations required to generate the results of a study should require (almost) nothing other than executing a single Master Script. } </li></ul><br><br>These items are inspired by the <a href='https://www.projecttier.org/tier-protocol/protocol-4-0/'>TIER Protocol 4.0</a>. Some of the help text is quoted from there. <i>Portability</i> is not listed here, as this is covered in the indicator <code>WorkflowReproducible</code> of <code>P_IndependentVerification</code>.",
             "condition": "$P_Suitable === 'Yes' && $P_ReproducibleScripts =|= ['YesParts', 'YesEntire']"
+        },
+        {
+            "id": "P_IndependentVerification",
+            "type": "radio",
+            "title": "Correctness of computational results has been independently verified",
+            "options": [
+                {
+                    "id": "NotApplicable",
+                    "text": "Not applicable [provide explanation]"
+                },
+                {
+                    "id": "No",
+                    "text": "No"
+                },
+                {
+                    "id": "WorkflowReproducible",
+                    "text": "Workflow reproducibility / code completeness check"
+                },
+                {
+                    "id": "MainResultsReproducible",
+                    "text": "Computational reproducibility of MAIN results has been indepedently verified using the original code"
+                },
+                {
+                    "id": "AllResultsReproducible",
+                    "text": "Computational reproducibility of ALL numerical results has been independently verified using the original code"
+                },
+                {
+                    "id": "AnalysisReplication",
+                    "text": "Analysis replication (independent implementation & verification)"
+                }
+            ],
+            "eval_dimension": "rigor",
+            "info": "<ul><li>{:'WorkflowReproducible' | <b>Workflow reproducibility / code completeness check</b>: Code runs without errors or critical warnings on another machine by another person (without comparing the numbers). This is also known as <i>process reproducibility</i>.}</li><li>{:'MainResultsReproducible' | <b>Computational reproducibility of main results has been independently verified using the original code</b>: Someone compared the <i>figures and main results</i> and asserts a sufficient correspondence with the reported main results.}</li><li>{:'AllResultsReproducible' | <b>Computational reproducibility of <i>all numerical results</i> has been independently verified using the original code</b>: Someone compared <i>all figures and numbers</i> and asserts a sufficient correspondence with the reported results.}</li><li>{:'AnalysisReplication' | <b>Analysis replication (independent implementation)</b>: Somebody independently implemented the analyses, without looking at the original code, and asserts a sufficient correspondence with the reported main results.}</li></ul><br><br>If you check one of three 'reproducible' options, you should also check the <i>Portability</i> item in <i>P_ReproducibleScripts_TIER4</i>. {:'WorkflowReproducible', 'MainResultsReproducible', 'AllResultsReproducible', 'AnalysisReplication' | The bonus point is only given when a public verification report/certificate with a persistent identifier is available.}",
+            "background": "'In the context of mathematics, Stodden et al. distinguish between <i>verification</i> and <i>validation</i>; following their definition, <b>a CODECHECK [or reproducibility check] ensures verification of computational results, i.e., checking that code generates the output it claims to create</b>, but <i>not</i> a validation, i.e., checking that the code implements the right algorithm [or statistical model] to solve the specific research problem.' (see <a href='https://f1000research.com/articles/10-253/v2'>Nüst & Eglen, 2021</a>).",
+            "condition": "$P_Suitable === 'Yes'"
+        },
+        {
+            "id": "P_IndependentVerification_NAExplanation",
+            "type": "text",
+            "title": "⤷ Not Applicable: Explanation",
+            "condition": "$P_Suitable === 'Yes' && $P_IndependentVerification === 'NotApplicable'"
+        },
+        {
+            "id": "P_IndependentVerification_Identifier",
+            "type": "text",
+            "title": "⤷ DOI or URL of the verification report",
+            "condition": "$P_Suitable === 'Yes' && $P_IndependentVerification =|= ['WorkflowReproducible', 'MainResultsReproducible', 'AllResultsReproducible', 'AnalysisReplication']"
+        },
+        {
+            "id": "OMSEP",
+            "type": "separator",
+            "condition": "$P_Suitable === 'Yes'"
         },
         {
             "id": "P_OpenMaterials",
@@ -1139,6 +1182,10 @@
                 {
                     "id": "AnalysisPlan",
                     "text": "Analysis Plan"
+                },
+                {
+                    "id": "InferentialCriteria",
+                    "text": "Inferential criteria (e.g., defining your alpha level)"
                 }
             ],
             "condition": "$P_Suitable === 'Yes' && $P_Preregistration =|= ['Yes', 'RegisteredReport']"
@@ -1171,12 +1218,6 @@
             "condition": "$P_Suitable === 'Yes' && $P_Preregistration =|= ['Yes', 'RegisteredReport'] && $P_PreregisteredReplication === 'NotApplicable'"
         },
         {
-            "id": "P_PreregisteredReplication_Identifier",
-            "type": "text",
-            "title": "⤷ DOI or URL of the preregistration of the replication",
-            "condition": "$P_Suitable === 'Yes' && $P_Preregistration =|= ['Yes', 'RegisteredReport'] && $P_PreregisteredReplication === 'Yes'"
-        },
-        {
             "id": "P19P20SEP",
             "type": "separator",
             "condition": "$P_Suitable === 'Yes'"
@@ -1206,7 +1247,7 @@
             "type": "text",
             "title": "⤷ Not applicable: Explanation",
             "condition": "$P_Suitable === 'Yes' && $P_FormalModeling === 'NotApplicable'"
-        },        
+        },
         {
             "id": "P21P22SEP",
             "type": "separator",
@@ -1229,6 +1270,39 @@
             "type": "textbox",
             "maxwords": 150,
             "title": "Merit / impact statement (narrative, max. 150 words)"
+        },
+        {
+            "id": "MeritSEP",
+            "type": "separator"
+        },
+        {
+            "id": "P_GeneralComments",
+            "type": "textbox",
+            "maxwords": 500,
+            "title": "(optional) General comments (max. 500 words)"
+        },
+        {
+            "id": "P_SchemeFit",
+            "type": "dropdown",
+            "title": "(optional) How well did the scheme (except your merit statement) cover the merits of this research output?",
+            "options": [
+                {
+                    "id": "0",
+                    "text": "Not at all"
+                },
+                {
+                    "id": "1",
+                    "text": "Slightly: Some merits were covered"
+                },
+                {
+                    "id": "2",
+                    "text": "Moderately: Several merits covered; some aspects missing"
+                },
+                {
+                    "id": "3",
+                    "text": "Very well: Most merits covered"
+                }
+            ]            
         }
     ]
 }

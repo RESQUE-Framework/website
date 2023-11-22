@@ -34,7 +34,7 @@
                 <div class="top">
                     <h3>RESQUE</h3>
                     <div id="actions">
-                        <button onclick="showClearModal()">Clear</button>
+                        <button onclick="showModal('clear-modal')">Clear</button>
                         <button onclick="triggerLoad()">Load</button>
                         <button onclick="exp()">Save to file ...</button>
                     </div>
@@ -68,7 +68,7 @@
             <div class="card animate pop" id="score-box">
                 <div id="score-container">
                     <div id="current-score">
-                        <span class="sub">Current Research Output</span>
+                        <span class="sub">Rigor Score of selected research output</span>
                         <span id="no-score">Applicant requests<br>manual processing</span>
 
                         <div id="current-score-container">
@@ -78,7 +78,7 @@
                         </div>
                     </div>
                     <div id="overall-score">
-                        <span class="sub">Overall Score (mean)</span>
+                        <span class="sub">Overall Rigor Score (mean)</span>
                         <div id="overall-score-container">
                             <p id="overall-score-percentage"></p>
                         </div>
@@ -94,6 +94,10 @@
                 <details id="item-background-details">
                     <summary>Background information</summary>
                     <span id="item-background"></span>
+                </details>
+                <details id="tip-external-details">
+                    <summary>Tips for external raters</summary>
+                    <span id="tip-external"></span>
                 </details>
             </div>
             <div class="menu-bottom">
@@ -140,7 +144,8 @@
             <details>
                 <summary>How can I clear all information I entered?</summary>
                 You can delete all data stored in the browser by clicking on the <button
-                    onclick="showClearModal()">Clear</button> button here or in the top left corner of this website.
+                    onclick="showModal('clear-modal')">Clear</button> button here or in the top left corner of this
+                website.
             </details>
             <details>
                 <summary>What should I do if I want to use RESQUE on a shared/public computer?</summary>
@@ -169,8 +174,22 @@
         <h3>⚠️ Warning!</h3>
         <p><b>This will delete all of your local data.</b><br><br>Do you want to save the data to a file first?</p>
         <br>
-        <button onclick="closeClearModal()">Cancel</button> <button onclick="exp()">Save data to local file</button>
+        <button onclick="closeModal('clear-modal')">Cancel</button> <button onclick="exp()">Save data to local
+            file</button>
         <button onclick="reset()" class="critical">Clear all data</button>
+    </dialog>
+
+    <dialog id="config-incompatible-modal">
+        <h3>Incompatible configuration</h3>
+        <p>You have old data present, which was created using a different configuration. Do you want to load it, or
+            start with a fresh form?</p>
+        <p>Your data might be incompatible with the current configuration and lead to unexpected behavior.
+        </p>
+        <br>
+        <div class="buttons">
+            <button onclick="saveCurrentQueryConfig(); closeModal('config-incompatible-modal')">Use old data</button>
+            <button onclick="showModal('clear-modal')" class="critical">Clear everything and start fresh</button>
+        </div>
     </dialog>
 
     <div id="mobile">
@@ -189,6 +208,7 @@
         style="visibility: hidden;" />
 
     <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/object-hash@3.0.0/dist/object_hash.min.js"></script>
     <script>
         pdfjsLib.GlobalWorkerOptions.workerSrc =
             'https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js';
@@ -338,7 +358,8 @@
         const getConfig = (type) => ({
             ...formTypes[type].config,
             ...globalConfig,
-            ...queryConfig
+            ...queryConfig.global,
+            ...queryConfig[type]
         })
 
         const getDefaultValues = type => {
@@ -367,12 +388,12 @@
             }
         }
 
-        const showClearModal = () => {
-            document.getElementById("clear-modal").showModal();
+        const showModal = (id) => {
+            document.getElementById(id).showModal();
         }
 
-        const closeClearModal = () => {
-            document.getElementById("clear-modal").close();
+        const closeModal = (id) => {
+            document.getElementById(id).close();
         }
 
         const showInfoModal = () => {
@@ -681,6 +702,7 @@
             // Show score box
             document.getElementById('score-box').style.display = "";
 
+            // scoringResult.max is 0 if (a) users opt-out and request manual processing, or (b) select "not applicable" for each indicator.
             if (scoringResult.max > 0) {
                 document.getElementById("no-score").style.display = "none";
                 document.getElementById("current-score-container").style.display = "flex"
@@ -717,8 +739,10 @@
 
         const evaluateCondition = condition => evaluateConditionInContext(condition, result);
 
-        const evaluateConditionInContext = (condition, context) => {
-            return eval(insertValuesIntoCondition(preprocessCondition(condition)))
+        const evaluateConditionInContext = (condition, context) => { 
+            const exists = id => !!id && id !== "";
+
+            return eval(insertValuesIntoCondition(preprocessCondition(condition)));
         }
 
         const applyFilters = () => {
@@ -785,15 +809,19 @@
 
         const showInfo = (e, element) => {
             const itemInfo = document.getElementById("item-info");
+
             const itemBackground = document.getElementById("item-background");
             const itemBackgroundDetails = document.getElementById("item-background-details");
 
+            const tipExternal = document.getElementById("tip-external");
+            const tipExternalDetails = document.getElementById("tip-external-details");
+
             if (element.info) {
                 itemInfo.style.color = "#333333";
-                itemInfo.innerHTML = `<b>${element.id}</b>${element.eval_dimension ? '<span id="eval-dimension">' + element.eval_dimension + '</span>' : ""}<br><br>${partialHighlight(element.id, element.info)}`;
+                itemInfo.innerHTML = `<b>${element.id}</b>${element.eval_dimension ? '<span id="eval-dimension" class="tag">' + element.eval_dimension + '</span>' : ""}<br><br>${partialHighlight(element.id, element.info)}`;
             } else {
                 itemInfo.style.color = "gray";
-                itemInfo.innerHTML = `<b>${element.id}</b>${element.eval_dimension ? '<span id="eval-dimension">' + element.eval_dimension + '</span>' : ""}<br><br><i>No information</i>`;
+                itemInfo.innerHTML = `<b>${element.id}</b>${element.eval_dimension ? '<span id="eval-dimension" class="tag">' + element.eval_dimension + '</span>' : ""}<br><br><i>No information</i>`;
             }
 
             if (element.background) {
@@ -802,6 +830,14 @@
                 itemBackgroundDetails.removeAttribute("open");
             } else {
                 itemBackgroundDetails.style.display = "none";
+            }
+
+            if (element.tip_external) {
+                tipExternal.innerHTML = element.tip_external;
+                tipExternalDetails.style.display = "block";
+                tipExternalDetails.removeAttribute("open");
+            } else {
+                tipExternalDetails.style.display = "none";
             }
         }
 
@@ -869,6 +905,7 @@
             const creator = {
                 "separator": () => {
                     let separator = document.createElement("hr");
+                    separator.setAttribute("style", "height:3px;border:none;color:#333;background-color:#333;");
 
                     return separator;
                 },
@@ -940,15 +977,13 @@
                     input.name = element.id;
                     input.id = element.id;
 
-                    const values = element.values || element.options;
-
-                    let options = element.options.map((option, index) => {
+                    let options = element.options.map((option) => {
                         let opt = document.createElement("option")
-                        opt.value = index;
-                        opt.innerText = option;
+                        opt.value = option.id;
+                        opt.innerText = option.text;
 
                         if (mode === MODE_PREVIEW) {
-                            opt.innerText = `[${index}] ${option}`;
+                            opt.innerText = `[${option.id}] ${option.text}`;
                         }
 
                         return opt;
@@ -1025,7 +1060,7 @@
                         let text = typeof option === 'string' ? option : option.text;
 
                         if (mode === MODE_PREVIEW) {
-                            text = `[${checkbox.id}] ${option}`;
+                            text = `[${checkbox.id}] ${option.text}`;
                         }
 
                         label.append(checkbox, text);
@@ -1259,6 +1294,10 @@
             let reachedScore = 0;
 
             for (indicator in scoring) {
+                if (indicator === 'post') {
+                    // skip post
+                    continue;
+                }
                 if (scoring[indicator].not_applicable && evaluateConditionInContext(scoring[indicator].not_applicable, r)) {
                     continue;
                 }
@@ -1281,6 +1320,14 @@
 
             }
 
+            if(scoring.post) {
+                scoring.post.forEach(transformation => {
+                    if (evaluateConditionInContext(transformation.condition, r)) {
+                        console.log(transformation.factor)
+                        reachedScore *= transformation.factor;
+                    }
+                })
+            }
 
             return {
                 max: maxScore,
@@ -1288,6 +1335,41 @@
                 relative: reachedScore / maxScore,
                 percentage: ((reachedScore / maxScore) * 100).toFixed(1)
             }
+        }
+
+        function getQueryConfig(params) {
+            let queryConfig = {
+                global: {},
+            };
+
+            params.forEach((value, key) => {
+                if (key.includes(':')) {
+                    const parts = key.split(':');
+
+                    let location = queryConfig;
+
+                    parts.forEach((part, index) => {
+                        if (index === parts.length - 1) {
+                            // Set the parameter
+                            location[part] = value;
+                        } else {
+                            // Navigate into the correct location
+                            location[part] = location[part] ?? {};
+                            location = location[part];
+                        }
+                    })
+                } else {
+                    // Global config parameter
+                    queryConfig.global[key] = value;
+                }
+            })
+
+            return queryConfig;
+        }
+
+        function saveCurrentQueryConfig() {
+            results[0].queryConfig = queryConfig;
+            save();
         }
 
         let meta, pub, software, data;
@@ -1298,7 +1380,7 @@
 
         const params = new URLSearchParams(window.location.search);
 
-        queryConfig = Object.fromEntries(params.entries());
+        queryConfig = getQueryConfig(params);
 
         const mode = params.get("mode");
         const doimagic = params.get("doimagic");
@@ -1327,6 +1409,16 @@
             results.forEach((r, index) => {
                 document.getElementById("tabs").appendChild(createTab(r, index));
             });
+
+            if (!results[0].queryConfig) {
+                // save query config
+                saveCurrentQueryConfig();
+            }
+
+            // Check config compatibility
+            if (objectHash(results[0].queryConfig) !== objectHash(queryConfig)) {
+                showModal('config-incompatible-modal');
+            }
 
             loadForm({ index: currentTab });
             updateTabs();

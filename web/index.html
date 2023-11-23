@@ -967,10 +967,10 @@
                     let options = element.options.map((option) => {
                         let opt = document.createElement("option")
                         opt.value = option.id;
-                        opt.innerText = option.text;
+                        opt.innerHTML = option.text;
 
                         if (mode === MODE_PREVIEW) {
-                            opt.innerText = `[${option.id}] ${option.text}`;
+                            opt.innerHTML = `[${option.id}] ${option.text}`;
                         }
 
                         return opt;
@@ -1018,7 +1018,10 @@
                             optionText = `[${option.id}] ${optionText}`;
                         }
 
-                        label.append(radio, optionText);
+                        let span = document.createElement("span");
+                        span.innerHTML = optionText;
+
+                        label.append(radio, span);
 
                         if (element.id in result && result[element.id] === option.id) {
                             radio.checked = true;
@@ -1044,13 +1047,16 @@
                         checkbox.id = element.id + '_' + (option.id ? option.id : String.fromCharCode(index + 97));
                         checkbox.classList.add("type-checkbox");
 
+                        let span = document.createElement("span");
                         let text = typeof option === 'string' ? option : option.text;
 
                         if (mode === MODE_PREVIEW) {
                             text = `[${checkbox.id}] ${option.text}`;
                         }
 
-                        label.append(checkbox, text);
+                        span.innerHTML = text;
+
+                        label.append(checkbox, span);
 
 
                         checkbox.setAttribute("data-min-selected", element.min_selected);
@@ -1151,13 +1157,13 @@
 
                 if (element.title) {
                     let title = document.createElement("p");
-                    title.innerText = preprocessText(element.title);
+                    title.innerHTML = preprocessText(element.title);
 
                     title.classList.add(element.id, "title");
                     fragment.appendChild(title);
 
                     if (mode === MODE_PREVIEW) {
-                        title.innerText = `[${element.id}] ${title.innerText}`;
+                        title.innerHTML = `[${element.id}] ${title.innerHTML}`;
                     }
                 }
 

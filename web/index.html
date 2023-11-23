@@ -734,7 +734,9 @@
         }
 
         const insertValuesIntoCondition = condition => {
-            return condition.replaceAll(/\$(\w*)/g, `context['$1']`);
+            return condition
+            .replaceAll(/meta\$([a-zA-Z0-9_]+)/g, `results[0]['$1']`)
+            .replaceAll(/\$(\w*)/g, `context['$1']`);
         }
 
         const evaluateCondition = condition => evaluateConditionInContext(condition, result);
@@ -880,6 +882,7 @@
                 }
             }
             return text
+                .replaceAll(/meta\$([a-zA-Z0-9_]+)/g, (match, variable) => results[0][variable])
                 .replaceAll(/global\$([a-zA-Z0-9_]+)@([a-zA-Z0-9_]+)/g, (match, variable, type) => {
                     return globals[type](variable);
                 })

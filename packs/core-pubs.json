@@ -960,6 +960,7 @@
                     "text": "Yes, entire scripts [provide doi or URL]"
                 }
             ],
+            "info":"{'YesParts', 'YesEntire' | Only choose <b>`Yes`</b> if a doi or URL can be provided.} <br><br><b>When only parts of scripts available:</b><br>Choose `Yes, parts of scripts` if no justification is given.<br>Choose `Yes, entire scripts` if a reasonable justification for all missing scripts are provided.<br><br> When to choose <b>'Not applicable'</b>:<br>If no scripts have been used in the publication.",
             "condition": "$P_Suitable === 'Yes'"
         },
         {
@@ -1106,7 +1107,7 @@
                     "text": "Yes, entire material [provide doi or URL]"
                 }
             ],
-            "info": "{:'YesParts', 'YesEntire' | Only choose 'Yes' if the material substantially exceeds the open reproducible scripts. }<br><br>{:0 | When to choose 'Not applicable': If no material has been used in the publication, or the entire material is contained in the open reproducible scripts. }",
+            "info": "{:'YesParts', 'YesEntire' | Only choose 'Yes' if the material substantially exceeds the open reproducible scripts. }<br><br>{:0 | <b>When only parts of the materials available</b><br>Choose 'Yes, entire material' if a reasonable justification for only parts of material is given.<br>Choose 'Yes, parts of material' if no justification is given. <br><br> When to choose <b>'Not applicable'</b>: If no material has been used in the publication, or the entire material is contained in the open reproducible scripts. }",
             "condition": "$P_Suitable === 'Yes'"
         },
         {
@@ -1148,6 +1149,7 @@
                     "text": "Registered Report [provide doi or URL]"
                 }
             ],
+            "info": "{:'Yes' | Only choose 'Yes' if the preregistration is time-stamped/ registered before the publication of the study.}<br><br> | <b>Multi Study Paper Case</b>: Only choose 'Yes' if your nominated study has been preregistered. <br><br> When to choose <b>'No'</b> <br> If the study was not preregistered or if preregistration is not time-stamped/registered <br><br> When to choose <b>'Not applicable'</b> <br>If the study type is 'Simulation' (except from benchmarking experiments), 'mainly theoretical Review' or other cases with reasonable justifications for nor preregistration.",
             "condition": "$P_Suitable === 'Yes'"
         },
         {

@@ -163,17 +163,20 @@
         {
             "id": "DOI",
             "type": "text",
-            "title": "DOI"
+            "title": "DOI",
+            "onchange": "fetch_doi"
         },
         {
             "id": "Title",
-            "type": "textbox",
-            "title": "Paper title (do not provide journal name)"
+            "type": "info",
+            "title": "Paper title",
+            "text": "$Title"
         },
         {
             "id": "Year",
-            "type": "number",
-            "title": "Year of publication"
+            "type": "info",
+            "title": "Year of publication",
+            "text": "$Year"
         },
         {
             "id": "P_TopPaper",

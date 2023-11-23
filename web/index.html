@@ -404,6 +404,50 @@
             document.getElementById("info-modal").style.display = "none";
         }
 
+        const fetchInformationUsingDOI = async (doi) => {
+            return await fetch("https://doi.org/" + doi, {
+                headers: {
+                    Accept: 'application/vnd.citationstyles.csl+json'
+                }
+            })
+                .then(response => response.json())
+                .then(response => {
+                    if (mode === MODE_PREVIEW) {
+                        console.log(response);
+                    }
+
+                    return {
+                        title: response.title,
+                        year: response.published["date-parts"][0][0],
+                        DOI: response.DOI
+                    }
+                })
+                .catch(() => {
+                    return {
+                        title: doi ? '⚠️ <b>Invalid DOI:</b> ' + doi : undefined,
+                        year: undefined,
+                        DOI: doi
+                    }
+                })
+        }
+
+        const displayInformation = async (doi) => {
+
+            currentResult = result;
+
+            const publicationInformation = await fetchInformationUsingDOI(doi);
+
+            currentResult.Title = publicationInformation.title;
+            currentResult.Year = publicationInformation.year;
+            currentResult.DOI = publicationInformation.DOI;
+
+            save();
+
+            rerenderDynamicValues();
+            updateTabs();
+
+        }
+
         const newTab = type => {
             let doiField = document.getElementById("add-doi");
             let doi = doiField.value;
@@ -426,37 +470,7 @@
             const tabsElement = document.getElementsByClassName("tabs-sidebar")[0];
 
             if (doi) {
-                fetch("https://doi.org/" + doi.trim(), {
-                    headers: {
-                        Accept: 'application/vnd.citationstyles.csl+json'
-                    }
-                })
-                    .then(response => response.json())
-                    .then(response => {
-                        if (mode === MODE_PREVIEW) {
-                            console.log(response);
-                        }
-
-                        if (type === "pub") {
-                            results[index].Title = response.title;
-                            results[index].Year = response.published["date-parts"][0][0];
-                            results[index].DOI = response.DOI;
-
-                            save();
-
-                            if (currentTab === index) {
-                                location.reload();
-                            } else {
-                                // Switch to new tab
-                                tabs[results.length - 1].click();
-
-                                tabsElement.scrollTo({
-                                    top: tabsElement.scrollHeight,
-                                    behavior: "smooth"
-                                });
-                            }
-                        }
-                    })
+                const publicationInformation = fetchInformationUsingDOI(doi.trim());
             } else {
                 // Switch to new tab
                 save();
@@ -469,7 +483,7 @@
                 });
             }
         }
-
+        
         const save = () => {
             localStorage.setItem("formdata", JSON.stringify(results))
         }
@@ -637,35 +651,6 @@
                 document.getElementById("add-container").style.display = "inherit"
             }
 
-            let numberOfPublications = 0;
-            let numberOfSoftwareProjects = 0;
-            let numberOfDataSets = 0;
-
-            tabs.forEach(t => {
-                const content = t.firstChild;
-
-                const index = parseInt(t.getAttribute("data-index"));
-                const result = results[index];
-
-                switch (result.type) {
-                    case "meta":
-                        content.innerHTML = `<b>Author / Metadata</b>${result["LastName"] ? '<br>' + result["LastName"] : ''}`;
-                        break;
-                    case "pub":
-                        content.innerHTML = `<b>Publication ${++numberOfPublications}</b>${result["Title"] ? '<br>' + result["Title"] : ''}`
-                        break;
-                    case "software":
-                        content.innerHTML = `<b>Software Project ${++numberOfSoftwareProjects}</b>${result["Title"] ? '<br>' + result["Title"] : ''}`;
-                        break;
-                    case "data":
-                        content.innerHTML = `<b>Data Set ${++numberOfDataSets}</b>${result["Title"] ? '<br>' + result["Title"] : ''}`;
-                        break;
-
-                    default:
-                        break;
-                }
-            })
-
             if (result.type === 'meta') {
                 // Hide the score box and skip updating score values
                 document.getElementById('score-box').style.display = "none";
@@ -702,7 +687,6 @@
             // Show score box
             document.getElementById('score-box').style.display = "";
 
-            // scoringResult.max is 0 if (a) users opt-out and request manual processing, or (b) select "not applicable" for each indicator.
             if (scoringResult.max > 0) {
                 document.getElementById("no-score").style.display = "none";
                 document.getElementById("current-score-container").style.display = "flex"
@@ -896,7 +880,7 @@
                     return processType[type](result[variable]);
                 })
                 .replaceAll(/\$([a-zA-Z0-9_]+)/g, (match, variable) => {
-                    return result[variable];
+                    return result[variable] ?? '...';
                 });
         }
 
@@ -1132,6 +1116,12 @@
                 }
             }
 
+            const actions = {
+                fetch_doi: () => {
+                    displayInformation(result['DOI']);
+                }
+            };
+
             if (element.type in creator) {
                 let domElement = creator[element.type]();
 
@@ -1141,8 +1131,12 @@
                     domElement.id = element.id;
                 }
 
-                domElement.pattern = element.check;
+                // TODO: Check allowed patterns
+                // domElement.pattern = element.check;
 
+                if (element.onchange) {
+                    domElement.onblur = actions[element.onchange];
+                }
 
                 if (filterTriggers.includes(element.id)) {
                     domElement.addEventListener('input', update);
@@ -1244,11 +1238,38 @@
         }
 
         const updateTabs = () => {
+            let numberOfPublications = 0;
+            let numberOfSoftwareProjects = 0;
+            let numberOfDataSets = 0;
+
             tabs.forEach(t => {
                 if (parseInt(t.getAttribute("data-index")) === currentTab) {
                     t.classList.add("selected");
                 } else {
                     t.classList.remove("selected");
+                }
+
+                const content = t.firstChild;
+
+                const index = parseInt(t.getAttribute("data-index"));
+                const result = results[index];
+
+                switch (result.type) {
+                    case "meta":
+                        content.innerHTML = `<b>Author / Metadata</b>${result["LastName"] ? '<br>' + result["LastName"] : ''}`;
+                        break;
+                    case "pub":
+                        content.innerHTML = `<b>Publication ${++numberOfPublications}</b>${result["Title"] ? '<br>' + result["Title"] : ''}`
+                        break;
+                    case "software":
+                        content.innerHTML = `<b>Software Project ${++numberOfSoftwareProjects}</b>${result["Title"] ? '<br>' + result["Title"] : ''}`;
+                        break;
+                    case "data":
+                        content.innerHTML = `<b>Data Set ${++numberOfDataSets}</b>${result["Title"] ? '<br>' + result["Title"] : ''}`;
+                        break;
+
+                    default:
+                        break;
                 }
             })
         }

@@ -1040,7 +1040,7 @@
                 }
             ],
             "info": "<ul><li> {$P_ReproducibleScripts_TIER4_Sufficiency | <b>Sufficiency</b>: The documentation for a project should contain all the data, scripts, and supplementary information necessary to enable any user (with access to and basic proficiency in the software used) to reproduce all the results presented in the report without undue difficulty. The user should not have to seek assistance from the person who conducted the study.} </li><li> {$P_ReproducibleScripts_TIER4_SoupToNuts |  <b>Soup-to-nuts</b>: The documentation should include scripts that reproduce all the computations required for both (i) the steps of processing necessary to prepare the data for analysis, and (ii) the analysis or procedures performed with the processed data that generate the results. } </li><li> {:'Portability' |  <b>Portability</b>: Provided the necessary software is installed, any user should be able to copy the project folder, with the hierarchy of subfolders and files it contains intact, onto their own computer or workspace, and then run the scripts that reproduce the project locally. Note that the <i>Portability</i> claim is an assertion by the submitting author; whether portability has been independently verified is covered in indicator <i>P_IndependentVerification (Workflow reproducibility)</i>.} </li><li> {$P_ReproducibleScripts_TIER4_OneClickReproducibility |  <b>(Almost) One-click reproducibility</b>: Reproducing all the computations required to generate the results of a study should require (almost) nothing other than executing a single Master Script. } </li></ul><br><br>These items are inspired by the <a href='https://www.projecttier.org/tier-protocol/protocol-4-0/'>TIER Protocol 4.0</a>. Some of the help text is quoted from there. <i>Portability</i> is not listed here, as this is covered in the indicator <code>WorkflowReproducible</code> of <code>P_IndependentVerification</code>.",
-            "condition": "$P_Suitable === 'Yes' && $P_ReproducibleScripts =|= ['YesParts', 'YesEntire']"
+            "condition": "$P_Suitable === 'Yes' && $P_ReproducibleScripts =|= ['YesParts', 'YesEntire'] && meta$RaterType === 'Applicant'"
         },
         {
             "id": "P_IndependentVerification",
@@ -1303,6 +1303,10 @@
             "title": "(optional) How well did the scheme (except your merit statement) cover the merits of this research output?",
             "options": [
                 {
+                    "id": "-1",
+                    "text": "-undefined-"
+                },
+                {
                     "id": "0",
                     "text": "Not at all"
                 },
@@ -1318,7 +1322,8 @@
                     "id": "3",
                     "text": "Very well: Most merits covered"
                 }
-            ]            
+            ],
+            "default": "-1"
         }
     ]
 }

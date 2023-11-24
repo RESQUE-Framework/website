@@ -1,13 +1,21 @@
 unCamel <- function(x) gsub("([A-Z]){1}", " \\1", x) |> str_trim()
 
-get_indicators <- function(scores, pattern) {
-    x <- sapply(scores, function(x) {
-        ind <- x$indicators
+# sc = scores object
+get_indicators <- function(sc, pattern) {
+    res <- data.frame()
+    for (i in 1:length(sc)) {
+        ind <- sc[[i]]$indicators
         if (!is.null(ind) & is.list(ind)) {
-            return(ind)
+           res <- rbind(res, tibble(
+            output = i,
+            indicator = names(ind),
+            value = sapply(ind, "[[", "value"),
+            max = sapply(ind, "[[", "max"),
+            rel_score = value/max
+           ))
         }
-    }) 
+    }
 
-    x2 <- unlist(x)
-    return(x2[grepl(pattern, names(x2))])
+    rownames(res) <- NULL
+    return(res[grepl(pattern, res$indicator), ])
 }

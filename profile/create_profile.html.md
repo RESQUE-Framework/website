@@ -26,7 +26,7 @@ TODOs:
 :::
 
 
-This document summarizes the research style of a scientist - **the "fingerprint" of how research is conducted**, when only the best work is submitted to this analysis.
+**This document summarizes the research style of Leising 2 - the *"fingerprint" of how research is conducted*, when only the best work is submitted to this analysis.**
 
 Some parts of this profile are purely descriptive. For example, it is summarized whether researchers focus on lab or field studies, whether they predominantly work with psychophysiological data or rather focus on questionnaire studies. 
 
@@ -135,33 +135,13 @@ Based on 10 submitted publications, this is the self-reported contributorship pr
 # Rigor profile overview
 
 
+
+
 ::: {.cell}
-::: {.cell-output .cell-output-stdout}
-
-```
-
-   P_Data_Open_AccessLevel           P_Data_Open_FAIR 
-                         5                          5 
-          P_FormalModeling  P_IndependentVerification 
-                         7                          7 
-           P_OpenMaterials P_PreregisteredReplication 
-                         7                          7 
-         P_Preregistration  P_Preregistration_Content 
-                         7                          7 
-     P_ReproducibleScripts P_ReproducibleScripts_FAIR 
-                         7                          7 
-```
-
-
-:::
-
 ::: {.cell-output-display}
-![](create_profile_files/figure-html/unnamed-chunk-9-1.png){width=672}
+![](create_profile_files/figure-html/unnamed-chunk-10-1.png){width=672}
 :::
 :::
-
-
-
 
 
 
@@ -184,7 +164,7 @@ TBD
 
 ::: {.cell}
 ::: {.cell-output-display}
-![](create_profile_files/figure-html/unnamed-chunk-11-1.png){width=960}
+![](create_profile_files/figure-html/unnamed-chunk-12-1.png){width=960}
 :::
 :::
 
@@ -194,7 +174,7 @@ TBD
 
 ::: {.cell}
 ::: {.cell-output-display}
-![](create_profile_files/figure-html/unnamed-chunk-12-1.png){width=960}
+![](create_profile_files/figure-html/unnamed-chunk-13-1.png){width=960}
 :::
 :::
 
@@ -203,7 +183,7 @@ TBD
 
 ::: {.cell}
 ::: {.cell-output-display}
-![](create_profile_files/figure-html/unnamed-chunk-13-1.png){width=960}
+![](create_profile_files/figure-html/unnamed-chunk-14-1.png){width=960}
 :::
 :::
 
@@ -222,7 +202,7 @@ TBD
 
 ::: {.cell}
 ::: {.cell-output-display}
-![](create_profile_files/figure-html/unnamed-chunk-15-1.png){width=672}
+![](create_profile_files/figure-html/unnamed-chunk-16-1.png){width=672}
 :::
 :::
 

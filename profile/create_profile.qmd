@@ -21,7 +21,7 @@ TODOs:
 ```{r}
 
 resque_file <- "data/resque_1696782133298.json"
-# resque_file <- "data/resque_1697454489129.json"
+#resque_file <- "data/resque_1697454489129.json"
 
 library(jsonlite)
 library(dplyr)
@@ -219,53 +219,83 @@ wordcloud(ct_ordered$Role, freq = ct_ordered$weight, scale = c(2, .1), min.freq 
 # Rigor profile overview
 
 ```{r}
+#| echo: false
+#| include: false
 
 # Which outputs should be scored?
 score_list <- scores$scores[dat$P_Suitable == "Yes"]
 n_scorable <- length(score_list)
 
-scores_all <- get_indicators(score_list, "P")
+# pattern "P" matches all indicators
+scores_all <- get_indicators(sc=score_list, pattern="P")
 #table(names(scores_all))
 
-scores_data <- get_indicators(score_list, "Data")
-scores_prereg <- get_indicators(score_list, "Prereg")
-scores_reproScript <- get_indicators(score_list, "ReproducibleScripts|IndependentVerification")
-scores_FormalModeling <- get_indicators(score_list, "FormalModeling")
-scores_OpenMaterials <- get_indicators(score_list, "OpenMaterials")
+scores_all$category <- NA
+scores_all$category[str_detect(scores_all$indicator, "Data")] <- "Open Data"
+scores_all$category[str_detect(scores_all$indicator, "Prereg")] <- "Preregistration"
+scores_all$category[str_detect(scores_all$indicator, "ReproducibleScripts|IndependentVerification")] <- "Reproducible Code \n& Verification"
+scores_all$category[str_detect(scores_all$indicator, "FormalModeling")] <- "Formal\nModeling"
+scores_all$category[str_detect(scores_all$indicator, "OpenMaterials")] <- "Open Materials"
 
-# TODO: Divide by maximum score
-rel_scores_data <- sum(scores_data) / n_scorable
-rel_scores_prereg <- sum(scores_prereg) / n_scorable
-rel_scores_reproScript <- sum(scores_reproScript) / n_scorable
-rel_scores_FormalModeling <- sum(scores_FormalModeling) / n_scorable
-rel_scores_OpenMaterials <- sum(scores_OpenMaterials) / n_scorable
+scores_all_aggr <- scores_all %>% 
+  group_by(category) %>% 
+  summarise(
+    rel_score = mean(rel_score),
+    overall_points = sum(max)
+  )
 
+# = mean of the mean scores (with equal weighting of each research output)
+# Note (TODO): In the webform, it's the *weighted*
+overall_mean_rel_score <- scores_all %>% 
+  group_by(output) %>% 
+  summarise(
+    scores = sum(value),
+    max = sum(max),
+    rel_score = scores/max
+  )
+
+# overall rigor score as in webform:
+sum(overall_mean_rel_score$scores)/sum(overall_mean_rel_score$max)
+
+# equally weighted overall score:
+overall_score <- mean(scores_all_aggr$rel_score)
 
 radar_dat <- tibble(
-	dimension = factor(1:5, labels=c("Open Data", "Preregistration", "Reproducible Code \n& Verification", "Formal\nModeling", "Open Materials")),
-	max_points = c(1, 2, 1, 2, 1),
-	gained_points = c(rel_scores_data, rel_scores_prereg, rel_scores_reproScript, rel_scores_FormalModeling, rel_scores_OpenMaterials),
-	relative_score = gained_points/max_points,
+	dimension = factor(scores_all_aggr$category),
+	max_points = scores_all_aggr$overall_points,
+	rel_score = scores_all_aggr$rel_score,
 	xstart = c(0, cumsum(max_points)[1:(length(max_points)-1)]),
 	xend = cumsum(max_points),
   xmid = (xend-xstart)/2 + xstart
 )
 
+# Standardized and categorized rigor scores:
+# Standarized within category
+# Quantiles in Franka's study were:
+# 0.54 (top 10%), 0.50 (top 20%), 0.30 (top 50%)
+#radar_dat$norm_rigor <- cut(radar_dat$rel_score, breaks=c(0, 0.30, .50, .54, 1), 
+#  labels=c("low50", "top50", "top20", "top10"))
+
 p1 <- radar_dat %>% ggplot() + 
-geom_rect(aes(xmin=xstart, xmax=xend, ymin=0, ymax=relative_score, fill=dimension)) + 
+geom_rect(aes(xmin=xstart, xmax=xend, ymin=0, ymax=rel_score, fill=dimension)) + 
 coord_polar("x", start=0) + 
 geom_hline(yintercept=1, col="grey80") + geom_hline(yintercept=0.5, col="grey60") +
-xlab("") + ylab("") + ggtitle("Researcher A", subtitle = paste0("Overall score = ", round(sum(radar_dat$gained_points), 2))) +
+xlab("") + ylab("") + ggtitle(paste0("Rigor profile for ", meta$LastName), subtitle = paste0("Overall score = ", round(overall_score, 2))) +
 scale_x_continuous(labels = NULL, breaks = NULL) + scale_y_continuous(labels = NULL, breaks = NULL, limits=c(0, 1)) + theme_void() +
 guides(fill=guide_legend("Quality Dimension")) +
 scale_fill_brewer(palette="Set3") +
-geom_text(aes(x=xmid, y=0.7, label = dimension), vjust = -0.5)
+geom_text(aes(x=xmid, y=0.4, label = dimension), vjust = -0.5)
 
 p1
+
+# TODO: add visual guidance lines (geom_hline) at meaningful percentiles
+# TODO: Compute rough norm values (e.g., 5 categories)
 ```
 
 
-
+```{r}
+p1
+```
 
 
 # Open Data in Publications

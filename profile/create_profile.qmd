@@ -20,8 +20,8 @@ TODOs:
 
 ```{r}
 
-resque_file <- "data/resque_1696782133298.json"
-#resque_file <- "data/resque_1697454489129.json"
+#resque_file <- "data/resque_1696782133298.json"
+resque_file <- "data/resque_1697454489129.json"
 
 library(jsonlite)
 library(dplyr)
@@ -101,9 +101,14 @@ credit$Role <- factor(credit$Role, levels = rev(rownames(ct_ordered)))
 
 **This document summarizes the research style of `r meta$LastName` - the *"fingerprint" of how research is conducted*, when only the best work is submitted to this analysis.**
 
+::: {.callout-warning}
+This is a preview which shows some visual summaries - not all indicators have been covered yet, and things might change substantially.
+:::
+
+
 Some parts of this profile are purely descriptive. For example, it is summarized whether researchers focus on lab or field studies, whether they predominantly work with psychophysiological data or rather focus on questionnaire studies. 
 
-Other parts are, to some extent, normative: Research that is reproducible, which allows independent auditing because it provides open data and scripts, or prevents biases by preregistration is, *ceteris paribus*, better than research that does not have these aspects. Research outputs with these objective quality criteria of methodological rigor can gain "bonus points" which are summed across all provided research outputs.
+Other parts contain, to some extent, a normative aspect: For example, research that is reproducible, which allows independent auditing because it provides open data and scripts is, *ceteris paribus*, better than research that does not have these aspects. Research outputs with these objective quality criteria of methodological rigor can gain "bonus points" which are summed across all provided research outputs and contribute to the [Rigor Profile Overview](#rigor-profile-overview).
 
 ## Submitted research outputs
 
@@ -213,6 +218,55 @@ ggplot(credit, aes(x = Role, fill = Degree)) +
 
 ```{r}
 wordcloud(ct_ordered$Role, freq = ct_ordered$weight, scale = c(2, .1), min.freq = 0.4, random.order = FALSE)
+```
+
+
+# Influential publications:
+
+```{r}
+library(curl)
+
+# dois_normalized = "10.1177/2515245918810225,10.1038/s41562-017-0189-z,10.1002/per.2169,10.3758/s13423-017-1230-y,10.1002/per.2184,10.1037/pspp0000204,10.1177/2515245917747646,10.1002/per.2145"
+
+doi_csv <- paste0(dois_normalized, collapse=",") |> URLencode(reserved=TRUE)
+req <- curl_fetch_memory(paste0("https://bip-api.imsi.athenarc.gr/paper/scores/batch/", doi_csv))
+
+BIP <- jsonlite::fromJSON(rawToChar(req$content)) 
+BIP$pop_class <- factor(BIP$pop_class, levels=paste0("C", 1:5), ordered=TRUE)
+BIP$inf_class <- factor(BIP$inf_class, levels=paste0("C", 1:5), ordered=TRUE)
+BIP$imp_class <- factor(BIP$imp_class, levels=paste0("C", 1:5), ordered=TRUE)
+#BIP %>% arrange(-attrank)
+#BIP %>% arrange(imp_class)
+#BIP %>% arrange(-pagerank)
+```
+
+
+| Class | Description          |
+| ----- | -------------------- |
+| C1    | Top 0.01%            |
+| C2    | Top 0.1%             |
+| C3    | Top 1%               |
+| C4    | Top 10%              |
+| C5    | Average (Bottom 90%) |
+
+### Popularity
+
+::: {.callout-note}
+This indicator reflects the "current" impact/attention (the "hype") of an article in the research community at large, based on the underlying citation network (see [BIP! glossary](https://bip.imsi.athenarc.gr/site/indicators))
+:::
+
+Highly popular papers are:
+
+```{r}
+#| results: "asis"
+
+pop_sel <- BIP %>% filter(pop_class <= "C4") %>% arrange(pop_class)
+
+if (nrow(pop_sel) > 0) {
+  kable(pop_sel)
+} else {
+  cat("**None.**")
+}
 ```
 
 

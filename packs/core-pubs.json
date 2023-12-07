@@ -330,8 +330,8 @@
         {
             "id": "P_CRediT_Info",
             "type": "info",
-            "text": "<h3>CRediT roles</h3>",
-            "info": "Please indicate your individual contributions to the publication. You can get a description of each role by clicking on the name of each role. Where multiple individuals serve in the same role, the degree of contribution should be specified as 'lead', 'equal', or 'supporting'. <br><br><ul><li><i>lead</i>: You were the single leader for this specific activity. If you are the only person in a specific role, choose 'lead'.</li><li><i>equal</i>: You contributed equally to this activity, together with one or more other contributors (Choosing this option implies that no other co-author would choose the 'lead' option, and at least one other co-author would choose the 'equal' option).</li><li><i>supporting</i>: You had a supporting role, which was below the contribution of a leading or equal role.</li><li><i>no role</i>: You did not contribute substantially to that activity.</li><li><i>n/a</i>: This role was not relevant for the research.</li></ul>",
+            "text": "<h3>CRediT roles</h3>Please indicate your individual contributions to the publication. You can get a description of each role by clicking on the name of each role. Where multiple individuals serve in the same role, the degree of contribution should be specified as 'lead', 'equal', or 'supporting'. <br><br><ul><li><i>lead</i>: You were the single leader for this specific activity. If you are the only person in a specific role, choose 'lead'.</li><li><i>equal</i>: You contributed equally to this activity, together with one or more other contributors (Choosing this option implies that no other co-author would choose the 'lead' option, and at least one other co-author would choose the 'equal' option).</li><li><i>supporting</i>: You had a supporting role, which was below the contribution of a leading or equal role.</li><li><i>no role</i>: You did not contribute substantially to that activity.</li><li><i>n/a</i>: This role was not relevant for the research.</li></ul>",
+            "info": "<ul><li><i>lead</i>: You were the single leader for this specific activity. If you are the only person in a specific role, choose 'lead'.</li><li><i>equal</i>: You contributed equally to this activity, together with one or more other contributors (Choosing this option implies that no other co-author would choose the 'lead' option, and at least one other co-author would choose the 'equal' option).</li><li><i>supporting</i>: You had a supporting role, which was below the contribution of a leading or equal role.</li><li><i>no role</i>: You did not contribute substantially to that activity.</li><li><i>n/a</i>: This role was not relevant for the research.</li></ul>",
             "background": "The <a href='https://credit.niso.org/contributor-roles/'>CRediT documentation</a> is not very specific about the definition of the <i>lead</i>, <i>equal</i>, and <i>support</i> degrees of contribution. That is also the reason why the <a href='https://marton-balazs-kovacs.github.io/tenzing/'>Tenzing tool</a> does not implement these levels yet. The rules described here are our interpretation of how these degrees could be used in a reliable way."
         },
         {
@@ -363,7 +363,7 @@
             "default": "NoRole",
             "alignment": "horizontal",
             "tooltip": "Ideas; formulation or evolution of overarching research goals and aims.",
-            "info": "Ideas; formulation or evolution of overarching research goals and aims."
+            "info": "Ideas; formulation or evolution of overarching research goals and aims.<br><br><ul><li>{:'Lead' | <i>lead</i>: You were the single leader for this specific activity. If you are the only person in a specific role, choose 'lead'.}</li><li>{:'Equal' | <i>equal</i>: You contributed equally to this activity, together with one or more other contributors (Choosing this option implies that no other co-author would choose the 'lead' option, and at least one other co-author would choose the 'equal' option).}</li><li>{:'Support' | <i>supporting</i>: You had a supporting role, which was below the contribution of a leading or equal role.}</li><li>{:'NoRole' | <i>no role</i>: You did not contribute substantially to that activity.}</li><li>{:'NA' | <i>n/a</i>: This role was not relevant for the research.}</li></ul>"
         },
         {
             "id": "P_CRediT_DataCuration",
@@ -394,7 +394,7 @@
             "default": "NoRole",
             "alignment": "horizontal",
             "tooltip": "Management activities to annotate (produce metadata), scrub data and maintain research data (including software code, where it is necessary for interpreting the data itself) for initial use and later re-use.",
-            "info": "Management activities to annotate (produce metadata), scrub data and maintain research data (including software code, where it is necessary for interpreting the data itself) for initial use and later re-use."
+            "info": "Management activities to annotate (produce metadata), scrub data and maintain research data (including software code, where it is necessary for interpreting the data itself) for initial use and later re-use.<br><br><ul><li>{:'Lead' | <i>lead</i>: You were the single leader for this specific activity. If you are the only person in a specific role, choose 'lead'.}</li><li>{:'Equal' | <i>equal</i>: You contributed equally to this activity, together with one or more other contributors (Choosing this option implies that no other co-author would choose the 'lead' option, and at least one other co-author would choose the 'equal' option).}</li><li>{:'Support' | <i>supporting</i>: You had a supporting role, which was below the contribution of a leading or equal role.}</li><li>{:'NoRole' | <i>no role</i>: You did not contribute substantially to that activity.}</li><li>{:'NA' | <i>n/a</i>: This role was not relevant for the research.}</li></ul>"
         },
         {
             "id": "P_CRediT_FormalAnalysis",
@@ -425,7 +425,7 @@
             "default": "NoRole",
             "alignment": "horizontal",
             "tooltip": "Application of statistical, mathematical, computational, or other formal techniques to analyse or synthesize study data.",
-            "info": "Application of statistical, mathematical, computational, or other formal techniques to analyse or synthesize study data."
+            "info": "Application of statistical, mathematical, computational, or other formal techniques to analyse or synthesize study data.<br><br><ul><li>{:'Lead' | <i>lead</i>: You were the single leader for this specific activity. If you are the only person in a specific role, choose 'lead'.}</li><li>{:'Equal' | <i>equal</i>: You contributed equally to this activity, together with one or more other contributors (Choosing this option implies that no other co-author would choose the 'lead' option, and at least one other co-author would choose the 'equal' option).}</li><li>{:'Support' | <i>supporting</i>: You had a supporting role, which was below the contribution of a leading or equal role.}</li><li>{:'NoRole' | <i>no role</i>: You did not contribute substantially to that activity.}</li><li>{:'NA' | <i>n/a</i>: This role was not relevant for the research.}</li></ul>"
         },
         {
             "id": "P_CRediT_FundingAcquisition",
@@ -456,7 +456,7 @@
             "default": "NoRole",
             "alignment": "horizontal",
             "tooltip": "Acquisition of the financial support for the project leading to this publication.",
-            "info": "Acquisition of the financial support for the project leading to this publication."
+            "info": "Acquisition of the financial support for the project leading to this publication.<br><br><ul><li>{:'Lead' | <i>lead</i>: You were the single leader for this specific activity. If you are the only person in a specific role, choose 'lead'.}</li><li>{:'Equal' | <i>equal</i>: You contributed equally to this activity, together with one or more other contributors (Choosing this option implies that no other co-author would choose the 'lead' option, and at least one other co-author would choose the 'equal' option).}</li><li>{:'Support' | <i>supporting</i>: You had a supporting role, which was below the contribution of a leading or equal role.}</li><li>{:'NoRole' | <i>no role</i>: You did not contribute substantially to that activity.}</li><li>{:'NA' | <i>n/a</i>: This role was not relevant for the research.}</li></ul>"
         },
         {
             "id": "P_CRediT_Investigation",
@@ -487,7 +487,7 @@
             "default": "NoRole",
             "alignment": "horizontal",
             "tooltip": "Conducting a research and investigation process, specifically performing the experiments, or data/evidence collection.",
-            "info": "Conducting a research and investigation process, specifically performing the experiments, or data/evidence collection."
+            "info": "Conducting a research and investigation process, specifically performing the experiments, or data/evidence collection.<br><br><ul><li>{:'Lead' | <i>lead</i>: You were the single leader for this specific activity. If you are the only person in a specific role, choose 'lead'.}</li><li>{:'Equal' | <i>equal</i>: You contributed equally to this activity, together with one or more other contributors (Choosing this option implies that no other co-author would choose the 'lead' option, and at least one other co-author would choose the 'equal' option).}</li><li>{:'Support' | <i>supporting</i>: You had a supporting role, which was below the contribution of a leading or equal role.}</li><li>{:'NoRole' | <i>no role</i>: You did not contribute substantially to that activity.}</li><li>{:'NA' | <i>n/a</i>: This role was not relevant for the research.}</li></ul>"
         },
         {
             "id": "P_CRediT_Methodology",
@@ -518,7 +518,7 @@
             "default": "NoRole",
             "alignment": "horizontal",
             "tooltip": "Development or design of methodology; creation of models.",
-            "info": "Development or design of methodology; creation of models."
+            "info": "Development or design of methodology; creation of models.<br><br><ul><li>{:'Lead' | <i>lead</i>: You were the single leader for this specific activity. If you are the only person in a specific role, choose 'lead'.}</li><li>{:'Equal' | <i>equal</i>: You contributed equally to this activity, together with one or more other contributors (Choosing this option implies that no other co-author would choose the 'lead' option, and at least one other co-author would choose the 'equal' option).}</li><li>{:'Support' | <i>supporting</i>: You had a supporting role, which was below the contribution of a leading or equal role.}</li><li>{:'NoRole' | <i>no role</i>: You did not contribute substantially to that activity.}</li><li>{:'NA' | <i>n/a</i>: This role was not relevant for the research.}</li></ul>"
         },
         {
             "id": "P_CRediT_ProjectAdministration",
@@ -549,7 +549,7 @@
             "default": "NoRole",
             "alignment": "horizontal",
             "tooltip": "Management and coordination responsibility for the research activity planning and execution.",
-            "info": "Management and coordination responsibility for the research activity planning and execution."
+            "info": "Management and coordination responsibility for the research activity planning and execution.<br><br><ul><li>{:'Lead' | <i>lead</i>: You were the single leader for this specific activity. If you are the only person in a specific role, choose 'lead'.}</li><li>{:'Equal' | <i>equal</i>: You contributed equally to this activity, together with one or more other contributors (Choosing this option implies that no other co-author would choose the 'lead' option, and at least one other co-author would choose the 'equal' option).}</li><li>{:'Support' | <i>supporting</i>: You had a supporting role, which was below the contribution of a leading or equal role.}</li><li>{:'NoRole' | <i>no role</i>: You did not contribute substantially to that activity.}</li><li>{:'NA' | <i>n/a</i>: This role was not relevant for the research.}</li></ul>"
         },
         {
             "id": "P_CRediT_Resources",
@@ -580,7 +580,7 @@
             "default": "NoRole",
             "alignment": "horizontal",
             "tooltip": "Provision of study materials, reagents, materials, patients, laboratory samples, animals, instrumentation, computing resources, or other analysis tools.",
-            "info": "Provision of study materials, reagents, materials, patients, laboratory samples, animals, instrumentation, computing resources, or other analysis tools."
+            "info": "Provision of study materials, reagents, materials, patients, laboratory samples, animals, instrumentation, computing resources, or other analysis tools.<br><br><ul><li>{:'Lead' | <i>lead</i>: You were the single leader for this specific activity. If you are the only person in a specific role, choose 'lead'.}</li><li>{:'Equal' | <i>equal</i>: You contributed equally to this activity, together with one or more other contributors (Choosing this option implies that no other co-author would choose the 'lead' option, and at least one other co-author would choose the 'equal' option).}</li><li>{:'Support' | <i>supporting</i>: You had a supporting role, which was below the contribution of a leading or equal role.}</li><li>{:'NoRole' | <i>no role</i>: You did not contribute substantially to that activity.}</li><li>{:'NA' | <i>n/a</i>: This role was not relevant for the research.}</li></ul>"
         },
         {
             "id": "P_CRediT_Software",
@@ -611,7 +611,7 @@
             "default": "NoRole",
             "alignment": "horizontal",
             "tooltip": "Programming, software development; designing computer programs; implementation of the computer code and supporting algorithms; testing of existing code components.",
-            "info": "Programming, software development; designing computer programs; implementation of the computer code and supporting algorithms; testing of existing code components."
+            "info": "Programming, software development; designing computer programs; implementation of the computer code and supporting algorithms; testing of existing code components.<br><br>If you wrote scripts that apply to a <b>'one-shot' data analysis</b>, this belongs to the role <i>Formal analysis</i> (see above).<br><br><ul><li>{:'Lead' | <i>lead</i>: You were the single leader for this specific activity. If you are the only person in a specific role, choose 'lead'.}</li><li>{:'Equal' | <i>equal</i>: You contributed equally to this activity, together with one or more other contributors (Choosing this option implies that no other co-author would choose the 'lead' option, and at least one other co-author would choose the 'equal' option).}</li><li>{:'Support' | <i>supporting</i>: You had a supporting role, which was below the contribution of a leading or equal role.}</li><li>{:'NoRole' | <i>no role</i>: You did not contribute substantially to that activity.}</li><li>{:'NA' | <i>n/a</i>: This role was not relevant for the research.}</li></ul>"
         },
         {
             "id": "P_CRediT_Supervision",
@@ -642,7 +642,7 @@
             "default": "NoRole",
             "alignment": "horizontal",
             "tooltip": "Oversight and leadership responsibility for the research activity planning and execution, including mentorship external to the core team.",
-            "info": "Oversight and leadership responsibility for the research activity planning and execution, including mentorship external to the core team."
+            "info": "Oversight and leadership responsibility for the research activity planning and execution, including mentorship external to the core team.<br><br><ul><li>{:'Lead' | <i>lead</i>: You were the single leader for this specific activity. If you are the only person in a specific role, choose 'lead'.}</li><li>{:'Equal' | <i>equal</i>: You contributed equally to this activity, together with one or more other contributors (Choosing this option implies that no other co-author would choose the 'lead' option, and at least one other co-author would choose the 'equal' option).}</li><li>{:'Support' | <i>supporting</i>: You had a supporting role, which was below the contribution of a leading or equal role.}</li><li>{:'NoRole' | <i>no role</i>: You did not contribute substantially to that activity.}</li><li>{:'NA' | <i>n/a</i>: This role was not relevant for the research.}</li></ul>"
         },
         {
             "id": "P_CRediT_Validation",
@@ -673,7 +673,7 @@
             "default": "NoRole",
             "alignment": "horizontal",
             "tooltip": "Verification, whether as a part of the activity or separate, of the overall replication/reproducibility of results/experiments and other research outputs.",
-            "info": "Verification, whether as a part of the activity or separate, of the overall replication/reproducibility of results/experiments and other research outputs."
+            "info": "Verification, whether as a part of the activity or separate, of the overall replication/reproducibility of results/experiments and other research outputs.<br><br><ul><li>{:'Lead' | <i>lead</i>: You were the single leader for this specific activity. If you are the only person in a specific role, choose 'lead'.}</li><li>{:'Equal' | <i>equal</i>: You contributed equally to this activity, together with one or more other contributors (Choosing this option implies that no other co-author would choose the 'lead' option, and at least one other co-author would choose the 'equal' option).}</li><li>{:'Support' | <i>supporting</i>: You had a supporting role, which was below the contribution of a leading or equal role.}</li><li>{:'NoRole' | <i>no role</i>: You did not contribute substantially to that activity.}</li><li>{:'NA' | <i>n/a</i>: This role was not relevant for the research.}</li></ul>"
         },
         {
             "id": "P_CRediT_Visualization",
@@ -704,7 +704,7 @@
             "default": "NoRole",
             "alignment": "horizontal",
             "tooltip": "Preparation, creation and/or presentation of the published work, specifically visualization/data presentation.",
-            "info": "Preparation, creation and/or presentation of the published work, specifically visualization/data presentation."
+            "info": "Preparation, creation and/or presentation of the published work, specifically visualization/data presentation.<br><br><ul><li>{:'Lead' | <i>lead</i>: You were the single leader for this specific activity. If you are the only person in a specific role, choose 'lead'.}</li><li>{:'Equal' | <i>equal</i>: You contributed equally to this activity, together with one or more other contributors (Choosing this option implies that no other co-author would choose the 'lead' option, and at least one other co-author would choose the 'equal' option).}</li><li>{:'Support' | <i>supporting</i>: You had a supporting role, which was below the contribution of a leading or equal role.}</li><li>{:'NoRole' | <i>no role</i>: You did not contribute substantially to that activity.}</li><li>{:'NA' | <i>n/a</i>: This role was not relevant for the research.}</li></ul>"
         },
         {
             "id": "P_CRediT_WritingOriginalDraft",
@@ -735,7 +735,7 @@
             "default": "NoRole",
             "alignment": "horizontal",
             "tooltip": "Preparation, creation and/or presentation of the published work, specifically writing the initial draft (including substantive translation).",
-            "info": "Preparation, creation and/or presentation of the published work, specifically writing the initial draft (including substantive translation)."
+            "info": "Preparation, creation and/or presentation of the published work, specifically writing the initial draft (including substantive translation).<br><br><ul><li>{:'Lead' | <i>lead</i>: You were the single leader for this specific activity. If you are the only person in a specific role, choose 'lead'.}</li><li>{:'Equal' | <i>equal</i>: You contributed equally to this activity, together with one or more other contributors (Choosing this option implies that no other co-author would choose the 'lead' option, and at least one other co-author would choose the 'equal' option).}</li><li>{:'Support' | <i>supporting</i>: You had a supporting role, which was below the contribution of a leading or equal role.}</li><li>{:'NoRole' | <i>no role</i>: You did not contribute substantially to that activity.}</li><li>{:'NA' | <i>n/a</i>: This role was not relevant for the research.}</li></ul>"
         },
         {
             "id": "P_CRediT_WritingReviewEditing",
@@ -766,7 +766,7 @@
             "default": "NoRole",
             "alignment": "horizontal",
             "tooltip": "Preparation, creation and/or presentation of the published work by those from the original research group, specifically critical review, commentary or revision – including pre- or post-publication stages.",
-            "info": "Preparation, creation and/or presentation of the published work by those from the original research group, specifically critical review, commentary or revision – including pre- or post-publication stages."
+            "info": "Preparation, creation and/or presentation of the published work by those from the original research group, specifically critical review, commentary or revision – including pre- or post-publication stages.<br><br><ul><li>{:'Lead' | <i>lead</i>: You were the single leader for this specific activity. If you are the only person in a specific role, choose 'lead'.}</li><li>{:'Equal' | <i>equal</i>: You contributed equally to this activity, together with one or more other contributors (Choosing this option implies that no other co-author would choose the 'lead' option, and at least one other co-author would choose the 'equal' option).}</li><li>{:'Support' | <i>supporting</i>: You had a supporting role, which was below the contribution of a leading or equal role.}</li><li>{:'NoRole' | <i>no role</i>: You did not contribute substantially to that activity.}</li><li>{:'NA' | <i>n/a</i>: This role was not relevant for the research.}</li></ul>"
         },
         {
             "id": "P9P10SEP",

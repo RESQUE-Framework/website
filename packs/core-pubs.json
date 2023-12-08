@@ -4,7 +4,7 @@
     "title": "Publication",
     "scoring": {
         "P_Data_Open_AccessLevel": {
-            "not_applicable": "($P_Suitable === 'No') || (($P_Data_Open === 'NotApplicable') && (exists($P_Data_Open_NAExplanation))) || ($P_Data === 'No')",
+            "not_applicable": "($P_Suitable === 'No') || (($P_Data_Open === 'NotApplicable') && (exists($P_Data_Open_NAExplanation))) || ($P_Data === 'No') || (!($P_Data_Source_NewOwn) && !($P_Data_Source_ReuseOwn) && !($P_Data_Source_ReuseCompilation))",
             "max": 1,
             "op": "select",
             "points": [
@@ -15,7 +15,7 @@
             ]
         },
         "P_Data_Open_FAIR": {
-            "not_applicable": "($P_Suitable === 'No') || (($P_Data_Open === 'NotApplicable') && (exists($P_Data_Open_NAExplanation))) || ($P_Data === 'No')",
+            "not_applicable": "($P_Suitable === 'No') || (($P_Data_Open === 'NotApplicable') && (exists($P_Data_Open_NAExplanation))) || ($P_Data === 'No')  || (!($P_Data_Source_NewOwn) && !($P_Data_Source_ReuseOwn) && !($P_Data_Source_ReuseCompilation))",
             "max": 1,
             "op": "sum",
             "points": [

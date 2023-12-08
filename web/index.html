@@ -25,6 +25,9 @@
     </script>
     <!-- End Matomo Code -->
 
+    <script src="https://cdn.jsdelivr.net/npm/driver.js@1.0.1/dist/driver.js.iife.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/driver.js@1.0.1/dist/driver.css" />
+
 </head>
 
 <body>
@@ -34,9 +37,9 @@
                 <div class="top">
                     <h3>RESQUE</h3>
                     <div id="actions">
-                        <button onclick="showModal('clear-modal')">Clear</button>
-                        <button onclick="triggerLoad()">Load</button>
-                        <button onclick="exp()">Save to file ...</button>
+                        <button class="clear-button" onclick="showModal('clear-modal')">Clear</button>
+                        <button class="load-button" onclick="triggerLoad()">Load</button>
+                        <button class="save-button" onclick="exp()">Save to file ...</button>
                     </div>
                 </div>
                 <p id="slot-info"></p>
@@ -48,15 +51,16 @@
             </div>
             <div id="add-container">
                 <div class="doi-input">
-                    <button onclick="document.getElementById('add-pdf').click()">Extract DOI from PDF</button>
+                    <button class="pdf-button" onclick="document.getElementById('add-pdf').click()">Extract DOI from
+                        PDF</button>
                     <input id="add-doi" type="text" placeholder="DOI (optional)" />
                 </div>
 
-                <div>
+                <div class="add-buttons">
                     <b>Add</b>
-                    <button onclick="newTab('pub')">Publication</button>
-                    <button onclick="newTab('software')">Software</button>
-                    <button onclick="newTab('data')">Data Set</button>
+                    <button class="add-pub" onclick="newTab('pub')">Publication</button>
+                    <button class="add-software" onclick="newTab('software')">Software</button>
+                    <button class="add-data" onclick="newTab('data')">Data Set</button>
                 </div>
             </div>
         </div>
@@ -84,10 +88,13 @@
                         </div>
                     </div>
                 </div>
-                <p id="ro-count-container"><span class="tag"><span id="scoredROs"></span> scored research outputs</span></p>
+                <p id="ro-count-container"><span class="tag"><span id="scoredROs"></span> scored research outputs</span>
+                </p>
                 <p id="warning-score-too-low">⚠️ Many indicators are not applicable. Manual processing of this
                     publication is recommended.</p>
-                <p id="warning-min-ro-threshold">⚠️ Please provide at least <span id="minROWarningThreshold"></span> research contributions that can be scored (e.g. by adding more empirical papers, data sets, or software contributions)</p>
+                <p id="warning-min-ro-threshold">⚠️ Please provide at least <span id="minROWarningThreshold"></span>
+                    research contributions that can be scored (e.g. by adding more empirical papers, data sets, or
+                    software contributions)</p>
             </div>
             <div id="info-box" class="card">
                 <p id="item-info">Click on an indicator to see detailed information</p>
@@ -101,8 +108,9 @@
                 </details>
             </div>
             <div class="menu-bottom">
-                <span onclick="showInfoModal()" class="fakelink">What is RESQUE? / Help / Privacy</span> • <a
-                    class="github-link" href="https://github.com/nicebread/RESQUE">GitHub</a>
+                <span onclick="showInfoModal()" class="fakelink">FAQ</span> • <a class="github-link"
+                    href="https://github.com/nicebread/RESQUE">GitHub</a> • <span onclick="driver(tourAnytime()).drive()"
+                    class="fakelink">Tour</span>
             </div>
         </div>
     </div>
@@ -209,6 +217,56 @@
 
     <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/object-hash@3.0.0/dist/object_hash.min.js"></script>
+    <script>
+        const driver = window.driver.js.driver;
+
+        const tourMain = {
+            showProgress: true,
+            steps: [
+                { popover: { title: '👋🏻 Welcome to the RESQUE tool!', description: 'We need to change the way we assess research - with a focus on quality (over quantity). The RESearch QUality Evaluation (RESQUE) framework provides an evaluation scheme for publications, data sets, and research software. With this tool, you can enter the necessary information for your best research outputs, export a profile that shows your research style (not implemented yet), and use it for your CV or in hiring and tenure committees.' } },
+                { popover: { title: '🔒 Privacy', description: 'The data you enter never leaves your device. Everything is processed locally. (except fetching the information about a publications using the DOI)' } },
+                { popover: { title: 'Saving changes...', description: 'Your changes are saved automatically in your browser. You can reload the page or close this tab and come back another time, the data you entered will still be here.' } },
+                { element: '.pdf-button', popover: { description: 'You can open a PDF file and extract the DOI automatically. Note that this might fail in rare cases.' } },
+                { element: '.add-pub', popover: { title: 'Take your time...', description: 'After filling out the metadata form, add a new publication to continue the tour.' } },
+            ]
+        };
+
+        const tourForm = {
+            showProgress: true,
+            steps: [
+                { popover: { title: '🎉 You added your first publication!', description: 'We will continue showing you around.' } },
+                { element: '#DOI', popover: { description: 'You can enter the DOI here. We\'ll get the title and the year of publication from doi.org after you click away from the text field.' } },
+                { element: '#score-box', popover: { title: 'Score box', description: 'You see the score for the current research output and the overall score for all research outputs here.' } },
+                { element: '#info-box', popover: { title: 'Info box', description: 'You can click on an indicator in the form to see some help or detailed information here.' } },
+                { element: '.clear-button', popover: { title: 'Starting fresh', description: 'You can use the \'Clear\' button to delete everything you entered and start with a fresh form.' } },
+                { element: '.load-button', popover: { title: 'Loading previously exported data', description: 'The \'Load\' button opens a file picker, the local JSON file you select will be loaded into the tool.' } },
+                { element: '.save-button', popover: { title: 'Saving to a local file', description: 'If you want to export your data and save it to a local file (for example if you want to send the data to another person), you can use this button. A JSON file will be saved to your computer.' } },
+
+                { element: '.menu-bottom', popover: { description: 'You can click on FAQ to read more. You can also always take this tour by clicking on \'Tour\'' } },
+            ]
+        };
+
+        const tourAnytime = () => { return {
+            showProgress: true,
+            steps: [
+                { popover: { title: '👋🏻 Welcome to the RESQUE tool!', description: 'We need to change the way we assess research - with a focus on quality (over quantity). The RESearch QUality Evaluation (RESQUE) framework provides an evaluation scheme for publications, data sets, and research software. With this tool, you can enter the necessary information for your best research outputs, export a profile that shows your research style (not implemented yet), and use it for your CV or in hiring and tenure committees.' } },
+                { popover: { title: '🔒 Privacy', description: 'The data you enter never leaves your device. Everything is processed locally. (except fetching the information about a publications using the DOI)' } },
+                { popover: { title: 'Saving changes...', description: 'Your changes are saved automatically in your browser. You can reload the page or close this tab and come back another time, the data you entered will still be here.' } },
+                { element: '.pdf-button', popover: { description: 'You can open a PDF file and extract the DOI automatically. Note that this might fail in rare cases.' } },
+                { element: '.add-buttons', popover: { title: 'Add a new research output', description: 'You can use one of these three buttons to add new research outputs. RESQUE considers publications, software projects and data sets as research outputs.' } },
+                { element: '.clear-button', popover: { title: 'Starting fresh', description: 'You can use the \'Clear\' button to delete everything you entered and start with a fresh form.' } },
+                { element: '.load-button', popover: { title: 'Loading previously exported data', description: 'The \'Load\' button opens a file picker, the local JSON file you select will be loaded into the tool.' } },
+                { element: '.save-button', popover: { title: 'Saving to a local file', description: 'If you want to export your data and save it to a local file (for example if you want to send the data to another person), you can use this button. A JSON file will be saved to your computer.' } },
+
+                result.type === 'pub' ? { popover: { description: "Let's continue with the form and the right menu." } } : { popover: { title: 'Please switch to a publication tab', description: 'In order to continue the tour, you have to be on a publication tab. Add a new publication or switch to an existing one and start the tour again.' } },
+                { element: '#DOI', popover: { description: 'You can enter the DOI here. We\'ll get the title and the year of publication from doi.org after you click away from the text field.' } },
+                { element: '#score-box', popover: { title: 'Score box', description: 'You see the score for the current research output and the overall score for all research outputs here.' } },
+                { element: '#info-box', popover: { title: 'Info box', description: 'You can click on an indicator in the form to see some help or detailed information here.' } },
+
+                { element: '.menu-bottom', popover: { description: 'You can click on FAQ to read more. You can also always take this tour by clicking on \'Tour\'' } },
+            ]
+        }}
+    </script>
     <script>
         pdfjsLib.GlobalWorkerOptions.workerSrc =
             'https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js';
@@ -482,8 +540,12 @@
                     behavior: "smooth"
                 });
             }
+
+            if (type === 'pub' && results.length === 2) {
+                driver(tourForm).drive();
+            }
         }
-        
+
         const save = () => {
             localStorage.setItem("formdata", JSON.stringify(results))
         }
@@ -719,13 +781,13 @@
 
         const insertValuesIntoCondition = condition => {
             return condition
-            .replaceAll(/meta\$([a-zA-Z0-9_]+)/g, `results[0]['$1']`)
-            .replaceAll(/\$(\w*)/g, `context['$1']`);
+                .replaceAll(/meta\$([a-zA-Z0-9_]+)/g, `results[0]['$1']`)
+                .replaceAll(/\$(\w*)/g, `context['$1']`);
         }
 
         const evaluateCondition = condition => evaluateConditionInContext(condition, result);
 
-        const evaluateConditionInContext = (condition, context) => { 
+        const evaluateConditionInContext = (condition, context) => {
             const exists = id => !!id && id !== "";
 
             return eval(insertValuesIntoCondition(preprocessCondition(condition)));
@@ -1350,7 +1412,7 @@
 
             }
 
-            if(scoring.post) {
+            if (scoring.post) {
                 scoring.post.forEach(transformation => {
                     if (evaluateConditionInContext(transformation.condition, r)) {
                         console.log(transformation.factor)
@@ -1429,7 +1491,8 @@
         }
 
         if (!localStorage.getItem("formdata")) {
-            showInfoModal();
+            //showInfoModal();
+            driver(tourMain).drive();
         }
 
         menu().then(m => {

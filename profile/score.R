@@ -33,6 +33,15 @@ exists <- function(variable, context) {
     variable %in% names(context)
 }
 
+not <- function(variable, context) {
+    if (exists(variable, context)) {
+        value <- context[[variable]]
+        return(is.na(value) || is.null(value) || is.logical(value) && !value)
+    }
+
+    TRUE
+}
+
 # ====== Fetching innformation on packs ======
 
 # Get the JSON object from a URL
@@ -75,6 +84,8 @@ evaluate_condition_in_context <- function(condition, context) {
         str_replace_all("(\\$[a-zA-Z0-9_]+)\\s*=\\|=\\s*\\[(.*?)\\]", "\\1 %in% c(\\2)") |>
         # replace "exists($<variable>)" with "exists(<variable>, context)"
         str_replace_all("exists\\(\\$(.*?)\\)", "exists('\\1', context)") |>
+        # replace "!<variable>" with "not(<variable>, context)"
+        str_replace_all("!\\$([^=]*?)", "not('\\1', context)") |>
         # replace "&&" with "%and%"
         str_replace_all("&&", "%and%") |>
         # replace "||" with "%or%"
@@ -196,4 +207,4 @@ score_all_from_file <- function(path) {
 # score(research_output)
 
 # Example: score all research outputs from a file
-#scores <- score_all_from_file("profile/data/resque_1696782133298.json")
+# scores <- score_all_from_file("profile/data/resque_1696782133298.json")

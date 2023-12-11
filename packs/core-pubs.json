@@ -143,7 +143,7 @@
             ]
         },
         "P_PreregisteredReplication": {
-            "not_applicable": "($P_Suitable === 'No') || $P_Preregistration === 'No' || (($P_PreregisteredReplication === 'NotApplicable') && (exists($P_PreregisteredReplication_NAExplanation)))",
+            "not_applicable": "($P_Suitable === 'No') || (($P_PreregisteredReplication === 'NotApplicable') && (exists($P_PreregisteredReplication_NAExplanation)))",
             "max": 1,
             "op": "select",
             "points": [
@@ -1226,6 +1226,12 @@
             "info": "As only <i>preregistered</i> replication attempts count, you need to provide the DOI or URL of the preregistration in the previous indicator. If the paper contains a replication which was not preregistered, please select <b>'No'</b>.<br><br>If the paper was preregistered, but does not contain a replication, select <b>'No'</b>. If you chose 'not applicable' at the previous indicator 'Preregistration', choose 'not applicable' here, too.",
             "condition": "$P_Suitable === 'Yes'",
             "tip_external":"If it is a replication of a previously reported effect, it is <b>“yes”</b>, even if the replication is not the main research question of the preregistration.<br><b>Search word</b> (in preregistration):replica*"
+        },
+        {
+            "id": "P_PreregisteredReplication_NAExplanation",
+            "type": "text",
+            "title": "⤷ Not applicable: Explanation",
+            "condition": "$P_Suitable === 'Yes' && $P_PreregisteredReplication === 'NotApplicable'"
         },
         {
             "id": "P19P20SEP",

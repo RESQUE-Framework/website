@@ -1,12 +1,21 @@
 ---
 title: "RESQUE Research Profile"
-format: html
+engine: knitr
+format:
+  html:
+    output-file: "qmd_output.html"
+    toc: true
+    number-sections: false
+    smooth-scroll: true
+    self-contained: true
 embed-resources: true
 execute:
   echo: false
   message: false
   warning: false
-  keep-md: true
+  keep-md: false
+params:
+  jsonpath: "/Users/felix/Documents/Github/RESQUE/profile/data/resque_Felix.json"
 ---
 
 <!-- 
@@ -19,10 +28,6 @@ TODOs:
 
 
 ```{r}
-
-#resque_file <- "data/resque_1696782133298.json"
-resque_file <- "data/resque_1697454489129.json"
-
 library(jsonlite)
 library(dplyr)
 library(tidyr)
@@ -35,29 +40,23 @@ library(knitr)
 library(openalexR)
 library(tibble)
 
-
-
 source("score.R")
 source("profile_helpers.R")
 
-theme_singlebar <- theme_minimal() + theme(
-  axis.text = element_blank(),       # Remove axis text
-  axis.title = element_blank(),      # Remove axis title
-  axis.ticks = element_blank(),      # Remove ticks
-  panel.grid.major = element_blank(),# Remove major grid
-  panel.grid.minor = element_blank(),# Remove minor grid
-  axis.line = element_blank(),        # Remove axis line
-  plot.title = element_text(face="bold", margin = margin(t = 0, b = -100, unit = "pt")),              # move plot title closer to bar
-  panel.spacing.x=unit(1, "lines"),   # add some extra space on the left side to make text labels visible
-  plot.margin = margin(t=0, b=-200, l=0, r=0, unit="pt")
-)
-
-dat0 <- read_json(resque_file, simplifyVector = TRUE)
+# Felix: /Users/felix/Documents/Github/RESQUE/profile/data/resque_Felix.json
+# Anne: /Users/felix/Documents/Github/RESQUE/profile/data/resque_1697454489129.json
+# Daniel: /Users/felix/Documents/Github/RESQUE/profile/data/resque_1696782133298.json
+#params <- list(jsonpath="/Users/felix/Downloads/resque_1701950141044.json")
+#params <- list(jsonpath="/Users/felix/Documents/Github/RESQUE/profile/data/resque_1697454489129.json")
+dat0 <- read_json(params$jsonpath, simplifyVector = TRUE)
 meta <- dat0[1, ]
 dat <- dat0[-1, ]
 
+# remove unnecessary column that breaks the structure of dat (nested data frame)
+dat$queryConfig <- NULL
+
 # read the scores
-scores <- score_all_from_file(resque_file)
+scores <- score_all_from_file(path=params$jsonpath)
 
 # remove the first element: This is the meta-information which has no scores
 # Now each list entry is one publication, in the same order as in `dat`
@@ -66,8 +65,10 @@ scores$scores <- scores$scores[-1]
 # Create nice factor labels
 dat$type <- factor(dat$type, levels=c("pub", "data", "software"), labels=c("Publication", "Data set", "Research software"))
 
-dat$P_TypePublication <- unCamel(dat$P_TypePublication)
-dat$P_ReproducibleScripts <- unCamel(dat$P_ReproducibleScripts)
+dat <- unCamel(dat, "P_TypePublication")
+dat <- unCamel(dat, "P_ReproducibleScripts")
+
+dat$dois_normalized <- str_extract(dat$DOI, pattern="10.\\d{4,9}/[-._;()/:a-z0-9A-Z]+")
 
 # Split the research outputs into types, reduce to suitable submissions
 pubs <- dat %>% filter(type == "Publication", P_Suitable == "Yes")
@@ -80,7 +81,7 @@ colnames(credit) <- c("Role", "Degree")
 credit$Degree <- factor(credit$Degree, levels = rev(c("Lead", "Equal", "Support", "NoRole", "NA")), labels = rev(c("Lead", "Equal", "Support", "NoRole", "not applicable")))
 
 # add space to camelCase; make nice labels
-credit$Role <- unCamel(credit$Role)
+credit <- unCamel(credit, "Role")
 credit$Role[credit$Role == "Writing Review Editing"] <- "Writing: Review & Editing"
 credit$Role[credit$Role == "Writing Original Draft"]  <- "Writing: Original draft"
 
@@ -97,6 +98,46 @@ ct_ordered <- as.data.frame.matrix(credit_tab) %>%
     arrange(-LeadEqual, -Support)
 
 credit$Role <- factor(credit$Role, levels = rev(rownames(ct_ordered)))
+
+# The "CRediT involvement" categories
+credit_inv <- dat %>% select(contains("CRediT"))
+roles <- colnames(credit_inv) |> str_replace("P_CRediT_", "") |> unCamel0()
+roles[roles == "Writing Review Editing"] <- "Writing: Review & Editing"
+roles[roles == "Writing Original Draft"]  <- "Writing: Original draft"
+
+main_roles <- rep("", nrow(credit_inv))
+for (i in 1:nrow(credit_inv)) {
+  leads <- credit_inv[i, ] == "Lead"
+  equals <- credit_inv[i, ] == "Equal"
+  main_roles[i] <- paste0(
+    ifelse(sum(leads)>0, paste0(
+      "<b>Lead:</b> ",
+      paste0(roles[leads], collapse=", ")), ""),
+    ifelse(sum(equals)>0, paste0(
+      "<br><b>Equal:</b> ",
+      paste0(roles[equals], collapse=", ")), "")
+  )
+}
+
+credit_inv$sum_lead <- apply(credit_inv[, 1:14], 1, function(x) sum(x=="Lead"))
+credit_inv$sum_equal <- apply(credit_inv[, 1:14], 1, function(x) sum(x=="Equal"))
+credit_inv$sum_leadequal <- apply(credit_inv[, 1:14], 1, function(x) sum(x %in% c("Lead", "Equal")))
+credit_inv$sum_support <- apply(credit_inv[, 1:14], 1, function(x) sum(x=="Support"))
+
+# define the categories
+credit_inv$CRediT_involvement <- "Low"
+credit_inv$CRediT_involvement[credit_inv$sum_lead >= 3] <- "Very High"
+credit_inv$CRediT_involvement[credit_inv$sum_leadequal >= 5] <- "Very High"
+
+credit_inv$CRediT_involvement[credit_inv$sum_lead %in% c(1, 2)] <- "High"
+credit_inv$CRediT_involvement[credit_inv$sum_leadequal %in% c(3, 4)] <- "High"
+
+credit_inv$CRediT_involvement[credit_inv$sum_equal %in% c(1, 2)] <- "Medium"
+credit_inv$CRediT_involvement[credit_inv$sum_support >= 5] <- "Medium"
+
+dat$CRediT_involvement <- factor(credit_inv$CRediT_involvement, levels=c("Very High", "High", "Medium", "Low"), ordered=TRUE)
+dat$CRediT_involvement_roles <- main_roles
+
 ```
 
 **This document summarizes the research style of `r meta$LastName` - the *"fingerprint" of how research is conducted*, when only the best work is submitted to this analysis.**
@@ -137,16 +178,19 @@ expected_columns<- c(
   P_TypeMethod_Theoretical = FALSE, 
   P_TypeMethod_Simulation = FALSE,
   P_TypeMethod_OtherMethod = FALSE
-
 )
 # adding those columns to df1
 dat_tM <- add_column(dat_tM, !!!expected_columns[setdiff(names(expected_columns), names(dat_tM))])
+
+# remove the free text field for this table
+dat_tM$P_TypeMethod_Other <- NULL
 
 dat_tM_tab <- pivot_longer(dat_tM, everything()) %>% 
   group_by(name) %>% 
   summarise(paper_count=sum(value, na.rm=TRUE))
 
-dat_tM_tab$name <- str_replace(dat_tM_tab$name, "P_TypeMethod_", "") |> unCamel()
+dat_tM_tab$name <- str_replace(dat_tM_tab$name, "P_TypeMethod_", "")
+dat_tM_tab <- unCamel(df=dat_tM_tab, cname="name")
 
 colnames(dat_tM_tab) <- c("Type of method", "# papers")
 kable(dat_tM_tab)
@@ -167,8 +211,7 @@ dois <- dois %>%
   str_replace_all(" ", "") %>% 
   str_trim()
 
-dois_normalized <- str_extract(dois, pattern="10.\\d{4,9}/[-._;()/:a-z0-9A-Z]+")
-all_pubs$doi_links <- paste0("https://doi.org/", dois_normalized)
+all_pubs$doi_links <- paste0("https://doi.org/", all_pubs$dois_normalized)
 all_pubs$doi <- paste0("[", all_pubs$doi_links, "](", all_pubs$doi_links, ")")
 
 all_papers <- oa_fetch(entity = "works", doi = all_pubs$doi_links)
@@ -217,60 +260,109 @@ ggplot(credit, aes(x = Role, fill = Degree)) +
 
 
 ```{r}
-wordcloud(ct_ordered$Role, freq = ct_ordered$weight, scale = c(2, .1), min.freq = 0.4, random.order = FALSE)
+if (any(ct_ordered$weight > 0)) {
+  wordcloud(ct_ordered$Role, freq = ct_ordered$weight, scale = c(2, .1), min.freq = 0.4, random.order = FALSE)  
+}
 ```
 
 
-# Influential publications:
+We categorized papers into levels of involvement, based on the degrees of contributorship:
 
 ```{r}
+
+credit_inv_tab <- data.frame(
+  "Involvement Level" = c("Very High", "High", "Medium", "Low"),
+  "Definition" = c(
+    "(>=3 roles as *lead*) OR (>= 5 roles as (*lead* OR *equal*))",
+    "(1-2 roles as *lead*) OR (3-4 roles as *equal*)",
+    "(1-2 roles as *equal*) OR (>= 5 roles as *support*)",
+    "All other combinations"
+  )
+)
+
+t1 <- table(dat$CRediT_involvement) %>% as.data.frame() 
+
+# this is an ugly way of merging ...
+credit_inv_tab$Publications <- 0
+credit_inv_tab$Publications[1] <- t1[t1$Var1 == "Very High", 2]
+credit_inv_tab$Publications[2] <- t1[t1$Var1 == "High", 2]
+credit_inv_tab$Publications[3] <- t1[t1$Var1 == "Medium", 2]
+
+
+kable(credit_inv_tab)
+```
+
+
+# Research impact: Highly popular publications
+
+
+[BIP! Scholar](https://bip.imsi.athenarc.gr/site/home) (a non-commercial open-source service to facilitate fair researcher assessment) provides impact scores for publications. It provides **five impact classes** based on norm values:
+
+::: {style="font-size: 70%;"}
+- Top 0.01%           
+- Top 0.1%            
+- Top 1%              
+- Top 10%             
+- Average (Bottom 90%)
+:::
+
+
+Here, we consider the **Popularity** measure.
+
+::: {.callout-note}
+This indicator reflects impact/attention of an article in the research community at large. It is based on *AttRank*, a variation of PageRank (known from the Google search algorithm) that accounts for the temporal evolution of the citation network. By that, it alleviates the bias against younger publications, which have not had the chance to accumulate a lot of citations. It models a researcher's preference to read papers which received a lot of attention recently. It was evaluated (and vetted) in its performance to predict the ranking of papers concerning their *future impact* (i.e., citations). For more details, see [BIP! glossary](https://bip.imsi.athenarc.gr/site/indicators) and the references therein.
+:::
+
+```{r}
+# Call BIP! API
+
 library(curl)
 
-# dois_normalized = "10.1177/2515245918810225,10.1038/s41562-017-0189-z,10.1002/per.2169,10.3758/s13423-017-1230-y,10.1002/per.2184,10.1037/pspp0000204,10.1177/2515245917747646,10.1002/per.2145"
-
-doi_csv <- paste0(dois_normalized, collapse=",") |> URLencode(reserved=TRUE)
+doi_csv <- paste0(dat$dois_normalized, collapse=",") |> URLencode(reserved=TRUE)
 req <- curl_fetch_memory(paste0("https://bip-api.imsi.athenarc.gr/paper/scores/batch/", doi_csv))
 
 BIP <- jsonlite::fromJSON(rawToChar(req$content)) 
 BIP$pop_class <- factor(BIP$pop_class, levels=paste0("C", 1:5), ordered=TRUE)
 BIP$inf_class <- factor(BIP$inf_class, levels=paste0("C", 1:5), ordered=TRUE)
 BIP$imp_class <- factor(BIP$imp_class, levels=paste0("C", 1:5), ordered=TRUE)
-#BIP %>% arrange(-attrank)
-#BIP %>% arrange(imp_class)
-#BIP %>% arrange(-pagerank)
 ```
+From `r nrow(dat)` submitted papers of `r meta$LastName`, `r nrow(BIP %>% filter(pop_class <= "C4"))` `r ifelse(nrow(BIP %>% filter(pop_class <= "C4")) == 1, "was", "were")` in the top 10% popularity class of all papers or better.
 
-
-| Class | Description          |
-| ----- | -------------------- |
-| C1    | Top 0.01%            |
-| C2    | Top 0.1%             |
-| C3    | Top 1%               |
-| C4    | Top 10%              |
-| C5    | Average (Bottom 90%) |
-
-### Popularity
-
-::: {.callout-note}
-This indicator reflects the "current" impact/attention (the "hype") of an article in the research community at large, based on the underlying citation network (see [BIP! glossary](https://bip.imsi.athenarc.gr/site/indicators))
-:::
-
-Highly popular papers are:
-
+::: {style="font-size: 70%;"}
 ```{r}
 #| results: "asis"
 
-pop_sel <- BIP %>% filter(pop_class <= "C4") %>% arrange(pop_class)
+pop_sel <- BIP %>% 
+  filter(pop_class <= "C4") %>% 
+  arrange(pop_class) %>% 
+  select(doi, "3_year_cc", cc,	pop_class)
+
+pop_sel$Label <- factor(pop_sel$pop_class, levels=paste0("C", 1:5), labels=c("Top 0.01%", "Top 0.1%", "Top 1%", "Top 10%", "Average (Bottom 90%)"))
+pop_sel$pop_class <- NULL
+
+pop_sel <- left_join(pop_sel, dat %>% select(doi=dois_normalized, Title, CRediT_involvement, CRediT_involvement_roles), by="doi") %>% 
+  relocate(Title)
+
+colnames(pop_sel) <- c("Title", "doi", "3 year citation count", "Overall citation count", "Popularity", "Candidates' CRediT involvement", "Candidates' CRediT main roles")
+
+pop_sel$doi <- NULL
+
+# add some emojis:
+pop_sel$Title[pop_sel$Popularity == "Top 0.01%"] <- paste0("🚀", pop_sel$Title[pop_sel$Popularity == "Top 0.01%"])
+pop_sel$Title[pop_sel$Popularity == "Top 0.1%"] <- paste0("️🌟", pop_sel$Title[pop_sel$Popularity == "Top 0.1%"])
+pop_sel$Title[pop_sel$Popularity == "Top 1%"] <- paste0("️✨", pop_sel$Title[pop_sel$Popularity == "Top 1%"])
 
 if (nrow(pop_sel) > 0) {
-  kable(pop_sel)
+  cat("The highly popular papers are: \n\n")
+  kable(pop_sel, format = "html", escape = FALSE)
 } else {
-  cat("**None.**")
 }
 ```
-
+:::
 
 # Rigor profile overview
+
+The two grey circles are norm values based on a sample of 63 papers from mostly early and mid-career researchers that submitted their three best papers. The inner (dark grey) circle marks the 50% quantile of the relative rigor score, the outer (light grey) circle the top 10% quantile.
 
 ```{r}
 #| echo: false
@@ -323,17 +415,24 @@ radar_dat <- tibble(
   xmid = (xend-xstart)/2 + xstart
 )
 
+
+max_points <- sum(radar_dat$max_points)
+  
 # Standardized and categorized rigor scores:
 # Standarized within category
 # Quantiles in Franka's study were:
 # 0.54 (top 10%), 0.50 (top 20%), 0.30 (top 50%)
-#radar_dat$norm_rigor <- cut(radar_dat$rel_score, breaks=c(0, 0.30, .50, .54, 1), 
+# radar_dat$norm_rigor <- cut(radar_dat$rel_score, breaks=c(0, 0.30, .50, .54, 1), 
 #  labels=c("low50", "top50", "top20", "top10"))
 
 p1 <- radar_dat %>% ggplot() + 
 geom_rect(aes(xmin=xstart, xmax=xend, ymin=0, ymax=rel_score, fill=dimension)) + 
 coord_polar("x", start=0) + 
-geom_hline(yintercept=1, col="grey80") + geom_hline(yintercept=0.5, col="grey60") +
+  geom_hline(yintercept=0.3, col="grey60") +  # top 50%
+  geom_hline(yintercept=0.54, col="grey80") + # top 10%
+  geom_text(x=max_points*0.75, y=0.3, label = "Top 50%", col="grey60", size=3) +
+  geom_text(x=max_points*0.75, y=0.54, label = "Top 10%", col="grey80", size=3) +
+  
 xlab("") + ylab("") + ggtitle(paste0("Rigor profile for ", meta$LastName), subtitle = paste0("Overall score = ", round(overall_score, 2))) +
 scale_x_continuous(labels = NULL, breaks = NULL) + scale_y_continuous(labels = NULL, breaks = NULL, limits=c(0, 1)) + theme_void() +
 guides(fill=guide_legend("Quality Dimension")) +
@@ -343,7 +442,7 @@ geom_text(aes(x=xmid, y=0.4, label = dimension), vjust = -0.5)
 p1
 
 # TODO: add visual guidance lines (geom_hline) at meaningful percentiles
-# TODO: Compute rough norm values (e.g., 5 categories)
+# TODO: Compute rough norm values (e.g., 5 categories) per category! (Not overall, as it is in the moment)
 ```
 
 
@@ -357,6 +456,9 @@ p1
 Out of `r nrow(pubs)` suitable publications, `r sum(pubs$P_Data == "Yes")` had empirical data. These represent the base for the following analyses.
 
 TBD
+
+
+# Reproducibility
 
 ## Correctness of computational results has been independently verified
 
@@ -387,6 +489,10 @@ IV_tab <- table(IV$IV) |> prop.table() |> as.data.frame() %>%
 ```
 
 
+
+
+# Preregistration
+
 ## Was the research preregistered / a registered report?
 ```{r}
 #| fig-width: 10
@@ -415,6 +521,8 @@ prereg_tab$perc[prereg_tab$perc == 0] <- 0.2
 #| fig-width: 10
 #| fig-height: 4
 
+if (!is.null(pubs$P_PreregisteredReplication)) {
+
 pubs$replication <- factor(pubs$P_PreregisteredReplication, levels=c("No", "Yes", "NotApplicable"), labels=c("No", "Yes", "not applicable"))
 
 # fix some logical dependencies
@@ -431,6 +539,8 @@ repl_tab <- table(pubs$replication) |> prop.table() |> as.data.frame() %>%
   scale_fill_manual(values = rev(c("#FED976", "#90c916", "grey80")), breaks=rev(c("No", "Yes", "not applicable")), guide=FALSE) +
   geom_text(aes(label = paste0(gsub(" ", "\n", Var1), ":\n", round(perc), "%")), position = position_stack(vjust = 0.5), size=6) +
   theme_singlebar + coord_flip()
+ 
+}
 ```
 
 
@@ -457,7 +567,8 @@ prereg_content_tab <- pivot_longer(prereg_content, everything()) %>%
   summarise(preregs=sum(value)) %>% 
   mutate(preregs = preregs/nrow(prereg_content))
 
-prereg_content_tab$name <- str_replace(prereg_content_tab$name, "P_Preregistration_Content_", "") |> unCamel()
+prereg_content_tab$name <- str_replace(prereg_content_tab$name, "P_Preregistration_Content_", "")
+prereg_content_tab <- unCamel(prereg_content_tab, "name")
 ```
 
 `r nrow(prereg_pubs)` of `r nrow(pubs)` eligible publications had preregistrations. The following components have been preregistered (relative to `r nrow(prereg_pubs)` preregistrations):
@@ -469,11 +580,9 @@ ggplot(prereg_content_tab, aes(x=name, y=preregs, fill=name)) + geom_bar(stat="i
 
 
 
-## "Not applicable" justifications
+# "Not applicable" justifications
 
 Choosing "not applicable" indicates that an indicator *principally* cannot be attained by a research output. To avoid bias against certain research fields, the points of such non-applicable indicators are removed from the maximum points and therefore do not lower the computed relative rigor score. However, in order to prevent gaming of this scheme, any "not applicable" claim needs to be justified. Only when the justification is accepted by the committee, the point is removed. With no or insufficent justification, in contrast, the indicator is set to "not available" (=0 points) and the maximum points are not adjusted.
-
-These are all claims of non-applicability from this applicant:
 
 
 ```{r, results='asis'}
@@ -482,19 +591,25 @@ These are all claims of non-applicability from this applicant:
 cols_with_NotApplicable <- apply(dat, 2, function(col) any(col == "NotApplicable")) |> na.omit()
 colnames_with_NotApplicable <- names(cols_with_NotApplicable)[cols_with_NotApplicable == TRUE]
 
-for (i in colnames_with_NotApplicable) {
-  # add corresponding explanation
-  cat(paste0("### ", i, "\n\n"))
-
-  NotAppl <- dat[dat[, i] == "NotApplicable", c("Title", "Year", "DOI", i, paste0(i, "_NAExplanation"))]
-  NotAppl <- NotAppl[!is.na(NotAppl[, i]), ]
-  rownames(NotAppl) <- NULL
-
-  NotAppl$Title <- paste0("[", NotAppl$Title, "](", NotAppl$DOI, ")")
-  NotAppl$DOI <- NULL
-
-  # beware: within for-loops, kable() needs an explicit `print`
-  print(kable(NotAppl))
+if (length(colnames_with_NotApplicable) > 0) {
+  cat("These are all claims of non-applicability from this applicant:\n\n")
+  
+  for (i in colnames_with_NotApplicable) {
+    # add corresponding explanation
+    cat(paste0("### ", i, "\n\n"))
+    
+    NotAppl <- dat[dat[, i] == "NotApplicable", c("Title", "Year", "DOI", i, paste0(i, "_NAExplanation"))]
+    NotAppl <- NotAppl[!is.na(NotAppl[, i]), ]
+    rownames(NotAppl) <- NULL
+    
+    NotAppl$Title <- paste0("[", NotAppl$Title, "](", NotAppl$DOI, ")")
+    NotAppl$DOI <- NULL
+    
+    # beware: within for-loops, kable() needs an explicit `print`
+    print(kable(NotAppl))
+  }
+} else {
+  cat("**The applicant had no claims of non-applicability.**\n\n")
 }
 ```
 

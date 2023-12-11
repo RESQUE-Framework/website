@@ -5,13 +5,13 @@
       "global": {}
     },
     "position": 0,
-    "date_modified": 1702307900009,
+    "date_modified": 1702308649700,
     "date_created": 1701877620153,
     "LastName": "Schönbrodt",
     "FirstName": "Felix",
     "ORCID": "https://orcid.org/0000-0002-8282-3910",
     "RaterType": "Applicant",
-    "date_exported": 1702308190844
+    "date_exported": 1702308666061
   },
   {
     "type": "pub",
@@ -509,7 +509,7 @@
     "P_ReproducibleScripts_Identifier": "https://github.com/nicebread/corEvol/",
     "P_ReproducibleScripts_FAIR_OpenLicense": true,
     "P_ReproducibleScripts_FAIR_TimestampedRepository": true,
-    "P_ReproducibleScripts_FAIR_VersionControl": true,
+    "P_ReproducibleScripts_FAIR_VersionControl": false,
     "P_ReproducibleScripts_FAIR_Documentation": true,
     "P_ReproducibleScripts_TIER4_Sufficiency": true,
     "P_ReproducibleScripts_TIER4_SoupToNuts": true,
@@ -524,6 +524,7 @@
     "P_PreregisteredReplication_NAExplanation": "Exploratory simulation",
     "P_FormalModeling": "NotApplicable",
     "P_FormalModeling_NAExplanation": "Exploratory simulation",
-    "P_PowerConsiderations": ""
+    "P_PowerConsiderations": "",
+    "P_IndependentVerification_NAExplanation": "x "
   }
 ]

@@ -35,7 +35,7 @@
         },
         "P_IndependentVerification": {
             "not_applicable": "($P_Suitable === 'No') || (($P_IndependentVerification === 'NotApplicable') && (exists($P_IndependentVerification_NAExplanation)))",
-            "max": 1,
+            "max": 2,
             "op": "select",
             "points": [
                 {

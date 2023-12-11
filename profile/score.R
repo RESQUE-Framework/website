@@ -107,8 +107,11 @@ evaluate_condition_in_context <- function(condition, context) {
 # - max_score: the maximum score that can be reached
 # - score: the score that was reached
 # - relative_score: the score that was reached divided by the maximum score
-score <- function(research_output) {
+score <- function(research_output, verbose=FALSE) {
+    # for debugging:
+    # research_output <- research_outputs[[3]]
     scoring <- get_scoring_information(research_output)
+    if (verbose == TRUE & is.null(scoring)) {print(paste0("scoring skipped (scoring == NULL)"))}
 
     indicators <- list()
 
@@ -119,6 +122,7 @@ score <- function(research_output) {
         indicator <- scoring[[indicator_index]]
         # Get indicator name using the index
         indicator_name <- names(scoring)[indicator_index]
+        if (verbose == TRUE) {print(paste0("indicator_index: ", indicator_index, " (", indicator_name, ")"))}
 
         # Handle 'not applicable' condition
         # Skip this indicator if the 'not applicable' condition is met
@@ -171,8 +175,8 @@ score <- function(research_output) {
 # - scores: a list of scores for each research output
 # - scored_research_outputs: the number of research outputs that were scored
 # - overall_score: the average score of all scored research outputs
-score_all <- function(research_outputs) {
-    scores <- map(research_outputs, score)
+score_all <- function(research_outputs, verbose=FALSE) {
+    scores <- map(research_outputs, score, verbose=verbose)
 
     # Applicant requests manual processing if the max score is 0
     max_scores <- sapply(scores, function(x) x$max_score)
@@ -191,9 +195,9 @@ score_all <- function(research_outputs) {
 # - scores: a list of scores for each research output
 # - scored_research_outputs: the number of research outputs that were scored
 # - overall_score: the average score of all scored research outputs
-score_all_from_file <- function(path) {
+score_all_from_file <- function(path, verbose=FALSE) {
     research_outputs <- read_json(path)
-    score_all(research_outputs)
+    score_all(research_outputs, verbose=verbose)
 }
 
 # ====== Example ======

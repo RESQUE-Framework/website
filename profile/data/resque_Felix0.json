@@ -5,13 +5,13 @@
       "global": {}
     },
     "position": 0,
-    "date_modified": 1702269105142,
+    "date_modified": 1702047792488,
     "date_created": 1701877620153,
     "LastName": "Schönbrodt",
     "FirstName": "Felix",
     "ORCID": "https://orcid.org/0000-0002-8282-3910",
     "RaterType": "Applicant",
-    "date_exported": 1702269189800
+    "date_exported": 1702047812189
   },
   {
     "type": "pub",
@@ -271,8 +271,7 @@
     "P_OpenMaterials_Identifier": "https://osf.io/dj8g9/",
     "P_FormalModeling": "NotApplicable",
     "P_FormalModeling_NAExplanation": "Purely descriptive work",
-    "P_PowerConsiderations": "",
-    "P_IndependentVerification_Identifier": ""
+    "P_PowerConsiderations": ""
   },
   {
     "type": "pub",

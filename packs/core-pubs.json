@@ -39,8 +39,20 @@
             "op": "select",
             "points": [
                 {
+                    "value": 0.5,
+                    "condition": "($P_IndependentVerification === 'WorkflowReproducible') && (exists($P_IndependentVerification_Identifier))"
+                },
+                {
                     "value": 1,
-                    "condition": "($P_IndependentVerification === 'Yes') && (exists($P_IndependentVerification_Identifier))"
+                    "condition": "($P_IndependentVerification === 'MainResultsReproducible') && (exists($P_IndependentVerification_Identifier))"
+                },
+                {
+                    "value": 1.5,
+                    "condition": "($P_IndependentVerification === 'AllResultsReproducible') && (exists($P_IndependentVerification_Identifier))"
+                },
+                {
+                    "value": 2,
+                    "condition": "($P_IndependentVerification === 'AnalysisReplication') && (exists($P_IndependentVerification_Identifier))"
                 }
             ]
         },

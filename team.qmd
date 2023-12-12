@@ -4,12 +4,11 @@ title: "👥 Team / Contribute"
 
 The RESQUE framework is a collaborative project initiated by the German Psychological Society ([DGPs](https://www.dgps.de)). 
 
-This project is a community effort with many contributors, including:
+This project is a community effort with many contributors:
 
-- Alp Kaan Aksu (for designing and programming the web form and the form builder [aut])
-- Maximilian Ernst (software indicators [aut, ctb])
-- Aaron Peikert (software indicators [aut, ctb])
-- Daniel Nüst (code verification indicator [ctb])
+- [Alp Kaan Aksu](https://github.com/alpkaanaksu) is the lead programmer who designed and programmed the [RESQUE App](https://nicebread.github.io/RESQUE/web/) and the [Form Builder](https://nicebread.github.io/RESQUE/web/builder)
+- Maximilian Ernst, Aaron Peikert and Felix Schönbrodt had a leading role in the development of the RESQUE-Software scheme
+- Daniel Nüst contributed to the code verification indicator in RESQUE-Pubs
 - TODO add all others
 
 ... all who wrote [comments](#commentaries) with many constructive suggestions

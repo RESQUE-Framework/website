@@ -8,3 +8,7 @@ title: "📊 Get your RESQUE profile"
 2. When done, save the data as a local `json` file.
 3. Go to the [RESQUE Profiler](http://shiny.psy.lmu.de/felix/RESQUE_profile/) app, upload your `json` file, and get your Research Profile.
 
+::: {.callout-warning}
+The profile is not finalized yet - we implemented some visualizations, but not for all indicators.
+:::
+

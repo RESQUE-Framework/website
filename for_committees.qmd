@@ -10,11 +10,12 @@ TODO - this is not complete.
 The RESQUE framework decisively promotes a "buffett table approach": From the list of available indicators, hiring committees choose those which show a fit to the position and to the preferences and the research culture of the institution.
 
 The RESQUE App already has basic customization features. With the simple [Form Builder](https://nicebread.github.io/RESQUE/web/builder) website, committees can choose:
+
 - The maximum number of submittable research outputs (default: 10)
 - The number of top papers ('best research outputs') that can be selected (default: 3)
 - The threshold for 'number of required research outputs' warning (default: 5): The app computes an average rigor score, but that needs at least some scoreable research outputs.
 
-The app is completely open source, so all indicators can be adjusted, removed, or exchanged. However, we are happy to [assist](team.qmd) in customizing the app for your hiring committee.
+The app is completely [open source](https://github.com/nicebread/RESQUE), so all indicators can be adjusted, removed, or new indicators added. However, we are happy to [assist](team.qmd) in customizing the app for your hiring committee.
 
 
 TODO:

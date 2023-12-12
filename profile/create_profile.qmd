@@ -8,6 +8,9 @@ format:
     number-sections: false
     smooth-scroll: true
     self-contained: true
+    theme: zephyr
+    fontsize: 95%
+    linestretch: 1.45
 embed-resources: true
 execute:
   echo: false
@@ -46,11 +49,18 @@ source("profile_helpers.R")
 # Felix: /Users/felix/Documents/Github/RESQUE/profile/data/resque_Felix.json
 # Anne: /Users/felix/Documents/Github/RESQUE/profile/data/resque_1697454489129.json
 # Daniel: /Users/felix/Documents/Github/RESQUE/profile/data/resque_1696782133298.json
+#params <- list(jsonpath="/Users/felix/Documents/Github/RESQUE/profile/data/resque_1696782133298.json")
 #params <- list(jsonpath="/Users/felix/Downloads/resque_1701950141044.json")
 #params <- list(jsonpath="/Users/felix/Documents/Github/RESQUE/profile/data/resque_1697454489129.json")
+#params <- list(jsonpath="/Users/felix/Documents/Github/RESQUE/profile/data/resque_Felix.json")
+
 dat0 <- read_json(params$jsonpath, simplifyVector = TRUE)
 meta <- dat0[1, ]
 dat <- dat0[-1, ]
+
+# clean and create some fields
+meta$FullName <- paste0(meta$FirstName, " ", meta$LastName)
+dat$Title <- clean_title(dat$Title)
 
 # remove unnecessary column that breaks the structure of dat (nested data frame)
 dat$queryConfig <- NULL
@@ -125,22 +135,22 @@ credit_inv$sum_leadequal <- apply(credit_inv[, 1:14], 1, function(x) sum(x %in% 
 credit_inv$sum_support <- apply(credit_inv[, 1:14], 1, function(x) sum(x=="Support"))
 
 # define the categories
-credit_inv$CRediT_involvement <- "Low"
+credit_inv$CRediT_involvement <- factor(rep("Low", nrow(credit_inv)), levels=c("Low", "Medium", "High", "Very High"), ordered=TRUE)
 credit_inv$CRediT_involvement[credit_inv$sum_lead >= 3] <- "Very High"
 credit_inv$CRediT_involvement[credit_inv$sum_leadequal >= 5] <- "Very High"
 
 credit_inv$CRediT_involvement[credit_inv$sum_lead %in% c(1, 2)] <- "High"
-credit_inv$CRediT_involvement[credit_inv$sum_leadequal %in% c(3, 4)] <- "High"
+credit_inv$CRediT_involvement[credit_inv$sum_leadequal %in% c(3, 4) & credit_inv$CRediT_involvement != "Very High"] <- "High"
 
-credit_inv$CRediT_involvement[credit_inv$sum_equal %in% c(1, 2)] <- "Medium"
-credit_inv$CRediT_involvement[credit_inv$sum_support >= 5] <- "Medium"
+credit_inv$CRediT_involvement[credit_inv$sum_equal %in% c(1, 2) & credit_inv$sum_lead == 0] <- "Medium"
+credit_inv$CRediT_involvement[credit_inv$sum_support >= 5 & credit_inv$CRediT_involvement <= "Medium"] <- "Medium"
 
-dat$CRediT_involvement <- factor(credit_inv$CRediT_involvement, levels=c("Very High", "High", "Medium", "Low"), ordered=TRUE)
+dat$CRediT_involvement <- credit_inv$CRediT_involvement
 dat$CRediT_involvement_roles <- main_roles
 
 ```
 
-**This document summarizes the research style of `r meta$LastName` - the *"fingerprint" of how research is conducted*, when only the best work is submitted to this analysis.**
+**This document summarizes the research style of `r meta$FullName` - the *"fingerprint" of how research is conducted*, when only the best work is submitted to this analysis.**
 
 ::: {.callout-warning}
 This is a preview which shows some visual summaries - not all indicators have been covered yet, and things might change substantially.
@@ -150,6 +160,10 @@ This is a preview which shows some visual summaries - not all indicators have be
 Some parts of this profile are purely descriptive. For example, it is summarized whether researchers focus on lab or field studies, whether they predominantly work with psychophysiological data or rather focus on questionnaire studies. 
 
 Other parts contain, to some extent, a normative aspect: For example, research that is reproducible, which allows independent auditing because it provides open data and scripts is, *ceteris paribus*, better than research that does not have these aspects. Research outputs with these objective quality criteria of methodological rigor can gain "bonus points" which are summed across all provided research outputs and contribute to the [Rigor Profile Overview](#rigor-profile-overview).
+
+::: {.callout-note title="Is the rigor score systematically biased against certain fields (e.g., fields where open data is difficult)?" collapse="true"}
+We took care not to systematically disadvantage certain fields or research styles. Generally, the rigor score is a relative score, computed as “percentage of maximal points” (POMP) score across all indicators that are applicable. For any indicator, one can choose the option "not applicable" if an indicator *principally* cannot be attained by a research output. The points of such non-applicable indicators are removed from the maximum points and therefore do not lower the computed relative rigor score. However, in order to prevent gaming of this scheme, any "not applicable" claim needs to be justified. Only when the justification is accepted by the committee, the point is removed. With no or insufficient justification, in contrast, the indicator is set to "not available" (=0 points) and the maximum points are not adjusted.
+:::
 
 ## Submitted research outputs
 
@@ -298,7 +312,7 @@ kable(credit_inv_tab)
 
 [BIP! Scholar](https://bip.imsi.athenarc.gr/site/home) (a non-commercial open-source service to facilitate fair researcher assessment) provides impact scores for publications. It provides **five impact classes** based on norm values:
 
-::: {style="font-size: 70%;"}
+::: {style="font-size: 80%;"}
 - Top 0.01%           
 - Top 0.1%            
 - Top 1%              
@@ -309,7 +323,7 @@ kable(credit_inv_tab)
 
 Here, we consider the **Popularity** measure.
 
-::: {.callout-note}
+::: {.callout-note title="Computation of the Popularity metric" collapse="true"}
 This indicator reflects impact/attention of an article in the research community at large. It is based on *AttRank*, a variation of PageRank (known from the Google search algorithm) that accounts for the temporal evolution of the citation network. By that, it alleviates the bias against younger publications, which have not had the chance to accumulate a lot of citations. It models a researcher's preference to read papers which received a lot of attention recently. It was evaluated (and vetted) in its performance to predict the ranking of papers concerning their *future impact* (i.e., citations). For more details, see [BIP! glossary](https://bip.imsi.athenarc.gr/site/indicators) and the references therein.
 :::
 
@@ -326,9 +340,9 @@ BIP$pop_class <- factor(BIP$pop_class, levels=paste0("C", 1:5), ordered=TRUE)
 BIP$inf_class <- factor(BIP$inf_class, levels=paste0("C", 1:5), ordered=TRUE)
 BIP$imp_class <- factor(BIP$imp_class, levels=paste0("C", 1:5), ordered=TRUE)
 ```
-From `r nrow(dat)` submitted papers of `r meta$LastName`, `r nrow(BIP %>% filter(pop_class <= "C4"))` `r ifelse(nrow(BIP %>% filter(pop_class <= "C4")) == 1, "was", "were")` in the top 10% popularity class of all papers or better.
+From `r nrow(dat)` submitted papers of `r meta$FullName`, `r nrow(BIP %>% filter(pop_class <= "C4"))` `r ifelse(nrow(BIP %>% filter(pop_class <= "C4")) == 1, "was", "were")` in the top 10% popularity class of all papers or better.
 
-::: {style="font-size: 70%;"}
+::: {style="font-size: 80%;"}
 ```{r}
 #| results: "asis"
 
@@ -362,7 +376,11 @@ if (nrow(pop_sel) > 0) {
 
 # Rigor profile overview
 
-The two grey circles are norm values based on a sample of 63 papers from mostly early and mid-career researchers that submitted their three best papers. The inner (dark grey) circle marks the 50% quantile of the relative rigor score, the outer (light grey) circle the top 10% quantile.
+::: {.callout-note title="Computation of the relative rigor score" collapse="true"}
+The relative rigor score (RRS) is computed as a “percentage of maximal points” (POMP) score of multiple indicators. The indicators are grouped into five categories: Open Data, Preregistration, Reproducible Code & Verification, Formal Modeling, and Open Materials. Indicators that are flagged as "not applicable" are removed from the maximum points and therefore do not lower the RRS.
+:::
+
+The grey circles are norm values based on a sample of 63 papers from mostly early and mid-career researchers that submitted their three best papers, indicating the 50%, 90%, and 99% quantile of the relative rigor score.
 
 ```{r}
 #| echo: false
@@ -382,6 +400,8 @@ scores_all$category[str_detect(scores_all$indicator, "Prereg")] <- "Preregistrat
 scores_all$category[str_detect(scores_all$indicator, "ReproducibleScripts|IndependentVerification")] <- "Reproducible Code \n& Verification"
 scores_all$category[str_detect(scores_all$indicator, "FormalModeling")] <- "Formal\nModeling"
 scores_all$category[str_detect(scores_all$indicator, "OpenMaterials")] <- "Open Materials"
+
+rigor_category_names <- c("Open Data", "Preregistration", "Reproducible Code \n& Verification", "Formal\nModeling", "Open Materials")
 
 scores_all_aggr <- scores_all %>% 
   group_by(category) %>% 
@@ -406,12 +426,16 @@ sum(overall_mean_rel_score$scores)/sum(overall_mean_rel_score$max)
 # equally weighted overall score:
 overall_score <- mean(scores_all_aggr$rel_score)
 
+categories_present <- nrow(scores_all_aggr)
+
 radar_dat <- tibble(
 	dimension = factor(scores_all_aggr$category),
 	max_points = scores_all_aggr$overall_points,
 	rel_score = scores_all_aggr$rel_score,
-	xstart = c(0, cumsum(max_points)[1:(length(max_points)-1)]),
-	xend = cumsum(max_points),
+	#xstart = c(0, cumsum(max_points)[1:(length(max_points)-1)]),
+	#xend = cumsum(max_points),
+	xstart = 0:(categories_present-1),
+	xend = 1:categories_present,
   xmid = (xend-xstart)/2 + xstart
 )
 
@@ -421,23 +445,25 @@ max_points <- sum(radar_dat$max_points)
 # Standardized and categorized rigor scores:
 # Standarized within category
 # Quantiles in Franka's study were:
-# 0.54 (top 10%), 0.50 (top 20%), 0.30 (top 50%)
+# 0.63 (top 1%), 0.54 (top 10%), 0.50 (top 20%), 0.30 (top 50%)
 # radar_dat$norm_rigor <- cut(radar_dat$rel_score, breaks=c(0, 0.30, .50, .54, 1), 
 #  labels=c("low50", "top50", "top20", "top10"))
 
 p1 <- radar_dat %>% ggplot() + 
 geom_rect(aes(xmin=xstart, xmax=xend, ymin=0, ymax=rel_score, fill=dimension)) + 
 coord_polar("x", start=0) + 
-  geom_hline(yintercept=0.3, col="grey60") +  # top 50%
-  geom_hline(yintercept=0.54, col="grey80") + # top 10%
-  geom_text(x=max_points*0.75, y=0.3, label = "Top 50%", col="grey60", size=3) +
-  geom_text(x=max_points*0.75, y=0.54, label = "Top 10%", col="grey80", size=3) +
+  geom_hline(yintercept=0.30, col="grey30") +  # top 50%
+  geom_hline(yintercept=0.54, col="grey50") + # top 10%
+  geom_hline(yintercept=0.63, col="grey60") +  # top  1%
+  geom_text(x=max_points*0, y=0.30, label = "Top 50%", col="grey30", size=3, vjust=-0.2) +
+  geom_text(x=max_points*0, y=0.54, label = "Top 10%", col="grey50", size=3, vjust=-0.2) +
+  geom_text(x=max_points*0, y=0.63, label = "Top 1%" , col="grey50", size=3, vjust=-0.2) +
   
-xlab("") + ylab("") + ggtitle(paste0("Rigor profile for ", meta$LastName), subtitle = paste0("Overall score = ", round(overall_score, 2))) +
+xlab("") + ylab("") + ggtitle(paste0("Rigor profile for ", meta$FullName), subtitle = paste0("Overall score = ", round(overall_score, 2))) +
 scale_x_continuous(labels = NULL, breaks = NULL) + scale_y_continuous(labels = NULL, breaks = NULL, limits=c(0, 1)) + theme_void() +
 guides(fill=guide_legend("Quality Dimension")) +
 scale_fill_brewer(palette="Set3") +
-geom_text(aes(x=xmid, y=0.4, label = dimension), vjust = -0.5)
+geom_text(aes(x=xmid, y=0.85, label = dimension), vjust = -0.5)
 
 p1
 
@@ -446,9 +472,24 @@ p1
 ```
 
 
-```{r}
+```{r, fig.width=8}
 p1
 ```
+
+```{r, results='asis'}
+notApp_categories <- setdiff(rigor_category_names, unique(scores_all$category))
+notApp_categories <- str_replace_all(notApp_categories, "\n", " ")
+
+if (length(notApp_categories) > 0) {
+  
+  cat_label <- ifelse(length(notApp_categories)==1, "category", "categories")
+  cat_label2 <- ifelse(length(notApp_categories)==1, "this category", "these categories")
+  
+  res <- paste0("Note: For the rigor ", cat_label,  " **",  paste0(notApp_categories, collapse=" & "), "**, the applicant has indicated that ", cat_label2, " did not apply to any submitted publication.")
+  cat(res)
+}
+```
+
 
 
 # Open Data in Publications

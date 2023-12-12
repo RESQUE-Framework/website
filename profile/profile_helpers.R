@@ -13,6 +13,12 @@ unCamel <- function(df, cname) {
   return(df)
 }
 
+clean_title <- function(x) {
+  x |> 
+    str_replace_all("\n", " ") |>
+    str_squish()
+}
+
 # sc = scores object
 get_indicators <- function(sc, pattern) {
     res <- data.frame()

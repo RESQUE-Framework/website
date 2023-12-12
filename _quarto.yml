@@ -1,0 +1,27 @@
+project:
+  type: website
+  output-dir: doc
+  render: 
+    - "*.qmd"
+    - "CODE_OF_CONDUCT.md"
+    - "!profile/"
+
+website:
+  title: "The RESQUE Framework"
+  navbar:
+    left:
+      - get_profile.qmd
+      - for_committees.qmd
+      - text: "📔 Publications"
+        href: publications.qmd  
+      - eval_projects.qmd      
+      - team.qmd
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: false
+
+
+

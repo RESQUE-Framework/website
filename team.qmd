@@ -1,0 +1,29 @@
+---
+title: "👥 Team / Contribute"
+---
+
+The RESQUE framework is a collaborative project initiated by the German Psychological Society ([DGPs](https://www.dgps.de)). 
+
+This project is a community effort with many contributors, including:
+
+- Alp Kaan Aksu (for designing and programming the web form and the form builder [aut])
+- Maximilian Ernst (software indicators [aut, ctb])
+- Aaron Peikert (software indicators [aut, ctb])
+- Daniel Nüst (code verification indicator [ctb])
+- TODO add all others
+
+... all who wrote [comments](#commentaries) with many constructive suggestions
+... and many more who gave extended feedback on the proposal! 🙏
+
+## How to contribute
+
+Join our [**mailing list**](https://www.listserv.dfn.de/sympa/info/psy-dora) to receive news and updates about the RESQUE framework.
+
+For **minor updates** and **minor feature requests**, please use the [issue tracker](https://github.com/nicebread/RESQUE/issues) of the [Github repository](https://github.com/nicebread/RESQUE).
+
+If you want to **collaborate scientifically** on the project, please contact one of the project maintainers ([Felix Schönbrodt](mailto:felix.schoenbrodt@psy.lmu.de); [Anne Gärtner](mailto:anne_gaertner@tu-dresden.de); [Daniel Leising](mailto:Daniel.Leising@tu-dresden.de)).
+
+If you want to **develop an expansion pack** for your field, please contact [Anne Gärtner](mailto:anne_gaertner@tu-dresden.de).
+
+Please note and respect our [Code of Conduct](/CODE_OF_CONDUCT.md).
+

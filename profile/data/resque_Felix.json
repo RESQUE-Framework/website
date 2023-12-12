@@ -5,13 +5,13 @@
       "global": {}
     },
     "position": 0,
-    "date_modified": 1702308649700,
+    "date_modified": 1702359162980,
     "date_created": 1701877620153,
     "LastName": "Schönbrodt",
     "FirstName": "Felix",
     "ORCID": "https://orcid.org/0000-0002-8282-3910",
     "RaterType": "Applicant",
-    "date_exported": 1702308666061
+    "date_exported": 1702362158405
   },
   {
     "type": "pub",
@@ -30,7 +30,7 @@
     "P_CRediT_Supervision": "NoRole",
     "P_CRediT_Validation": "NoRole",
     "P_CRediT_Visualization": "Equal",
-    "P_CRediT_WritingOriginalDraft": "Equal",
+    "P_CRediT_WritingOriginalDraft": "Support",
     "P_CRediT_WritingReviewEditing": "Support",
     "P_Data_Source_NewOwn": false,
     "P_SchemeFit": "3",
@@ -153,7 +153,7 @@
     "P_OpenMaterials": "NotApplicable",
     "P_OpenMaterials_NAExplanation": "Everything is contained in the source code.",
     "P_Preregistration": "NotApplicable",
-    "P_FormalModeling": "NotApplicable",
+    "P_FormalModeling": "No",
     "P_FormalModeling_NAExplanation": "Purely descriptive work",
     "P_Preregistration_NAExplanation": "Purely exploratory work"
   },
@@ -208,7 +208,7 @@
     "P_OpenMaterials": "NotApplicable",
     "P_OpenMaterials_NAExplanation": "No material was used, other than the data itself.",
     "P_Preregistration": "No",
-    "P_FormalModeling": "NotApplicable",
+    "P_FormalModeling": "No",
     "P_FormalModeling_NAExplanation": "Purely descriptive work",
     "P_PowerConsiderations": "",
     "P_PreregisteredReplication": "NotApplicable",
@@ -271,7 +271,7 @@
     "P_Preregistration": "No",
     "P_OpenMaterials": "YesEntire",
     "P_OpenMaterials_Identifier": "https://osf.io/dj8g9/",
-    "P_FormalModeling": "NotApplicable",
+    "P_FormalModeling": "No",
     "P_FormalModeling_NAExplanation": "Purely descriptive work",
     "P_PowerConsiderations": "",
     "P_Preregistration_NAExplanation": "Purely exploratory",

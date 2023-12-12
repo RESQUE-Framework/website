@@ -1,0 +1,19 @@
+---
+title: "🚀 For hiring/tenure committees"
+---
+
+
+## ...as hiring committees
+
+TODO
+
+- Explicate the "menu approach" - see the [Form Builder](https://nicebread.github.io/RESQUE/web/builder)
+- Show recommended paragraph in job ad
+- cf. Lange et al.: Commit to weights and indicator sets when publishing the job ad; we recommend to publish the weights and indicators along with the ad.
+- Instructions for applicants
+
+
+## ...as tenure track committees
+
+TODO
+

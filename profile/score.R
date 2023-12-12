@@ -51,7 +51,8 @@ not <- function(variable, context) {
 
 # Get the JSON object from a URL
 get_json_object <- function(url) {
-  response <- GET(url)
+  # default timeout is 13 sec.
+  response <- GET(url, timeout(20))
   json <- content(response, as = "text")
   fromJSON(json)
 }

@@ -2,6 +2,6 @@
 
 ## [☞ Visit the RESQUE website!](https://nicebread.github.io/RESQUE/)
 
-The development takes place in thsi Github project.
+The development takes place in this Github project.
 
-Want to [contribute](https://nicebread.github.io/RESQUE/team.html?
+Want to [contribute](https://nicebread.github.io/RESQUE/team.html)?

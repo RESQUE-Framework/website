@@ -1,0 +1,7 @@
+<ul style="list-style-type: '🗞️ ';">
+    <% for (const item of items) { %>
+      <li><b><%= item.date %>: <a href="<%- item.path %>"><%= item.title %></a></b>
+        <br><%= item.description %>
+      </li>
+    <% } %>
+</ul>

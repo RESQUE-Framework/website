@@ -1,5 +1,5 @@
 project:
-  type: website
+  type: website  
   output-dir: doc
   resources:
     - web/
@@ -11,6 +11,7 @@ project:
 
 website:
   title: "The RESQUE Framework"
+  site-url: "https://nicebread.github.io/RESQUE"
   navbar:
     left:
       - get_profile.qmd

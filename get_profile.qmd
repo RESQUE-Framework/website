@@ -2,13 +2,15 @@
 title: "📊 Get your RESQUE profile"
 ---
 
-## ... as applicants / for your CV
+::: {.callout-warning}
+The profile is not finalized yet - we implemented some visualizations, but not for all indicators.
+Things might change substantially in the near future.
+:::
+
+
+<img src="images/RESQUE_profile.png" style="border: 1px solid #ddd; border-radius: 4px; padding: 3px; width: 850px;">
 
 1. Go to the [RESQUE Collector](https://nicebread.github.io/RESQUE/web/) app, and enter the data for up to 10 research contributions (publications, data set, or research software). Typically, this takes between 6 and 12 minutes per contribution.
 2. When done, save the data as a local `json` file.
 3. Go to the [RESQUE Profiler](http://shiny.psy.lmu.de/felix/RESQUE_profile/) app, upload your `json` file, and get your Research Profile.
-
-::: {.callout-warning}
-The profile is not finalized yet - we implemented some visualizations, but not for all indicators.
-:::
 

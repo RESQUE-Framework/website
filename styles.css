@@ -1,1 +1,15 @@
 /* css styles */
+
+.news {
+    padding-left: 20px;
+    margin-left: 30px;
+    background-image: linear-gradient(to right, #888888, #3498db);
+    background-repeat: no-repeat;
+    background-size: 8px 100%; /* Width and height of the gradient 'border' */
+    background-position: left center;
+}
+
+.news li {
+    color:#333333;
+    font-size: .925rem;
+}

@@ -1,8 +1,35 @@
 ---
 title: "RESQUE: The Research Quality Evaluation scheme for psychological research"
+listing:
+  id: sample-listings
+  template: includes/news.ejs
+  contents: news
+  sort: "date desc"
+  type: default
+  max-items: 10
+  feed: true
+  date-format: "iso"
+  image-align: "left"
+  image-placeholder: "images/OA_icon.png"
+format:
+  html:
+    grid:
+      margin-width: 450px
 ---
 
-The **Research Quality Evaluation (RESQUE)** framework provides recommendations for a responsible research assessment that does not rely on flawed metrics such as the journal impact factor or the h-index. It provides objective quality and impact indicators for three types of research outputs:
+::: {.column-margin .news}
+# News
+
+::: {#sample-listings}
+:::
+:::
+
+
+The **Research Quality Evaluation (RESQUE)** framework provides recommendations for a responsible research assessment that does not rely on flawed metrics such as the journal impact factor or the h-index. 
+
+In alignment with the principles of [CoARA](https://coara.eu), this approach acknowledges diverse academic contributions, prioritizes the quality of work rather than its volume, and integrates qualitative peer assessment with the responsible use of quantitative indicators. Primarily designed to assist hiring and tenure committees, it emphasizes that the indicators and algorithmic methods serve as tools to support, not replace, decision-making processes. By automating the generation of relevant candidate information, this approach enhances the effectiveness of human expertise in evaluating potential hires and tenure candidates.
+
+RESQUE provides objective quality and impact indicators for three types of research outputs:
 
 (a) publications of empirical studies, 
 (b) published data sets and 
@@ -10,15 +37,13 @@ The **Research Quality Evaluation (RESQUE)** framework provides recommendations 
 
 It is primarily developed for the field of psychology, but might be easily transferred to neighbouring empirical scientific fields.
 
-In alignment with the principles of [CoARA](https://coara.eu), this approach acknowledges diverse academic contributions, prioritizes the quality of work rather than its volume, and integrates qualitative peer assessment with the responsible use of quantitative indicators. Primarily designed to assist hiring and tenure committees, it emphasizes that the indicators and algorithmic methods serve as tools to support, not replace, decision-making processes. By automating the generation of relevant candidate information, this approach enhances the effectiveness of human expertise in evaluating potential hires and tenure candidates.
-
 Join our [mailing list](https://www.listserv.dfn.de/sympa/info/psy-dora) to receive news and updates about the RESQUE framework.
 
 ## Resources
 
 ### ☑️ Rating schemes: Core set
 
-With the goal to make data entry for applicants and hiring committees as easy and frictionless as possible, we developed a [web form](https://nicebread.github.io/RESQUE/web/) that allows to enter and store the data in a JSON format.
+With the goal to make data entry for applicants and hiring committees as easy and frictionless as possible, we developed the [RESQUE Collector](https://nicebread.github.io/RESQUE/web/) app that allows to provide information for your best research outputs and to export the data in a JSON format.
 
 We provide three rating schemes for ...
 
@@ -26,9 +51,7 @@ We provide three rating schemes for ...
 - Data sets (**RESQUE-Data**)
 - Research software (**RESQUE-Software**)
 
-The web form currently only implements *RESQUE-Pubs* and *RESQUE-Software*.
-
-The rating sheets are versioned. Indicators from the core set start with the prefix "P" (Publications), "D" (Data) or "S" (Software).
+(Note: The web form currently only implements *RESQUE-Pubs* and *RESQUE-Software*)
 
 ### ☑︎ Rating schemes: Expansion packs
 
@@ -47,3 +70,8 @@ We provide R scripts that ...
 1. load and aggregate multiple json files with RESQUE ratings
 2. enrich the data with other sources of information (e.g. citation counts & normalized citation counts from [OpenAlex](https://openalex.org)), impact metrics from [BIP!](https://bip.imsi.athenarc.gr)
 3. provide candidate profiles that can be requested by hiring and tenure committees, or used by candidates as an attachment to their CV or website.
+
+You can get your research profile with the [RESQUE Profile Builder](https://shiny.psy.lmu.de/felix/RESQUE_profile/) app - see [here](get_profile.qmd) for instructions.
+
+
+

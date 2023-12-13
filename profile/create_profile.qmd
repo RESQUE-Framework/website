@@ -439,6 +439,8 @@ radar_dat <- tibble(
   xmid = (xend-xstart)/2 + xstart
 )
 
+#radar_dat$rel_score <- c(0.15, 0.8, 0.6, 0.25, 0.42)
+
 
 max_points <- sum(radar_dat$max_points)
   
@@ -461,9 +463,9 @@ coord_polar("x", start=0) +
   
 xlab("") + ylab("") + ggtitle(paste0("Rigor profile for ", meta$FullName), subtitle = paste0("Overall score = ", round(overall_score, 2))) +
 scale_x_continuous(labels = NULL, breaks = NULL) + scale_y_continuous(labels = NULL, breaks = NULL, limits=c(0, 1)) + theme_void() +
-guides(fill=guide_legend("Quality Dimension")) +
+guides(fill=guide_legend("Rigor Dimension")) +
 scale_fill_brewer(palette="Set3") +
-geom_text(aes(x=xmid, y=0.85, label = dimension), vjust = -0.5)
+geom_text(aes(x=xmid, y=0.75, label = dimension), vjust = -0.5, size=3)
 
 p1
 

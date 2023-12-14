@@ -1,0 +1,14 @@
+---
+title: "Preprint published by Franka Etzel on an evaluation study"
+date: 2023-09-04
+---
+
+63 papers nominated by 21 participating researchers from personality and social psychology were rated by external raters (i.e., not the authors themselves) with the RESQUE-Pubs scheme. Inter-rater reliability, associations between the new and traditional indicators, and feedback from the participants on the new tool were examined. Inter-rater reliability for the three raters varied between the different items of the scheme. Besides a negative association between the new indicators and the uncorrected h-index, no other significant associations were found. The feedback from participants revealed the importance of transparency concerning the scheme.
+
+The RESQUE-Pubs scheme good be properly apply applied to 84% of all submitted papers. The average rigor score was around 35%.
+
+(Note that the RESQUE-Pubs scheme evolved since that study).
+
+You can read the study here:
+
+Etzel, F. T. (2023, September 4). *One step closer towards responsible research assessment in psychology: Evaluation and testing of a new tool in practice. [https://doi.org/10.31234/osf.io/3uf7w](https://doi.org/10.31234/osf.io/3uf7w)

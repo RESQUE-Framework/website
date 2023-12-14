@@ -14,7 +14,7 @@ listing:
 format:
   html:
     grid:
-      margin-width: 450px
+      margin-width: 500px
 ---
 
 ::: {.column-margin .news}

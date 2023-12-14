@@ -20,6 +20,11 @@ format:
 ::: {.column-margin .news}
 # News
 
+::: {.smaller}
+See all news [here](news.qmd).
+:::
+<br>
+
 ::: {#sample-listings}
 :::
 :::

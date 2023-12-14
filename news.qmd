@@ -1,0 +1,9 @@
+---
+title: "News"
+listing:
+  sort: "date desc"
+  date-format: "iso"
+  contents:
+    - "news/*.qmd"
+---
+

@@ -377,7 +377,7 @@ if (nrow(pop_sel) > 0) {
 # Rigor profile overview
 
 ::: {.callout-note title="Computation of the relative rigor score" collapse="true"}
-The relative rigor score (RRS) is computed as a “percentage of maximal points” (POMP) score of multiple indicators. The indicators are grouped into five categories: Open Data, Preregistration, Reproducible Code & Verification, Formal Modeling, and Open Materials. Indicators that are flagged as "not applicable" are removed from the maximum points and therefore do not lower the RRS.
+The relative rigor score (RRS) is computed as a “percentage of maximal points” (POMP) score of multiple indicators. The indicators are grouped into five categories: Open Data, Preregistration, Reproducible Code & Verification, Theorizing, and Open Materials. Indicators that are flagged as "not applicable" are removed from the maximum points and therefore do not lower the RRS.
 :::
 
 The grey circles are norm values based on a sample of 63 papers from mostly early and mid-career researchers that submitted their three best papers, indicating the 50%, 90%, and 99% quantile of the relative rigor score.
@@ -398,10 +398,10 @@ scores_all$category <- NA
 scores_all$category[str_detect(scores_all$indicator, "Data")] <- "Open Data"
 scores_all$category[str_detect(scores_all$indicator, "Prereg")] <- "Preregistration"
 scores_all$category[str_detect(scores_all$indicator, "ReproducibleScripts|IndependentVerification")] <- "Reproducible Code \n& Verification"
-scores_all$category[str_detect(scores_all$indicator, "FormalModeling")] <- "Formal\nModeling"
+scores_all$category[str_detect(scores_all$indicator, "Theorizing")] <- "Theorizing"
 scores_all$category[str_detect(scores_all$indicator, "OpenMaterials")] <- "Open Materials"
 
-rigor_category_names <- c("Open Data", "Preregistration", "Reproducible Code \n& Verification", "Formal\nModeling", "Open Materials")
+rigor_category_names <- c("Open Data", "Preregistration", "Reproducible Code \n& Verification", "Theorizing", "Open Materials")
 
 scores_all_aggr <- scores_all %>% 
   group_by(category) %>% 

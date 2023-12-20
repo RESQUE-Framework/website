@@ -168,6 +168,152 @@
     },
     "elements": [
         {
+            "id": "P_Theorizing",
+            "type": "radio",
+            "title": "Formal modeling of a theory",
+            "options": [
+                {
+                    "id": "DescriptiveExploratory",
+                    "text": "This research was purely descriptive/exploratory, without clear reference to a theory"
+                },
+                {
+                    "id": "TheoryGuided",
+                    "text": "A theory was (further) developed AND / OR evaluated"
+                }
+            ],
+            "condition": "$P_Suitable === 'Yes'"
+        },
+        {
+            "id": "P_Theorizing_Quality",
+            "type": "checkbox",
+            "title": "The theory …",
+            "options": [
+                {
+                    "id": "NarrativeDefinition",
+                    "text": "contains an explicit (narrative) definition of each construct"
+                },
+                {
+                    "id": "StandardNotation",
+                    "text": "uses a commonly accepted standard notation for describing the theory (e.g., mathematical operations, ODD protocol for ABMs)"
+                },
+                {
+                    "id": "Connections",
+                    "text": "explicates unanimous connections between all latent parameters in mathematical or logical (IF-THEN) form (“structural model”)"
+                },
+                {
+                    "id": "ParameterCharacteristics",
+                    "text": "contains a complete account of the characteristics of all the parameters involved (such as upper and lower bounds, possible values, scale level, distribution)"
+                },
+                {
+                    "id": "ObjectiveDerivation",
+                    "text": "is expressed in a way that enables deriving all the predictions it makes objectively (i.e., any person would come to the exact same predictions"
+                }
+            ],
+            "info": "Please apply these questions to the theory in your paper - regardless whether you (further) developed the theory or used someone else’s theory",
+            "condition": "$P_Suitable === 'Yes' && $P_Theorizing === 'TheoryGuided'"
+        },
+        {
+            "id": "P_Theorizing_Type",
+            "type": "radio",
+            "title": "In what language or system is the theory formulated?",
+            "options": [
+                {
+                    "id": "Mathematical",
+                    "text": "Mathematical"
+                },
+                {
+                    "id": "FormalLogic",
+                    "text": "Formal-Logic"
+                },
+                {
+                    "id": "ABM",
+                    "text": "Agent-based model"
+                },
+                {
+                    "id": "Narrative",
+                    "text": "Narrative"
+                },
+                {
+                    "id": "Other",
+                    "text": "Other (please specify)"
+                }
+            ],
+            "condition": "$P_Suitable === 'Yes' && $P_Theorizing === 'TheoryGuided'"
+        },
+        {
+            "id": "P_Theory_Type_Other",
+            "type": "text",
+            "title": "Theory type/ Language: Other",
+            "condition": "$P_TheoryType === 'Other'"
+        },
+        {
+            "id": "P_Theorizing_Contribution",
+            "type": "radio",
+            "title": "How much did you personally contribute to this version of the theory?",
+            "options": [
+                {
+                    "id": "Nothing",
+                    "text": "I used someone else’s theory"
+                },
+                {
+                    "id": "FormalLogic",
+                    "text": "I expanded / refined someone else’s theory"
+                },
+                {
+                    "id": "Lead",
+                    "text": " I was a lead developer of the entire theory"
+                }
+            ],
+            "condition": "$P_Suitable === 'Yes' && $P_Theorizing === 'TheoryGuided'"
+        },
+        {
+            "id": "P_Theorizing_Test",
+            "type": "radio",
+            "title": "Did you test (a part of) this theory?",
+            "options": [
+                {
+                    "id": "Yes",
+                    "text": "Yes"
+                },
+                {
+                    "id": "No",
+                    "text": "No"
+                }
+            ],
+            "condition": "$P_Suitable === 'Yes' && $P_Theorizing === 'TheoryGuided'"
+        },
+        {
+            "id": "P_Theorizing_Test_Quality",
+            "type": "checkbox",
+            "title": "The paper …",
+            "options": [
+                {
+                    "id": "Operationalization",
+                    "text": "defines how constructs are measured: explicates all connections between constructs and their manifest operationalizations (“measurement model”) (e.g. in tabular form)."
+                },
+                {
+                    "id": "Completeness",
+                    "text": "contains a complete account of how the tested hypotheses logically and stringently follow from the theory."
+                },
+                {
+                    "id": "Discussion",
+                    "text": "contains an explicit discussion as to what the results mean for the theory that was tested."
+                },
+                {
+                    "id": "Crossvalidation",
+                    "text": "evaluates the out-of-sample fit using k-fold cross-validation or similar techniques"
+                },
+                {
+                    "id": "Holdout",
+                    "text": "evaluates the out-of-sample fit on a strict hold-out data set that never was used for training/fitting the model <b>OR</b> uses appropriate model comparison criteria (AIC, BIC, LOO, Bayes Factors) in case of model comparisons."
+                }
+            ],
+            "condition": "$P_Suitable === 'Yes' && $P_Theorizing === 'TheoryGuided' && $P_Theorizing_Test === 'Yes'"
+        },
+
+
+
+        {
             "id": "P_Info",
             "type": "info",
             "text": "Date added: $date_added@datetime"
@@ -411,7 +557,7 @@
         {
             "id": "P_CRediT_FormalAnalysis",
             "type": "radio",
-            "title": "Formal analysis",
+            "title": "Formal analysis (≙ statistical data analysis)",
             "options": [
                 {
                     "id": "Lead",
@@ -473,7 +619,7 @@
         {
             "id": "P_CRediT_Investigation",
             "type": "radio",
-            "title": "Investigation",
+            "title": "Investigation (≙ data collection, performing the experiments)",
             "options": [
                 {
                     "id": "Lead",
@@ -597,7 +743,7 @@
         {
             "id": "P_CRediT_Software",
             "type": "radio",
-            "title": "Software",
+            "title": "Software (beyond statistical data analysis, which is in 'Formal Analysis')",
             "options": [
                 {
                     "id": "Lead",
@@ -1171,7 +1317,7 @@
                     "text": "Registered Report [provide doi or URL]"
                 }
             ],
-            "info": "{:'Yes' | Only choose <b>'Yes'</b> if the preregistration is time-stamped/ registered before the publication of the study.}<br><br> | <b>Multi Study Paper Case</b>: Only choose 'Yes' if your nominated study has been preregistered. <br><br> When to choose <b>'No'</b> <br> If the study was not preregistered or if preregistration is not time-stamped/registered <br><br> When to choose <b>'Not applicable'</b> <br>If the study type is 'Simulation' (except from benchmarking experiments), 'mainly theoretical Review' or other cases with reasonable justifications for nor preregistration.",
+            "info": "{:'Yes' | Only choose <b>'Yes'</b> if the preregistration is time-stamped/ registered before the publication of the study.}<br><br> | <b>Multi Study Paper Case</b>: Only choose 'Yes' if your nominated study has been preregistered. <br><br> When to choose <b>'No'</b> <br> If the study was not preregistered or if preregistration is not time-stamped/registered <br><br> When to choose <b>'Not applicable'</b> <br>If the study type is 'Simulation' (except from benchmarking experiments), 'mainly theoretical Review' or no data has been used in a substantive way. There also might be other cases with reasonable justifications for no preregistration.",
             "condition": "$P_Suitable === 'Yes'",
             "tip_external":"<ul><li>Is a <b>link</b> to the preregistration provided?</li><li><b>Search words:</b> preregist*, regist*, aspredicted,OSF"
         },
@@ -1278,6 +1424,12 @@
         },
         {
             "id": "P21P22SEP",
+            "type": "separator",
+            "condition": "$P_Suitable === 'Yes'"
+        },
+        
+        {
+            "id": "P22P23SEP",
             "type": "separator",
             "condition": "$P_Suitable === 'Yes'"
         },

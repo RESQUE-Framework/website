@@ -10,7 +10,7 @@
             "points": [
                 {
                     "value": 1,
-                    "condition": "($P_Data === 'Yes') && ($P_Data_Source_NewOwn) && ($P_Data_Open === 'YesEntire') && ($P_Data_Open_AccessLevel =|= ['ZK0', 'ZK1'])"
+                    "condition": "($P_Data === 'Yes') && ($P_Data_Source_NewOwn) && ($P_Data_Open === 'YesEntire') && (($P_Data_Open_AccessLevel =|= ['ZK0', 'ZK1']) || (($P_Data_Open_AccessLevel === 'ZK2') && (exists($P_Data_Open_AccessLevel_ZK2Explanation))))"
                 }
             ]
         },
@@ -21,15 +21,15 @@
             "points": [
                 {
                     "value": 0.25,
-                    "condition": "(exists($P_Data_Open_FAIR_PersistentIdentifier)) && ($P_Data === 'Yes') && ($P_Data_Source_NewOwn) && ($P_Data_Open === 'YesEntire') && ($P_Data_Open_AccessLevel =|= ['ZK0', 'ZK1'])"
+                    "condition": "(exists($P_Data_Open_FAIR_PersistentIdentifier)) && ($P_Data === 'Yes') && ($P_Data_Source_NewOwn) && ($P_Data_Open === 'YesEntire') &&(($P_Data_Open_AccessLevel =|= ['ZK0', 'ZK1']) || (($P_Data_Open_AccessLevel === 'ZK2') && (exists($P_Data_Open_AccessLevel_ZK2Explanation))))"
                 },
                 {
                     "value": 0.5,
-                    "condition": "($P_Data_Open_FAIR_Codebook) && ($P_Data === 'Yes') && ($P_Data_Source_NewOwn) && ($P_Data_Open === 'YesEntire') && ($P_Data_Open_AccessLevel =|= ['ZK0', 'ZK1'])"
+                    "condition": "($P_Data_Open_FAIR_Codebook) && ($P_Data === 'Yes') && ($P_Data_Source_NewOwn) && ($P_Data_Open === 'YesEntire') && (($P_Data_Open_AccessLevel =|= ['ZK0', 'ZK1']) || (($P_Data_Open_AccessLevel === 'ZK2') && (exists($P_Data_Open_AccessLevel_ZK2Explanation))))"
                 },
                 {
                     "value": 0.25,
-                    "condition": "($P_Data_Open_FAIR_StructuredOpenFormat) && ($P_Data === 'Yes') && ($P_Data_Source_NewOwn) && ($P_Data_Open === 'YesEntire') && ($P_Data_Open_AccessLevel =|= ['ZK0', 'ZK1'])"
+                    "condition": "($P_Data_Open_FAIR_StructuredOpenFormat) && ($P_Data === 'Yes') && ($P_Data_Source_NewOwn) && ($P_Data_Open === 'YesEntire') && (($P_Data_Open_AccessLevel =|= ['ZK0', 'ZK1']) || (($P_Data_Open_AccessLevel === 'ZK2') && (exists($P_Data_Open_AccessLevel_ZK2Explanation))))"
                 }
             ]
         },
@@ -411,7 +411,7 @@
         {
             "id": "P_CRediT_FormalAnalysis",
             "type": "radio",
-            "title": "Formal analysis",
+            "title": "Formal analysis (≙ statistical data analysis)",
             "options": [
                 {
                     "id": "Lead",
@@ -473,7 +473,7 @@
         {
             "id": "P_CRediT_Investigation",
             "type": "radio",
-            "title": "Investigation",
+            "title": "Investigation (≙ data collection, performing the experiments)",
             "options": [
                 {
                     "id": "Lead",
@@ -597,7 +597,7 @@
         {
             "id": "P_CRediT_Software",
             "type": "radio",
-            "title": "Software",
+            "title": "Software (beyond statistical data analysis, which is in 'Formal Analysis')",
             "options": [
                 {
                     "id": "Lead",
@@ -1171,7 +1171,7 @@
                     "text": "Registered Report [provide doi or URL]"
                 }
             ],
-            "info": "{:'Yes' | Only choose <b>'Yes'</b> if the preregistration is time-stamped/ registered before the publication of the study.}<br><br> | <b>Multi Study Paper Case</b>: Only choose 'Yes' if your nominated study has been preregistered. <br><br> When to choose <b>'No'</b> <br> If the study was not preregistered or if preregistration is not time-stamped/registered <br><br> When to choose <b>'Not applicable'</b> <br>If the study type is 'Simulation' (except from benchmarking experiments), 'mainly theoretical Review' or other cases with reasonable justifications for nor preregistration.",
+            "info": "{:'Yes' | Only choose <b>'Yes'</b> if the preregistration is time-stamped/ registered before the publication of the study.}<br><br> | <b>Multi Study Paper Case</b>: Only choose 'Yes' if your nominated study has been preregistered. <br><br> When to choose <b>'No'</b> <br> If the study was not preregistered or if preregistration is not time-stamped/registered <br><br> When to choose <b>'Not applicable'</b> <br>If the study type is 'Simulation' (except from benchmarking experiments), 'mainly theoretical Review' or no data has been used in a substantive way. There also might be other cases with reasonable justifications for no preregistration.",
             "condition": "$P_Suitable === 'Yes'",
             "tip_external":"<ul><li>Is a <b>link</b> to the preregistration provided?</li><li><b>Search words:</b> preregist*, regist*, aspredicted,OSF"
         },
@@ -1278,6 +1278,12 @@
         },
         {
             "id": "P21P22SEP",
+            "type": "separator",
+            "condition": "$P_Suitable === 'Yes'"
+        },
+        
+        {
+            "id": "P22P23SEP",
             "type": "separator",
             "condition": "$P_Suitable === 'Yes'"
         },

@@ -18,7 +18,7 @@ execute:
   warning: false
   keep-md: false
 params:
-  jsonpath: "/Users/felix/Documents/Github/RESQUE/profile/data/resque_Felix.json"
+  jsonpath: "/Users/felix/Documents/Github/RESQUE/profile/data/resque_1696782133298.json"
 ---
 
 <!-- 
@@ -61,6 +61,7 @@ dat <- dat0[-1, ]
 # clean and create some fields
 meta$FullName <- paste0(meta$FirstName, " ", meta$LastName)
 dat$Title <- clean_title(dat$Title)
+dat$TitleLink <- paste0("[", dat$Title, "](", dat$DOI, ")")
 
 # remove unnecessary column that breaks the structure of dat (nested data frame)
 dat$queryConfig <- NULL
@@ -541,10 +542,10 @@ IV_tab <- table(IV$IV) |> prop.table() |> as.data.frame() %>%
 #| fig-width: 10
 #| fig-height: 4
 
-pubs$P_Preregistration2 <- factor(pubs$P_Preregistration, levels=c("No", "Yes", "RegisteredReport"), labels=c("Not preregistered", "Pre- registration", "Registered Report"))
+pubs$P_Preregistration2 <- factor(pubs$P_Preregistration, levels=c("NotApplicable", "No", "Yes", "RegisteredReport"), labels=c("Not Applicable", "Not preregistered", "Pre- registration", "Registered Report"))
 
-prereg_tab <- table(pubs$P_Preregistration2) |> prop.table() |> as.data.frame() %>%
-  mutate(perc = round(Freq*100))
+prereg_tab <- table(pubs$P_Preregistration2) |> as.data.frame() %>%
+  mutate(perc = round(Freq*100/sum(Freq)))
 
 # give missing categories a minimal width to make them visible
 prereg_tab$perc[prereg_tab$perc == 0] <- 0.2
@@ -553,8 +554,8 @@ prereg_tab$perc[prereg_tab$perc == 0] <- 0.2
   ggtitle(paste0("n=", nrow(pubs), " publications")) +
   geom_col(width=0.35) +
   scale_y_discrete(expand=expand_scale(add = c(10, 10))) +
-  scale_fill_manual(values = rev(c("#FED976", "#90c916", "green4")), breaks=rev(c("Not preregistered", "Pre- registration", "Registered Report")), guide=FALSE) +
-  geom_text(aes(label = paste0(gsub(" ", "\n", Var1), ":\n", round(perc), "%")), position = position_stack(vjust = 0.5), size=6) +
+  scale_fill_manual(values = rev(c("grey80", "#FED976", "#90c916", "green4")), breaks=rev(c("Not Applicable", "Not preregistered", "Pre- registration", "Registered Report")), guide=FALSE) +
+  geom_text(aes(label = paste0(gsub(" ", "\n", Var1), ":\nn=", Freq, "\n(", round(perc), "%)")), position = position_stack(vjust = 0.5), size=6) +
   theme_singlebar + coord_flip()
 
 ```
@@ -566,13 +567,13 @@ prereg_tab$perc[prereg_tab$perc == 0] <- 0.2
 
 if (!is.null(pubs$P_PreregisteredReplication)) {
 
-pubs$replication <- factor(pubs$P_PreregisteredReplication, levels=c("No", "Yes", "NotApplicable"), labels=c("No", "Yes", "not applicable"))
+pubs$replication <- factor(pubs$P_PreregisteredReplication, levels=c("NotApplicable", "No", "Yes"), labels=c("not applicable", "No", "Yes"))
 
 # fix some logical dependencies
 pubs$replication[is.na(pubs$replication) & pubs$P_Preregistration2 == "Not preregistered"] <- "No"
 
-repl_tab <- table(pubs$replication) |> prop.table() |> as.data.frame() %>%
-  mutate(perc = round(Freq*100)) %>% 
+repl_tab <- table(pubs$replication) |> as.data.frame() %>%
+  mutate(perc = round(Freq*100/sum(Freq))) %>% 
   filter(perc > 0)
 
  ggplot(repl_tab, aes(x = "x", y = perc, fill = Var1)) +
@@ -580,12 +581,21 @@ repl_tab <- table(pubs$replication) |> prop.table() |> as.data.frame() %>%
   geom_col(width=0.35) +
   scale_y_discrete(expand=expand_scale(add = c(10, 10))) +
   scale_fill_manual(values = rev(c("#FED976", "#90c916", "grey80")), breaks=rev(c("No", "Yes", "not applicable")), guide=FALSE) +
-  geom_text(aes(label = paste0(gsub(" ", "\n", Var1), ":\n", round(perc), "%")), position = position_stack(vjust = 0.5), size=6) +
+  geom_text(aes(label = paste0(gsub(" ", "\n", Var1), ":\nn=", Freq, "\n(", round(perc), "%)")), position = position_stack(vjust = 0.5), size=6) +
   theme_singlebar + coord_flip()
  
 }
 ```
 
+::: {.callout-note title="The following publications contained preregistered replications:" collapse="true"}
+
+```{r}
+kable(pubs %>% 
+  filter(P_PreregisteredReplication == "Yes") %>% 
+  select(TitleLink, Year)
+)
+```
+:::
 
 ## What has been preregistered?
 

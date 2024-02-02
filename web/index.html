@@ -1235,6 +1235,8 @@
 
                 if ((mode === MODE_PREVIEW || mode ==MODE_PREVIEW_SINGLE) && element.condition) {
                     let previewCondition = document.createElement("p");
+                    previewCondition.style.color = "gray";
+                    previewCondition.style.fontSize = "0.8rem";
                     previewCondition.innerHTML = `[ <i>Condition:</i>  <code>${element.condition}</code> ]`;
                     fragment.appendChild(previewCondition);
                 }

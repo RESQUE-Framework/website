@@ -317,7 +317,7 @@
                         let dois = extractDOIs(text);
                         document.getElementById('add-doi').value = dois[0];
 
-                        if (mode === MODE_PREVIEW || mode === MODE_PREVIEW_SINGLE) {
+                        if (mode === MODE_PREVIEW || mode === MODE_PRINT) {
                             console.log(text);
                             console.log(dois);
                         }
@@ -405,7 +405,7 @@
 
     <script>
         const MODE_PREVIEW = "preview";
-        const MODE_PREVIEW_SINGLE = "preview-single";
+        const MODE_PRINT = "print";
 
         let elems = [];
         let tabs = [];
@@ -471,7 +471,7 @@
             })
                 .then(response => response.json())
                 .then(response => {
-                    if (mode === MODE_PREVIEW || mode === MODE_PREVIEW_SINGLE) {
+                    if (mode === MODE_PREVIEW || mode === MODE_PRINT) {
                         console.log(response);
                     }
 
@@ -622,7 +622,7 @@
             if (!results[0].date_created) {
                 results[0].date_created = Date.now();
 
-                if (mode === MODE_PREVIEW || mode === MODE_PREVIEW_SINGLE) {
+                if (mode === MODE_PREVIEW || mode === MODE_PRINT) {
                     console.log("First change: date_created saved.");
                 }
             }
@@ -668,7 +668,7 @@
                 result[e.target.id] = e.target.value;
             }
 
-            if (mode === MODE_PREVIEW || mode === MODE_PREVIEW_SINGLE) {
+            if (mode === MODE_PREVIEW || mode === MODE_PRINT) {
                 console.log(results);
             }
 
@@ -795,7 +795,7 @@
         }
 
         const applyFilters = () => {
-            if (mode === MODE_PREVIEW || mode === MODE_PREVIEW_SINGLE) {
+            if (mode === MODE_PREVIEW || mode === MODE_PRINT) {
                 return;
             }
 
@@ -1032,7 +1032,7 @@
                         opt.value = option.id;
                         opt.innerHTML = option.text;
 
-                        if (mode === MODE_PREVIEW || mode === MODE_PREVIEW_SINGLE) {
+                        if (mode === MODE_PREVIEW || mode === MODE_PRINT) {
                             opt.innerHTML = `[${option.id}] ${option.text}`;
                         }
 
@@ -1077,7 +1077,7 @@
 
                         let optionText = option.text;
 
-                        if (mode === MODE_PREVIEW || mode === MODE_PREVIEW_SINGLE) {
+                        if (mode === MODE_PREVIEW || mode === MODE_PRINT) {
                             optionText = `[${option.id}] ${optionText}`;
                         }
 
@@ -1113,7 +1113,7 @@
                         let span = document.createElement("span");
                         let text = typeof option === 'string' ? option : option.text;
 
-                        if (mode === MODE_PREVIEW || mode === MODE_PREVIEW_SINGLE) {
+                        if (mode === MODE_PREVIEW || mode === MODE_PRINT) {
                             text = `[${checkbox.id}] ${option.text}`;
                         }
 
@@ -1225,7 +1225,7 @@
                     title.classList.add(element.id, "title");
                     fragment.appendChild(title);
 
-                    if (mode === MODE_PREVIEW || mode === MODE_PREVIEW_SINGLE) {
+                    if (mode === MODE_PREVIEW || mode === MODE_PRINT) {
                         title.innerHTML = `[${element.id}] ${title.innerHTML}`;
                     }
                 }
@@ -1233,7 +1233,7 @@
 
                 domElement.classList.add(element.id);
 
-                if ((mode === MODE_PREVIEW || mode ==MODE_PREVIEW_SINGLE) && element.condition) {
+                if ((mode === MODE_PREVIEW || mode ==MODE_PRINT) && element.condition) {
                     let previewCondition = document.createElement("p");
                     previewCondition.style.color = "gray";
                     previewCondition.style.fontSize = "0.8rem";
@@ -1258,7 +1258,7 @@
             let title = document.createElement("h2");
             title.innerText = form.title;
 
-            if (mode === MODE_PREVIEW || mode === MODE_PREVIEW_SINGLE) {
+            if (mode === MODE_PREVIEW || mode === MODE_PRINT) {
                 title.innerText = "[Preview] " + title.innerText;
             }
 
@@ -1498,9 +1498,16 @@
             driver(tourMain).drive();
         }
 
-        if (mode === MODE_PREVIEW_SINGLE) {
+        if (mode === MODE_PRINT) {
+            document.querySelector("#formview").style.overflow = "visible";
+
+            document.querySelector("#main").style.display = "block";
+            document.body.style.overflow = "visible";
+            document.querySelector("#formview-container").style.overflow = "visible";
             document.querySelector(".tabs-sidebar").style.display = "none";
             document.querySelector("#menu").style.display = "none";
+            
+            document.querySelector("#mobile").style.display = "none";
         }
 
         menu().then(m => {

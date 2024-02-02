@@ -317,7 +317,7 @@
                         let dois = extractDOIs(text);
                         document.getElementById('add-doi').value = dois[0];
 
-                        if (mode === MODE_PREVIEW) {
+                        if (mode === MODE_PREVIEW || mode === MODE_PREVIEW_SINGLE) {
                             console.log(text);
                             console.log(dois);
                         }
@@ -405,6 +405,7 @@
 
     <script>
         const MODE_PREVIEW = "preview";
+        const MODE_PREVIEW_SINGLE = "preview-single";
 
         let elems = [];
         let tabs = [];
@@ -470,7 +471,7 @@
             })
                 .then(response => response.json())
                 .then(response => {
-                    if (mode === MODE_PREVIEW) {
+                    if (mode === MODE_PREVIEW || mode === MODE_PREVIEW_SINGLE) {
                         console.log(response);
                     }
 
@@ -621,7 +622,7 @@
             if (!results[0].date_created) {
                 results[0].date_created = Date.now();
 
-                if (mode === MODE_PREVIEW) {
+                if (mode === MODE_PREVIEW || mode === MODE_PREVIEW_SINGLE) {
                     console.log("First change: date_created saved.");
                 }
             }
@@ -667,7 +668,7 @@
                 result[e.target.id] = e.target.value;
             }
 
-            if (mode === MODE_PREVIEW) {
+            if (mode === MODE_PREVIEW || mode === MODE_PREVIEW_SINGLE) {
                 console.log(results);
             }
 
@@ -794,7 +795,7 @@
         }
 
         const applyFilters = () => {
-            if (mode === MODE_PREVIEW) {
+            if (mode === MODE_PREVIEW || mode === MODE_PREVIEW_SINGLE) {
                 return;
             }
 
@@ -1031,7 +1032,7 @@
                         opt.value = option.id;
                         opt.innerHTML = option.text;
 
-                        if (mode === MODE_PREVIEW) {
+                        if (mode === MODE_PREVIEW || mode === MODE_PREVIEW_SINGLE) {
                             opt.innerHTML = `[${option.id}] ${option.text}`;
                         }
 
@@ -1076,7 +1077,7 @@
 
                         let optionText = option.text;
 
-                        if (mode === MODE_PREVIEW) {
+                        if (mode === MODE_PREVIEW || mode === MODE_PREVIEW_SINGLE) {
                             optionText = `[${option.id}] ${optionText}`;
                         }
 
@@ -1112,7 +1113,7 @@
                         let span = document.createElement("span");
                         let text = typeof option === 'string' ? option : option.text;
 
-                        if (mode === MODE_PREVIEW) {
+                        if (mode === MODE_PREVIEW || mode === MODE_PREVIEW_SINGLE) {
                             text = `[${checkbox.id}] ${option.text}`;
                         }
 
@@ -1224,7 +1225,7 @@
                     title.classList.add(element.id, "title");
                     fragment.appendChild(title);
 
-                    if (mode === MODE_PREVIEW) {
+                    if (mode === MODE_PREVIEW || mode === MODE_PREVIEW_SINGLE) {
                         title.innerHTML = `[${element.id}] ${title.innerHTML}`;
                     }
                 }
@@ -1232,7 +1233,7 @@
 
                 domElement.classList.add(element.id);
 
-                if (mode === MODE_PREVIEW && element.condition) {
+                if ((mode === MODE_PREVIEW || mode ==MODE_PREVIEW_SINGLE) && element.condition) {
                     let previewCondition = document.createElement("p");
                     previewCondition.innerHTML = `[ <i>Condition:</i>  <code>${element.condition}</code> ]`;
                     fragment.appendChild(previewCondition);
@@ -1255,7 +1256,7 @@
             let title = document.createElement("h2");
             title.innerText = form.title;
 
-            if (mode === MODE_PREVIEW) {
+            if (mode === MODE_PREVIEW || mode === MODE_PREVIEW_SINGLE) {
                 title.innerText = "[Preview] " + title.innerText;
             }
 
@@ -1493,6 +1494,11 @@
         if (!localStorage.getItem("formdata")) {
             //showInfoModal();
             driver(tourMain).drive();
+        }
+
+        if (mode === MODE_PREVIEW_SINGLE) {
+            document.querySelector(".tabs-sidebar").style.display = "none";
+            document.querySelector("#menu").style.display = "none";
         }
 
         menu().then(m => {

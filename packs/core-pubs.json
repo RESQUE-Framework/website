@@ -1,5 +1,5 @@
 {
-    "version": "0.2",
+    "version": "0.3",
     "prefix": "P",
     "title": "Publication",
     "scoring": {
@@ -168,17 +168,22 @@
     },
     "elements": [
         {
+            "id": "P_Theory_Def",
+            "type": "info",
+            "text": "<h4>Theory usage and development</h4>In the following, the term '<i>theory</i>' is used for a set of (interconnected) ideas regarding a data-generating process. Theories may be expressed in a narrative and/or a more formalized manner. The term '<i>model</i>' is reserved for a (part of a) theory that is expressed mathematically or algorithmically. "
+        },
+        {
             "id": "P_Theorizing",
             "type": "radio",
             "title": "Formal modeling of a theory",
             "options": [
                 {
                     "id": "DescriptiveExploratory",
-                    "text": "This research was purely descriptive/exploratory, without clear reference to a theory"
+                    "text": "This research was mainly descriptive/exploratory, without clear reference to a theory"
                 },
                 {
                     "id": "TheoryGuided",
-                    "text": "A theory was (further) developed AND / OR evaluated"
+                    "text": "In this research, at least one theory was (further) developed and/or evaluated "
                 }
             ],
             "condition": "$P_Suitable === 'Yes'"

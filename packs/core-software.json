@@ -122,9 +122,9 @@
     },
     "elements": [
         {
-            "id": "Title",
+            "id": "S_Title",
             "type": "textbox",
-            "title": "Short title"
+            "title": "Short title of the research software"
         },
         {
             "id": "S_Citation",
@@ -134,7 +134,7 @@
         {
             "id": "S_Description",
             "type": "textbox",
-            "title": "Short description"
+            "title": "Short description of the research software"
         },
         {
             "id": "S_License",
@@ -145,6 +145,10 @@
                 {
                     "id": "NoLicense",
                     "text": "No license"
+                },
+                {
+                    "id": "CC0",
+                    "text": "CC0"
                 },
                 {
                     "id": "Apache2",
@@ -187,7 +191,7 @@
                     "text": "Closed source"
                 }
             ],
-            "info": "Is the software open source? Open-source software makes broader impact more likely and is a prerequisite for full transparency and reproducibility (Peikert, Van Lissa, & Brandmaier, 2021). In addition, many aspects of rigor are impossible to evaluate for closed-source software — for example, whether it is well-tested or bugs have been fixed.<br><br>Approved open licenses are listed at <a href='https://opensource.org/licenses'>opensource.org/licenses</a>"
+            "info": "Is the software open source? Open-source software makes broader impact more likely and is a prerequisite for full transparency and reproducibility (Peikert, Van Lissa, & Brandmaier, 2021). In addition, many aspects of rigor are impossible to evaluate for closed-source software — for example, whether it is well-tested or bugs have been fixed.<br><br>Approved open licenses are listed at <a href='https://opensource.org/licenses'>opensource.org/licenses</a>. The Creative Commons licenses are not listed there, because they were not designed to operate on software code. Because of their wide application, however, we accept CC0, CC-BY and CC-BY-SA as open licenses as well."
         },
         {
             "id": "S_License_Other",
@@ -279,7 +283,7 @@
         {
             "id": "S_CodebaseActivelyMaintained",
             "type": "radio",
-            "title": "Is the codebase activaly maintained?",
+            "title": "Is the codebase actively maintained?",
             "options": [
                 {
                     "id": "Yes",
@@ -333,6 +337,12 @@
             "info": "Do tests for main functionality exist?<br><br>e.g., unit testing, functional testing, integration testing. Having trivial unit tests for few functions does not count)"
         },
         {
+            "id": "S_Tests_URL",
+            "type": "text",
+            "title": "⤷ URL to the test code",
+            "condition": "$S_Tests === 'Yes' && $S_Tests_Quality_OpenSource"
+        },
+        {
             "id": "S_Tests_Quality",
             "type": "checkbox",
             "title": "⤷ Quality indicators for tests",
@@ -359,12 +369,12 @@
                 }
             ],
             "condition": "$S_Tests === 'Yes'"
-        },
+        },        
         {
-            "id": "S_Tests_URL",
+            "id": "S_Tests_Results_URL",
             "type": "text",
-            "title": "⤷ URL to the test code",
-            "condition": "$S_Tests === 'Yes' && $S_Tests_Quality_OpenSource"
+            "title": "⤷ URL to the test code results",            
+            "condition": "$S_Tests === 'Yes' && $S_Tests_Quality_OpenSource && $S_Tests_Quality_ResultsPublic"
         },
         {
             "id": "S_Documentation",
@@ -382,7 +392,7 @@
                 },
                 {
                     "id": "UserFacingDocumentation",
-                    "text": "User facing functionality is documented (e.g., ?help in R)"
+                    "text": "User facing functionality is documented (e.g., <code>?help</code> in R)"
                 },
                 {
                     "id": "LongformDocumentation",

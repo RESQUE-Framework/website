@@ -836,7 +836,7 @@
             ],
             "info": "Data set acquisition often is a collaborative enterprise with different contributor roles. { $P_Data_Source_ReuseOwn | Select 'Reuse of own existing data set' only, if you would qualify as a co-author with substantive contributions in a stand-alone data set publication of that data set. Otherwise, select 'Reuse of someone else's existing data set'.}",
             "condition": "$P_Suitable === 'Yes' && $P_Data === 'Yes'",
-            "tip_external": "Look in the abstract and/or method section. If no information can be found there, it might also be useful to look at the contributors of the repositories.<br><br><b>Search words:</b> simul*, data, OSF"
+            "tip_external": "Look in the abstract and/or method section. If no information can be found there, it might also be useful to look at the contributors of the repositories.<br><br><b>Search words:</b> simul*, data, OSF, availab*"
         },
         {
             "id": "P_Data_Type",
@@ -861,7 +861,7 @@
                 }
             ],
             "condition": "$P_Suitable === 'Yes' && $P_Data === 'Yes'",
-            "tip_external":"Look in the method section, more specifically at parts called procedure, data collection or variables."
+            "tip_external":"Look in the method section, more specifically at parts called procedure, data collection or variables. <br><br><b>Search words:</b> data, open, availab*"
         },
         {
             "id": "P_Data_Type_Other",
@@ -892,7 +892,7 @@
                 }
             ],
             "condition": "$P_Suitable === 'Yes' && $P_Data === 'Yes' && ($P_Data_Source_NewOwn || $P_Data_Source_ReuseCompilation || $P_Data_Source_ReuseOwn)",
-            "tip_external": "<b>Practical approach</b>: <ul><li>Is a <b>link</b> to a data set provided?</li><li>Is the data in a <b>repository</b> that also controls data access?</li></ul>"
+            "tip_external": "<b>Practical approach</b>: <ul><li>Is a <b>link</b> to a data set provided?</li><li>Is the data in a <b>repository</b> that also controls data access?</li></ul> <br><br><b>Search words:</b> open, data, availab*"
         },
         {
             "id": "P_Data_Open_NAExplanation",
@@ -1089,7 +1089,8 @@
             "eval_dimension": "rigor",
             "info": "<ul><li>{:'WorkflowReproducible' | <b>Workflow reproducibility / code completeness check</b>: Code runs without errors or critical warnings on another machine by another person (without comparing the numbers). This is also known as <i>process reproducibility</i>.}</li><li>{:'MainResultsReproducible' | <b>Computational reproducibility of main results has been independently verified using the original code</b>: Someone compared the <i>figures and main results</i> and asserts a sufficient correspondence with the reported main results.}</li><li>{:'AllResultsReproducible' | <b>Computational reproducibility of <i>all numerical results</i> has been independently verified using the original code</b>: Someone compared <i>all figures and numbers</i> and asserts a sufficient correspondence with the reported results.}</li><li>{:'AnalysisReplication' | <b>Analysis replication (independent implementation)</b>: Somebody independently implemented the analyses, without looking at the original code, and asserts a sufficient correspondence with the reported main results.}</li></ul><br><br>If you check one of three 'reproducible' options, you should also check the <i>Portability</i> item in <i>P_ReproducibleScripts_TIER4</i>. {:'WorkflowReproducible', 'MainResultsReproducible', 'AllResultsReproducible', 'AnalysisReplication' | The bonus point is only given when a public verification report/certificate with a persistent identifier is available.}",
             "background": "'In the context of mathematics, Stodden et al. distinguish between <i>verification</i> and <i>validation</i>; following their definition, <b>a CODECHECK [or reproducibility check] ensures verification of computational results, i.e., checking that code generates the output it claims to create</b>, but <i>not</i> a validation, i.e., checking that the code implements the right algorithm [or statistical model] to solve the specific research problem.' (see <a href='https://f1000research.com/articles/10-253/v2'>Nüst & Eglen, 2021</a>).",
-            "condition": "$P_Suitable === 'Yes'"
+            "condition": "$P_Suitable === 'Yes'",
+            "tip_external": "<b>Search words:</b> reprodu*, verify, independent"
         },
         {
             "id": "P_IndependentVerification_NAExplanation",
@@ -1175,7 +1176,7 @@
             ],
             "info": "{:'Yes' | Only choose <b>'Yes'</b> if the preregistration is time-stamped/ registered before the publication of the study.}<br><br> | <b>Multi Study Paper Case</b>: Only choose 'Yes' if your nominated study has been preregistered. <br><br> When to choose <b>'No'</b> <br> If the study was not preregistered or if preregistration is not time-stamped/registered <br><br> When to choose <b>'Not applicable'</b> <br>If the study type is 'Simulation' (except from benchmarking experiments), 'mainly theoretical Review' or no data has been used in a substantive way. There also might be other cases with reasonable justifications for no preregistration.",
             "condition": "$P_Suitable === 'Yes'",
-            "tip_external":"<ul><li>Is a <b>link</b> to the preregistration provided?</li><li><b>Search words:</b> preregist*, regist*, aspredicted,OSF"
+            "tip_external":"<ul><li>Is a <b>link</b> to the preregistration provided?</li><li><b>Search words:</b> preregist*, pre-regist*, regist*, aspredicted,OSF"
         },
         {
             "id": "P_Preregistration_NAExplanation",

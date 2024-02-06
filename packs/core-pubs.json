@@ -1026,7 +1026,7 @@
                 },
                 {
                     "id": "ReproducibleSoftwareEnvironments",
-                    "text": "Reproducible software environments (e.g. conda environment, renv or groundhog in R)"
+                    "text": "Reproducible software environments (e.g. <code>conda</code> environment, <code>renv</code> or <code>groundhog</code> in R)"
                 }
             ],
             "condition": "$P_Suitable === 'Yes' && $P_ReproducibleScripts =|= ['YesParts', 'YesEntire']"

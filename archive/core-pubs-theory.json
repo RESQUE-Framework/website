@@ -1,5 +1,5 @@
 {
-    "version": "0.2",
+    "version": "0.3",
     "prefix": "P",
     "title": "Publication",
     "scoring": {
@@ -166,7 +166,7 @@
             ]
         }
     },
-    "elements": [
+    "elements": [        
         {
             "id": "P_Info",
             "type": "info",
@@ -1254,14 +1254,129 @@
             "condition": "$P_Suitable === 'Yes'"
         },
         {
-            "id": "P_FormalModeling",
+            "id": "P_Theory_Def",
+            "type": "info",
+            "text": "<h3>Theory usage and development</h3>In the following, the term '<i>theory</i>' is used for a set of (interconnected) ideas regarding a data-generating process. Theories may be expressed in a narrative and/or a more formalized manner. The term '<i>model</i>' is reserved for a (part of a) theory that is expressed mathematically or algorithmically.",
+            "condition": "$P_Suitable === 'Yes'"
+        },
+        {
+            "id": "P_Theorizing",
             "type": "radio",
-            "title": "Formal modeling of a theory",
+            "title": "Theory-guided research and theory development",
             "options": [
                 {
-                    "id": "NotApplicable",
-                    "text": "Not applicable [provide explanation]"
+                    "id": "DescriptiveExploratory",
+                    "text": "This research was mainly descriptive and/or exploratory, without clear reference to a theory"
                 },
+                {
+                    "id": "TheoryGuided",
+                    "text": "In this research, at least one theory was (further) developed and/or evaluated "
+                },
+                {
+                    "id": "NotApplicable",
+                    "text": "Not applicable / cannot answer the question"
+                }
+            ],
+            "condition": "$P_Suitable === 'Yes'"
+        },
+        {
+            "id": "P_Theorizing_NAExplanation",
+            "type": "text",
+            "title": "⤷ Not Applicable: Explanation",
+            "condition": "$P_Suitable === 'Yes' && $P_Theorizing === 'NotApplicable'"
+        },
+        {
+            "id": "P_Theorizing_Quality",
+            "type": "checkbox",
+            "title": "The paper …",
+            "options": [
+                {
+                    "id": "NarrativeAccount",
+                    "text": "contains an <b>explicit narrative account</b> of the <i>phenomena</i> that are to be explained, and of one or more hypothetical <i>mechanisms</i> accounting for them (i.e., a theory)."
+                },
+                {
+                    "id":"NarrativeDefinitions",
+                    "text": "contains <b>explicit narrative definitions of each element</b> in the theory. All of this is made easily findable (e.g., under a standard heading “Definitions”)."
+                },
+                {
+                    "id": "FormalizedAccount",
+                    "text": "contains a <b>formalized account of the theory (i.e., a model)</b> using a commonly accepted standard notation (e.g., mathematical or logical operations, ODD protocol for ABMs). This includes all connections among the elements of the theory, and a formalization of the phenomena that are to be explained."
+                },
+                {
+                    "id": "MathProps",
+                    "text": "contains a formalized account of the theory (i.e., a model) <b>and</b> explicates the basic <b>mathematical properties</b> of all elements of the model (e.g., scalar vs. matrix; dimensionality; units carrying the information)."
+                },
+                {
+                    "id": "PossibleValues",
+                    "text": "contains a formalized account of the theory (i.e., a model) <b>and</b> explicates the <b>possible values for all elements</b> of the model (i.e., upper and lower bounds, scale level)."
+                },
+                {
+                    "id": "ObjectiveDerivation",
+                    "text": "contains a formalized account of the theory which enables <b>deriving all predictions objectively</b> (i.e., any person would come to the exact same predictions). All predictions are falsifiable."
+                }
+            ],
+            "info": "Please apply these questions to the theory in your paper - regardless whether you (further) developed the theory or used someone else’s theory",
+            "condition": "$P_Suitable === 'Yes' && $P_Theorizing === 'TheoryGuided'"
+        },
+        {
+            "id": "P_Theorizing_Type",
+            "type": "radio",
+            "title": "In what language or system is the theory formulated?",
+            "options": [
+                {
+                    "id": "Narrative",
+                    "text": "Narrative"
+                },
+                {
+                    "id": "Mathematical",
+                    "text": "Mathematical"
+                },
+                {
+                    "id": "FormalLogic",
+                    "text": "Formal-Logic"
+                },
+                {
+                    "id": "ABM",
+                    "text": "Agent-based model"
+                },                
+                {
+                    "id": "Other",
+                    "text": "Other (please specify)"
+                }
+            ],
+            "condition": "$P_Suitable === 'Yes' && $P_Theorizing === 'TheoryGuided'"
+        },
+        {
+            "id": "P_Theory_Type_Other",
+            "type": "text",
+            "title": "Theory type/ Language: Other",
+            "condition": "$P_Suitable === 'Yes' && $P_Theorizing === 'TheoryGuided' && $P_Theorizing_Type === 'Other'"
+        },
+        {
+            "id": "P_Theorizing_Contribution",
+            "type": "radio",
+            "title": "How much did you personally contribute to this version of the theory?",
+            "options": [
+                {
+                    "id": "Nothing",
+                    "text": "I used someone else's theory"
+                },
+                {
+                    "id": "Refinement",
+                    "text": "I expanded / refined someone else's theory"
+                },
+                {
+                    "id": "Lead",
+                    "text": "I was (among) the lead developer(s) of the entire theory"
+                }
+            ],
+            "condition": "$P_Suitable === 'Yes' && $P_Theorizing === 'TheoryGuided'"
+        },
+        {
+            "id": "P_Theorizing_Test",
+            "type": "radio",
+            "title": "Did you <b>test</b> (a part of) this theory?",
+            "options": [
                 {
                     "id": "No",
                     "text": "No"
@@ -1269,27 +1384,49 @@
                 {
                     "id": "Yes",
                     "text": "Yes"
+                }                
+            ],
+            "info": "We define 'test of theory' in a broad sense, including empirical and simulation studies.",
+            "condition": "$P_Suitable === 'Yes' && $P_Theorizing === 'TheoryGuided'"
+        },
+        {
+            "id": "P_Theorizing_Test_Quality",
+            "type": "checkbox",
+            "title": "The paper …",
+            "options": [
+                {
+                    "id": "Assumptions",
+                    "text": "describes all necessary assumptions that were necessary to make the theory testable (including ad-hoc assumptions)."
+                },
+                {
+                    "id": "Operationalization",
+                    "text": "describes which, how, and why elements of the theory are measured, estimated, or fixed to specific values."
+                },
+                {
+                    "id": "Derivation",
+                    "text": "contains a complete account of how the tested hypotheses logically and stringently follow from the theory."
+                },
+                {
+                    "id": "Crossvalidation",
+                    "text": "evaluates the absolute model fit with out-of-sample cross-validation."
+                },
+                {
+                    "id": "ModelComparison",
+                    "text": "evaluates the relative model fit with appropriate model comparison criteria (AIC, BIC, LOO, Bayes Factors)."
+                },
+                {
+                    "id": "Discussion",
+                    "text": "contains an explicit discussion as to what the results mean for the theory that was tested."
                 }
             ],
-            "condition": "$P_Suitable === 'Yes'"
+            "condition": "$P_Suitable === 'Yes' && $P_Theorizing === 'TheoryGuided' && $P_Theorizing_Test === 'Yes'"
         },
-        {
-            "id": "P_FormalModeling_NAExplanation",
-            "type": "text",
-            "title": "⤷ Not applicable: Explanation",
-            "condition": "$P_Suitable === 'Yes' && $P_FormalModeling === 'NotApplicable'"
-        },
-        {
-            "id": "P21P22SEP",
-            "type": "separator",
-            "condition": "$P_Suitable === 'Yes'"
-        },
-        
+                
         {
             "id": "P22P23SEP",
-            "type": "separator",
-            "condition": "$P_Suitable === 'Yes'"
+            "type": "separator"
         },
+
         {
             "id": "P_PowerConsiderations",
             "type": "textbox",

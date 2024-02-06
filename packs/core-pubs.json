@@ -1271,9 +1271,19 @@
                 {
                     "id": "TheoryGuided",
                     "text": "In this research, at least one theory was (further) developed and/or evaluated "
+                },
+                {
+                    "id": "NotApplicable",
+                    "text": "Not applicable / cannot answer the question"
                 }
             ],
             "condition": "$P_Suitable === 'Yes'"
+        },
+        {
+            "id": "P_Theorizing_NAExplanation",
+            "type": "text",
+            "title": "⤷ Not Applicable: Explanation",
+            "condition": "$P_Suitable === 'Yes' && $P_Theorizing === 'NotApplicable'"
         },
         {
             "id": "P_Theorizing_Quality",
@@ -1416,12 +1426,7 @@
             "id": "P22P23SEP",
             "type": "separator"
         },
-        
-        {
-            "id": "P22P23SEP",
-            "type": "separator",
-            "condition": "$P_Suitable === 'Yes'"
-        },
+
         {
             "id": "P_PowerConsiderations",
             "type": "textbox",

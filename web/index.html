@@ -49,17 +49,18 @@
                 </div>
             </div>
             <div id="add-container">
-                <div class="doi-input">
+                <div class="doi-input" style="display:none">
                     <button class="pdf-button" onclick="document.getElementById('add-pdf').click()">Extract DOI from
                         PDF</button>
                     <input id="add-doi" type="text" placeholder="DOI (optional)" />
                 </div>
 
                 <div class="add-buttons">
-                    <b>Add</b>
-                    <button class="add-pub" onclick="newTab('pub')">Publication</button>
-                    <button class="add-software" onclick="newTab('software')">Software</button>
-                    <button class="add-data" onclick="newTab('data')">Data Set</button>
+                    <button class="add-pub" onclick="newTab('pub')">Add Publication</button>
+                    <br />
+                    <button class="add-software" onclick="newTab('software')">Add Software</button>
+                    <br />
+                    <button class="add-data" onclick="newTab('data')">Add Data Set</button>
                 </div>
             </div>
         </div>
@@ -222,7 +223,7 @@
         const tourMain = {
             showProgress: true,
             steps: [
-                { popover: { title: '👋🏻 Welcome to the RESQUE tool!', description: 'We need to change the way we assess research - with a focus on quality (over quantity). The RESearch QUality Evaluation (RESQUE) framework provides an evaluation scheme for publications, data sets, and research software. With this tool, you can enter the necessary information for your best research outputs, export a profile that shows your research style (not implemented yet), and use it for your CV or in hiring and tenure committees.' } },
+                { popover: { title: '👋🏻 Welcome to the RESQUE tool!', description: 'We need to change the way we assess research - with a focus on quality (over quantity). The RESearch QUality Evaluation (RESQUE) framework provides an evaluation scheme for publications, data sets, and research software for psychological research. With this tool, you can enter the necessary information for your best research outputs, export a profile that shows your research style (not implemented yet), and use it for your CV or in hiring and tenure committees. <br><span style="background-color: lightyellow; font-size:80%;">[Note: The RESQUE is still a beta version and in active development.]</span>' } },
                 { popover: { title: '🔒 Privacy', description: 'The data you enter never leaves your device. Everything is processed locally. (except fetching the information about a publications using the DOI)' } },
                 { popover: { title: 'Saving changes...', description: 'Your changes are saved automatically in your browser. You can reload the page or close this tab and come back another time, the data you entered will still be here.' } },
                 { element: '.pdf-button', popover: { description: 'You can open a PDF file and extract the DOI automatically. Note that this might fail in rare cases.' } },

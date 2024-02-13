@@ -100,6 +100,10 @@
             "op": "select",
             "points": [
                 {
+                    "value": 0.5,
+                    "condition": "($P_OpenMaterials === 'YesParts') && (exists($P_OpenMaterials_Identifier))"
+                },
+                {
                     "value": 1,
                     "condition": "($P_OpenMaterials === 'YesEntire') && (exists($P_OpenMaterials_Identifier))"
                 }
@@ -872,7 +876,7 @@
         {
             "id": "P_Data_Open",
             "type": "radio",
-            "title": "⤷ Is the raw data available in a repository that also controls data access (not upon request)",
+            "title": "⤷ Is the raw data available in an institutional repository?",
             "options": [
                 {
                     "id": "NotApplicable",
@@ -891,6 +895,7 @@
                     "text": "Yes, entire data [provide doi or URL]"
                 }
             ],
+            "info": "If the data is only available on a personal website (including personal university websites) or 'upon (reasonable) request', select <i>not available</i>.",
             "condition": "$P_Suitable === 'Yes' && $P_Data === 'Yes' && ($P_Data_Source_NewOwn || $P_Data_Source_ReuseCompilation || $P_Data_Source_ReuseOwn)",
             "tip_external": "<b>Practical approach</b>: <ul><li>Is a <b>link</b> to a data set provided?</li><li>Is the data in a <b>repository</b> that also controls data access?</li></ul> <br><br><b>Search words:</b> open, data, availab*"
         },
@@ -1026,9 +1031,10 @@
                 },
                 {
                     "id": "ReproducibleSoftwareEnvironments",
-                    "text": "Reproducible software environments (e.g. <code>conda</code> environment, <code>renv</code> or <code>groundhog</code> in R)"
+                    "text": "Reproducible software environment (e.g. <code>conda</code> environment, <code>renv</code> or <code>groundhog</code> in R)"
                 }
             ],
+            "info": "<ul><li><b>Timestamped repository</b>: Any repository that records and displays the timestamp when a file has been first uploaded and the last time it has been modified (e.g., GitHub, GitLab, OSF, Zenodo)</li><li><b>Version control</b>: Any repository that allows to go back in the history of a file with an established version control system, such as <code>git</code> (e.g., GitHub, GitLab. <i>Not</i> OSF or Zenodo.)</li><li><b>Reproducible manuscripts</b>: The final manuscript combines computations and text (e.g. Rmarkdown, Quarto, Jupyter notebooks)</li><li><b>Proper documentation of code</b>: The source code has sufficiently detailed comments so that a knowledgable re-user can understand what (and why) something has been done.</li><li><b>Reproducible software environment</b>: The software environment is fully reproducible with an established tool such as <code>conda</code>, <code>renv</code> or <code>groundhog</code>. Just recording the <code>sessionInfo()</code> in R is not sufficient, as it places too much burden on reproduction attempts.</li></ul>",
             "condition": "$P_Suitable === 'Yes' && $P_ReproducibleScripts =|= ['YesParts', 'YesEntire']"
         },
         {

@@ -3,9 +3,17 @@
     "type": "meta",
     "position": 0,
     "date_created": 1697447197480,
-    "date_modified": 1697454441427,
+    "date_modified": 1708351256537,
     "LastName": "Gärtner",
-    "date_exported": 1697454489129
+    "date_exported": 1708351257909,
+    "queryConfig": {
+      "global": {}
+    },
+    "FirstName": "Anne",
+    "AcademicAgeBonus": "0",
+    "YearPhD": "2019",
+    "ORCID": "https://orcid.org/0000-0003-4296-963X",
+    "RaterType": "Applicant"
   },
   {
     "type": "pub",
@@ -144,7 +152,7 @@
     "P_Data_Source_NewOwn": true,
     "Title": "Individual Differences in Inhibitory Control: A latent Variable Analysis\n\n",
     "Year": "2021",
-    "DOI": "https://doi.org/10.5334/ joc.150",
+    "DOI": "https://doi.org/10.5334/joc.150",
     "P_TopPaper_Select": true,
     "P_TypeMethod_Empirical": true,
     "P_TypePublication": "PublishedPaper",
@@ -275,7 +283,8 @@
     "P_PreregisteredReplication": "No",
     "P_PowerConsiderations": "The sample size (N=47) that we considered feasible to collect enabled us to at least detect medium-sized effects at a significance level of 0.05 and a power of 0.80. \n\n",
     "P_SampleSize": "Two lab visits, N T1 = 47 & N T2 = 30",
-    "P_Merit": "The results provide a partial replication of persistent effects observed in our  preceding study, indicate different neural systems for up- and down-regulation, and demonstrate  that a broader perspective on emotion regulation can be achieved by simultaneously considering  different goals, directions, and strategies of emotion regulation in a single experiment.\n\n"
+    "P_Merit": "The results provide a partial replication of persistent effects observed in our  preceding study, indicate different neural systems for up- and down-regulation, and demonstrate  that a broader perspective on emotion regulation can be achieved by simultaneously considering  different goals, directions, and strategies of emotion regulation in a single experiment.\n\n",
+    "position": 5
   },
   {
     "type": "pub",
@@ -316,7 +325,8 @@
     "P_PreregisteredReplication": "No",
     "P_PowerConsiderations": "A final comment concerns statistical power: assuming a true genotype effect of size d = 0.73 on vmPFC-amygdala connectivity as implicated by the findings of Dincheva et al. [20; N = 35], the probability in the present study (N = 48) was 79% (1-beta) to observe an effect that surpasses the threshold of alpha = 0.05 (one-sided), and 95% to observe an effect that surpasses alpha = 0.2 (one-sided) as calculated in G*Power 3.1 [27]. Because our study did not reveal a one-sided alpha level smaller than 0.2 for vmPFC-amygdala connectivity, the true effect size is likely smaller than 0.73.\n\n",
     "P_SampleSize": "N = 48",
-    "P_Merit": "Further research using larger samples and polygenic approaches is indicated to clarify the precise role and its underlying mechanisms in emotion processing.\n\n"
+    "P_Merit": "Further research using larger samples and polygenic approaches is indicated to clarify the precise role and its underlying mechanisms in emotion processing.\n\n",
+    "position": 6
   },
   {
     "type": "pub",
@@ -354,7 +364,8 @@
     "P_FormalModeling": "No",
     "P_PowerConsiderations": "Our sample size enabled to detect effects of about 7.3% explained variance (η2) at an alpha level of 0.05 and a power of 0.80, as determined using G∗Power 3.1 (Faul et al., 2009) for a single predictor.\n\n",
     "P_SampleSize": "N = 103",
-    "P_Merit": "Our findings confirm the dysfunctional role of rumination and suppression for the mental and physical health of high-risk populations and advance the debate on the context-specific efficacy of emotion regulation strategies.\n\n"
+    "P_Merit": "Our findings confirm the dysfunctional role of rumination and suppression for the mental and physical health of high-risk populations and advance the debate on the context-specific efficacy of emotion regulation strategies.\n\n",
+    "position": 7
   },
   {
     "type": "pub",
@@ -395,7 +406,8 @@
     "P_PreregisteredReplication": "No",
     "P_PowerConsiderations": "Using our study design, our sample size enabled us to detect effects of about 9% explained variance (ηp2) at an alpha level of 0.05 and a power of 0.80, as determined using G*Power 3.1 (Faul, Erdfelder, Buchner, & Lang, 2009).\n\n",
     "P_SampleSize": "N = 122",
-    "P_Merit": "The results suggest that serotonin system-related gene variation contributes to individual differences in altruistic punishment. Furthermore, comparably high test-retest correlations suggest that punishment behavior in the ultimatum game represents a relatively stable, trait-like behavior.\n\n"
+    "P_Merit": "The results suggest that serotonin system-related gene variation contributes to individual differences in altruistic punishment. Furthermore, comparably high test-retest correlations suggest that punishment behavior in the ultimatum game represents a relatively stable, trait-like behavior.\n\n",
+    "position": 8
   },
   {
     "type": "pub",
@@ -445,7 +457,8 @@
     "P_PreregisteredReplication": "No",
     "P_PowerConsiderations": "Sample size was defined based on feasibility considerations. This resulted in a target sample size of over 48 participants. The sample size that we considered feasible to collect, enabled us with the possibility to at least detect medium-sized effects at a significance level of 0.05 and a power of 0.80. \n\n\n\n",
     "P_SampleSize": "N = 48",
-    "P_Merit": "These results show that the temporal dynamics are highly variable both within experimental trials and across brain regions. This can even take the form of paradoxical aftereffects at immediate and persistent effects at prolonged time scales.\n\n"
+    "P_Merit": "These results show that the temporal dynamics are highly variable both within experimental trials and across brain regions. This can even take the form of paradoxical aftereffects at immediate and persistent effects at prolonged time scales.\n\n",
+    "position": 9
   },
   {
     "type": "pub",
@@ -503,6 +516,7 @@
     "P_PreregisteredReplication_Identifier": "https://osf.io/fn9bt",
     "P_PowerConsiderations": "Sample size calculation was done using G*Power65,66. In a meta-analysis of Zaehringer and colleagues5, effect sizes of ER on peripheral-physiological measures were reported: To find an effect of 𝑑=−0.32\nd\n=\n−\n0.32\n of ER on corrugator muscle activity with 𝛼=.05\nα\n=\n.05\n and 𝛽=.95\nβ\n=\n.95\n, data of at least 𝑁=85\nN\n=\n85\n have to be analyzed. Power analyses of all other hypotheses yielded smaller sample sizes. However, if participants withdraw from study participation, technical failures occur, or experimenter considers the participant for not suitable for study participation (e.g., because the participant does not follow instructions or shows great fatigue), respective data will also be excluded from further analyses. Therefore, we aimed to collect data of 𝑁=120\nN\n=\n120\n participants, about 50\n50\n more data sets, than necessary. Detailed information on power calculation for each hypothesis can be found in the design table.",
     "P_SampleSize": "N = 120",
-    "P_Merit": "The trait character of the values will be discussed."
+    "P_Merit": "The trait character of the values will be discussed.",
+    "position": 10
   }
 ]

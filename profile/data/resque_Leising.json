@@ -6,9 +6,17 @@
     "data_sets": 0,
     "position": 0,
     "date_created": 1696324864165,
-    "date_modified": 1696782127770,
-    "LastName": "Leising 2",
-    "date_exported": 1696782133298
+    "date_modified": 1708351100834,
+    "LastName": "Leising",
+    "date_exported": 1708351120769,
+    "queryConfig": {
+      "global": {}
+    },
+    "FirstName": "Daniel",
+    "YearPhD": "2003",
+    "AcademicAgeBonus": "0",
+    "ORCID": "https://orcid.org/0000-0001-8503-5840",
+    "RaterType": "Applicant"
   },
   {
     "type": "pub",
@@ -52,7 +60,8 @@
     "P_PreregisteredReplication": "No",
     "P_PowerConsiderations": "Convenience Samples",
     "P_SampleSize": "n1 = 314, n2 = 267, n3 = 104 participants",
-    "P_Merit": "Use samples from Germany and the US to investigate real-life experiences of giving, receiving, or withholding interpersonal feedback - which is an interpersonal behaviour of great relevance in most people's everyday lives. Retrospectively assesses some of the key factors moderating the exchange of such feedback across a broad range of circumstances. "
+    "P_Merit": "Use samples from Germany and the US to investigate real-life experiences of giving, receiving, or withholding interpersonal feedback - which is an interpersonal behaviour of great relevance in most people's everyday lives. Retrospectively assesses some of the key factors moderating the exchange of such feedback across a broad range of circumstances. ",
+    "P_Theorizing": "DescriptiveExploratory"
   },
   {
     "type": "pub",

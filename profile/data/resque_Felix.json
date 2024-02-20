@@ -5,13 +5,15 @@
       "global": {}
     },
     "position": 0,
-    "date_modified": 1703060697721,
+    "date_modified": 1708355115013,
     "date_created": 1701877620153,
     "LastName": "Schönbrodt",
     "FirstName": "Felix",
     "ORCID": "https://orcid.org/0000-0002-8282-3910",
     "RaterType": "Applicant",
-    "date_exported": 1703060701257
+    "date_exported": 1708355116724,
+    "YearPhD": "2010",
+    "AcademicAgeBonus": "0"
   },
   {
     "type": "pub",

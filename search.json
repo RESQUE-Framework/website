@@ -46,7 +46,7 @@
     "href": "get_profile.html",
     "title": "📊 Get your RESQUE profile",
     "section": "",
-    "text": "Warning\n\n\n\nBoth the app for entering the data and the profile are in beta stage and not finalized yet. Things might change substantially in the near future. If you want to use the RESQUE framework in practice please contact us.\n\n\n\nYou can enter the data for up to 10 research contributions (publications, data set, or research software) in the RESQUE Collector app.\nThe visualization of the results will be made available as an app in spring 2024."
+    "text": "Warning\n\n\n\nBoth the app for entering the data and the profile are in beta stage and not finalized yet. Things might change substantially in the near future. If you want to use the RESQUE framework in practice please contact us.\n\n\nYou can enter the data for up to 10 research contributions (publications, data set, or research software) in the RESQUE Collector app.\n\nThe visualization of the results will be made available as an app in spring 2024; here’s a preview of some possible visualizations:"
   },
   {
     "objectID": "eval_projects.html",

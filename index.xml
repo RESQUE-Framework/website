@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>The RESQUE Framework</title>
+<link>https://nicebread.github.io/RESQUE/</link>
+<atom:link href="https://nicebread.github.io/RESQUE/index.xml" rel="self" type="application/rss+xml"/>
+<description></description>
+<generator>quarto-1.4.549</generator>
+<lastBuildDate>Mon, 11 Dec 2023 23:00:00 GMT</lastBuildDate>
+<item>
+  <title>RESQUE website is live!</title>
+  <link>https://nicebread.github.io/RESQUE/news/2023-12-12-website.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>We launched the <a href="https://nicebread.github.io/RESQUE">RESQUE website</a>. All material will be collected here, including news and information about case studies, evaluation projects, new indicator packs, etc.</p>
+
+
+
+ ]]></description>
+  <guid>https://nicebread.github.io/RESQUE/news/2023-12-12-website.html</guid>
+  <pubDate>Mon, 11 Dec 2023 23:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Preprint published by Franka Etzel on an evaluation study</title>
+  <link>https://nicebread.github.io/RESQUE/news/2023-09-04-Etzel_preprint.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>63 papers nominated by 21 participating researchers from personality and social psychology were rated by external raters (i.e., not the authors themselves) with the RESQUE-Pubs scheme. Inter-rater reliability, associations between the new and traditional indicators, and feedback from the participants on the new tool were examined. Inter-rater reliability for the three raters varied between the different items of the scheme. Besides a negative association between the new indicators and the uncorrected h-index, no other significant associations were found. The feedback from participants revealed the importance of transparency concerning the scheme.</p>
+<p>The RESQUE-Pubs scheme good be properly apply applied to 84% of all submitted papers. The average rigor score was around 35%.</p>
+<p>(Note that the RESQUE-Pubs scheme evolved since that study).</p>
+<p>You can read the study here:</p>
+<p>Etzel, F. T. (2023, September 4). *One step closer towards responsible research assessment in psychology: Evaluation and testing of a new tool in practice. <a href="https://doi.org/10.31234/osf.io/3uf7w">https://doi.org/10.31234/osf.io/3uf7w</a></p>
+
+
+
+ ]]></description>
+  <guid>https://nicebread.github.io/RESQUE/news/2023-09-04-Etzel_preprint.html</guid>
+  <pubDate>Sun, 03 Sep 2023 22:00:00 GMT</pubDate>
+</item>
+</channel>
+</rss>

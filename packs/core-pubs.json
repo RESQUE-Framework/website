@@ -10,7 +10,7 @@
             "points": [
                 {
                     "value": 1,
-                    "condition": "($P_Data === 'Yes') && ($P_Data_Source_NewOwn) && ($P_Data_Open === 'YesEntire') && (($P_Data_Open_AccessLevel =|= ['ZK0', 'ZK1']) || (($P_Data_Open_AccessLevel === 'ZK2') && (exists($P_Data_Open_AccessLevel_ZK2Explanation))))"
+                    "condition": "($P_Data === 'Yes') && ($P_Data_Source_NewOwn || P_Data_Source_ReuseOwn) && ($P_Data_Open === 'YesEntire') && (($P_Data_Open_AccessLevel =|= ['ZK0', 'ZK1']) || (($P_Data_Open_AccessLevel === 'ZK2') && (exists($P_Data_Open_AccessLevel_ZK2Explanation))))"
                 }
             ]
         },
@@ -174,13 +174,13 @@
         {
             "id": "Title",
             "type": "info",
-            "title": "Paper title",
+            "title": "Paper title <span style='color: grey; font-size:80%; font-weight:normal;'>(automatically added via doi)</span>",
             "text": "$Title"
         },
         {
             "id": "Year",
             "type": "info",
-            "title": "Year of publication",
+            "title": "Year of publication <span style='color: grey; font-size:80%; font-weight:normal;'>(automatically added via doi)</span>",
             "text": "$Year"
         },
         {
@@ -334,9 +334,16 @@
             "type": "separator"
         },
         {
+            "id": "P_CRediT_CollapseNote",
+            "type": "info",
+            "text": "<span style='background-color: lightyellow; font-size:80%;'>[Note: The section on 'CRediT' is automatically disabled as you indicated to be an external rater.]</span>",
+            "condition": "$P_Suitable === 'Yes' && meta$RaterType != 'Applicant'"
+        },
+        {
             "id": "P_CRediT_Info",
             "type": "info",
             "text": "<h3>CRediT roles</h3>Please indicate your individual contributions to the publication. You can get a description of each role by clicking on the name of each role. Where multiple individuals serve in the same role, the degree of contribution should be specified as 'lead', 'equal', or 'supporting'. <br><br><ul><li><i>lead</i>: You were the single leader for this specific activity. If you are the only person in a specific role, choose 'lead'.</li><li><i>equal</i>: You contributed equally to this activity, together with one or more other contributors (Choosing this option implies that no other co-author would choose the 'lead' option, and at least one other co-author would choose the 'equal' option).</li><li><i>supporting</i>: You had a supporting role, which was below the contribution of a leading or equal role.</li><li><i>no role</i>: You did not contribute substantially to that activity.</li><li><i>n/a</i>: This role was not relevant for the research.</li></ul>",
+            "condition":  "meta$RaterType === 'Applicant'",
             "info": "<ul><li><i>lead</i>: You were the single leader for this specific activity. If you are the only person in a specific role, choose 'lead'.</li><li><i>equal</i>: You contributed equally to this activity, together with one or more other contributors (Choosing this option implies that no other co-author would choose the 'lead' option, and at least one other co-author would choose the 'equal' option).</li><li><i>supporting</i>: You had a supporting role, which was below the contribution of a leading or equal role.</li><li><i>no role</i>: You did not contribute substantially to that activity.</li><li><i>n/a</i>: This role was not relevant for the research.</li></ul>",
             "background": "The <a href='https://credit.niso.org/contributor-roles/'>CRediT documentation</a> is not very specific about the definition of the <i>lead</i>, <i>equal</i>, and <i>support</i> degrees of contribution. That is also the reason why the <a href='https://marton-balazs-kovacs.github.io/tenzing/'>Tenzing tool</a> does not implement these levels yet. The rules described here are our interpretation of how these degrees could be used in a reliable way.",
             "tip_external": "As an external rater, you are very unlikely to find this information."
@@ -369,8 +376,10 @@
             ],
             "default": "NoRole",
             "alignment": "horizontal",
+            "condition": "meta$RaterType === 'Applicant'",
             "tooltip": "Ideas; formulation or evolution of overarching research goals and aims.",
-            "info": "Ideas; formulation or evolution of overarching research goals and aims.<br><br><ul><li>{:'Lead' | <i>lead</i>: You were the single leader for this specific activity. If you are the only person in a specific role, choose 'lead'.}</li><li>{:'Equal' | <i>equal</i>: You contributed equally to this activity, together with one or more other contributors (Choosing this option implies that no other co-author would choose the 'lead' option, and at least one other co-author would choose the 'equal' option).}</li><li>{:'Support' | <i>supporting</i>: You had a supporting role, which was below the contribution of a leading or equal role.}</li><li>{:'NoRole' | <i>no role</i>: You did not contribute substantially to that activity.}</li><li>{:'NA' | <i>n/a</i>: This role was not relevant for the research.}</li></ul>"
+            "info": "Ideas; formulation or evolution of overarching research goals and aims.<br><br><ul><li>{:'Lead' | <i>lead</i>: You were the single leader for this specific activity. If you are the only person in a specific role, choose 'lead'.}</li><li>{:'Equal' | <i>equal</i>: You contributed equally to this activity, together with one or more other contributors (Choosing this option implies that no other co-author would choose the 'lead' option, and at least one other co-author would choose the 'equal' option).}</li><li>{:'Support' | <i>supporting</i>: You had a supporting role, which was below the contribution of a leading or equal role.}</li><li>{:'NoRole' | <i>no role</i>: You did not contribute substantially to that activity.}</li><li>{:'NA' | <i>n/a</i>: This role was not relevant for the research.}</li></ul>",
+            "condition":  "meta$RaterType === 'Applicant'"
         },
         {
             "id": "P_CRediT_DataCuration",
@@ -400,6 +409,7 @@
             ],
             "default": "NoRole",
             "alignment": "horizontal",
+            "condition": "meta$RaterType === 'Applicant'",
             "tooltip": "Management activities to annotate (produce metadata), scrub data and maintain research data (including software code, where it is necessary for interpreting the data itself) for initial use and later re-use.",
             "info": "Management activities to annotate (produce metadata), scrub data and maintain research data (including software code, where it is necessary for interpreting the data itself) for initial use and later re-use.<br><br><ul><li>{:'Lead' | <i>lead</i>: You were the single leader for this specific activity. If you are the only person in a specific role, choose 'lead'.}</li><li>{:'Equal' | <i>equal</i>: You contributed equally to this activity, together with one or more other contributors (Choosing this option implies that no other co-author would choose the 'lead' option, and at least one other co-author would choose the 'equal' option).}</li><li>{:'Support' | <i>supporting</i>: You had a supporting role, which was below the contribution of a leading or equal role.}</li><li>{:'NoRole' | <i>no role</i>: You did not contribute substantially to that activity.}</li><li>{:'NA' | <i>n/a</i>: This role was not relevant for the research.}</li></ul>"
         },
@@ -431,6 +441,7 @@
             ],
             "default": "NoRole",
             "alignment": "horizontal",
+            "condition": "meta$RaterType === 'Applicant'",
             "tooltip": "Application of statistical, mathematical, computational, or other formal techniques to analyse or synthesize study data.",
             "info": "Application of statistical, mathematical, computational, or other formal techniques to analyse or synthesize study data.<br><br><ul><li>{:'Lead' | <i>lead</i>: You were the single leader for this specific activity. If you are the only person in a specific role, choose 'lead'.}</li><li>{:'Equal' | <i>equal</i>: You contributed equally to this activity, together with one or more other contributors (Choosing this option implies that no other co-author would choose the 'lead' option, and at least one other co-author would choose the 'equal' option).}</li><li>{:'Support' | <i>supporting</i>: You had a supporting role, which was below the contribution of a leading or equal role.}</li><li>{:'NoRole' | <i>no role</i>: You did not contribute substantially to that activity.}</li><li>{:'NA' | <i>n/a</i>: This role was not relevant for the research.}</li></ul>"
         },
@@ -462,6 +473,7 @@
             ],
             "default": "NoRole",
             "alignment": "horizontal",
+            "condition": "meta$RaterType === 'Applicant'",
             "tooltip": "Acquisition of the financial support for the project leading to this publication.",
             "info": "Acquisition of the financial support for the project leading to this publication.<br><br><ul><li>{:'Lead' | <i>lead</i>: You were the single leader for this specific activity. If you are the only person in a specific role, choose 'lead'.}</li><li>{:'Equal' | <i>equal</i>: You contributed equally to this activity, together with one or more other contributors (Choosing this option implies that no other co-author would choose the 'lead' option, and at least one other co-author would choose the 'equal' option).}</li><li>{:'Support' | <i>supporting</i>: You had a supporting role, which was below the contribution of a leading or equal role.}</li><li>{:'NoRole' | <i>no role</i>: You did not contribute substantially to that activity.}</li><li>{:'NA' | <i>n/a</i>: This role was not relevant for the research.}</li></ul>"
         },
@@ -493,6 +505,7 @@
             ],
             "default": "NoRole",
             "alignment": "horizontal",
+            "condition": "meta$RaterType === 'Applicant'",
             "tooltip": "Conducting a research and investigation process, specifically performing the experiments, or data/evidence collection.",
             "info": "Conducting a research and investigation process, specifically performing the experiments, or data/evidence collection.<br><br><ul><li>{:'Lead' | <i>lead</i>: You were the single leader for this specific activity. If you are the only person in a specific role, choose 'lead'.}</li><li>{:'Equal' | <i>equal</i>: You contributed equally to this activity, together with one or more other contributors (Choosing this option implies that no other co-author would choose the 'lead' option, and at least one other co-author would choose the 'equal' option).}</li><li>{:'Support' | <i>supporting</i>: You had a supporting role, which was below the contribution of a leading or equal role.}</li><li>{:'NoRole' | <i>no role</i>: You did not contribute substantially to that activity.}</li><li>{:'NA' | <i>n/a</i>: This role was not relevant for the research.}</li></ul>"
         },
@@ -524,6 +537,7 @@
             ],
             "default": "NoRole",
             "alignment": "horizontal",
+            "condition": "meta$RaterType === 'Applicant'",
             "tooltip": "Development or design of methodology; creation of models.",
             "info": "Development or design of methodology; creation of models.<br><br><ul><li>{:'Lead' | <i>lead</i>: You were the single leader for this specific activity. If you are the only person in a specific role, choose 'lead'.}</li><li>{:'Equal' | <i>equal</i>: You contributed equally to this activity, together with one or more other contributors (Choosing this option implies that no other co-author would choose the 'lead' option, and at least one other co-author would choose the 'equal' option).}</li><li>{:'Support' | <i>supporting</i>: You had a supporting role, which was below the contribution of a leading or equal role.}</li><li>{:'NoRole' | <i>no role</i>: You did not contribute substantially to that activity.}</li><li>{:'NA' | <i>n/a</i>: This role was not relevant for the research.}</li></ul>"
         },
@@ -555,6 +569,7 @@
             ],
             "default": "NoRole",
             "alignment": "horizontal",
+            "condition": "meta$RaterType === 'Applicant'",
             "tooltip": "Management and coordination responsibility for the research activity planning and execution.",
             "info": "Management and coordination responsibility for the research activity planning and execution.<br><br><ul><li>{:'Lead' | <i>lead</i>: You were the single leader for this specific activity. If you are the only person in a specific role, choose 'lead'.}</li><li>{:'Equal' | <i>equal</i>: You contributed equally to this activity, together with one or more other contributors (Choosing this option implies that no other co-author would choose the 'lead' option, and at least one other co-author would choose the 'equal' option).}</li><li>{:'Support' | <i>supporting</i>: You had a supporting role, which was below the contribution of a leading or equal role.}</li><li>{:'NoRole' | <i>no role</i>: You did not contribute substantially to that activity.}</li><li>{:'NA' | <i>n/a</i>: This role was not relevant for the research.}</li></ul>"
         },
@@ -586,6 +601,7 @@
             ],
             "default": "NoRole",
             "alignment": "horizontal",
+            "condition": "meta$RaterType === 'Applicant'",
             "tooltip": "Provision of study materials, reagents, materials, patients, laboratory samples, animals, instrumentation, computing resources, or other analysis tools.",
             "info": "Provision of study materials, reagents, materials, patients, laboratory samples, animals, instrumentation, computing resources, or other analysis tools.<br><br><ul><li>{:'Lead' | <i>lead</i>: You were the single leader for this specific activity. If you are the only person in a specific role, choose 'lead'.}</li><li>{:'Equal' | <i>equal</i>: You contributed equally to this activity, together with one or more other contributors (Choosing this option implies that no other co-author would choose the 'lead' option, and at least one other co-author would choose the 'equal' option).}</li><li>{:'Support' | <i>supporting</i>: You had a supporting role, which was below the contribution of a leading or equal role.}</li><li>{:'NoRole' | <i>no role</i>: You did not contribute substantially to that activity.}</li><li>{:'NA' | <i>n/a</i>: This role was not relevant for the research.}</li></ul>"
         },
@@ -617,6 +633,7 @@
             ],
             "default": "NoRole",
             "alignment": "horizontal",
+            "condition": "meta$RaterType === 'Applicant'",
             "tooltip": "Programming, software development; designing computer programs; implementation of the computer code and supporting algorithms; testing of existing code components.",
             "info": "Programming, software development; designing computer programs; implementation of the computer code and supporting algorithms; testing of existing code components.<br><br>If you wrote scripts that apply to a <b>'one-shot' data analysis</b>, this belongs to the role <i>Formal analysis</i> (see above).<br><br><ul><li>{:'Lead' | <i>lead</i>: You were the single leader for this specific activity. If you are the only person in a specific role, choose 'lead'.}</li><li>{:'Equal' | <i>equal</i>: You contributed equally to this activity, together with one or more other contributors (Choosing this option implies that no other co-author would choose the 'lead' option, and at least one other co-author would choose the 'equal' option).}</li><li>{:'Support' | <i>supporting</i>: You had a supporting role, which was below the contribution of a leading or equal role.}</li><li>{:'NoRole' | <i>no role</i>: You did not contribute substantially to that activity.}</li><li>{:'NA' | <i>n/a</i>: This role was not relevant for the research.}</li></ul>"
         },
@@ -648,6 +665,7 @@
             ],
             "default": "NoRole",
             "alignment": "horizontal",
+            "condition": "meta$RaterType === 'Applicant'",
             "tooltip": "Oversight and leadership responsibility for the research activity planning and execution, including mentorship external to the core team.",
             "info": "Oversight and leadership responsibility for the research activity planning and execution, including mentorship external to the core team.<br><br><ul><li>{:'Lead' | <i>lead</i>: You were the single leader for this specific activity. If you are the only person in a specific role, choose 'lead'.}</li><li>{:'Equal' | <i>equal</i>: You contributed equally to this activity, together with one or more other contributors (Choosing this option implies that no other co-author would choose the 'lead' option, and at least one other co-author would choose the 'equal' option).}</li><li>{:'Support' | <i>supporting</i>: You had a supporting role, which was below the contribution of a leading or equal role.}</li><li>{:'NoRole' | <i>no role</i>: You did not contribute substantially to that activity.}</li><li>{:'NA' | <i>n/a</i>: This role was not relevant for the research.}</li></ul>"
         },
@@ -679,6 +697,7 @@
             ],
             "default": "NoRole",
             "alignment": "horizontal",
+            "condition": "meta$RaterType === 'Applicant'",
             "tooltip": "Verification, whether as a part of the activity or separate, of the overall replication/reproducibility of results/experiments and other research outputs.",
             "info": "Verification, whether as a part of the activity or separate, of the overall replication/reproducibility of results/experiments and other research outputs.<br><br><ul><li>{:'Lead' | <i>lead</i>: You were the single leader for this specific activity. If you are the only person in a specific role, choose 'lead'.}</li><li>{:'Equal' | <i>equal</i>: You contributed equally to this activity, together with one or more other contributors (Choosing this option implies that no other co-author would choose the 'lead' option, and at least one other co-author would choose the 'equal' option).}</li><li>{:'Support' | <i>supporting</i>: You had a supporting role, which was below the contribution of a leading or equal role.}</li><li>{:'NoRole' | <i>no role</i>: You did not contribute substantially to that activity.}</li><li>{:'NA' | <i>n/a</i>: This role was not relevant for the research.}</li></ul>"
         },
@@ -710,6 +729,7 @@
             ],
             "default": "NoRole",
             "alignment": "horizontal",
+            "condition": "meta$RaterType === 'Applicant'",
             "tooltip": "Preparation, creation and/or presentation of the published work, specifically visualization/data presentation.",
             "info": "Preparation, creation and/or presentation of the published work, specifically visualization/data presentation.<br><br><ul><li>{:'Lead' | <i>lead</i>: You were the single leader for this specific activity. If you are the only person in a specific role, choose 'lead'.}</li><li>{:'Equal' | <i>equal</i>: You contributed equally to this activity, together with one or more other contributors (Choosing this option implies that no other co-author would choose the 'lead' option, and at least one other co-author would choose the 'equal' option).}</li><li>{:'Support' | <i>supporting</i>: You had a supporting role, which was below the contribution of a leading or equal role.}</li><li>{:'NoRole' | <i>no role</i>: You did not contribute substantially to that activity.}</li><li>{:'NA' | <i>n/a</i>: This role was not relevant for the research.}</li></ul>"
         },
@@ -741,6 +761,7 @@
             ],
             "default": "NoRole",
             "alignment": "horizontal",
+            "condition": "meta$RaterType === 'Applicant'",
             "tooltip": "Preparation, creation and/or presentation of the published work, specifically writing the initial draft (including substantive translation).",
             "info": "Preparation, creation and/or presentation of the published work, specifically writing the initial draft (including substantive translation).<br><br><ul><li>{:'Lead' | <i>lead</i>: You were the single leader for this specific activity. If you are the only person in a specific role, choose 'lead'.}</li><li>{:'Equal' | <i>equal</i>: You contributed equally to this activity, together with one or more other contributors (Choosing this option implies that no other co-author would choose the 'lead' option, and at least one other co-author would choose the 'equal' option).}</li><li>{:'Support' | <i>supporting</i>: You had a supporting role, which was below the contribution of a leading or equal role.}</li><li>{:'NoRole' | <i>no role</i>: You did not contribute substantially to that activity.}</li><li>{:'NA' | <i>n/a</i>: This role was not relevant for the research.}</li></ul>"
         },
@@ -772,6 +793,7 @@
             ],
             "default": "NoRole",
             "alignment": "horizontal",
+            "condition": "meta$RaterType === 'Applicant'",
             "tooltip": "Preparation, creation and/or presentation of the published work by those from the original research group, specifically critical review, commentary or revision – including pre- or post-publication stages.",
             "info": "Preparation, creation and/or presentation of the published work by those from the original research group, specifically critical review, commentary or revision – including pre- or post-publication stages.<br><br><ul><li>{:'Lead' | <i>lead</i>: You were the single leader for this specific activity. If you are the only person in a specific role, choose 'lead'.}</li><li>{:'Equal' | <i>equal</i>: You contributed equally to this activity, together with one or more other contributors (Choosing this option implies that no other co-author would choose the 'lead' option, and at least one other co-author would choose the 'equal' option).}</li><li>{:'Support' | <i>supporting</i>: You had a supporting role, which was below the contribution of a leading or equal role.}</li><li>{:'NoRole' | <i>no role</i>: You did not contribute substantially to that activity.}</li><li>{:'NA' | <i>n/a</i>: This role was not relevant for the research.}</li></ul>"
         },
@@ -827,7 +849,7 @@
             "default": [
                 "NewOwn"
             ],
-            "info": "Data set acquisition often is a collaborative enterprise with different contributor roles. { $P_Data_Source_ReuseOwn | Select 'Reuse of own existing data set' only, if you would qualify as a co-author with substantive contributions in a stand-alone data set publication of that data set. Otherwise, select 'Reuse of someone else's existing data set'.}",
+            "info": "Data set acquisition often is a collaborative enterprise with different contributor roles. { $P_Data_Source_ReuseOwn | Select 'Reuse of own existing data set' only, if you would qualify as a co-author with substantive contributions in a stand-alone data set publication of that data set. Otherwise, select 'Reuse of someone else's existing data set'.}<br><br>{ $P_TypeMethod_MetaAnalysis | In case of a meta-analysis, the extraction of effect sizes from the primary literature counts as 'Own new data collection'.}",
             "condition": "$P_Suitable === 'Yes' && $P_Data === 'Yes'",
             "tip_external": "Look in the abstract and/or method section. If no information can be found there, it might also be useful to look at the contributors of the repositories.<br><br><b>Search words:</b> simul*, data, OSF, availab*"
         },
@@ -845,15 +867,19 @@
                     "text": "Behavioral"
                 },
                 {
-                    "id": "Physiological / Biological",
+                    "id": "Physiological",
                     "text": "Physiological (e.g., fMRI, EEG, peripheral physiology)"
+                },
+                {
+                    "id": "MetaAnalysis",
+                    "text": "Meta-analysis: Effect sizes from primary studies"
                 },
                 {
                     "id": "OtherType",
                     "text": "Other [please specify]"
                 }
             ],
-            "condition": "$P_Suitable === 'Yes' && $P_Data === 'Yes'",
+            "condition": "$P_Suitable === 'Yes' && $P_Data === 'Yes' && ($P_Data_Source_NewOwn || $P_Data_Source_ReuseOwn || $P_Data_Source_ReuseOther || $P_Data_Source_ReuseCompilation)",
             "tip_external":"Look in the method section, more specifically at parts called procedure, data collection or variables. <br><br><b>Search words:</b> data, open, availab*"
         },
         {
@@ -1129,10 +1155,10 @@
                 },
                 {
                     "id": "YesEntire",
-                    "text": "Yes, entire material [provide doi or URL]"
+                    "text": "Yes, all material necessary for a replication [provide doi or URL]"
                 }
             ],
-            "info": "{:'YesParts', 'YesEntire' | Only choose 'Yes' if the material substantially exceeds the open reproducible scripts. }<br><br>{:0 | <b>When only parts of the materials available</b><br>Choose 'Yes, entire material' if a reasonable justification for only parts of material is given.<br>Choose 'Yes, parts of material' if no justification is given. <br><br> When to choose <b>'Not applicable'</b>: If no material has been used in the publication, or the entire material is contained in the open reproducible scripts. }",
+            "info": "Open Material refers to all material that is necessary to replicate a study. It typically includes questionnaire items, stimuli, texts for vignettes, or code for software that controls the experimental flow. {:'YesParts', 'YesEntire' | Only choose 'Yes' if the material substantially exceeds the open reproducible scripts. }<br><br><ul><li>{:0 | <b>When only parts of the materials available</b><br>Choose 'Yes, entire material' if a reasonable justification for only parts of material is given.<br>Choose 'Yes, parts of material' if no justification is given.</li><li>When to choose <b>'Not applicable'</b>: If no material has been used in the publication, or the entire material is contained in the open reproducible scripts.</li></ul>}",
             "condition": "$P_Suitable === 'Yes'",
             "tip_external":"<ul><li>Is a <b>link</b> to open materials provided (don't forget to check Appendix and Supplemental Materials)</li><li>Expect <b>“entire material”</b> as default if materials are available (only if the material is obviously <i>not</i> complete and no reasonable explanation is given, assign <b>“parts of materials”</b>)</li><li><b>“Not applicable”</b> is the default if “reuse of existing data set”, “meta analysis” or “simulation”, <mark>but</mark> if there is additional material that shows an own contribution then assign <b>“Yes, entire material”</b></li></ul> "
         },

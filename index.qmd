@@ -65,7 +65,7 @@ If you plan to provide an expansion pack, please [get in contact](team.qmd) with
 
 Such EPs ideally are contributed from a legit academic community and stem from a consensus process. Before including EPs in this project, we do a minimal review for suitability.
 
-*Currently, there are no expansion packs available.*
+The subdivisions of the German Psychological Society have been asked to discuss the need for discipline-specific indicators.
 
 
 ### 📊 The RESQUE Research Profile
@@ -76,7 +76,6 @@ We provide R scripts that ...
 2. enrich the data with other sources of information (e.g. citation counts & normalized citation counts from [OpenAlex](https://openalex.org)), impact metrics from [BIP!](https://bip.imsi.athenarc.gr)
 3. provide candidate profiles that can be requested by hiring and tenure committees, or used by candidates as an attachment to their CV or website.
 
-You can get your research profile with the [RESQUE Profile Builder](https://shiny.psy.lmu.de/felix/RESQUE_profile/) app - see [here](get_profile.qmd) for instructions.
-
+An interactive dashboard allows to compare multiple candidates and to zoom into the profiles of specific candidates.
 
 

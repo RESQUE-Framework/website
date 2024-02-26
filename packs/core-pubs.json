@@ -1,5 +1,5 @@
 {
-    "version": "0.3",
+    "version": "0.3.0",
     "prefix": "P",
     "title": "Publication",
     "scoring": {
@@ -144,17 +144,6 @@
                 {
                     "value": 0.25,
                     "condition": "($P_Preregistration_Content_AnalysisPlan)"
-                }
-            ]
-        },
-        "P_FormalModeling": {
-            "not_applicable": "($P_Suitable === 'No') || (($P_FormalModeling === 'NotApplicable') && (exists($P_FormalModeling_NAExplanation)))",
-            "max": 2,
-            "op": "select",
-            "points": [
-                {
-                    "value": 2,
-                    "condition": "($P_FormalModeling === 'Yes')"
                 }
             ]
         },
@@ -1268,7 +1257,7 @@
         {
             "id": "P_Theory_Def",
             "type": "info",
-            "text": "<h3>Theory usage and development</h3><span style='background-color: lightyellow;'>[Note: So far, no scoring points have been assigned to the indicators on 'Theory']</span><br><br>In the following, the term '<i>theory</i>' is used for a set of (interconnected) ideas regarding a data-generating process. Theories may be expressed in a narrative and/or a more formalized manner. The term '<i>model</i>' is reserved for a (part of a) theory that is expressed mathematically or algorithmically.",
+            "text": "<h3>Theory usage and development</h3><span style='background-color: lightyellow;'>[Note: So far, no scoring points have been assigned to the indicators on 'Theory']</span><br><br>In the following, the term '<i>theory</i>' is used for a set of (interconnected) ideas that explain empirical phenomena. Theories may be expressed in a narrative and/or a more formalized manner. The term '<i>model</i>' is reserved for a (part of a) theory that is expressed mathematically or algorithmically.",
             "condition": "$P_Suitable === 'Yes'"
         },
         {
@@ -1282,7 +1271,7 @@
                 },
                 {
                     "id": "TheoryGuided",
-                    "text": "In this research, at least one theory was (further) developed and/or evaluated "
+                    "text": "In this research, at least one theory was (further) developed and/or evaluated"
                 },
                 {
                     "id": "NotApplicable",
@@ -1309,7 +1298,7 @@
                 },
                 {
                     "id":"NarrativeDefinitions",
-                    "text": "contains <b>explicit narrative definitions of each element</b> in the theory. All of this is made easily findable (e.g., under a standard heading “Definitions”)."
+                    "text": "contains <b>explicit narrative definitions of each element</b> (concepts, relationships, etc.) in the theory. All of this is made easily findable (e.g., under a standard heading “Definitions”)."
                 },
                 {
                     "id": "FormalizedAccount",
@@ -1325,10 +1314,14 @@
                 },
                 {
                     "id": "ObjectiveDerivation",
-                    "text": "contains a formalized account of the theory which enables <b>deriving all predictions objectively</b> (i.e., any person would come to the exact same predictions). All predictions are falsifiable."
+                    "text": "contains a formalized account of the theory (i.e., a model) <b>and</b> explicitly derives predictions from that. The <b>derivation is objective</b>, in the sense that any person would come to the exact same predictions."
+                },
+                {
+                    "id": "Falsifiability",
+                    "text": "contains a formalized account of the theory (i.e., a model) <b>and</b> all stated predictions are in principle <b>falsifiable</b> (before considering operationalizations)."
                 }
             ],
-            "info": "Please apply these questions to the theory in your paper - regardless whether you (further) developed the theory or used someone else’s theory",
+            "info": "Please apply these questions to the theory in your paper - regardless whether you (further) developed the theory or used someone else’s theory.<br><br><ul><li><b>'basic mathematical properties'</b>: For example, if a formalization only contains the formula <i>Y = a*B + c</i>, even if all elements have a narrative definition, the mathematical properties might be unclear: Is <i>a</i> a constant, a vector, or a two-dimensional matrix?</li></ul>",
             "condition": "$P_Suitable === 'Yes' && $P_Theorizing === 'TheoryGuided'"
         },
         {
@@ -1371,20 +1364,46 @@
             "title": "How much did you personally contribute to this version of the theory?",
             "options": [
                 {
-                    "id": "Nothing",
-                    "text": "I used someone else's theory"
+                    "id": "No",
+                    "text": "I did not contribute to this version of the theory itself (i.e., I did no theoretical work beyond testing a theory)"
                 },
                 {
-                    "id": "Refinement",
-                    "text": "I expanded / refined someone else's theory"
-                },
-                {
-                    "id": "Lead",
-                    "text": "I was (among) the lead developer(s) of the entire theory"
+                    "id": "Yes",
+                    "text": "I did contribute significantly to this version of the theory"
                 }
             ],
             "condition": "$P_Suitable === 'Yes' && $P_Theorizing === 'TheoryGuided'"
         },
+        {
+            "id": "P_Theorizing_ContributionType",
+            "type": "checkbox",
+            "title": "I significantly contributed to ...",
+            "options": [
+                {
+                    "id": "NarrativeDevelopment",
+                    "text": "the overall development of an entire narrative theory"
+                },
+                {
+                    "id": "NarrativeRefinement",
+                    "text": "the expansion or refinement of an existing narrative theory"
+                },
+                {
+                    "id": "FormalizationFirst",
+                    "text": "the first formalization of an existing narrative theory"
+                },
+                {
+                    "id": "FormalizationStandAlone",
+                    "text": "the overall development of an entire formal model of which there was no narrative version"
+                },
+                {
+                    "id": "FormalizationRefinement",
+                    "text": "the expansion or refinement of an existing formal model"
+                }
+            ],
+            "condition": "$P_Suitable === 'Yes' && $P_Theorizing === 'TheoryGuided' && $P_Theorizing_Contribution === 'Yes'"
+        },
+
+
         {
             "id": "P_Theorizing_Test",
             "type": "radio",
@@ -1417,15 +1436,11 @@
                 },
                 {
                     "id": "Derivation",
-                    "text": "contains a complete account of how the tested hypotheses logically and stringently follow from the theory."
+                    "text": "makes clear how the tested hypotheses logically and stringently follow from the theory."
                 },
                 {
-                    "id": "Crossvalidation",
-                    "text": "evaluates the absolute model fit with out-of-sample cross-validation."
-                },
-                {
-                    "id": "ModelComparison",
-                    "text": "evaluates the relative model fit with appropriate model comparison criteria (AIC, BIC, LOO, Bayes Factors)."
+                    "id": "Evaluation",
+                    "text": "evaluates the relative and/or absolute model fit with appropriate procedures (e.g., out-of-sample cross-validation, AIC, BIC, LOO, Bayes Factors)."
                 },
                 {
                     "id": "Discussion",

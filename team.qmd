@@ -7,10 +7,10 @@ The RESQUE framework is a collaborative project initiated by the German Psycholo
 This project is a community effort with many contributors:
 
 - The project is **coordinated** by [Felix Schönbrodt](http://www.nicebread.de), [Anne Gärtner](https://tu-dresden.de/mn/psychologie/ifap/differentielle-psychologie/die-professur/Mitarbeiter/dipl-psych-anne-gaertner), [Daniel Leising](https://tu-dresden.de/mn/psychologie/iaosp/diagnostische/die-professur/inhaber-in), and the [Open-Science-Committee of the DGPs](https://www.dgps.de/schwerpunkte/transparente-wissenschaft/kommission-open-science/)
-- The **core indicator set** was developed by Anne Gärtner, Daniel Leising and Felix Schönbrodt, partly based on previous work by Daniel Leising, Isabel Thielmann, Anderas Glöckner, Anne Gärtner & Felix Schönbrodt (see [Leising et al., 2022](https://doi.org/10.5964/ps.6029.))
+- The **core indicator set** was developed by Anne Gärtner, Daniel Leising and Felix Schönbrodt, partly based on previous work by Daniel Leising, Isabel Thielmann, Andreas Glöckner, Anne Gärtner & Felix Schönbrodt (see [Leising et al., 2022](https://doi.org/10.5964/ps.6029.))
 - [Alp Kaan Aksu](https://github.com/alpkaanaksu) is the lead programmer who designed and programmed the [**RESQUE App**](https://nicebread.github.io/RESQUE/web/) and the [Form Builder](https://nicebread.github.io/RESQUE/web/builder)
 - Maximilian Ernst, Aaron Peikert and Felix Schönbrodt had a leading role in the development of the **RESQUE-Software** scheme
-- Nele Freyer, Jens Lange, Daniel Leising, Philipp Musfeld, anbd Felix Schönbrodt had a leading role in the development of the **indicators for formal theory development and evaluation** in RESQUE-Pubs
+- Nele Freyer, Jens Lange, Daniel Leising, Philipp Musfeld, and Felix Schönbrodt had a leading role in the development of the [indicators for formal theory development and evaluation](news/2024-02-26-theory_indicators.qmd) in RESQUE-Pubs
 - Daniel Nüst contributed to the **code verification indicator** in RESQUE-Pubs
 - Dejana Damjanovic, Gracia Prüm and Martin Wiehr coded many papers and created the first "norm" sample
 - TODO add all others

@@ -10,7 +10,7 @@
             "points": [
                 {
                     "value": 1,
-                    "condition": "($P_Data === 'Yes') && ($P_Data_Source_NewOwn || P_Data_Source_ReuseOwn) && ($P_Data_Open === 'YesEntire') && (($P_Data_Open_AccessLevel =|= ['ZK0', 'ZK1']) || (($P_Data_Open_AccessLevel === 'ZK2') && (exists($P_Data_Open_AccessLevel_ZK2Explanation))))"
+                    "condition": "($P_Data === 'Yes') && ($P_Data_Source_NewOwn || $P_Data_Source_ReuseOwn) && ($P_Data_Open === 'YesEntire') && (($P_Data_Open_AccessLevel =|= ['ZK0', 'ZK1']) || (($P_Data_Open_AccessLevel === 'ZK2') && (exists($P_Data_Open_AccessLevel_ZK2Explanation))))"
                 }
             ]
         },

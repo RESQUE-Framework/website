@@ -5,19 +5,19 @@
       "global": {}
     },
     "position": 0,
-    "date_modified": 1708355115013,
+    "date_modified": 1709025317547,
     "date_created": 1701877620153,
     "LastName": "Schönbrodt",
     "FirstName": "Felix",
     "ORCID": "https://orcid.org/0000-0002-8282-3910",
     "RaterType": "Applicant",
-    "date_exported": 1708355116724,
+    "date_exported": 1709025318693,
     "YearPhD": "2010",
     "AcademicAgeBonus": "0"
   },
   {
     "type": "pub",
-    "version": "0.2",
+    "version": "0.3.0",
     "date_added": 1701877615405,
     "P_Suitable": "Yes",
     "P_CRediT_Conceptualization": "Support",
@@ -49,7 +49,7 @@
     "P_Data_Type_Behavioral": true,
     "P_ReproducibleScripts": "YesEntire",
     "P_IndependentVerification": "No",
-    "P_Preregistration": "NotApplicable",
+    "P_Preregistration": "No",
     "P_FormalModeling": "NotApplicable",
     "P_Data_Open": "YesEntire",
     "P_Data_Open_Identifier": "",
@@ -78,12 +78,13 @@
     "P_Preregistration_Content_AnalysisPlan": false,
     "P_PreregisteredReplication": "No",
     "P_PreregisteredReplication_NAExplanation": "",
-    "P_Preregistration_NAExplanation": "",
-    "P_FormalModeling_NAExplanation": "Purely exploratory / data driven research"
+    "P_Preregistration_NAExplanation": "Purely exploratory",
+    "P_FormalModeling_NAExplanation": "Purely exploratory / data driven research",
+    "P_Theorizing": "DescriptiveExploratory"
   },
   {
     "type": "pub",
-    "version": "0.2",
+    "version": "0.3.0",
     "date_added": 1701877655391,
     "P_Suitable": "Yes",
     "P_CRediT_Conceptualization": "Equal",
@@ -129,11 +130,13 @@
     "P_Preregistration": "NotApplicable",
     "P_FormalModeling": "No",
     "P_FormalModeling_NAExplanation": "Purely descriptive work",
-    "P_Preregistration_NAExplanation": "Purely exploratory work"
+    "P_Preregistration_NAExplanation": "Purely exploratory work",
+    "P_PreregisteredReplication": "NotApplicable",
+    "P_Theorizing": "DescriptiveExploratory"
   },
   {
     "type": "pub",
-    "version": "0.2",
+    "version": "0.3.0",
     "date_added": 1701877668893,
     "P_Suitable": "Yes",
     "P_CRediT_Conceptualization": "Support",
@@ -186,11 +189,13 @@
     "P_FormalModeling_NAExplanation": "Purely descriptive work",
     "P_PowerConsiderations": "",
     "P_PreregisteredReplication": "NotApplicable",
-    "P_PreregisteredReplication_NAExplanation": "The first analysis of its kind - no replication possible."
+    "P_PreregisteredReplication_NAExplanation": "The first analysis of its kind - no replication possible.",
+    "P_ReproducibleScripts_FAIR_TimestampedRepository": true,
+    "P_Theorizing": "DescriptiveExploratory"
   },
   {
     "type": "pub",
-    "version": "0.2",
+    "version": "0.3.0",
     "date_added": 1701877683080,
     "P_Suitable": "Yes",
     "P_CRediT_Conceptualization": "Lead",
@@ -249,11 +254,13 @@
     "P_FormalModeling_NAExplanation": "Purely descriptive work",
     "P_PowerConsiderations": "",
     "P_Preregistration_NAExplanation": "Purely exploratory",
-    "P_PreregisteredReplication": "No"
+    "P_PreregisteredReplication": "No",
+    "P_Theorizing": "DescriptiveExploratory",
+    "P_TopPaper_Select": true
   },
   {
     "type": "pub",
-    "version": "0.2",
+    "version": "0.3.0",
     "date_added": 1701877696355,
     "P_Suitable": "Yes",
     "P_CRediT_Conceptualization": "Support",
@@ -280,7 +287,7 @@
     "P_TypePublication": "PublishedPaper",
     "P_MultiStudy": "No",
     "P_Data": "Yes",
-    "P_Data_Type_OtherType": true,
+    "P_Data_Type_OtherType": false,
     "P_Data_Type_Other": "Meta-analysis",
     "P_Data_Open": "YesEntire",
     "P_Data_Open_Identifier": "https://osf.io/vec5d/",
@@ -306,11 +313,14 @@
     "P_Preregistration_Content_InferentialCriteria": true,
     "P_PreregisteredReplication": "Yes",
     "P_FormalModeling": "NotApplicable",
-    "P_FormalModeling_NAExplanation": "Meta-analysis - no theory involved."
+    "P_FormalModeling_NAExplanation": "Meta-analysis - no theory involved.",
+    "P_Data_Type_MetaAnalysis": true,
+    "P_ReproducibleScripts_FAIR_TimestampedRepository": true,
+    "P_Theorizing": "DescriptiveExploratory"
   },
   {
     "type": "pub",
-    "version": "0.2",
+    "version": "0.3.0",
     "date_added": 1701877715179,
     "P_Suitable": "Yes",
     "P_CRediT_Conceptualization": "Equal",
@@ -321,7 +331,7 @@
     "P_CRediT_Methodology": "Equal",
     "P_CRediT_ProjectAdministration": "Equal",
     "P_CRediT_Resources": "NA",
-    "P_CRediT_Software": "NA",
+    "P_CRediT_Software": "Lead",
     "P_CRediT_Supervision": "NA",
     "P_CRediT_Validation": "NoRole",
     "P_CRediT_Visualization": "Equal",
@@ -358,11 +368,13 @@
     "P_PreregisteredReplication": "NotApplicable",
     "P_PreregisteredReplication_NAExplanation": "Exploratory simulation study",
     "P_FormalModeling": "NotApplicable",
-    "P_FormalModeling_NAExplanation": "Exploratory simulation study"
+    "P_FormalModeling_NAExplanation": "Exploratory simulation study",
+    "P_ReproducibleScripts_FAIR_Documentation": true,
+    "P_Theorizing": "DescriptiveExploratory"
   },
   {
     "type": "pub",
-    "version": "0.2",
+    "version": "0.3.0",
     "date_added": 1701877732021,
     "P_Suitable": "No",
     "P_CRediT_Conceptualization": "Lead",
@@ -394,7 +406,7 @@
   },
   {
     "type": "pub",
-    "version": "0.2",
+    "version": "0.3.0",
     "date_added": 1701877742937,
     "P_Suitable": "Yes",
     "P_CRediT_Conceptualization": "Lead",
@@ -444,11 +456,13 @@
     "P_PreregisteredReplication_NAExplanation": "Exploratory simulation",
     "P_FormalModeling": "NotApplicable",
     "P_FormalModeling_NAExplanation": "Exploratory simulation",
-    "P_PowerConsiderations": ""
+    "P_PowerConsiderations": "",
+    "P_TopPaper_Select": true,
+    "P_Theorizing": "DescriptiveExploratory"
   },
   {
     "type": "pub",
-    "version": "0.2",
+    "version": "0.3.0",
     "date_added": 1701877760587,
     "P_Suitable": "Yes",
     "P_CRediT_Conceptualization": "Lead",
@@ -499,14 +513,15 @@
     "P_FormalModeling": "NotApplicable",
     "P_FormalModeling_NAExplanation": "Exploratory simulation",
     "P_PowerConsiderations": "",
-    "P_IndependentVerification_NAExplanation": "x "
+    "P_IndependentVerification_NAExplanation": "x ",
+    "P_Theorizing": "DescriptiveExploratory"
   },
   {
     "type": "pub",
-    "version": "0.2",
+    "version": "0.3.0",
     "date_added": 1703059426109,
     "P_Suitable": "Yes",
-    "P_CRediT_Conceptualization": "Lead",
+    "P_CRediT_Conceptualization": "Equal",
     "P_CRediT_DataCuration": "Support",
     "P_CRediT_FormalAnalysis": "Support",
     "P_CRediT_FundingAcquisition": "Lead",
@@ -558,9 +573,22 @@
     "P_Preregistration_Content_SampleSizePlanning": true,
     "P_Preregistration_Content_Hypotheses": true,
     "P_Preregistration_Content_Operationalizations": true,
-    "P_Preregistration_Content_AnalysisPlan": false,
-    "P_Preregistration_Content_InferentialCriteria": false,
+    "P_Preregistration_Content_AnalysisPlan": true,
+    "P_Preregistration_Content_InferentialCriteria": true,
     "P_PreregisteredReplication": "No",
-    "P_FormalModeling": "No"
+    "P_FormalModeling": "No",
+    "P_TopPaper_Select": true,
+    "P_OpenMaterials_Identifier": "x",
+    "P_Theorizing": "TheoryGuided",
+    "P_Theorizing_Quality_NarrativeAccount": true,
+    "P_Theorizing_Quality_NarrativeDefinitions": false,
+    "P_Theorizing_Type": "Narrative",
+    "P_Theorizing_Contribution": "Yes",
+    "P_Theorizing_ContributionType_NarrativeDevelopment": true,
+    "P_Theorizing_Test": "Yes",
+    "P_Theorizing_Test_Quality_Operationalization": true,
+    "P_Theorizing_Test_Quality_Discussion": true,
+    "P_PowerConsiderations": "Given the largely unexplored nature of our research design, hypotheses, and measurement instruments (particularly at the state level), we determined sample size by practical constraints",
+    "P_SampleSize": "130 persons / 7742 completed measurement points"
   }
 ]

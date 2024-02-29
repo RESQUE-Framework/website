@@ -1301,7 +1301,7 @@
             "options": [
                 {
                     "id": "DescriptiveExploratory",
-                    "text": "This research was mainly descriptive and/or exploratory, without clear reference to a theory"
+                    "text": "This research was purely descriptive, without clear reference to a theory"
                 },
                 {
                     "id": "TheoryGuided",
@@ -1337,26 +1337,35 @@
                 {
                     "id": "FormalizedAccount",
                     "text": "contains a <b>formalized account of the theory (i.e., a model)</b> using a commonly accepted standard notation (e.g., mathematical or logical operations, ODD protocol for ABMs). This includes all connections among the elements of the theory, and a formalization of the phenomena that are to be explained."
-                },
+                }
+            ],
+            "info": "Please apply these questions to the theory in your paper - regardless whether you (further) developed the theory or used someone else’s theory.",
+            "condition": "$P_Suitable === 'Yes' && $P_Theorizing === 'TheoryGuided'"
+        },
+        {
+            "id": "P_Theorizing_QualityFormalization",
+            "type": "checkbox",
+            "title": "The formalization of the theory …",
+            "options": [
                 {
                     "id": "MathProps",
-                    "text": "contains a formalized account of the theory (i.e., a model) <b>and</b> explicates the basic <b>mathematical properties</b> of all elements of the model (e.g., scalar vs. matrix; dimensionality; units carrying the information)."
+                    "text": "explicates the basic <b>mathematical properties</b> of all elements of the model (e.g., scalar vs. matrix; dimensionality; units carrying the information)."
                 },
                 {
                     "id": "PossibleValues",
-                    "text": "contains a formalized account of the theory (i.e., a model) <b>and</b> explicates the <b>possible values for all elements</b> of the model (i.e., upper and lower bounds, scale level)."
+                    "text": "explicates the <b>possible values for all elements</b> of the model (i.e., upper and lower bounds, scale level)."
                 },
                 {
                     "id": "ObjectiveDerivation",
-                    "text": "contains a formalized account of the theory (i.e., a model) <b>and</b> explicitly derives predictions from that. The <b>derivation is objective</b>, in the sense that any person would come to the exact same predictions."
+                    "text": "explicitly derives predictions from that. The <b>derivation is objective</b>, in the sense that any person would come to the exact same predictions."
                 },
                 {
                     "id": "Falsifiability",
-                    "text": "contains a formalized account of the theory (i.e., a model) <b>and</b> all stated predictions are in principle <b>falsifiable</b> (before considering operationalizations)."
+                    "text": "all stated predictions are in principle <b>falsifiable</b> (before considering operationalizations)."
                 }
             ],
             "info": "Please apply these questions to the theory in your paper - regardless whether you (further) developed the theory or used someone else’s theory.<br><br><ul><li><b>'basic mathematical properties'</b>: For example, if a formalization only contains the formula <i>Y = a*B + c</i>, even if all elements have a narrative definition, the mathematical properties might be unclear: Is <i>a</i> a constant, a vector, or a two-dimensional matrix?</li></ul>",
-            "condition": "$P_Suitable === 'Yes' && $P_Theorizing === 'TheoryGuided'"
+            "condition": "$P_Suitable === 'Yes' && $P_Theorizing === 'TheoryGuided' && $P_Theorizing_Quality_FormalizedAccount"
         },
         {
             "id": "P_Theorizing_Type",

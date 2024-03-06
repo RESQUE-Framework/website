@@ -484,6 +484,7 @@
                 })
                 .catch(() => {
                     return {
+                        error: true,
                         title: doi ? '⚠️ <b>Invalid DOI:</b> ' + doi : undefined,
                         year: undefined,
                         DOI: doi
@@ -499,7 +500,11 @@
 
             currentResult.Title = publicationInformation.title;
             currentResult.Year = publicationInformation.year;
-            currentResult.DOI = publicationInformation.DOI;
+
+            if (!publicationInformation.error) {
+                currentResult.DOI = "https://doi.org/" + publicationInformation.DOI;
+                document.getElementById("DOI").value = currentResult.DOI;
+            }
 
             save();
 

@@ -597,7 +597,7 @@
             results[0].date_exported = millis;
             let json = JSON.stringify(results, null, 2);
             let blob = new Blob([json], { type: "text/json;charset=utf-8" });
-            let filename = `resque_${results[0].M1 ? results[0].M1.toLowerCase() + "_" : ""}${millis}.json`;
+            let filename = `resque_${results[0].LastName ? results[0].LastName.toLowerCase() + "_" : ""}${millis}.json`;
 
             let a = document.getElementById("download");
             a.innerText = filename;

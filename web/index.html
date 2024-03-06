@@ -1032,7 +1032,7 @@
                         opt.value = option.id;
                         opt.innerHTML = option.text;
 
-                        if (mode === MODE_PREVIEW || mode === MODE_PRINT) {
+                        if ((mode === MODE_PREVIEW|| mode === MODE_PRINT) && details) {
                             opt.innerHTML = `[${option.id}] ${option.text}`;
                         }
 
@@ -1077,7 +1077,7 @@
 
                         let optionText = option.text;
 
-                        if (mode === MODE_PREVIEW || mode === MODE_PRINT) {
+                        if ((mode === MODE_PREVIEW || mode === MODE_PRINT) && details) {
                             optionText = `[${option.id}] ${optionText}`;
                         }
 
@@ -1113,7 +1113,7 @@
                         let span = document.createElement("span");
                         let text = typeof option === 'string' ? option : option.text;
 
-                        if (mode === MODE_PREVIEW || mode === MODE_PRINT) {
+                        if ((mode === MODE_PREVIEW || mode === MODE_PRINT) && details) {
                             text = `[${checkbox.id}] ${option.text}`;
                         }
 
@@ -1225,7 +1225,7 @@
                     title.classList.add(element.id, "title");
                     fragment.appendChild(title);
 
-                    if (mode === MODE_PREVIEW || mode === MODE_PRINT) {
+                    if ((mode === MODE_PREVIEW || mode === MODE_PRINT) && details) {
                         title.innerHTML = `[${element.id}] ${title.innerHTML}`;
                     }
                 }
@@ -1233,7 +1233,7 @@
 
                 domElement.classList.add(element.id);
 
-                if ((mode === MODE_PREVIEW || mode ==MODE_PRINT) && element.condition) {
+                if ((mode === MODE_PREVIEW || mode ==MODE_PRINT) && details && element.condition) {
                     let previewCondition = document.createElement("p");
                     previewCondition.style.color = "gray";
                     previewCondition.style.fontSize = "0.8rem";
@@ -1258,7 +1258,7 @@
             let title = document.createElement("h2");
             title.innerText = form.title;
 
-            if (mode === MODE_PREVIEW || mode === MODE_PRINT) {
+            if ((mode === MODE_PREVIEW || mode === MODE_PRINT) && details) {
                 title.innerText = "[Preview] " + title.innerText;
             }
 
@@ -1478,6 +1478,7 @@
         queryConfig = getQueryConfig(params);
 
         const mode = params.get("mode");
+        const details = params.get("details") !== "false";
         const doimagic = params.get("doimagic");
 
         let results = getSavedData();

@@ -896,7 +896,12 @@
             if (element.tip_external) {
                 tipExternal.innerHTML = element.tip_external;
                 tipExternalDetails.style.display = "block";
+
                 tipExternalDetails.removeAttribute("open");
+
+                if (results[0].RaterType === "External") {
+                    tipExternalDetails.setAttribute("open", "");
+                }
             } else {
                 tipExternalDetails.style.display = "none";
             }

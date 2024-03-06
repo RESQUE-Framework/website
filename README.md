@@ -1,4 +1,4 @@
-# RESQUE: The Research Quality Evaluation scheme for psychological research
+## RESQUE: The Research Quality Evaluation scheme for psychological research
 
 ## [☞ Visit the RESQUE website!](https://nicebread.github.io/RESQUE/)
 

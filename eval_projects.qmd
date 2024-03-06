@@ -7,11 +7,11 @@ Several research projects work(ed) on the evaluation of the RESQUE rating scheme
 - Etzel, F. T. (2023). One Step Closer Towards Responsible Research Assessment in Psychology: Evaluation and Testing of a New Tool in Practice. [https://doi.org/10.31234/osf.io/3uf7w](https://doi.org/10.31234/osf.io/3uf7w)
 
 ::: {.callout-note title="Key findings"}
- 63 papers nominated by 21 participating researchers were rated by external raters (i.e., not the authors themselves) with the *RESQUE-Pubs* scheme. Inter-rater reliability, associations between the new and traditional indicators, and feedback from the participants on the new tool were examined. Inter-rater reliability for the three raters varied between the different items of the scheme. Besides a negative association between the new indicators and the uncorrected h-index, no other significant associations were found. The feedback from participants revealed the importance of transparency concerning the scheme.
+ 63 papers nominated by 21 participating researchers were rated by external raters (i.e., not the authors themselves) with the *RESQUE-Pubs* scheme (version 0.1). Inter-rater reliability, associations between the new and traditional indicators, and feedback from the participants on the new tool were examined. Inter-rater reliability for the three raters varied between the different items of the scheme. Besides a negative association between the new indicators and the uncorrected h-index, no other significant associations were found. The feedback from participants revealed the importance of transparency concerning the scheme.
 :::
 
 - Anna Seyffert (2023)
 
 
-- Maximilian Scholz & Jakob Fink-Lamotte (in prep.) are testing the scheme in the field of clinical psychology.
+- Christoph Heller & Jakob Fink-Lamotte (in prep.) are testing the scheme in the field of clinical psychology.
 

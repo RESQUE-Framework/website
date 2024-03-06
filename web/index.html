@@ -11,19 +11,18 @@
     <script>
         var _paq = window._paq = window._paq || [];
         /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-        _paq.push(["setDomains", ["*.nicebread.github.io/RESQUE/web"]]);
-        _paq.push(["setDoNotTrack", true]);
         _paq.push(['trackPageView']);
         _paq.push(['enableLinkTracking']);
-        (function () {
-            var u = "//tellmi.psy.lmu.de/matomo/";
-            _paq.push(['setTrackerUrl', u + 'matomo.php']);
-            _paq.push(['setSiteId', '6']);
-            var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
-            g.async = true; g.src = u + 'matomo.js'; s.parentNode.insertBefore(g, s);
+        (function() {
+        var u="//tellmi.psy.lmu.de/matomo/";
+        _paq.push(['setTrackerUrl', u+'matomo.php']);
+        _paq.push(['setSiteId', '6']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
         })();
     </script>
     <!-- End Matomo Code -->
+  
 
     <script src="https://cdn.jsdelivr.net/npm/driver.js@1.0.1/dist/driver.js.iife.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/driver.js@1.0.1/dist/driver.css" />
@@ -34,8 +33,9 @@
     <div id="main">
         <div class="tabs-sidebar">
             <div class="sidebar-top">
-                <div class="top">
-                    <h3>RESQUE</h3>
+                <span style='background-color: lightyellow; font-size:80%;'>[Note: The RESQUE app is in beta stage and might change in the near future. If you want to use it in practice, please <a href="https://nicebread.github.io/RESQUE/team.html">contact</a> us.]</span><br><br>
+                <div class="top">                    
+                    <h3><a href="https://nicebread.github.io/RESQUE/">RESQUE</a></h3>
                     <div id="actions">
                         <button class="clear-button" onclick="showModal('clear-modal')">Clear</button>
                         <button class="load-button" onclick="triggerLoad()">Load</button>
@@ -50,17 +50,18 @@
                 </div>
             </div>
             <div id="add-container">
-                <div class="doi-input">
+                <div class="doi-input" style="display:none">
                     <button class="pdf-button" onclick="document.getElementById('add-pdf').click()">Extract DOI from
                         PDF</button>
                     <input id="add-doi" type="text" placeholder="DOI (optional)" />
                 </div>
 
                 <div class="add-buttons">
-                    <b>Add</b>
-                    <button class="add-pub" onclick="newTab('pub')">Publication</button>
-                    <button class="add-software" onclick="newTab('software')">Software</button>
-                    <button class="add-data" onclick="newTab('data')">Data Set</button>
+                    <button class="add-pub" onclick="newTab('pub')">Add Publication</button>
+                    <br />
+                    <button class="add-software" onclick="newTab('software')">Add Software</button>
+                    <br />
+                    <button class="add-data" onclick="newTab('data')">Add Data Set</button>
                 </div>
             </div>
         </div>
@@ -223,10 +224,10 @@
         const tourMain = {
             showProgress: true,
             steps: [
-                { popover: { title: '👋🏻 Welcome to the RESQUE tool!', description: 'We need to change the way we assess research - with a focus on quality (over quantity). The RESearch QUality Evaluation (RESQUE) framework provides an evaluation scheme for publications, data sets, and research software. With this tool, you can enter the necessary information for your best research outputs, export a profile that shows your research style (not implemented yet), and use it for your CV or in hiring and tenure committees.' } },
+                { popover: { title: '👋🏻 Welcome to the RESQUE tool!', description: 'We need to change the way we assess research - with a focus on quality (over quantity). The RESearch QUality Evaluation (RESQUE) framework provides an evaluation scheme for publications, data sets, and research software for psychological research. With this tool, you can enter the necessary information for your best research outputs, export a profile that shows your research style (not implemented yet), and use it for your CV or in hiring and tenure committees. <br><span style="background-color: lightyellow; font-size:80%;">[Note: The RESQUE is still a beta version and in active development.]</span>' } },
                 { popover: { title: '🔒 Privacy', description: 'The data you enter never leaves your device. Everything is processed locally. (except fetching the information about a publications using the DOI)' } },
                 { popover: { title: 'Saving changes...', description: 'Your changes are saved automatically in your browser. You can reload the page or close this tab and come back another time, the data you entered will still be here.' } },
-                { element: '.pdf-button', popover: { description: 'You can open a PDF file and extract the DOI automatically. Note that this might fail in rare cases.' } },
+                // { element: '.pdf-button', popover: { description: 'You can open a PDF file and extract the DOI automatically. Note that this might fail in rare cases.' } },
                 { element: '.add-pub', popover: { title: 'Take your time...', description: 'After filling out the metadata form, add a new publication to continue the tour.' } },
             ]
         };
@@ -576,7 +577,13 @@
                 sessionStorage.clear();
                 location.reload();
             } else {
-                alert("Error: Could not load data because it was created using an earlier version.");
+                alert("Warning: the data in the local file was created using an earlier version. Trying to load it anyway.");
+
+                // Temporary: Load anyway!!
+                results = loadedData;
+                save();
+                sessionStorage.clear();
+                location.reload();
             }
         }
 

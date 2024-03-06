@@ -1,4 +1,5 @@
 {
+    "version": "0.1",
     "prefix": "M",
     "title": "Author / Metadata",
     "elements": [
@@ -11,6 +12,16 @@
             "id": "FirstName",
             "type": "text",
             "title": "First name"
+        },
+        {
+            "id": "YearPhD",
+            "type": "number",
+            "title": "Year of PhD / Dr."
+        },
+        {
+            "id": "AcademicAgeBonus",
+            "type": "number",
+            "title": "Years that are subtracted from active academic life (e.g. due to child care). You can enter fractional years, e.g. 0.5."
         },
         {
             "id": "ORCID",

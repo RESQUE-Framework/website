@@ -83,4 +83,8 @@ An interactive dashboard allows to compare multiple candidates and to zoom into 
 
 The development of RESQUE is supported by:
 
+::: {layout-ncol=2}
 ![](includes/EFA_WortBildmarke_Quest_schwarz.png)
+
+![](includes/dgps.jpg)
+:::

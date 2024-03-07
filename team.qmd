@@ -34,4 +34,8 @@ Please note and respect our [Code of Conduct](/CODE_OF_CONDUCT.md).
 
 The development of RESQUE is supported by:
 
+::: {layout-ncol=2}
 ![](includes/EFA_WortBildmarke_Quest_schwarz.png)
+
+![](includes/dgps.jpg)
+:::

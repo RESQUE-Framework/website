@@ -1369,7 +1369,7 @@
         },
         {
             "id": "P_Theorizing_Type",
-            "type": "radio",
+            "type": "checkbox",
             "title": "In what language or system is the theory formulated?",
             "options": [
                 {
@@ -1399,7 +1399,7 @@
             "id": "P_Theory_Type_Other",
             "type": "text",
             "title": "Theory type/ Language: Other",
-            "condition": "$P_Suitable === 'Yes' && $P_Theorizing === 'TheoryGuided' && $P_Theorizing_Type === 'Other'"
+            "condition": "$P_Suitable === 'Yes' && $P_Theorizing === 'TheoryGuided' && $P_Theorizing_Type_Other"
         },
         {
             "id": "P_Theorizing_Contribution",

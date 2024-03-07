@@ -1,5 +1,5 @@
 {
-    "version": "0.3.0",
+    "version": "0.3.1",
     "prefix": "P",
     "title": "Publication",
     "scoring": {
@@ -1450,7 +1450,7 @@
         {
             "id": "P_Theorizing_Test",
             "type": "radio",
-            "title": "Did you <b>test</b> (a part of) this theory?",
+            "title": "Did you do a <b>confirmatory test</b> of (a part of) the theory?",
             "options": [
                 {
                     "id": "No",

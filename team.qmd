@@ -30,3 +30,8 @@ If you want to **develop an expansion pack** for your field, please contact [Ann
 
 Please note and respect our [Code of Conduct](/CODE_OF_CONDUCT.md).
 
+## Supporters
+
+The development of RESQUE is supported by:
+
+![](includes/EFA_WortBildmarke_Quest_schwarz.png)

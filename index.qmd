@@ -79,3 +79,8 @@ We provide R scripts that ...
 An interactive dashboard allows to compare multiple candidates and to zoom into the profiles of specific candidates.
 
 
+## Supporters
+
+The development of RESQUE is supported by:
+
+![](includes/EFA_WortBildmarke_Quest_schwarz.png)

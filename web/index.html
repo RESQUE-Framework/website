@@ -1279,7 +1279,16 @@
         const createForm = (form) => {
             let formElement = document.createElement("form");
 
-            let domElements = form.elements.map(elem => createInput(elem));
+            let domElements;
+
+            if (mode == MODE_PRINT && filter.length) {
+                // filter elements, id starts with a prefix from the filter
+                domElements = form.elements
+                    .filter(elem => filter.some(f => elem.id.startsWith(f)))
+                    .map(elem => createInput(elem));
+            } else {
+                domElements = form.elements.map(elem => createInput(elem));
+            }
 
             console.log(form)
 
@@ -1517,6 +1526,7 @@
         const mode = params.get("mode");
         const details = params.get("details") !== "false";
         const doimagic = params.get("doimagic");
+        const filter = (params.get("filter") ?? "").split(",").filter(f => f);
 
         let results = getSavedData();
 
@@ -1539,11 +1549,6 @@
         if (mode === MODE_PRINT) {
             const formview = document.querySelector("#formview");
             formview.style.overflow = "visible";
-
-            const metaDiv = document.createElement("div");
-            metaDiv.innerHTML = "<h1>RESQUE: Full list of indicators for type \"Publication\"</h1>Version <pack version>, last update on <date of last change>";
-            formview.appendChild(metaDiv);
-
 
             document.querySelector("#main").style.display = "block";
             document.body.style.overflow = "visible";

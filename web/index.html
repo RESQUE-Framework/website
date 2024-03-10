@@ -355,6 +355,10 @@
 
             ps.forEach(pack => versions[pack.prefix] = pack.version);
 
+            let date = {};
+
+            ps.forEach(pack => date[pack.prefix] = pack.date);
+
             let scoringInfos = {}
 
             ps.forEach(pack => scoringInfos = { ...scoringInfos, ...pack.scoring })
@@ -362,6 +366,7 @@
             return {
                 title: ps[0].title,
                 versions,
+                date,
                 scoring: scoringInfos,
                 pool,
                 config
@@ -372,6 +377,7 @@
             return {
                 title: combinedPack.title,
                 versions: combinedPack.versions,
+                date: combinedPack.date,
                 scoring: combinedPack.scoring,
                 config: combinedPack.config,
                 elements: ids.length <= 0 ? combinedPack.pool : ids.map(id => combinedPack.pool.find(item => item.id === id))
@@ -382,6 +388,7 @@
             return {
                 title: combinedPack.title,
                 versions: combinedPack.versions,
+                date: combinedPack.date,
                 scoring: combinedPack.scoring,
                 config: combinedPack.config,
                 elements: combinedPack.pool.filter(item => item.id.startsWith(prefix))
@@ -391,6 +398,8 @@
         function pickByCondition(combinedPack, condition) {
             return {
                 title: combinedPack.title,
+                versions: combinedPack.versions,
+                date: combinedPack.date,
                 scoring: combinedPack.scoring,
                 config: combinedPack.config,
                 elements: combinedPack.pool.filter(item => condition(item))
@@ -1272,14 +1281,25 @@
 
             let domElements = form.elements.map(elem => createInput(elem));
 
+            console.log(form)
+
             let title = document.createElement("h2");
             title.innerText = form.title;
 
-            if ((mode === MODE_PREVIEW || mode === MODE_PRINT) && details) {
+            if (mode === MODE_PREVIEW && details) {
                 title.innerText = "[Preview] " + title.innerText;
+            } else if (mode === MODE_PRINT) {
+                title.innerText = `RESQUE: Full list of indicators for type "${title.innerText}"`;
             }
 
-            formElement.append(title, ...domElements);
+            formElement.appendChild(title)
+            if (mode === MODE_PRINT) {
+                let versions = Object.entries(form.versions).map(([prefix, version]) => `${prefix}: ${version}`).join(", ");
+                let date = Object.entries(form.date).map(([prefix, date]) => `${prefix}: ${new Date(date).toLocaleDateString()}`).join(", ");
+
+                formElement.append(`Version ${versions}; last update on ${date}`);
+            }
+            formElement.append(...domElements);
 
             formElement.addEventListener('change', update);
 
@@ -1517,7 +1537,13 @@
         }
 
         if (mode === MODE_PRINT) {
-            document.querySelector("#formview").style.overflow = "visible";
+            const formview = document.querySelector("#formview");
+            formview.style.overflow = "visible";
+
+            const metaDiv = document.createElement("div");
+            metaDiv.innerHTML = "<h1>RESQUE: Full list of indicators for type \"Publication\"</h1>Version <pack version>, last update on <date of last change>";
+            formview.appendChild(metaDiv);
+
 
             document.querySelector("#main").style.display = "block";
             document.body.style.overflow = "visible";

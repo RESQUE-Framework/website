@@ -1083,7 +1083,7 @@
                     "text": "(Almost) One-click reproducibility with a master script (or equivalent)"
                 }
             ],
-            "info": "<ul><li> {$P_ReproducibleScripts_TIER4_Sufficiency | <b>Sufficiency</b>: The documentation for a project should contain all the data, scripts, and supplementary information necessary to enable any user (with access to and basic proficiency in the software used) to reproduce all the results presented in the report without undue difficulty. The user should not have to seek assistance from the person who conducted the study.} </li><li> {$P_ReproducibleScripts_TIER4_SoupToNuts |  <b>Soup-to-nuts</b>: The documentation should include scripts that reproduce all the computations required for both (i) the steps of processing necessary to prepare the data for analysis, and (ii) the analysis or procedures performed with the processed data that generate the results. } </li><li> {:'Portability' |  <b>Portability</b>: Provided the necessary software is installed, any user should be able to copy the project folder, with the hierarchy of subfolders and files it contains intact, onto their own computer or workspace, and then run the scripts that reproduce the project locally. Note that the <i>Portability</i> claim is an assertion by the submitting author; whether portability has been independently verified is covered in indicator <i>P_IndependentVerification (Workflow reproducibility)</i>.} </li><li> {$P_ReproducibleScripts_TIER4_OneClickReproducibility |  <b>(Almost) One-click reproducibility</b>: Reproducing all the computations required to generate the results of a study should require (almost) nothing other than executing a single Master Script. } </li></ul><br><br>These items are inspired by the <a href='https://www.projecttier.org/tier-protocol/protocol-4-0/'>TIER Protocol 4.0</a>. Some of the help text is quoted from there. <i>Portability</i> is not listed here, as this is covered in the indicator <code>WorkflowReproducible</code> of <code>P_IndependentVerification</code>.",
+            "info": "<ul><li> {$P_ReproducibleScripts_TIER4_Sufficiency | <b>Sufficiency</b>: The documentation for a project should contain all the data, scripts, and supplementary information necessary to enable any user (with access to and basic proficiency in the software used) to reproduce all the results presented in the report without undue difficulty. The user should not have to seek assistance from the person who conducted the study.} </li><li> {$P_ReproducibleScripts_TIER4_SoupToNuts |  <b>Soup-to-nuts</b>: The documentation should include scripts that reproduce all the computations required for both (i) the steps of processing necessary to prepare the data for analysis, and (ii) the analysis or procedures performed with the processed data that generate the results. } </li><li> {:'Portability' |  <b>Portability</b>: Provided the necessary software is installed, any user should be able to copy the project folder, with the hierarchy of subfolders and files it contains intact, onto their own computer or workspace, and then run the scripts that reproduce the project locally. Note that the <i>Portability</i> claim is an assertion by the submitting author; whether portability has been independently verified is covered in indicator <i>P_IndependentVerification (Workflow reproducibility)</i>.} </li><li> {$P_ReproducibleScripts_TIER4_OneClickReproducibility |  <b>(Almost) One-click reproducibility</b>: Reproducing all the computations required to generate the results of a study should require (almost) nothing other than executing a single Master Script. } </li></ul><br><br>These items are inspired by the <a href='https://www.projecttier.org/tier-protocol/protocol-4-0/'>TIER Protocol 4.0</a>. Some of the help text is quoted from there.",
             "condition": "$P_Suitable === 'Yes' && $P_ReproducibleScripts =|= ['YesParts', 'YesEntire'] && meta$RaterType === 'Applicant'"
         },
         {
@@ -1123,7 +1123,7 @@
                 }
             ],
             "eval_dimension": "rigor",
-            "info": "<i>Independent</i> means that someone who is not a co-author verified the computational reproducibility.<br><br>This has rarely been implemented so far, but some <a href='https://social-science-data-editors.github.io/guidance/'>journals</a> already do these independent checks, and universities start to provide <a href='https://www.ukrn.org/2024/01/30/pre-submission-certification-of-computational-reproducibility/'>pre-submission certification of computational reproducibility</a>.<br><br><ul><li>{:'WorkflowReproducible' | <b>Workflow reproducibility / code completeness check</b>: Code runs without errors or critical warnings on another machine by another person (without comparing the numbers). This is also known as <i>process reproducibility</i>.}</li><li>{:'MainResultsReproducible' | <b>Computational reproducibility of main results has been independently verified using the original code</b>: Someone compared the <i>figures and main results</i> and asserts a sufficient correspondence with the reported main results.}</li><li>{:'AllResultsReproducible' | <b>Computational reproducibility of <i>all numerical results</i> has been independently verified using the original code</b>: Someone compared <i>all figures and numbers</i> and asserts a sufficient correspondence with the reported results.}</li><li>{:'AnalysisReplication' | <b>Analysis replication (independent implementation)</b>: Somebody independently implemented the analyses, without looking at the original code, and asserts a sufficient correspondence with the reported main results.}</li></ul><br><br>If you check one of three 'reproducible' options, you should also check the <i>Portability</i> item in <i>P_ReproducibleScripts_TIER4</i>. {:'WorkflowReproducible', 'MainResultsReproducible', 'AllResultsReproducible', 'AnalysisReplication' | The bonus point is only given when a public verification report/certificate with a persistent identifier is available.}",
+            "info": "<ul><li><i>Independent</i> means that someone who is not a co-author verified the computational reproducibility.</li><li>This only counts if a <i>verification report</i> is published and the doi is provided here (otherwise select 'no').</li></ul> <br><br>This has rarely been implemented so far, but some <a href='https://social-science-data-editors.github.io/guidance/'>journals</a> already do these independent checks, and universities start to provide <a href='https://www.ukrn.org/2024/01/30/pre-submission-certification-of-computational-reproducibility/'>pre-submission certification of computational reproducibility</a>.<br><br><ul><li>{:'WorkflowReproducible' | <b>Workflow reproducibility / code completeness check</b>: Code runs without errors or critical warnings on another machine by another person (without comparing the numbers). This is also known as <i>process reproducibility</i>.}</li><li>{:'MainResultsReproducible' | <b>Computational reproducibility of main results has been independently verified using the original code</b>: Someone compared the <i>figures and main results</i> and asserts a sufficient correspondence with the reported main results.}</li><li>{:'AllResultsReproducible' | <b>Computational reproducibility of <i>all numerical results</i> has been independently verified using the original code</b>: Someone compared <i>all figures and numbers</i> and asserts a sufficient correspondence with the reported results.}</li><li>{:'AnalysisReplication' | <b>Analysis replication (independent implementation)</b>: Somebody independently implemented the analyses, without looking at the original code, and asserts a sufficient correspondence with the reported main results.}</li></ul><br><br>If you check one of three 'reproducible' options, you should also check the <i>Portability</i> item in the section <i>Reproducibility Standards</i>. {:'WorkflowReproducible', 'MainResultsReproducible', 'AllResultsReproducible', 'AnalysisReplication' | The bonus point is only given when a public verification report/certificate with a persistent identifier is available.}",
             "background": "'In the context of mathematics, Stodden et al. distinguish between <i>verification</i> and <i>validation</i>; following their definition, <b>a CODECHECK [or reproducibility check] ensures verification of computational results, i.e., checking that code generates the output it claims to create</b>, but <i>not</i> a validation, i.e., checking that the code implements the right algorithm [or statistical model] to solve the specific research problem.' (see <a href='https://f1000research.com/articles/10-253/v2'>Nüst & Eglen, 2021</a>).",
             "condition": "$P_Suitable === 'Yes'",
             "tip_external": "<b>Search words:</b> reprodu*, verify, independent"
@@ -1498,11 +1498,16 @@
             "id": "P22P23SEP",
             "type": "separator"
         },
-
+        {
+            "id": "P_Power_Info",
+            "type": "info",
+            "text": "<h3>Sample size and power considerations</h3>The boxes will expand when you enter text; you can simply copy and paste the relevant sections from the paper.",
+            "condition":  "$P_Suitable === 'Yes'"
+        },
         {
             "id": "P_PowerConsiderations",
             "type": "textbox",
-            "title": "Please report all considerations regarding statistical power (assumed effect size, power, N, ...)",
+            "title": "Please report all considerations regarding statistical power (assumed effect size, power, N, ...). ",
             "condition": "$P_Suitable === 'Yes'"
         },
         {
@@ -1510,6 +1515,16 @@
             "type": "textbox",
             "title": "Sample size (if applicable, differentiate by levels / items / ...)",
             "condition": "$P_Suitable === 'Yes'"
+        },
+        {
+            "id": "P23P24SEP",
+            "type": "separator"
+        },
+        {
+            "id": "P_Merit_Info",
+            "type": "info",
+            "text": "<h3>Merit Statement</h3>Please indicate why this research output made an important contribution to the field and why it should be considered during the hiring / promotion process. The box will expand when you enter text.",
+            "condition":  "$P_Suitable === 'Yes'"
         },
         {
             "id": "P_Merit",

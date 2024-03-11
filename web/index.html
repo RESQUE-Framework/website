@@ -567,7 +567,7 @@
         }
 
         const getSavedData = () => {
-            return JSON.parse(localStorage.getItem("formdata")) || [{ type: "meta" }];
+            return JSON.parse(localStorage.getItem("formdata")) || [];
         }
 
         const reset = () => {
@@ -1561,6 +1561,16 @@
 
         menu().then(m => {
             formTypes = m;
+
+            // If there is no meta (= no elements in the results list), create one
+            if (!results.length) {
+                results.push({
+                    type: "meta",
+                    version: getVersion("meta"),
+                    date_added: Date.now(),
+                    ...getDefaultValues("meta")
+                })
+            }
 
             ({ meta, pub, software, data, config: globalConfig } = m);
             results.forEach((r, index) => {

@@ -73,7 +73,7 @@ The subdivisions of the German Psychological Society have been asked to discuss 
 We provide R scripts that ...
 
 1. load and aggregate multiple json files with RESQUE ratings
-2. enrich the data with other sources of information (e.g. citation counts & normalized citation counts from [OpenAlex](https://openalex.org)), impact metrics from [BIP!](https://bip.imsi.athenarc.gr)
+2. enrich the data with other sources of information (e.g. citation counts & normalized citation counts from [OpenAlex](https://openalex.org), impact metrics from [BIP!](https://bip.imsi.athenarc.gr))
 3. provide candidate profiles that can be requested by hiring and tenure committees, or used by candidates as an attachment to their CV or website.
 
 An interactive dashboard allows to compare multiple candidates and to zoom into the profiles of specific candidates.

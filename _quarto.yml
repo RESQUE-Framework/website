@@ -12,14 +12,27 @@ project:
 website:
   title: "The RESQUE Framework"
   site-url: "https://nicebread.github.io/RESQUE"
+  page-navigation: true
   navbar:
+    search: true
+    background: light
     left:
       - get_profile.qmd
       - for_committees.qmd
       - text: "📔 Publications"
-        href: publications.qmd  
+        file: publications.qmd
       - eval_projects.qmd      
       - team.qmd
+      - technical_docs.qmd
+
+  sidebar:
+    - title: "📔 Publications"
+      style: "docked"
+      background: light
+      contents:
+        - publications.qmd
+        - publications/Commentaries.qmd
+        - publications/Presentations.qmd
 
 format:
   html:

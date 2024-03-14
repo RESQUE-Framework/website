@@ -312,6 +312,10 @@
             "title": "Is this paper a multi-study paper?",
             "options": [
                 {
+                    "id": "NotApplicable",
+                    "text": "Not applicable"
+                },
+                {
                     "id": "No",
                     "text": "No (only a single study is reported)"
                 },

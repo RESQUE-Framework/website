@@ -5,4 +5,4 @@ toc: true
 
 TODO: Show all indicators for the three ratings schemes
 
-The rating sheets are versioned. Indicators from the core set start with the prefix “P” (Publications), “D” (Data) or “S” (Software).
+The rating sheets are versioned. Indicators from the core set start with the prefix 'P' (Publications), 'D' (Data) or 'S' (Software).

@@ -30,7 +30,7 @@ This Code of Conduct applies within all project spaces, and also applies when an
 
 If you think that a project member acts against these guidelines, please report this to one of the project maintainers. The complaint will be investigated based on the principles of impartiality, proportionality, and due process ensuring the anonymity of both reporter and reportee. We ask all involved parties to await the outcome of such investigations before they publicly comment or act on potentially unfounded allegations. Project maintainers who do not follow or enforce the Code of Conduct in good faith may face temporary or permanent repercussions as determined by other members of the project’s leadership.
 
-[^1]: Epistemic Responsibility is about the goal to “produce, maintain, and disseminate knowledge and other knowledge-related (or: epistemic) goods, such as insight, rational belief, and understanding” (Lechner et al, 2022) and has been defined as "related to the capacity to engage in adequate policies in the search of truth, the ability to give reasons, or the readiness to revise one's beliefs in the light of new evidence.” (Echeverri, 2011).
+[^1]: Epistemic Responsibility is about the goal to 'produce, maintain, and disseminate knowledge and other knowledge-related (or: epistemic) goods, such as insight, rational belief, and understanding' (Lechner et al, 2022) and has been defined as "related to the capacity to engage in adequate policies in the search of truth, the ability to give reasons, or the readiness to revise one's beliefs in the light of new evidence.' (Echeverri, 2011).
 
 ### References:
 
@@ -44,6 +44,6 @@ Lechner, I. M., Mokkink, L., de Ridder, J., van Woudenberg, R., Bouter, L., & Ti
 - [Friendly Space Policy of the Barcamp Open Science](https://www.open-science-conference.eu/barcamp/)
 - [The TU Eindhoven Code of Scientific Conduct](https://assets.tue.nl/fileadmin/content/universiteit/Over_de_universiteit/integriteit/TUe_Code_of_Scientific_Conduct_21-1-2015.pdf)
 - [The IGDORE CoC](https://igdore.org/wp-content/uploads/2022/07/IGDORE-Code-of-Research-Conduct.pdf)
-- [Simine Vazire’s „Oath for Scientists“](https://sometimesimwrong.typepad.com/wrong/2018/01/oath-for-scientists.html)
+- [Simine Vazire’s „Oath for Scientists'](https://sometimesimwrong.typepad.com/wrong/2018/01/oath-for-scientists.html)
 - Peels, R., van Woudenberg, R., de Ridder, J., & Bouter, L. (2020). Academia’s Big Five: A normative taxonomy for the epistemic responsibilities of universities [version 2; peer review: 2 approved]. F1000Research, 8(862). https://doi.org/10.12688/f1000research.19459.2
 - [The Contributor Covenant, version 2.1](https://www.contributor-covenant.org/version/2/1/code_of_conduct.html)

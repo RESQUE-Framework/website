@@ -202,7 +202,7 @@
         {
             "id": "P_TypeMethod",
             "type": "checkbox",
-            "title": "Publication type 1 (check all that apply)",
+            "title": "Publication type (check all that apply)",
             "options": [
                 {
                     "id": "Empirical",
@@ -236,7 +236,7 @@
         {
             "id": "P_TypePublication",
             "type": "radio",
-            "title": "Publication type 2",
+            "title": "Publication status",
             "options": [
                 {
                     "id": "PublishedPaper",
@@ -1172,7 +1172,7 @@
                     "text": "Yes, all material necessary for a replication [provide doi or URL]"
                 }
             ],
-            "info": "Open Material refers to all material that is necessary to replicate a study. It typically includes questionnaire items, stimuli, texts for vignettes, or code for software that controls the experimental flow. {:'YesParts', 'YesEntire' | Only choose 'Yes' if the material substantially exceeds the open reproducible scripts. }<br><br><ul><li>{:0 | <b>When only parts of the materials available</b><br>Choose 'Yes, entire material' if a reasonable justification for only parts of material is given.<br>Choose 'Yes, parts of material' if no justification is given.</li><li>When to choose <b>'Not applicable'</b>: If no material has been used in the publication, or the entire material is contained in the open reproducible scripts.</li></ul>}",
+            "info": "Open Material refers to all material that is necessary to replicate a study. It typically includes questionnaire items, stimuli, texts for vignettes, or code for software that controls the experimental flow. {:'YesParts', 'YesEntire' | Only choose 'Yes' if the material substantially exceeds the open reproducible scripts. }<br><br><ul><li>{:0 | When to choose <b>'parts of the materials available'</b><br>Choose 'Yes, entire material' if a reasonable justification for only parts of material is given.<br>Choose 'Yes, parts of material' if no justification is given.</li><li>When to choose <b>'Not applicable'</b>: If no material has been used in the publication, or the entire material is contained in the open reproducible scripts.</li></ul>}",
             "condition": "$P_Suitable === 'Yes'",
             "tip_external":"<ul><li>Is a <b>link</b> to open materials provided (don't forget to check Appendix and Supplemental Materials)</li><li>Expect <b>'entire material'</b> as default if materials are available (only if the material is obviously <i>not</i> complete and no reasonable explanation is given, assign <b>'parts of materials'</b>)</li><li><b>'Not applicable'</b> is the default if 'reuse of existing data set', 'meta analysis' or 'simulation', <mark>but</mark> if there is additional material that shows an own contribution then assign <b>'Yes, entire material'</b></li></ul> "
         },

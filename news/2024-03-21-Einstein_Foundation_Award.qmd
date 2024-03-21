@@ -3,12 +3,15 @@ title: "Einstein Foundation Award"
 date: 2024-03-21
 ---
 
-The video of the award ceremy can be seen here: https://www.youtube.com/watch?v=gpRMXW_9M7s
-
-A short thread can be found here: https://x.com/Einstein_Berlin/status/1768573503282839931?s=20
-
-Watch the project presenation here: https://www.youtube.com/watch?v=SHQbrK4VCXY&list=PLxPCLWtwUCx4oFi3AH88ocRqB5JRfAQhM&index=5
+Anne Gärtner received the [Einstein Foundation Early Career Award 2023](https://award.einsteinfoundation.de/award-winners-finalists/recipients-2023/early-career-award-2023) for the project on Responsible Research Assessment that seeks to develop novel criteria to assess research output based on quality rather than quantity. The project is based on RESQUE and aims to further develop and evaluate the criteria.
 
 
+The video of the **award ceremony** can be seen [here](https://www.youtube.com/watch?v=gpRMXW_9M7s)
 
-![EFA](img/EFA_164-2.png)
+A short **thread** can be found [here](https://x.com/Einstein_Berlin/status/1768573503282839931?s=20)
+
+Watch the **project presenation** [here](https://www.youtube.com/watch?v=SHQbrK4VCXY&list=PLxPCLWtwUCx4oFi3AH88ocRqB5JRfAQhM&index=5)
+
+
+
+![Einstein Foundation Award](img/EFA_164-2.png)

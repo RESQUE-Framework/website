@@ -5,7 +5,6 @@
 ### core-pubs
 
 - Minor wording updates to theory indicators
-- 
 - Increased version of core-pubs to 0.3.1
 
 # 2024-02-26

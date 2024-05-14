@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.549">
+<meta name="generator" content="quarto-1.4.553">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -123,6 +123,10 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link active" href="./team.html" aria-current="page"> 
 <span class="menu-text">👥 Team / Contribute</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./technical_docs.html"> 
+<span class="menu-text">⎔ Technical documentation</span></a>
+  </li>  
 </ul>
           </div> <!-- /navcollapse -->
           <div class="quarto-navbar-tools">
@@ -161,10 +165,10 @@ ul.task-list li input[type="checkbox"] {
 <p>This project is a community effort with many contributors:</p>
 <ul>
 <li>The project is <strong>coordinated</strong> by <a href="http://www.nicebread.de">Felix Schönbrodt</a>, <a href="https://tu-dresden.de/mn/psychologie/ifap/differentielle-psychologie/die-professur/Mitarbeiter/dipl-psych-anne-gaertner">Anne Gärtner</a>, <a href="https://tu-dresden.de/mn/psychologie/iaosp/diagnostische/die-professur/inhaber-in">Daniel Leising</a>, and the <a href="https://www.dgps.de/schwerpunkte/transparente-wissenschaft/kommission-open-science/">Open-Science-Committee of the DGPs</a></li>
-<li>The <strong>core indicator set</strong> was developed by Anne Gärtner, Daniel Leising and Felix Schönbrodt, partly based on previous work by Daniel Leising, Isabel Thielmann, Anderas Glöckner, Anne Gärtner &amp; Felix Schönbrodt (see <a href="https://doi.org/10.5964/ps.6029.">Leising et al., 2022</a>)</li>
+<li>The <strong>core indicator set</strong> was developed by Anne Gärtner, Daniel Leising and Felix Schönbrodt, partly based on previous work by Daniel Leising, Isabel Thielmann, Andreas Glöckner, Anne Gärtner &amp; Felix Schönbrodt (see <a href="https://doi.org/10.5964/ps.6029.">Leising et al., 2022</a>)</li>
 <li><a href="https://github.com/alpkaanaksu">Alp Kaan Aksu</a> is the lead programmer who designed and programmed the <a href="https://nicebread.github.io/RESQUE/web/"><strong>RESQUE App</strong></a> and the <a href="https://nicebread.github.io/RESQUE/web/builder">Form Builder</a></li>
 <li>Maximilian Ernst, Aaron Peikert and Felix Schönbrodt had a leading role in the development of the <strong>RESQUE-Software</strong> scheme</li>
-<li>Nele Freyer, Jens Lange, Daniel Leising, Philipp Musfeld, anbd Felix Schönbrodt had a leading role in the development of the <strong>indicators for formal theory development and evaluation</strong> in RESQUE-Pubs</li>
+<li>Nele Freyer, Jens Lange, Daniel Leising, Philipp Musfeld, and Felix Schönbrodt had a leading role in the development of the <a href="./news/2024-02-26-theory_indicators.html">indicators for formal theory development and evaluation</a> in RESQUE-Pubs</li>
 <li>Daniel Nüst contributed to the <strong>code verification indicator</strong> in RESQUE-Pubs</li>
 <li>Dejana Damjanovic, Gracia Prüm and Martin Wiehr coded many papers and created the first “norm” sample</li>
 <li>TODO add all others</li>
@@ -177,6 +181,25 @@ ul.task-list li input[type="checkbox"] {
 <p>If you want to <strong>collaborate scientifically</strong> on the project, please contact one of the project maintainers (<a href="mailto:felix.schoenbrodt@psy.lmu.de">Felix Schönbrodt</a>; <a href="mailto:anne_gaertner@tu-dresden.de">Anne Gärtner</a>; <a href="mailto:Daniel.Leising@tu-dresden.de">Daniel Leising</a>).</p>
 <p>If you want to <strong>develop an expansion pack</strong> for your field, please contact <a href="mailto:anne_gaertner@tu-dresden.de">Anne Gärtner</a>.</p>
 <p>Please note and respect our <a href="./CODE_OF_CONDUCT.html">Code of Conduct</a>.</p>
+</section>
+<section id="partners-and-supporters-of-resque" class="level2">
+<h2 class="anchored" data-anchor-id="partners-and-supporters-of-resque">Partners and supporters of RESQUE</h2>
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout-ncol="3">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img src="includes/EFA_WortBildmarke_Quest_schwarz.png" class="img-fluid"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img src="includes/dgps.jpg" class="img-fluid"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img src="includes/CoARA.png" class="img-fluid"></p>
+</div>
+</div>
+</div>
 
 
 </section>
@@ -261,6 +284,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/nicebread\.github\.io\/RESQUE");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -295,7 +336,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');

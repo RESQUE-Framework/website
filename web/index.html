@@ -109,7 +109,7 @@
                 </details>
             </div>
             <div class="menu-bottom">
-                <span onclick="showInfoModal()" class="fakelink">FAQ</span> • <a class="github-link"
+                <a class="fakelink" href="https://nicebread.github.io/RESQUE">RESQUE Website</a> • <span onclick="showInfoModal()" class="fakelink">FAQ</span> • <a class="github-link"
                     href="https://github.com/nicebread/RESQUE">GitHub</a> • <span onclick="driver(tourAnytime()).drive()"
                     class="fakelink">Tour</span>
             </div>
@@ -227,7 +227,7 @@
                 { popover: { title: '👋🏻 Welcome to the RESQUE tool!', description: 'We need to change the way we assess research - with a focus on quality (over quantity). The RESearch QUality Evaluation (RESQUE) framework provides an evaluation scheme for publications, data sets, and research software for psychological research. With this tool, you can enter the necessary information for your best research outputs, export a profile that shows your research style (not implemented yet), and use it for your CV or in hiring and tenure committees. <br><span style="background-color: lightyellow; font-size:80%;">[Note: The RESQUE is still a beta version and in active development.]</span>' } },
                 { popover: { title: '🔒 Privacy', description: 'The data you enter never leaves your device. Everything is processed locally. (except fetching the information about a publications using the DOI)' } },
                 { popover: { title: 'Saving changes...', description: 'Your changes are saved automatically in your browser. You can reload the page or close this tab and come back another time, the data you entered will still be here.' } },
-                { element: '.pdf-button', popover: { description: 'You can open a PDF file and extract the DOI automatically. Note that this might fail in rare cases.' } },
+                // { element: '.pdf-button', popover: { description: 'You can open a PDF file and extract the DOI automatically. Note that this might fail in rare cases.' } },
                 { element: '.add-pub', popover: { title: 'Take your time...', description: 'After filling out the metadata form, add a new publication to continue the tour.' } },
             ]
         };
@@ -355,6 +355,10 @@
 
             ps.forEach(pack => versions[pack.prefix] = pack.version);
 
+            let date = {};
+
+            ps.forEach(pack => date[pack.prefix] = pack.date);
+
             let scoringInfos = {}
 
             ps.forEach(pack => scoringInfos = { ...scoringInfos, ...pack.scoring })
@@ -362,6 +366,7 @@
             return {
                 title: ps[0].title,
                 versions,
+                date,
                 scoring: scoringInfos,
                 pool,
                 config
@@ -372,6 +377,7 @@
             return {
                 title: combinedPack.title,
                 versions: combinedPack.versions,
+                date: combinedPack.date,
                 scoring: combinedPack.scoring,
                 config: combinedPack.config,
                 elements: ids.length <= 0 ? combinedPack.pool : ids.map(id => combinedPack.pool.find(item => item.id === id))
@@ -382,6 +388,7 @@
             return {
                 title: combinedPack.title,
                 versions: combinedPack.versions,
+                date: combinedPack.date,
                 scoring: combinedPack.scoring,
                 config: combinedPack.config,
                 elements: combinedPack.pool.filter(item => item.id.startsWith(prefix))
@@ -391,6 +398,8 @@
         function pickByCondition(combinedPack, condition) {
             return {
                 title: combinedPack.title,
+                versions: combinedPack.versions,
+                date: combinedPack.date,
                 scoring: combinedPack.scoring,
                 config: combinedPack.config,
                 elements: combinedPack.pool.filter(item => condition(item))
@@ -484,6 +493,7 @@
                 })
                 .catch(() => {
                     return {
+                        error: true,
                         title: doi ? '⚠️ <b>Invalid DOI:</b> ' + doi : undefined,
                         year: undefined,
                         DOI: doi
@@ -499,7 +509,11 @@
 
             currentResult.Title = publicationInformation.title;
             currentResult.Year = publicationInformation.year;
-            currentResult.DOI = publicationInformation.DOI;
+
+            if (!publicationInformation.error) {
+                currentResult.DOI = "https://doi.org/" + publicationInformation.DOI;
+                document.getElementById("DOI").value = currentResult.DOI;
+            }
 
             save();
 
@@ -553,7 +567,7 @@
         }
 
         const getSavedData = () => {
-            return JSON.parse(localStorage.getItem("formdata")) || [{ type: "meta" }];
+            return JSON.parse(localStorage.getItem("formdata")) || [];
         }
 
         const reset = () => {
@@ -592,7 +606,7 @@
             results[0].date_exported = millis;
             let json = JSON.stringify(results, null, 2);
             let blob = new Blob([json], { type: "text/json;charset=utf-8" });
-            let filename = `resque_${results[0].M1 ? results[0].M1.toLowerCase() + "_" : ""}${millis}.json`;
+            let filename = `resque_${results[0].LastName ? results[0].LastName.toLowerCase() + "_" : ""}${millis}.json`;
 
             let a = document.getElementById("download");
             a.innerText = filename;
@@ -891,7 +905,12 @@
             if (element.tip_external) {
                 tipExternal.innerHTML = element.tip_external;
                 tipExternalDetails.style.display = "block";
+
                 tipExternalDetails.removeAttribute("open");
+
+                if (results[0].RaterType === "External") {
+                    tipExternalDetails.setAttribute("open", "");
+                }
             } else {
                 tipExternalDetails.style.display = "none";
             }
@@ -1039,7 +1058,7 @@
                         opt.value = option.id;
                         opt.innerHTML = option.text;
 
-                        if (mode === MODE_PREVIEW || mode === MODE_PRINT) {
+                        if ((mode === MODE_PREVIEW|| mode === MODE_PRINT) && details) {
                             opt.innerHTML = `[${option.id}] ${option.text}`;
                         }
 
@@ -1084,7 +1103,7 @@
 
                         let optionText = option.text;
 
-                        if (mode === MODE_PREVIEW || mode === MODE_PRINT) {
+                        if ((mode === MODE_PREVIEW || mode === MODE_PRINT) && details) {
                             optionText = `[${option.id}] ${optionText}`;
                         }
 
@@ -1120,7 +1139,7 @@
                         let span = document.createElement("span");
                         let text = typeof option === 'string' ? option : option.text;
 
-                        if (mode === MODE_PREVIEW || mode === MODE_PRINT) {
+                        if ((mode === MODE_PREVIEW || mode === MODE_PRINT) && details) {
                             text = `[${checkbox.id}] ${option.text}`;
                         }
 
@@ -1232,7 +1251,7 @@
                     title.classList.add(element.id, "title");
                     fragment.appendChild(title);
 
-                    if (mode === MODE_PREVIEW || mode === MODE_PRINT) {
+                    if ((mode === MODE_PREVIEW || mode === MODE_PRINT) && details) {
                         title.innerHTML = `[${element.id}] ${title.innerHTML}`;
                     }
                 }
@@ -1240,7 +1259,7 @@
 
                 domElement.classList.add(element.id);
 
-                if ((mode === MODE_PREVIEW || mode ==MODE_PRINT) && element.condition) {
+                if ((mode === MODE_PREVIEW || mode ==MODE_PRINT) && details && element.condition) {
                     let previewCondition = document.createElement("p");
                     previewCondition.style.color = "gray";
                     previewCondition.style.fontSize = "0.8rem";
@@ -1260,16 +1279,36 @@
         const createForm = (form) => {
             let formElement = document.createElement("form");
 
-            let domElements = form.elements.map(elem => createInput(elem));
+            let domElements;
+
+            if (mode == MODE_PRINT && filter.length) {
+                // filter elements, id starts with a prefix from the filter
+                domElements = form.elements
+                    .filter(elem => filter.some(f => elem.id.startsWith(f)))
+                    .map(elem => createInput(elem));
+            } else {
+                domElements = form.elements.map(elem => createInput(elem));
+            }
+
+            console.log(form)
 
             let title = document.createElement("h2");
             title.innerText = form.title;
 
-            if (mode === MODE_PREVIEW || mode === MODE_PRINT) {
+            if (mode === MODE_PREVIEW && details) {
                 title.innerText = "[Preview] " + title.innerText;
+            } else if (mode === MODE_PRINT) {
+                title.innerText = `RESQUE: Full list of indicators for type "${title.innerText}"`;
             }
 
-            formElement.append(title, ...domElements);
+            formElement.appendChild(title)
+            if (mode === MODE_PRINT) {
+                let versions = Object.entries(form.versions).map(([prefix, version]) => `${prefix}: ${version}`).join(", ");
+                let date = Object.entries(form.date).map(([prefix, date]) => `${prefix}: ${new Date(date).toLocaleDateString()}`).join(", ");
+
+                formElement.append(`Version ${versions}; last update on ${date}`);
+            }
+            formElement.append(...domElements);
 
             formElement.addEventListener('change', update);
 
@@ -1485,7 +1524,9 @@
         queryConfig = getQueryConfig(params);
 
         const mode = params.get("mode");
+        const details = params.get("details") !== "false";
         const doimagic = params.get("doimagic");
+        const filter = (params.get("filter") ?? "").split(",").filter(f => f);
 
         let results = getSavedData();
 
@@ -1506,7 +1547,8 @@
         }
 
         if (mode === MODE_PRINT) {
-            document.querySelector("#formview").style.overflow = "visible";
+            const formview = document.querySelector("#formview");
+            formview.style.overflow = "visible";
 
             document.querySelector("#main").style.display = "block";
             document.body.style.overflow = "visible";
@@ -1519,6 +1561,16 @@
 
         menu().then(m => {
             formTypes = m;
+
+            // If there is no meta (= no elements in the results list), create one
+            if (!results.length) {
+                results.push({
+                    type: "meta",
+                    version: getVersion("meta"),
+                    date_created: Date.now(),
+                    ...getDefaultValues("meta")
+                })
+            }
 
             ({ meta, pub, software, data, config: globalConfig } = m);
             results.forEach((r, index) => {

@@ -3,7 +3,11 @@ title: "Presentations"
 toc: false
 ---
 
-To get an overview about the RESQUE project, you can look at our presentation slides:
+To get an overview about the RESQUE project, you can look at our presentation slides. In general, the information on this website is more up to date than the slides.
+
+- [RESQUE: Overview in 8 slides](../presentations/RESQUE_8_slides.pdf)
+
+Slightly longer slide decks with more information:
 
 - Schönbrodt (2023-03): [Responsible Research Assessment: A practical recommendation for the evaluation of research quality beyond h-index and journal impact factors](../presentations/Schoenbrodt-2023-03-Responsible_Research_Assessment.pdf)
 - Gärtner (2023-09): [Responsible Research Assessment II: The RESQUE web form for hiring and promotion](../presentations/Gaertner-2023-09-Responsible_Research_Assessment_II.pdf)

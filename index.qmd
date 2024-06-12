@@ -48,7 +48,7 @@ Join our [mailing list](https://www.listserv.dfn.de/sympa/info/psy-dora) to rece
 
 ### ☑️ Rating schemes: Core set
 
-With the goal to make data entry for applicants and hiring committees as easy and frictionless as possible, we developed the [RESQUE Collector](https://nicebread.github.io/RESQUE/web/) app that allows to provide information for your best research outputs and to export the data in a JSON format.
+With the goal to make data entry for applicants and hiring committees as easy and frictionless as possible, we developed the [RESQUE Collector](https://resque-framework.github.io/website/web/) app that allows to provide information for your best research outputs and to export the data in a JSON format.
 
 We provide three rating schemes for ...
 

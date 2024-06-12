@@ -3,4 +3,4 @@ title: "RESQUE website is live!"
 date: 2023-12-12
 ---
 
-We launched the [RESQUE website](https://nicebread.github.io/RESQUE). All material will be collected here, including news and information about case studies, evaluation projects, new indicator packs, etc.
+We launched the [RESQUE website](https://resque-framework.github.io/website/). All material will be collected here, including news and information about case studies, evaluation projects, new indicator packs, etc.

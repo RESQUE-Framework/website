@@ -52,11 +52,11 @@ With the goal to make data entry for applicants and hiring committees as easy an
 
 We provide three rating schemes for ...
 
-- Publications, preprints, book chapters, etc. (**RESQUE-Pubs**)
-- Data sets (**RESQUE-Data**)
-- Research software (**RESQUE-Software**)
+- Publications, preprints, book chapters, etc. (**RESQUE-Pubs**) - ✅ v0.3, ready for use (but still likely to change)
+- Data sets (**RESQUE-Data**) - ❌ in development, not implemented in Collector app yet
+- Research software (**RESQUE-Software**) - ❌ in development, not implemented in Collector app yet
 
-(Note: The web form currently only implements *RESQUE-Pubs* and *RESQUE-Software*)
+(Note: The web form currently only implements *RESQUE-Pubs*)
 
 ### ☑︎ Rating schemes: Expansion packs
 

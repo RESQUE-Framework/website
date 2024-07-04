@@ -32,7 +32,9 @@ See all news [here](news.qmd).
 
 The **Research Quality Evaluation (RESQUE)** framework provides recommendations for a responsible research assessment that does not rely on flawed metrics such as the journal impact factor or the h-index. 
 
-In alignment with the principles of [CoARA](https://coara.eu), this approach acknowledges diverse academic contributions, prioritizes the quality of work rather than its volume, and integrates qualitative peer assessment with the responsible use of quantitative indicators. Primarily designed to assist hiring and tenure committees, it emphasizes that the indicators and algorithmic methods serve as tools to support, not replace, decision-making processes. By automating the generation of relevant candidate information, this approach enhances the effectiveness of human expertise in evaluating potential hires and tenure candidates.
+In alignment with the principles of [CoARA](https://coara.eu), this approach acknowledges diverse academic contributions, prioritizes the quality of work rather than its volume, and integrates qualitative peer assessment with the responsible use of quantitative indicators. 
+
+Primarily designed to assist hiring and tenure committees, it emphasizes that the **indicators and algorithmic methods serve as tools to support, not replace, decision-making processes**. By automating the generation of relevant candidate information, this approach enhances the effectiveness of human expertise in evaluating potential hires and tenure candidates.
 
 RESQUE provides objective quality and impact indicators for three types of research outputs:
 

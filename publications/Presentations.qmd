@@ -12,3 +12,4 @@ Slightly longer slide decks with more information:
 - Schönbrodt (2023-03): [Responsible Research Assessment: A practical recommendation for the evaluation of research quality beyond h-index and journal impact factors](../presentations/Schoenbrodt-2023-03-Responsible_Research_Assessment.pdf)
 - Gärtner (2023-09): [Responsible Research Assessment II: The RESQUE web form for hiring and promotion](../presentations/Gaertner-2023-09-Responsible_Research_Assessment_II.pdf)
 - [Slides for meetings for an Expansion Pack](../presentations/RESQUE_Expansion_Pack_Meeting.pdf)
+- Schönbrodt (2024-06): [Responsible Research Assessment: A pitch for hiring committees](../presentations/Schoenbrodt-2024-RESQUE-Pitch.pdf)

@@ -1,0 +1,40 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: The RESQUE Framework
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Felix
+    family-names: Schönbrodt
+    email: felix.schoenbrodt@psy.lmu.de
+    affiliation: Ludwig-Maximilians-Universität München
+    orcid: 'https://orcid.org/0000-0002-8282-3910'
+  - given-names: Anne
+    family-names: Gärtner
+    email: anne_gaertner@tu-dresden.de
+    affiliation: Technical University Dresden
+    orcid: 'https://orcid.org/0000-0003-4296-963X'
+  - given-names: Daniel
+    family-names: Leising
+    email: Daniel.Leising@tu-dresden.de
+    affiliation: Technical University Dresden
+    orcid: 'https://orcid.org/0000-0001-8503-5840'
+identifiers:
+  - type: doi
+    value: 10.31234/osf.io/rgh5b
+    description: >-
+      Paper describing the general principles of RESQUE:
+      "Responsible Research Assessment I: Implementing DORA
+      for hiring and promotion in psychology."
+repository-code: 'https://github.com/RESQUE-Framework'
+url: 'https://resque-framework.github.io/website'
+keywords:
+  - Research Assessment
+  - CoARA
+  - DORA
+  - Research Quality
+  - Research Impact

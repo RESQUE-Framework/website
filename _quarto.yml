@@ -30,9 +30,12 @@ website:
       style: "docked"
       background: light
       contents:
-        - publications.qmd
-        - publications/Commentaries.qmd
-        - publications/Presentations.qmd
+        - text: "📔 Publications"
+          file: publications.qmd
+        - text: "💬 Commentaries"  
+          file: publications/Commentaries.qmd
+        - text: "📊 Presentations"
+          file: publications/Presentations.qmd
 
 format:
   html:

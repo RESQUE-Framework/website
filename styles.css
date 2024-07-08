@@ -13,3 +13,27 @@
     color:#333333;
     font-size: .925rem;
 }
+
+/* The three columns on the front page */
+
+.content-box {
+    border: 1px solid #ccc;
+    margin-top: 5px;
+    margin-bottom: 25px;
+    padding: 7px;
+    border-radius: 5px; 
+}
+
+.content-box h4 {
+    text-align: center;
+}
+
+.content-box img {
+    width: 90%;        /* Makes the image use all available width of the parent container */
+    height: auto;       /* Scales the height automatically to maintain the aspect ratio */
+    border-radius: 5px; /* Optional: adds rounded corners to the image */
+    margin: 0 auto 20px; /* Center the image and set the bottom margin */
+    display: block;       /* Makes the image a block-level element which can then be centered using margin */
+    margin-bottom: 20 px;     
+}
+

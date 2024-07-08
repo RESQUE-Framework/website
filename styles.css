@@ -14,6 +14,14 @@
     font-size: .925rem;
 }
 
+/* Left Sidebar Menu */
+
+.sidebar-navigation li a {
+    margin-bottom: 10px;
+}
+
+
+
 /* The three columns on the front page */
 
 .content-box {

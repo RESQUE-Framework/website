@@ -4,11 +4,10 @@ title: "⎔ Technical documentation"
 
 (To be done)
 
-The json files can be imported in R with the [RESQUER package](https://github.com/RESQUE-Framework/RESQUER). The package preprocesses the data and enriches it with ...
+The json files can be imported in R with the [RESQUER package](https://github.com/RESQUE-Framework/RESQUER). The package preprocesses the data and enriches it with:
 
 - citation metrics from [OpenAlex](https://openalex.org)
 - impact metrics from [BIP!](https://bip.imsi.athenarc.gr)
 - the [TOP factor](https://www.topfactor.org) for the journals the author is publishing in
 
-Furthermore, the package provides an interactive dashboard that allows to compare multiple candidates:
-
+Furthermore, the package provides an interactive dashboard that allows to compare multiple candidates.

@@ -30,6 +30,7 @@ website:
       style: "docked"
       background: light
       contents:
+        - text: "👇 Select the category: 👇<br><br>"
         - text: "📔 Publications"
           file: publications.qmd
         - text: "💬 Commentaries"  

@@ -24,7 +24,7 @@ We suggest that you fork our repository and make your changes in your personal c
 
 We make suggestions for weights that define how much each indicator contributes to the rigor score(s). But every committee can define their own weights.
 
-If an indicator gets the weight 0 (but is not removed from the collector app), it becomes a **descriptive** indicator. It does not contribute to any 
+If an indicator gets the weight 0 (but is not removed from the collector app), it becomes a **descriptive** indicator. It does not contribute to any quality score, but the committee still can see the answers.
 
 ---
 

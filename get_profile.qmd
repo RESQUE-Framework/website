@@ -3,7 +3,7 @@ title: "📊 Get your RESQUE profile"
 ---
 
 ::: {.callout-warning}
-Both the app for entering the data and the profile are in beta stage and not finalized yet.
+Both the [Collector App](https://resque-framework.github.io/collector-app/) for entering the data and the [R package for profile creation](https://github.com/RESQUE-Framework/RESQUER) are in beta stage and not finalized yet.
 Things might change substantially in the near future. If you want to use the RESQUE framework in practice please [contact](/team.qmd) us.
 :::
 
@@ -17,4 +17,12 @@ You can enter the data for up to 10 research contributions (publications, data s
 The visualization of the results will be made available as an app in summer 2024; here's a preview of some possible visualizations:
 
 <img src="images/RESQUE_profile.png" style="border: 1px solid #ddd; border-radius: 4px; padding: 3px; width: 850px;">
+
+## Computation of the Relative Rigor Score (RRS)
+
+### Basic Principles
+
+There are many ways to conduct science, and RESQUE does not give a precedence to any approach. For example, it does not favor confirmatory research over exploratory research. But whatever approach you choose, it should be done well. So we created quality indicators for different aspects.
+
+Importantly, you should not be penalized if certain points cannot be achieved in principle. Therefore, we compute the **Relative Rigor Scores** as a POMP (Percentage of Maximum Points): If an indicator is justifiably *not applicable', the indicator is taken out of the set, the maximum score is adjusted accordingly, allowing for the possibility of achieving 100% of the applicable points.
 

@@ -5,6 +5,7 @@
         }
     ],
     "settings": {
-        "CodeGPT.apiKey": "Ollama"
+        "CodeGPT.apiKey": "Ollama",
+        "liveServer.settings.port": 5501
     }
 }

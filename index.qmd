@@ -64,7 +64,7 @@ In alignment with the principles of [CoARA](https://coara.eu), this approach ack
         <img src="images/R3.jpg" alt="Tools Image">
         <p>✅ A <b>set of tools</b> that can be used (optionally):</p>
         <ul>
-          <li><a href="https://resque-framework.github.io/collector-app/">Data entry app</a> for applicants</li>
+          <li>A <a href="https://resque-framework.github.io/collector-app/">Collector App</a> where applicants can enter their data</li>
           <li>Profile creation for CVs</li>
           <li>Interactive comparative overview for committees</li>
         </ul>
@@ -77,13 +77,17 @@ In alignment with the principles of [CoARA](https://coara.eu), this approach ack
 
 Primarily designed to assist hiring and tenure committees, it emphasizes that the **indicators and algorithmic methods serve as tools to support, not replace, decision-making processes**. By automating the generation of relevant candidate information, this approach enhances the effectiveness of human expertise in evaluating potential hires and tenure candidates.
 
-RESQUE provides objective quality and impact indicators for three types of research outputs:
+RESQUE aims to provide objective quality and impact indicators for three types of research outputs:
 
 (a) publications of empirical studies, 
 (b) published data sets and 
 (c) research software. 
 
-It is primarily developed for the field of psychology, but might be easily transferred to neighbouring empirical scientific fields.
+::: {.callout-important}
+The RESQUE framework is currently in development and the indicators are subject to change. Currently, only indicators for *publications* are available in a beta version.
+:::
+
+The assessment scheme is primarily developed for the field of psychology, but might be easily transferred to neighbouring empirical scientific fields.
 
 Join our [mailing list](https://www.listserv.dfn.de/sympa/info/psy-dora) to receive news and updates about the RESQUE framework.
 
@@ -99,7 +103,6 @@ We provide three rating schemes for ...
 - Data sets (**RESQUE-Data**) - ❌ in development, not implemented in Collector app yet
 - Research software (**RESQUE-Software**) - ❌ in development, not implemented in Collector app yet
 
-(Note: The web form currently only implements *RESQUE-Pubs*)
 
 ### ☑︎ Rating schemes: Expansion packs
 

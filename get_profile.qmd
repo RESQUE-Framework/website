@@ -24,5 +24,5 @@ The visualization of the results will be made available as an app in summer 2024
 
 There are many ways to conduct science, and RESQUE does not give a precedence to any approach. For example, it does not favor confirmatory research over exploratory research. But whatever approach you choose, it should be done well. So we created quality indicators for different aspects.
 
-Importantly, you should not be penalized if certain points cannot be achieved in principle. Therefore, we compute the **Relative Rigor Scores** as a POMP (Percentage of Maximum Points): If an indicator is justifiably *not applicable', the indicator is taken out of the set, the maximum score is adjusted accordingly, allowing for the possibility of achieving 100% of the applicable points.
+Importantly, you should not be penalized if certain points cannot be achieved in principle. Therefore, we compute the **Relative Rigor Scores** as a POMP (Percentage of Maximum Points): If an indicator is justifiably 'not applicable', the indicator is taken out of the set, the maximum score is adjusted accordingly, allowing for the possibility of achieving 100% of the applicable points.
 

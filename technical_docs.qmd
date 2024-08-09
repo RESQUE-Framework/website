@@ -2,12 +2,30 @@
 title: "⎔ Technical documentation"
 ---
 
-(To be done)
+## How to cite RESQUE
 
-The json files can be imported in R with the [RESQUER package](https://github.com/RESQUE-Framework/RESQUER). The package preprocesses the data and enriches it with:
+When you use the RESQUE tools, please cite it as:
+
+> Schönbrodt, F., Gärtner, A., & Leising, D. (2024). The RESQUE Framework (Version 0.3) [Computer software]. https://github.com/RESQUE-Framework
+
+You can also get the current reference with the `.cff` file in the [repository](https://github.com/RESQUE-Framework/website):
+
+![Image CC-BY 4.0 by The Turing Way](https://the-turing-way.netlify.app/_images/github-cff-integration.jpg)
+
+## Other
+
+The applicants' data (acquired by the Collector app) is stored in `json` files that can be imported in R with the [RESQUER package](https://github.com/RESQUE-Framework/RESQUER). The package preprocesses the data and enriches it with:
 
 - citation metrics from [OpenAlex](https://openalex.org)
 - impact metrics from [BIP!](https://bip.imsi.athenarc.gr)
 - the [TOP factor](https://www.topfactor.org) for the journals the author is publishing in
 
 Furthermore, the package provides an interactive dashboard that allows to compare multiple candidates.
+
+## Scoring rules
+
+### Relative Rigor Score (RRS): Equal weighting of research outputs
+
+For the computation of the overall RRS score, all submitted research outputs are weighted equally. That means, if two publications are available, each publication contributes 50% to the overall score, even if they differ in their maximally attainable points. The reasoning is that it should not be punished if some points cannot be obtained in principle.
+With our [POMP ("percentage of maximum points") computation](/get_profile.qmd#basic-principles), it is ensured that the RRS for each research output can reach 100% even if some indicators are not applicable.
+But if research outputs with less attainable points contribute less to the overall score, this would be a disadvantage. Therefore each output is weighted equally.

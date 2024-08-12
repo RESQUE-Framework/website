@@ -88,14 +88,14 @@
     "href": "index.html#what-is-resque-three-modular-elements",
     "title": "RESQUE: The Research Quality Evaluation scheme for psychological research",
     "section": "What is RESQUE? Three modular elements",
-    "text": "What is RESQUE? Three modular elements\n\n  \n\n    \n      \n        1. Evaluated Indicators\n        \n        ✅ A set of evaluated indicators for aspects of research quality.\n        👉🏼 Menu approach: Escape h-index and JIF by choosing valid indicators that suit your research assessment scenario.\n      \n    \n\n    \n      \n        2. Process Suggestion\n        \n        ✅ A suggestion for a two-stage process and weights for indicators.\n        👉🏼 Change the importance of indicators depending on your use case.\n      \n    \n    \n    \n      \n        3. Tools Set\n        \n        ✅ A set of tools that can be used (optionally):\n        \n          Data entry app for applicants\n          Profile creation for CVs\n          Interactive comparative overview for committees\n        \n        👉🏼 Open source, free to use, privacy aware. Of course you can also include the selected indicators in your existing recruitment system.\n      \n    \n  \n\nPrimarily designed to assist hiring and tenure committees, it emphasizes that the indicators and algorithmic methods serve as tools to support, not replace, decision-making processes. By automating the generation of relevant candidate information, this approach enhances the effectiveness of human expertise in evaluating potential hires and tenure candidates.\nRESQUE provides objective quality and impact indicators for three types of research outputs:\n\npublications of empirical studies,\npublished data sets and\nresearch software.\n\nIt is primarily developed for the field of psychology, but might be easily transferred to neighbouring empirical scientific fields.\nJoin our mailing list to receive news and updates about the RESQUE framework."
+    "text": "What is RESQUE? Three modular elements\n\n  \n\n    \n      \n        1. Evaluated Indicators\n        \n        ✅ A set of evaluated indicators for aspects of research quality.\n        👉🏼 \"Buffett table\" approach: Escape h-index and JIF by choosing valid indicators that suit your research assessment scenario.\n      \n    \n\n    \n      \n        2. Process Suggestion\n        \n        ✅ A suggestion for a two-stage process and weights for indicators.\n        👉🏼 Change the importance of indicators depending on your use case.\n      \n    \n    \n    \n      \n        3. Tools Set\n        \n        ✅ A set of tools that can be used (optionally):\n        \n          A Collector App where applicants can enter their data\n          Profile creation for CVs\n          Interactive comparative overview for committees\n        \n        👉🏼 Open source, free to use, privacy aware. Of course you can also include the selected indicators in your existing recruitment system.\n      \n    \n  \n\nPrimarily designed to assist hiring and tenure committees, it emphasizes that the indicators and algorithmic methods serve as tools to support, not replace, decision-making processes. By automating the generation of relevant candidate information, this approach enhances the effectiveness of human expertise in evaluating potential hires and tenure candidates.\nRESQUE aims to provide objective quality and impact indicators for three types of research outputs:\n\npublications of empirical studies,\npublished data sets and\nresearch software.\n\n\n\n\n\n\n\nImportant\n\n\n\nThe RESQUE framework is currently in development and the indicators are subject to change. Currently, only indicators for publications are available in a beta version.\n\n\nThe assessment scheme is primarily developed for the field of psychology, but might be easily transferred to neighbouring empirical scientific fields.\nJoin our mailing list to receive news and updates about the RESQUE framework."
   },
   {
     "objectID": "index.html#resources",
     "href": "index.html#resources",
     "title": "RESQUE: The Research Quality Evaluation scheme for psychological research",
     "section": "Resources",
-    "text": "Resources\n\n☑️ Rating schemes: Core set\nWith the goal to make data entry for applicants and hiring committees as easy and frictionless as possible, we developed the RESQUE Collector app that allows to provide information for your best research outputs and to export the data in a JSON format.\nWe provide three rating schemes for …\n\nPublications, preprints, book chapters, etc. (RESQUE-Pubs) - ✅ v0.3, ready for use (but still likely to change)\nData sets (RESQUE-Data) - ❌ in development, not implemented in Collector app yet\nResearch software (RESQUE-Software) - ❌ in development, not implemented in Collector app yet\n\n(Note: The web form currently only implements RESQUE-Pubs)\n\n\n☑︎ Rating schemes: Expansion packs\nWe aim to develop and collect disciplinary expansion packs (EPs) with specific indicators that are relevant for a subfield. If you plan to provide an expansion pack, please get in contact with us (we will help to implement that in the web form).\nSuch EPs ideally are contributed from a legit academic community and stem from a consensus process. Before including EPs in this project, we do a minimal review for suitability.\nThe subdivisions of the German Psychological Society have been asked to discuss the need for discipline-specific indicators.\n\n\n📊 The RESQUE Research Profile\nWe provide R scripts that …\n\nload and aggregate multiple json files with RESQUE ratings\nenrich the data with other sources of information (e.g. citation counts & normalized citation counts from OpenAlex, impact metrics from BIP!)\nprovide candidate profiles that can be requested by hiring and tenure committees, or used by candidates as an attachment to their CV or website.\n\nAn interactive dashboard allows to compare multiple candidates and to zoom into the profiles of specific candidates."
+    "text": "Resources\n\n☑️ Rating schemes: Core set\nWith the goal to make data entry for applicants and hiring committees as easy and frictionless as possible, we developed the RESQUE Collector app that allows to provide information for your best research outputs and to export the data in a JSON format.\nWe provide three rating schemes for …\n\nPublications, preprints, book chapters, etc. (RESQUE-Pubs) - ✅ v0.3, ready for use (but still likely to change)\nData sets (RESQUE-Data) - ❌ in development, not implemented in Collector app yet\nResearch software (RESQUE-Software) - ❌ in development, not implemented in Collector app yet\n\n\n\n☑︎ Rating schemes: Expansion packs\nWe aim to develop and collect disciplinary expansion packs (EPs) with specific indicators that are relevant for a subfield. If you plan to provide an expansion pack, please get in contact with us (we will help to implement that in the web form).\nSuch EPs ideally are contributed from a legit academic community and stem from a consensus process. Before including EPs in this project, we do a minimal review for suitability.\nThe subdivisions of the German Psychological Society have been asked to discuss the need for discipline-specific indicators.\n\n\n📊 The RESQUE Research Profile\nWe provide R scripts that …\n\nload and aggregate multiple json files with RESQUE ratings\nenrich the data with other sources of information (e.g. citation counts & normalized citation counts from OpenAlex, impact metrics from BIP!)\nprovide candidate profiles that can be requested by hiring and tenure committees, or used by candidates as an attachment to their CV or website.\n\nAn interactive dashboard allows to compare multiple candidates and to zoom into the profiles of specific candidates."
   },
   {
     "objectID": "index.html#partners-and-supporters-of-resque",
@@ -109,21 +109,21 @@
     "href": "for_committees.html",
     "title": "🚀 For hiring/tenure committees",
     "section": "",
-    "text": "TODO - this is not complete.\nThe RESQUE framework decisively promotes a “buffett table approach”: From the list of available indicators, hiring committees choose those which show a fit to the position and to the preferences and the research culture of the institution.\nThe RESQUE App already has basic customization features. With the simple Form Builder website, committees can choose:\n\nThe maximum number of submittable research outputs (default: 10)\nThe number of top papers (‘best research outputs’) that can be selected (default: 3)\nThe threshold for ‘number of required research outputs’ warning (default: 5): The app computes an average rigor score, but that needs at least some scoreable research outputs.\n\nThe app is completely open source, so all indicators can be adjusted, removed, or new indicators added. However, we are happy to assist in customizing the app for your hiring committee.\nTODO:\n\nShow recommended paragraph in job ad\ncf. Lange et al.: Commit to weights and indicator sets when publishing the job ad; we recommend to publish the weights and indicators along with the ad.\nShow instructions for applicants"
+    "text": "Warning\n\n\n\nTODO - this is not complete."
   },
   {
-    "objectID": "for_committees.html#as-hiring-committees",
-    "href": "for_committees.html#as-hiring-committees",
+    "objectID": "for_committees.html#choose-your-indicators",
+    "href": "for_committees.html#choose-your-indicators",
     "title": "🚀 For hiring/tenure committees",
-    "section": "",
-    "text": "TODO - this is not complete.\nThe RESQUE framework decisively promotes a “buffett table approach”: From the list of available indicators, hiring committees choose those which show a fit to the position and to the preferences and the research culture of the institution.\nThe RESQUE App already has basic customization features. With the simple Form Builder website, committees can choose:\n\nThe maximum number of submittable research outputs (default: 10)\nThe number of top papers (‘best research outputs’) that can be selected (default: 3)\nThe threshold for ‘number of required research outputs’ warning (default: 5): The app computes an average rigor score, but that needs at least some scoreable research outputs.\n\nThe app is completely open source, so all indicators can be adjusted, removed, or new indicators added. However, we are happy to assist in customizing the app for your hiring committee.\nTODO:\n\nShow recommended paragraph in job ad\ncf. Lange et al.: Commit to weights and indicator sets when publishing the job ad; we recommend to publish the weights and indicators along with the ad.\nShow instructions for applicants"
+    "section": "Choose your indicators",
+    "text": "Choose your indicators\nThe RESQUE framework decisively promotes a “buffett table approach”: From the list of available indicators, hiring committees choose those which show a fit to the position and to the preferences and the research culture of the institution.\nThe RESQUE App already has basic customization features. With the simple Form Builder website, committees can choose:\n\nThe maximum number of submittable research outputs (default: 10)\nThe number of top papers (‘best research outputs’) that can be selected (default: 3)\nThe threshold for ‘number of required research outputs’ warning (default: 5): The app computes an average rigor score, but that needs at least some scoreable research outputs.\n\nCurrently, the selection of indicators itself (if you do not want to use the default core set) is done by adjusting the json files in the subfolder /packs of the collector app. In these config files, all indicators can be adjusted, removed, or new indicators added.\nWe suggest that you fork our repository and make your changes in your personal copy. Adapting the questions of the collector app requires some technical knowledge. However, we are happy to assist in customizing the app for your hiring committee."
   },
   {
-    "objectID": "for_committees.html#as-tenure-track-committees",
-    "href": "for_committees.html#as-tenure-track-committees",
+    "objectID": "for_committees.html#choose-your-weights",
+    "href": "for_committees.html#choose-your-weights",
     "title": "🚀 For hiring/tenure committees",
-    "section": "…as tenure track committees",
-    "text": "…as tenure track committees\nTODO"
+    "section": "Choose your weights",
+    "text": "Choose your weights\nWe make suggestions for weights that define how much each indicator contributes to the rigor score(s). But every committee can define their own weights.\nIf an indicator gets the weight 0 (but is not removed from the collector app), it becomes a descriptive indicator. It does not contribute to any quality score, but the committee still can see the answers.\n\n\n\n\n\n\n\nTODOs\n\n\n\n\n\n\nShow recommended paragraph in job ad\ncf. Lange et al.: Commit to weights and indicator sets when publishing the job ad; we recommend to publish the weights and indicators along with the ad.\nTemplate for instructions for applicants"
   },
   {
     "objectID": "eval_projects.html",
@@ -137,7 +137,14 @@
     "href": "get_profile.html",
     "title": "📊 Get your RESQUE profile",
     "section": "",
-    "text": "Warning\n\n\n\nBoth the app for entering the data and the profile are in beta stage and not finalized yet. Things might change substantially in the near future. If you want to use the RESQUE framework in practice please contact us.\n\n\nYou can enter the data for up to 10 research contributions (publications, data set, or research software) in the RESQUE Collector app.\n\nThe visualization of the results will be made available as an app in summer 2024; here’s a preview of some possible visualizations:"
+    "text": "Warning\n\n\n\nBoth the Collector App for entering the data and the R package for profile creation are in beta stage and not finalized yet. Things might change substantially in the near future. If you want to use the RESQUE framework in practice please contact us.\nYou can enter the data for up to 10 research contributions (publications, data set, or research software) in the RESQUE Collector app.\nThe visualization of the results will be made available as an app in summer 2024; here’s a preview of some possible visualizations:"
+  },
+  {
+    "objectID": "get_profile.html#computation-of-the-relative-rigor-score-rrs",
+    "href": "get_profile.html#computation-of-the-relative-rigor-score-rrs",
+    "title": "📊 Get your RESQUE profile",
+    "section": "Computation of the Relative Rigor Score (RRS)",
+    "text": "Computation of the Relative Rigor Score (RRS)\n\nBasic Principles\nThere are many ways to conduct science, and RESQUE does not give a precedence to any approach. For example, it does not favor confirmatory research over exploratory research. But whatever approach you choose, it should be done well. So we created quality indicators for different aspects.\nImportantly, you should not be penalized if certain points cannot be achieved in principle. Therefore, we compute the Relative Rigor Scores as a POMP (Percentage of Maximum Points): If an indicator is justifiably ‘not applicable’, the indicator is taken out of the set, the maximum score is adjusted accordingly, allowing for the possibility of achieving 100% of the applicable points."
   },
   {
     "objectID": "news.html",
@@ -183,6 +190,27 @@
     "href": "technical_docs.html",
     "title": "⎔ Technical documentation",
     "section": "",
-    "text": "(To be done)\nThe json files can be imported in R with the RESQUER package. The package preprocesses the data and enriches it with …\n\ncitation metrics from OpenAlex\nimpact metrics from BIP!\nthe TOP factor for the journals the author is publishing in\n\nFurthermore, the package provides an interactive dashboard that allows to compare multiple candidates:"
+    "text": "When you use the RESQUE tools, please cite it as:\n\nSchönbrodt, F., Gärtner, A., & Leising, D. (2024). The RESQUE Framework (Version 0.3) [Computer software]. https://github.com/RESQUE-Framework\n\nYou can also get the current reference with the .cff file in the repository:\n\n\n\nImage CC-BY 4.0 by The Turing Way"
+  },
+  {
+    "objectID": "technical_docs.html#how-to-cite-resque",
+    "href": "technical_docs.html#how-to-cite-resque",
+    "title": "⎔ Technical documentation",
+    "section": "",
+    "text": "When you use the RESQUE tools, please cite it as:\n\nSchönbrodt, F., Gärtner, A., & Leising, D. (2024). The RESQUE Framework (Version 0.3) [Computer software]. https://github.com/RESQUE-Framework\n\nYou can also get the current reference with the .cff file in the repository:\n\n\n\nImage CC-BY 4.0 by The Turing Way"
+  },
+  {
+    "objectID": "technical_docs.html#other",
+    "href": "technical_docs.html#other",
+    "title": "⎔ Technical documentation",
+    "section": "Other",
+    "text": "Other\nThe applicants’ data (acquired by the Collector app) is stored in json files that can be imported in R with the RESQUER package. The package preprocesses the data and enriches it with:\n\ncitation metrics from OpenAlex\nimpact metrics from BIP!\nthe TOP factor for the journals the author is publishing in\n\nFurthermore, the package provides an interactive dashboard that allows to compare multiple candidates."
+  },
+  {
+    "objectID": "technical_docs.html#scoring-rules",
+    "href": "technical_docs.html#scoring-rules",
+    "title": "⎔ Technical documentation",
+    "section": "Scoring rules",
+    "text": "Scoring rules\n\nRelative Rigor Score (RRS): Equal weighting of research outputs\nFor the computation of the overall RRS score, all submitted research outputs are weighted equally. That means, if two publications are available, each publication contributes 50% to the overall score, even if they differ in their maximally attainable points. The reasoning is that it should not be punished if some points cannot be obtained in principle. With our POMP (“percentage of maximum points”) computation, it is ensured that the RRS for each research output can reach 100% even if some indicators are not applicable. But if research outputs with less attainable points contribute less to the overall score, this would be a disadvantage. Therefore each output is weighted equally."
   }
 ]

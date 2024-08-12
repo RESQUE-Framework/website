@@ -161,16 +161,39 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>(To be done)</p>
-<p>The json files can be imported in R with the <a href="https://github.com/RESQUE-Framework/RESQUER">RESQUER package</a>. The package preprocesses the data and enriches it with …</p>
+<section id="how-to-cite-resque" class="level2">
+<h2 class="anchored" data-anchor-id="how-to-cite-resque">How to cite RESQUE</h2>
+<p>When you use the RESQUE tools, please cite it as:</p>
+<blockquote class="blockquote">
+<p>Schönbrodt, F., Gärtner, A., &amp; Leising, D. (2024). The RESQUE Framework (Version 0.3) [Computer software]. https://github.com/RESQUE-Framework</p>
+</blockquote>
+<p>You can also get the current reference with the <code>.cff</code> file in the <a href="https://github.com/RESQUE-Framework/website">repository</a>:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://the-turing-way.netlify.app/_images/github-cff-integration.jpg" class="img-fluid figure-img"></p>
+<figcaption>Image CC-BY 4.0 by The Turing Way</figcaption>
+</figure>
+</div>
+</section>
+<section id="other" class="level2">
+<h2 class="anchored" data-anchor-id="other">Other</h2>
+<p>The applicants’ data (acquired by the Collector app) is stored in <code>json</code> files that can be imported in R with the <a href="https://github.com/RESQUE-Framework/RESQUER">RESQUER package</a>. The package preprocesses the data and enriches it with:</p>
 <ul>
 <li>citation metrics from <a href="https://openalex.org">OpenAlex</a></li>
 <li>impact metrics from <a href="https://bip.imsi.athenarc.gr">BIP!</a></li>
 <li>the <a href="https://www.topfactor.org">TOP factor</a> for the journals the author is publishing in</li>
 </ul>
-<p>Furthermore, the package provides an interactive dashboard that allows to compare multiple candidates:</p>
+<p>Furthermore, the package provides an interactive dashboard that allows to compare multiple candidates.</p>
+</section>
+<section id="scoring-rules" class="level2">
+<h2 class="anchored" data-anchor-id="scoring-rules">Scoring rules</h2>
+<section id="relative-rigor-score-rrs-equal-weighting-of-research-outputs" class="level3">
+<h3 class="anchored" data-anchor-id="relative-rigor-score-rrs-equal-weighting-of-research-outputs">Relative Rigor Score (RRS): Equal weighting of research outputs</h3>
+<p>For the computation of the overall RRS score, all submitted research outputs are weighted equally. That means, if two publications are available, each publication contributes 50% to the overall score, even if they differ in their maximally attainable points. The reasoning is that it should not be punished if some points cannot be obtained in principle. With our <a href="./get_profile.html#basic-principles">POMP (“percentage of maximum points”) computation</a>, it is ensured that the RRS for each research output can reach 100% even if some indicators are not applicable. But if research outputs with less attainable points contribute less to the overall score, this would be a disadvantage. Therefore each output is weighted equally.</p>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

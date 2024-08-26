@@ -23,7 +23,8 @@ website:
         file: publications.qmd
       - eval_projects.qmd      
       - team.qmd
-      - technical_docs.qmd
+      - text: "⎔ Technical documentation"
+        file: technical_docs.qmd
 
   sidebar:
     - title: "📔 Publications"
@@ -37,6 +38,19 @@ website:
           file: publications/Commentaries.qmd
         - text: "📊 Presentations"
           file: publications/Presentations.qmd
+    - title: "⎔ Technical documentation"
+      style: "docked"
+      background: light
+      contents:
+        - text: "👇 Select the category: 👇<br><br>"
+        - text: "General information"
+          file: technical_docs.qmd
+        - text: "Indicators for publications"
+          file: tech_doc/pub_indicators.qmd
+        - text: "Indicators for data sets"  
+          file: tech_doc/data_indicators.qmd
+        - text: "Indicators for research software"  
+          file: tech_doc/software_indicators.qmd
 
 format:
   html:

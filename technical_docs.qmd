@@ -1,5 +1,6 @@
 ---
 title: "⎔ Technical documentation"
+toc: true
 ---
 
 ## How to cite RESQUE
@@ -12,7 +13,7 @@ You can also get the current reference with the `.cff` file in the [repository](
 
 ![Image CC-BY 4.0 by The Turing Way](https://the-turing-way.netlify.app/_images/github-cff-integration.jpg)
 
-## Other
+## Postprocessing the applicants' data
 
 The applicants' data (acquired by the Collector app) is stored in `json` files that can be imported in R with the [RESQUER package](https://github.com/RESQUE-Framework/RESQUER). The package preprocesses the data and enriches it with:
 

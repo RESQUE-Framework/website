@@ -1,0 +1,19 @@
+---
+title: "Indicators for publications"
+toc: false
+---
+
+*Note: Although you can click the checkboxes, this does not have any effect. The checkboxes are only for visualization purposes. The actual app can be found [here](https://resque-framework.github.io/collector-app/).*
+
+```{=html}
+<iframe title="Indicators for publications" src="https://resque-framework.github.io/collector-app/preview?type=pubs" width="100%" height="5000px"></iframe>
+
+<!-- Dynamically adjust the height of the embedded iFrame
+(the size is sent by the embedded iFrame) -->
+<script>
+  window.addEventListener('message', function(event) {
+    var iframe = document.getElementById('dynamic-iframe');
+    iframe.style.height = event.data + 'px';
+  });
+</script>
+```

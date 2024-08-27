@@ -95,13 +95,13 @@ Join our [mailing list](https://www.listserv.dfn.de/sympa/info/psy-dora) to rece
 
 ### ☑️ Rating schemes: Core set
 
-With the goal to make data entry for applicants and hiring committees as easy and frictionless as possible, we developed the [RESQUE Collector](https://resque-framework.github.io/website/web/) app that allows to provide information for your best research outputs and to export the data in a JSON format.
+With the goal to make data entry for applicants and hiring committees as easy and frictionless as possible, we developed the [RESQUE Collector App](https://resque-framework.github.io/website/web/) that allows to provide information for your best research outputs and to export the data in a JSON format.
 
-We provide three rating schemes for ...
+We plan to provide three rating schemes for ...
 
-- Publications, preprints, book chapters, etc. (**RESQUE-Pubs**) - ✅ v0.3, ready for use (but still likely to change)
-- Data sets (**RESQUE-Data**) - ❌ in development, not implemented in Collector app yet
-- Research software (**RESQUE-Software**) - ❌ in development, not implemented in Collector app yet
+- Publications, preprints, book chapters, etc.: (**RESQUE-Pubs**) - ✅ v0.3, ready for use (but still likely to change). See indicators [here](tech_doc/pub_indicators.qmd).
+- Data sets (**RESQUE-Data**) - ❌ in development, not implemented in Collector App yet
+- Research software (**RESQUE-Software**) - ❌ in development, not implemented in Collector App yet
 
 
 ### ☑︎ Rating schemes: Expansion packs
@@ -113,6 +113,10 @@ Such EPs ideally are contributed from a legit academic community and stem from a
 
 The subdivisions of the German Psychological Society have been asked to discuss the need for discipline-specific indicators.
 
+**Available Expansion Packs:**
+
+- Quality indicators for [Theory Usage and Development](tech_doc/theory_indicators.qmd)
+
 
 ### 📊 The RESQUE Research Profile
 
@@ -123,6 +127,8 @@ We provide R scripts that ...
 3. provide candidate profiles that can be requested by hiring and tenure committees, or used by candidates as an attachment to their CV or website.
 
 An interactive dashboard allows to compare multiple candidates and to zoom into the profiles of specific candidates.
+
+For more information, see [here](get_profile.qmd).
 
 
 ## Partners and supporters of RESQUE

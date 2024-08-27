@@ -45,12 +45,14 @@ website:
         - text: "👇 Select the category: 👇<br><br>"
         - text: "General information"
           file: technical_docs.qmd
-        - text: "Indicators for publications"
+        - text: "Indicators for Publications"
           file: tech_doc/pub_indicators.qmd
-        - text: "Indicators for data sets"  
+        - text: "Indicators for Data Sets"  
           file: tech_doc/data_indicators.qmd
-        - text: "Indicators for research software"  
+        - text: "Indicators for Research Software"
           file: tech_doc/software_indicators.qmd
+        - text: "Indicators for Theory Usage and Development"  
+          file: tech_doc/theory_indicators.qmd
 
 format:
   html:

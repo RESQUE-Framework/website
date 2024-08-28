@@ -1,6 +1,6 @@
 [
   {
-    "listing": "/news.html",
+    "listing": "/index.html",
     "items": [
       "/news/2024-03-21-Einstein_Foundation_Award.html",
       "/news/2024-02-26-theory_indicators.html",
@@ -9,7 +9,7 @@
     ]
   },
   {
-    "listing": "/index.html",
+    "listing": "/news.html",
     "items": [
       "/news/2024-03-21-Einstein_Foundation_Award.html",
       "/news/2024-02-26-theory_indicators.html",

@@ -99,7 +99,7 @@ With the goal to make data entry for applicants and hiring committees as easy an
 
 We plan to provide three rating schemes for ...
 
-- Publications, preprints, book chapters, etc.: (**RESQUE-Pubs**) - ✅ v0.3, ready for use (but still likely to change). See indicators [here](tech_doc/pub_indicators.qmd).
+- Publications, preprints, book chapters, etc.: (**RESQUE-Pubs**) - ✅ v0.4.0, ready for use (but still likely to change). See indicators [here](tech_doc/pub_indicators.qmd).
 - Data sets (**RESQUE-Data**) - ❌ in development, not implemented in Collector App yet
 - Research software (**RESQUE-Software**) - ❌ in development, not implemented in Collector App yet
 

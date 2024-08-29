@@ -7,7 +7,7 @@ Both the [Collector App](https://resque-framework.github.io/collector-app/) for 
 Things might change substantially in the near future. If you want to use the RESQUE framework in practice please [contact](/team.qmd) us.
 :::
 
-You can enter the data for up to 10 research contributions (publications, data set, or research software) in the [RESQUE Collector](https://resque-framework.github.io/website/web/) app.
+You can enter the data for up to 10 research contributions (publications, data set, or research software) in the [RESQUE Collector App](https://resque-framework.github.io/collector-app) app.
 
 <!-- 
 1. When done, save the data as a local `json` file.

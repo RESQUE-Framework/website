@@ -9,8 +9,8 @@
 <link>https://resque-framework.github.io/website/</link>
 <atom:link href="https://resque-framework.github.io/website/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
-<generator>quarto-1.4.553</generator>
-<lastBuildDate>Wed, 20 Mar 2024 23:00:00 GMT</lastBuildDate>
+<generator>quarto-1.5.57</generator>
+<lastBuildDate>Thu, 21 Mar 2024 00:00:00 GMT</lastBuildDate>
 <item>
   <title>Einstein Foundation Award</title>
   <link>https://resque-framework.github.io/website/news/2024-03-21-Einstein_Foundation_Award.html</link>
@@ -39,7 +39,7 @@
 
  ]]></description>
   <guid>https://resque-framework.github.io/website/news/2024-03-21-Einstein_Foundation_Award.html</guid>
-  <pubDate>Wed, 20 Mar 2024 23:00:00 GMT</pubDate>
+  <pubDate>Thu, 21 Mar 2024 00:00:00 GMT</pubDate>
 </item>
 <item>
   <title>New indicators for theory-guided research developed</title>
@@ -168,10 +168,9 @@ Theory usage and development
 </div>
 
 
-
  ]]></description>
   <guid>https://resque-framework.github.io/website/news/2024-02-26-theory_indicators.html</guid>
-  <pubDate>Sun, 25 Feb 2024 23:00:00 GMT</pubDate>
+  <pubDate>Mon, 26 Feb 2024 00:00:00 GMT</pubDate>
 </item>
 <item>
   <title>RESQUE website is live!</title>
@@ -187,7 +186,7 @@ Theory usage and development
 
  ]]></description>
   <guid>https://resque-framework.github.io/website/news/2023-12-12-website.html</guid>
-  <pubDate>Mon, 11 Dec 2023 23:00:00 GMT</pubDate>
+  <pubDate>Tue, 12 Dec 2023 00:00:00 GMT</pubDate>
 </item>
 <item>
   <title>Preprint published by Franka Etzel on an evaluation study</title>
@@ -207,7 +206,7 @@ Theory usage and development
 
  ]]></description>
   <guid>https://resque-framework.github.io/website/news/2023-09-04-Etzel_preprint.html</guid>
-  <pubDate>Sun, 03 Sep 2023 22:00:00 GMT</pubDate>
+  <pubDate>Mon, 04 Sep 2023 00:00:00 GMT</pubDate>
 </item>
 </channel>
 </rss>

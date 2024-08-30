@@ -1,9 +1,6 @@
 project:
   type: website  
   output-dir: doc
-  resources:
-    - archive/web
-    - archive/packs
   render: 
     - "*.qmd"
     - "CODE_OF_CONDUCT.md"

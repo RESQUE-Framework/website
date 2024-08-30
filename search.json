@@ -21,25 +21,36 @@
     "text": "Footnotes\n\n\nEpistemic Responsibility is about the goal to ‘produce, maintain, and disseminate knowledge and other knowledge-related (or: epistemic) goods, such as insight, rational belief, and understanding’ (Lechner et al, 2022) and has been defined as “related to the capacity to engage in adequate policies in the search of truth, the ability to give reasons, or the readiness to revise one’s beliefs in the light of new evidence.’ (Echeverri, 2011).↩︎"
   },
   {
-    "objectID": "tech_doc/theory_indicators.html",
-    "href": "tech_doc/theory_indicators.html",
-    "title": "Indicators for Theory Usage and Development",
+    "objectID": "tech_doc/software_indicators.html",
+    "href": "tech_doc/software_indicators.html",
+    "title": "Indicators for research software",
     "section": "",
     "text": "To be done.",
     "crumbs": [
       "⎔ Technical documentation",
-      "Indicators for Theory Usage and Development"
+      "&nbsp;&nbsp;Indicators for Research Software"
     ]
   },
   {
-    "objectID": "tech_doc/pub_indicators.html",
-    "href": "tech_doc/pub_indicators.html",
-    "title": "Indicators for publications",
+    "objectID": "tech_doc/data_indicators.html",
+    "href": "tech_doc/data_indicators.html",
+    "title": "Indicators for data sets",
     "section": "",
-    "text": "Notes:\n\nAlthough you can click the checkboxes, this does not have any effect. The checkboxes are only for visualization purposes. The actual app can be found here.\nIn the Collector App, many indicators are shown conditionally, depending on answers to previous items. Hence, the actual number of indicators presented to applicants typically is lower.",
+    "text": "To be done.",
     "crumbs": [
       "⎔ Technical documentation",
-      "Indicators for Publications"
+      "&nbsp;&nbsp;Indicators for Data Sets"
+    ]
+  },
+  {
+    "objectID": "tech_doc/EP-multidisciplinary_indicators.html",
+    "href": "tech_doc/EP-multidisciplinary_indicators.html",
+    "title": "Multi-/Interdisciplinarity",
+    "section": "",
+    "text": "Notes:\n\nYou can browse all available indicators (also archived versions) on this website.\nAlthough you can click the checkboxes on this preview, this does not have any effect. The checkboxes are only for visualization purposes. The actual app can be found here.",
+    "crumbs": [
+      "⎔ Technical documentation",
+      "&nbsp;&nbsp;Multi-/Interdisciplinarity"
     ]
   },
   {
@@ -117,7 +128,7 @@
     "href": "index.html#resources",
     "title": "RESQUE: The Research Quality Evaluation scheme for psychological research",
     "section": "Resources",
-    "text": "Resources\n\n☑️ Rating schemes: Core set\nWith the goal to make data entry for applicants and hiring committees as easy and frictionless as possible, we developed the RESQUE Collector App that allows to provide information for your best research outputs and to export the data in a JSON format.\nWe plan to provide three rating schemes for …\n\nPublications, preprints, book chapters, etc.: (RESQUE-Pubs) - ✅ v0.3, ready for use (but still likely to change). See indicators here.\nData sets (RESQUE-Data) - ❌ in development, not implemented in Collector App yet\nResearch software (RESQUE-Software) - ❌ in development, not implemented in Collector App yet\n\n\n\n☑︎ Rating schemes: Expansion packs\nWe aim to develop and collect disciplinary expansion packs (EPs) with specific indicators that are relevant for a subfield. If you plan to provide an expansion pack, please get in contact with us (we will help to implement that in the web form).\nSuch EPs ideally are contributed from a legit academic community and stem from a consensus process. Before including EPs in this project, we do a minimal review for suitability.\nThe subdivisions of the German Psychological Society have been asked to discuss the need for discipline-specific indicators.\nAvailable Expansion Packs:\n\nQuality indicators for Theory Usage and Development\n\n\n\n📊 The RESQUE Research Profile\nWe provide R scripts that …\n\nload and aggregate multiple json files with RESQUE ratings\nenrich the data with other sources of information (e.g. citation counts & normalized citation counts from OpenAlex, impact metrics from BIP!)\nprovide candidate profiles that can be requested by hiring and tenure committees, or used by candidates as an attachment to their CV or website.\n\nAn interactive dashboard allows to compare multiple candidates and to zoom into the profiles of specific candidates.\nFor more information, see here."
+    "text": "Resources\n\n☑️ Rating schemes: Core set\nWith the goal to make data entry for applicants and hiring committees as easy and frictionless as possible, we developed the RESQUE Collector App that allows to provide information for your best research outputs and to export the data in a JSON format.\nWe plan to provide three rating schemes for …\n\nPublications, preprints, book chapters, etc.: (RESQUE-Pubs) - ✅ v0.4.0, ready for use (but still likely to change). See indicators here.\nData sets (RESQUE-Data) - ❌ in development, not implemented in Collector App yet\nResearch software (RESQUE-Software) - ❌ in development, not implemented in Collector App yet\n\n\n\n☑︎ Rating schemes: Expansion packs\nWe aim to develop and collect disciplinary expansion packs (EPs) with specific indicators that are relevant for a subfield. If you plan to provide an expansion pack, please get in contact with us (we will help to implement that in the web form).\nSuch EPs ideally are contributed from a legit academic community and stem from a consensus process. Before including EPs in this project, we do a minimal review for suitability.\nThe subdivisions of the German Psychological Society have been asked to discuss the need for discipline-specific indicators.\nAvailable Expansion Packs:\n\nQuality indicators for Theory Usage and Development\n\n\n\n📊 The RESQUE Research Profile\nWe provide R scripts that …\n\nload and aggregate multiple json files with RESQUE ratings\nenrich the data with other sources of information (e.g. citation counts & normalized citation counts from OpenAlex, impact metrics from BIP!)\nprovide candidate profiles that can be requested by hiring and tenure committees, or used by candidates as an attachment to their CV or website.\n\nAn interactive dashboard allows to compare multiple candidates and to zoom into the profiles of specific candidates.\nFor more information, see here."
   },
   {
     "objectID": "index.html#partners-and-supporters-of-resque",
@@ -138,7 +149,7 @@
     "href": "for_committees.html#choose-your-indicators",
     "title": "🚀 For hiring/tenure committees",
     "section": "Choose your indicators",
-    "text": "Choose your indicators\nThe RESQUE framework decisively promotes a “buffett table approach”: From the list of available indicators, hiring committees choose those which show a fit to the position and to the preferences and the research culture of the institution.\nThe RESQUE App already has basic customization features. With the simple Form Builder website, committees can choose:\n\nThe maximum number of submittable research outputs (default: 10)\nThe number of top papers (‘best research outputs’) that can be selected (default: 3)\nThe threshold for ‘number of required research outputs’ warning (default: 5): The app computes an average rigor score, but that needs at least some scoreable research outputs.\n\nCurrently, the selection of indicators itself (if you do not want to use the default core set) is done by adjusting the json files in the subfolder /packs of the collector app. In these config files, all indicators can be adjusted, removed, or new indicators added.\nWe suggest that you fork our repository and make your changes in your personal copy. Adapting the questions of the collector app requires some technical knowledge. However, we are happy to assist in customizing the app for your hiring committee."
+    "text": "Choose your indicators\nThe RESQUE framework decisively promotes a “buffett table approach”: From the list of available indicators, hiring committees choose those which show a fit to the position and to the preferences and the research culture of the institution.\nWe provide a lean core set with the basic quality indicators that fit to the vast majority of research in any psycghological sub-discipline. This core set is recommended for all hiring committees (although any indicator can be deselected).\nThis can be expanded by multiple expansion packs that contain additional indicators. These packs are tailored to specific research areas or research cultures.\nCurrently, the selection of indicators itself (if you do not want to use the default core set) is done by adjusting the json files in the subfolder /packs of the collector app. In these config files, all indicators can be adjusted, removed, or new indicators added. We suggest that you fork our repository and make your changes in your personal copy. Currently, adapting the questions of the collector app requires some technical knowledge. However, we are happy to assist in customizing the app for your hiring committee."
   },
   {
     "objectID": "for_committees.html#choose-your-weights",
@@ -159,7 +170,7 @@
     "href": "get_profile.html",
     "title": "📊 Get your RESQUE profile",
     "section": "",
-    "text": "Warning\n\n\n\nBoth the Collector App for entering the data and the R package for profile creation are in beta stage and not finalized yet. Things might change substantially in the near future. If you want to use the RESQUE framework in practice please contact us.\nYou can enter the data for up to 10 research contributions (publications, data set, or research software) in the RESQUE Collector app.\nThe visualization of the results will be made available as an app in summer 2024; here’s a preview of some possible visualizations:"
+    "text": "Warning\n\n\n\nBoth the Collector App for entering the data and the R package for profile creation are in beta stage and not finalized yet. Things might change substantially in the near future. If you want to use the RESQUE framework in practice please contact us.\nYou can enter the data for up to 10 research contributions (publications, data set, or research software) in the RESQUE Collector App app.\nThe visualization of the results will be made available as an app in summer 2024; here’s a preview of some possible visualizations:"
   },
   {
     "objectID": "get_profile.html#computation-of-the-relative-rigor-score-rrs",
@@ -208,25 +219,36 @@
     "text": "TODO: Show all indicators for the three ratings schemes\nThe rating sheets are versioned. Indicators from the core set start with the prefix ‘P’ (Publications), ‘D’ (Data) or ‘S’ (Software)."
   },
   {
-    "objectID": "tech_doc/data_indicators.html",
-    "href": "tech_doc/data_indicators.html",
-    "title": "Indicators for data sets",
+    "objectID": "tech_doc/EP-epistemic_goals_indicators.html",
+    "href": "tech_doc/EP-epistemic_goals_indicators.html",
+    "title": "Epistemic goals",
     "section": "",
-    "text": "To be done.",
+    "text": "Notes:\n\nYou can browse all available indicators (also archived versions) on this website.\nAlthough you can click the checkboxes on this preview, this does not have any effect. The checkboxes are only for visualization purposes. The actual app can be found here.",
     "crumbs": [
       "⎔ Technical documentation",
-      "Indicators for Data Sets"
+      "&nbsp;&nbsp;Epistemic Goals"
     ]
   },
   {
-    "objectID": "tech_doc/software_indicators.html",
-    "href": "tech_doc/software_indicators.html",
-    "title": "Indicators for research software",
+    "objectID": "tech_doc/EP-practical_relevance_indicators.html",
+    "href": "tech_doc/EP-practical_relevance_indicators.html",
+    "title": "Practical relevance",
     "section": "",
-    "text": "To be done.",
+    "text": "Notes:\n\nYou can browse all available indicators (also archived versions) on this website.\nAlthough you can click the checkboxes on this preview, this does not have any effect. The checkboxes are only for visualization purposes. The actual app can be found here.",
     "crumbs": [
       "⎔ Technical documentation",
-      "Indicators for Research Software"
+      "&nbsp;&nbsp;Practical Relevance"
+    ]
+  },
+  {
+    "objectID": "tech_doc/pub_indicators.html",
+    "href": "tech_doc/pub_indicators.html",
+    "title": "Indicators for publications",
+    "section": "",
+    "text": "Notes:\n\nYou can browse all available indicators (also archived versions) on this website.\nAlthough you can click the checkboxes on this preview, this does not have any effect. The checkboxes are only for visualization purposes. The actual app can be found here.\nIn the Collector App, many indicators are shown conditionally, depending on answers to previous items. Hence, the actual number of indicators presented to applicants typically is lower.",
+    "crumbs": [
+      "⎔ Technical documentation",
+      "&nbsp;&nbsp;Indicators for Publications"
     ]
   },
   {

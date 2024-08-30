@@ -99,9 +99,9 @@ With the goal to make data entry for applicants and hiring committees as easy an
 
 We plan to provide three rating schemes for ...
 
-- Publications, preprints, book chapters, etc.: (**RESQUE-Pubs**) - ✅ v0.4.0, ready for use (but still likely to change). See indicators [here](tech_doc/pub_indicators.qmd).
-- Data sets (**RESQUE-Data**) - ❌ in development, not implemented in Collector App yet
-- Research software (**RESQUE-Software**) - ❌ in development, not implemented in Collector App yet
+- [**RESQUE-Pubs**](tech_doc/pub_indicators.qmd) (Publications, preprints, book chapters, etc.): ✅ v0.4.0, ready for use (but still likely to change)..
+- [**RESQUE-Data**](tech_doc/data_indicators.qmd) (Data sets): ❌ in development, not implemented in Collector App yet
+- [**RESQUE-Software**](tech_doc/software_indicators.qmd) (Research software): ❌ in development, not implemented in Collector App yet
 
 
 ### ☑︎ Rating schemes: Expansion packs
@@ -115,7 +115,9 @@ The subdivisions of the German Psychological Society have been asked to discuss 
 
 **Available Expansion Packs:**
 
-- Quality indicators for [Theory Usage and Development](tech_doc/theory_indicators.qmd)
+- [Epistemic Goals](tech_doc/EP-epistemic_goals_indicators.qmd)
+- [Multi-/Interdisciplinarity](tech_doc/EP-multidisciplinary_indicators.qmd)
+- [Practical Relevance](tech_doc/EP-practical_relevance_indicators.qmd)
 
 
 ### 📊 The RESQUE Research Profile

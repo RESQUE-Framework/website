@@ -1,9 +1,6 @@
 project:
   type: website  
   output-dir: doc
-  resources:
-    - web/
-    - packs/
   render: 
     - "*.qmd"
     - "CODE_OF_CONDUCT.md"
@@ -11,7 +8,7 @@ project:
 
 website:
   title: "The RESQUE Framework"
-  site-url: "https://nicebread.github.io/RESQUE"
+  site-url: "https://resque-framework.github.io/website/"
   page-navigation: true
   navbar:
     search: true

@@ -41,18 +41,23 @@ website:
     - title: "⎔ Technical documentation"
       style: "docked"
       background: light
-      contents:
-        - text: "👇 Select the category: 👇<br><br>"
+      contents:        
         - text: "General information"
           file: technical_docs.qmd
-        - text: "Indicators for Publications"
+        - text: "<br><b>Core Packs:</b><br><br>"
+        - text: "&nbsp;&nbsp;Indicators for Publications"
           file: tech_doc/pub_indicators.qmd
-        - text: "Indicators for Data Sets"  
+        - text: "&nbsp;&nbsp;Indicators for Data Sets"  
           file: tech_doc/data_indicators.qmd
-        - text: "Indicators for Research Software"
+        - text: "&nbsp;&nbsp;Indicators for Research Software"
           file: tech_doc/software_indicators.qmd
-        - text: "Indicators for Theory Usage and Development"  
-          file: tech_doc/theory_indicators.qmd
+        - text: "<br><b>Expansion Packs:</b><br><br>"
+        - text: "&nbsp;&nbsp;Epistemic Goals"  
+          file: tech_doc/EP-epistemic_goals_indicators.qmd
+        - text: "&nbsp;&nbsp;Multi-/Interdisciplinarity"  
+          file: tech_doc/EP-multidisciplinary_indicators.qmd
+        - text: "&nbsp;&nbsp;Practical Relevance"  
+          file: tech_doc/EP-practical_relevance_indicators.qmd
 
 format:
   html:

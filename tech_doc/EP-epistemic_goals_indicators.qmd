@@ -1,18 +1,16 @@
 ---
-title: "Indicators for publications"
+title: "Epistemic goals"
 toc: false
 ---
 
 ::: {.small}
-Notes: 
+Notes:
 
 - You can browse all available indicators (also archived versions) on [this website](https://resque-framework.github.io/collector-app/preview).
 - Although you can click the checkboxes on this preview, this does not have any effect. The checkboxes are only for visualization purposes. The actual app can be found [here](https://resque-framework.github.io/collector-app/).
-- In the Collector App, many indicators are shown conditionally, depending on answers to previous items. Hence, the actual number of indicators presented to applicants typically is lower.
 :::
 <br>
 
-
 ```{=html}
-<iframe title="Indicators for publications" src="https://resque-framework.github.io/collector-app/preview?type=pubs" width="100%" height="20000px"></iframe>
+<iframe title="Indicators for publications" src="https://resque-framework.github.io/collector-app/preview?path=dev&type=EP-epistemic_goals" width="100%" height="20000px"></iframe>
 ```

@@ -1,1 +1,1 @@
-Sitemap: https://nicebread.github.io/RESQUE/sitemap.xml
+Sitemap: https://resque-framework.github.io/website/sitemap.xml

@@ -322,9 +322,9 @@ Important
 <p>With the goal to make data entry for applicants and hiring committees as easy and frictionless as possible, we developed the <a href="https://resque-framework.github.io/collector-app">RESQUE Collector App</a> that allows to provide information for your best research outputs and to export the data in a JSON format.</p>
 <p>We plan to provide three rating schemes for …</p>
 <ul>
-<li>Publications, preprints, book chapters, etc.: (<strong>RESQUE-Pubs</strong>) - ✅ v0.4.0, ready for use (but still likely to change). See indicators <a href="./tech_doc/pub_indicators.html">here</a>.</li>
-<li>Data sets (<strong>RESQUE-Data</strong>) - ❌ in development, not implemented in Collector App yet</li>
-<li>Research software (<strong>RESQUE-Software</strong>) - ❌ in development, not implemented in Collector App yet</li>
+<li><a href="./tech_doc/pub_indicators.html"><strong>RESQUE-Pubs</strong></a> (Publications, preprints, book chapters, etc.): ✅ v0.4.0, ready for use (but still likely to change)..</li>
+<li><a href="./tech_doc/data_indicators.html"><strong>RESQUE-Data</strong></a> (Data sets): ❌ in development, not implemented in Collector App yet</li>
+<li><a href="./tech_doc/software_indicators.html"><strong>RESQUE-Software</strong></a> (Research software): ❌ in development, not implemented in Collector App yet</li>
 </ul>
 </section>
 <section id="rating-schemes-expansion-packs" class="level3">
@@ -334,7 +334,9 @@ Important
 <p>The subdivisions of the German Psychological Society have been asked to discuss the need for discipline-specific indicators.</p>
 <p><strong>Available Expansion Packs:</strong></p>
 <ul>
-<li>Quality indicators for <a href="tech_doc/theory_indicators.qmd">Theory Usage and Development</a></li>
+<li><a href="./tech_doc/EP-epistemic_goals_indicators.html">Epistemic Goals</a></li>
+<li><a href="./tech_doc/EP-multidisciplinary_indicators.html">Multi-/Interdisciplinarity</a></li>
+<li><a href="./tech_doc/EP-practical_relevance_indicators.html">Practical Relevance</a></li>
 </ul>
 </section>
 <section id="the-resque-research-profile" class="level3">
@@ -454,7 +456,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/nicebread\.github\.io\/RESQUE");
+      var filterRegex = new RegExp("https:\/\/resque-framework\.github\.io\/website\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }

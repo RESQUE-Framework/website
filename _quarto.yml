@@ -41,6 +41,8 @@ website:
       contents:        
         - text: "General information"
           file: technical_docs.qmd
+        - text: "Computation of Relative Rigor Score (RRS)"
+          file: tech_doc/RRS.qmd
         - text: "<br><b>Core Packs:</b><br><br>"
         - text: "&nbsp;&nbsp;Indicators for Publications"
           file: tech_doc/pub_indicators.qmd

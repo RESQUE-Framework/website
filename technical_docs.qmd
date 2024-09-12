@@ -22,11 +22,3 @@ The applicants' data (acquired by the Collector app) is stored in `json` files t
 - the [TOP factor](https://www.topfactor.org) for the journals the author is publishing in
 
 Furthermore, the package provides an interactive dashboard that allows to compare multiple candidates.
-
-## Scoring rules
-
-### Relative Rigor Score (RRS): Equal weighting of research outputs
-
-For the computation of the overall RRS score, all submitted research outputs are weighted equally. That means, if two publications are available, each publication contributes 50% to the overall score, even if they differ in their maximally attainable points. The reasoning is that it should not be punished if some points cannot be obtained in principle.
-With our [POMP ("percentage of maximum points") computation](/get_profile.qmd#basic-principles), it is ensured that the RRS for each research output can reach 100% even if some indicators are not applicable.
-But if research outputs with less attainable points contribute less to the overall score, this would be a disadvantage. Therefore each output is weighted equally.

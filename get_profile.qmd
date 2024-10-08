@@ -11,6 +11,8 @@ Things might change substantially in the near future. If you want to use the RES
 - **Step 2**: Go to the [RESQUE Profiler](https://shiny.psy.lmu.de/felix/RESQUE_profile/) app, upload your `json` file, and get your Research Profile as html file:
  
 
+Here is a [demo profile](/includes/demo_profile.html).
+
 
 <img src="images/RESQUE_profile.png" style="border: 1px solid #ddd; border-radius: 4px; padding: 3px; width: 850px;">
 

@@ -32,7 +32,7 @@ See all news [here](news.qmd).
 
 The **Research Quality Evaluation (RESQUE)** framework provides recommendations for a responsible research assessment that does not rely on flawed metrics such as the journal impact factor or the h-index. 
 
-In alignment with the principles of [CoARA](https://coara.eu), this approach acknowledges diverse academic contributions, prioritizes the quality of work rather than its volume, and integrates qualitative peer assessment with the responsible use of quantitative indicators. 
+In alignment with the principles of [CoARA](https://coara.eu), this approach acknowledges diverse academic contributions, prioritizes the quality of work rather than its volume, and integrates qualitative peer assessment with the responsible use of quantitative indicators. All proposed indicators are open-source and reproducible.
 
 ## What is RESQUE? Three modular elements
 
@@ -89,7 +89,12 @@ The RESQUE framework is currently in development and the indicators are subject 
 
 The assessment scheme is primarily developed for the field of psychology, but might be easily transferred to neighbouring empirical scientific fields.
 
-Join our [mailing list](https://www.listserv.dfn.de/sympa/info/psy-dora) to receive news and updates about the RESQUE framework.
+
+
+## Built by the community for the community
+
+The [SCOPE Framework for Research Evaluation](https://inorms.net/scope-framework-for-research-evaluation/) proposes the principle "*Evaluate with the evaluated*", advocating for a co-creation process within the communities that are being evaluated. RESQUE is developed in that spirit. We started with four target papers that elicited 40 publihsed commentaries, which led to a major revision. (Many critical commenters now are in the developer team.) We had workshops with most field-specific groups within the DGPs, which also led to substantial revisions and the development of discipline-specific expansion packs.
+
 
 ## Resources
 

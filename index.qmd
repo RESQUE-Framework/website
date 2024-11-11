@@ -93,7 +93,7 @@ The assessment scheme is primarily developed for the field of psychology, but mi
 
 ## Built by the community for the community
 
-The [SCOPE Framework for Research Evaluation](https://inorms.net/scope-framework-for-research-evaluation/) proposes the principle "*Evaluate with the evaluated*", advocating for a co-creation process within the communities that are being evaluated. RESQUE is developed in that spirit. We started with four target papers that elicited 40 publihsed commentaries, which led to a major revision. (Many critical commenters now are in the developer team.) We had workshops with most field-specific groups within the DGPs, which also led to substantial revisions and the development of discipline-specific expansion packs.
+The [SCOPE Framework for Research Evaluation](https://inorms.net/scope-framework-for-research-evaluation/) proposes the principle *"Evaluate with the evaluated"*, advocating for a co-creation process within the communities that are being evaluated. RESQUE is developed in that spirit. We started with four target papers that elicited 40 publihsed commentaries, which led to a major revision. (Many critical commenters now are in the developer team.) We had workshops with most field-specific groups within the DGPs, which also led to substantial revisions and the development of discipline-specific expansion packs.
 
 
 ## Resources
@@ -104,9 +104,9 @@ With the goal to make data entry for applicants and hiring committees as easy an
 
 We plan to provide three rating schemes for ...
 
-- [**RESQUE-Pubs**](tech_doc/pub_indicators.qmd) (Publications, preprints, book chapters, etc.): ✅ v0.4.0, ready for use (but still likely to change)..
-- [**RESQUE-Data**](tech_doc/data_indicators.qmd) (Data sets): ❌ in development, not implemented in Collector App yet
-- [**RESQUE-Software**](tech_doc/software_indicators.qmd) (Research software): ❌ in development, not implemented in Collector App yet
+- [**RESQUE-Pubs**](tech_doc/pub_indicators.qmd) (Publications, preprints, book chapters, etc.): ✅ v0.4.0, ready for use (but still likely to change).
+- [**RESQUE-Data**](tech_doc/data_indicators.qmd) (Data sets): ❌ under development, not implemented in Collector App yet
+- [**RESQUE-Software**](tech_doc/software_indicators.qmd) (Research software): ❌ under development, not implemented in Collector App yet
 
 
 ### ☑︎ Rating schemes: Expansion packs

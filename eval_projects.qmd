@@ -4,14 +4,15 @@ title: "🔎 Evaluation Projects"
 
 Several research projects work(ed) on the evaluation of the RESQUE rating scheme:
 
-- Etzel, F. T. (2023). One Step Closer Towards Responsible Research Assessment in Psychology: Evaluation and Testing of a New Tool in Practice. [https://doi.org/10.31234/osf.io/3uf7w](https://doi.org/10.31234/osf.io/3uf7w)
 
-::: {.callout-note title="Key findings"}
- 63 papers nominated by 21 participating researchers were rated by external raters (i.e., not the authors themselves) with the *RESQUE-Pubs* scheme (version 0.1). Inter-rater reliability, associations between the new and traditional indicators, and feedback from the participants on the new tool were examined. Inter-rater reliability for the three raters varied between the different items of the scheme. Besides a negative association between the new indicators and the uncorrected h-index, no other significant associations were found. The feedback from participants revealed the importance of transparency concerning the scheme.
+📔 Etzel, F. T., Seyffert-Müller, A., Schönbrodt, F. D., Kreuzer, L., Gärtner, A., Knischewski, P., & Leising, D. (2024, May 8). Inter-Rater Reliability in Assessing the Methodological Quality of Research Papers in Psychology. [https://doi.org/10.31234/osf.io/4w7rb](https://doi.org/10.31234/osf.io/4w7rb).
+
+::: {.callout-note title="Abstract"}
+Given the apparent validity deficiencies of many well-established metrics of research productivity (such as h-indices and journal impact factors), the demand for viable alternatives is growing. This paper presents two empirical studies in which groups of raters (n1 = 3, n2 = 9) assessed the methodological rigor of research papers (k1 = 52, k2 = 110) using detailed catalogs of relatively well-defined quality criteria. The main endpoint in both studies was inter-rater reliability, which is a necessary prerequisite for any subsequent use of such assessments (e.g., as part of hiring or promotion procedures). Both studies showed that the application of several open science practices (e.g., open data, preregistration) may in fact be assessed with good reliability (Kappa > .60, ICCs > .75), even by raters who received little to no training, and within reasonable amounts of time (M1 = 21.7, M2 = 40.2 minutes on average). When aggregated across indicators, inter-rater reliability for this type of assessment was good to excellent (Study 1: ICC(1, 1) = .91, Study 2: ICC(1,1) = .74). A subsample of papers in Study 2 was drawn randomly from the recent literature (2020-2022) and showed that typical papers in contemporary psychology still exhibit very low methodological rigor. Study 2 also showed that criteria related to consensus-building do not yet espouse sufficient reliability. Standard criterion sets for assessing the methodological rigor of empirical research should be used more widely in evaluating submissions to scientific journals, as well as published research (e.g., in evaluating the research productivity of individuals, groups or institutions). Such evaluations will be also facilitated by establishing clearer and more widely-adopted reporting standards.
 :::
 
-- Anna Seyffert (2023)
+One **Key Finding** is that the overall Relative Rigor Score of RESQUE can assessed with good to excellent inter-rater reliability (ICC(1,1) = .91) by student assistants.
 
 
-- Christoph Heller & Jakob Fink-Lamotte (in prep.) are testing the scheme in the field of clinical psychology.
+📔 Christoph Heller & Jakob Fink-Lamotte (in prep.) are testing the RESQUE v0.3 rating scheme in the field of clinical psychology.
 

@@ -1,5 +1,5 @@
 ---
-title: "🚀 For hiring/tenure committees"
+title: "📊 For hiring/tenure committees"
 ---
 
 ::: {.callout-warning}

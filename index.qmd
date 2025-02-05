@@ -1,5 +1,5 @@
 ---
-title: "RESQUE: The Research Quality Evaluation scheme for psychological research"
+title: "RESQUE: A Research Quality Evaluation scheme for psychological research"
 listing:
   id: sample-listings
   template: includes/news.ejs

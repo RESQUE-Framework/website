@@ -1,18 +1,25 @@
 ---
-title: "📊 Get your RESQUE profile"
+title: "👩‍🔬 For applicants"
 ---
 
-::: {.callout-warning}
+::: {.callout-warning title="Warning: App still under development" collapse="true"}
 The [Collector App](https://resque-framework.github.io/collector-app/) for entering the data, the [R package for profile creation](https://github.com/RESQUE-Framework/RESQUER), and the [Profile Builder](https://shiny.psy.lmu.de/felix/RESQUE_profile/) website where end-users can retrieve their profile are in beta stage and not finalized yet.
 Things might change substantially in the near future. If you want to use the RESQUE framework in practice please [contact](/team.qmd) us.
 :::
 
-- **Step 1**: Enter the data for up to 10 research contributions (publications, data sets, or research software) in the [RESQUE Collector App](https://resque-framework.github.io/collector-app) app. When done, save the data as a local `json` file ("Save to file ..." in the top left corner).
-- **Step 2**: Go to the [RESQUE Profiler](https://shiny.psy.lmu.de/felix/RESQUE_profile/) app, upload your `json` file, and get your Research Profile as html file:
- 
 
-Here is a [demo profile](/includes/demo_profile.html).
+- **Step 1**: Enter the data for up to 10 publications in the [RESQUE Collector App](https://resque-framework.github.io/collector-app) app. When done, save the data as a local `json` file ("Save to file ..." in the top left corner).
+- **Step 2**: Go to the [RESQUE Profiler](https://shiny.psy.lmu.de/felix/RESQUE_profile/) app, upload your `json` file, and get your Research Profile as html file.
 
+::: {.callout-note}
+**If a hiring committee requested that you include a RESQUE Profile in your application,
+please send the `json` file (see Step 1) to the committee.**
+:::
 
+---
+
+Here is a full [demo profile](/includes/demo_profile.html).
+
+<a href="/includes/demo_profile.html">
 <img src="images/RESQUE_profile.png" style="border: 1px solid #ddd; border-radius: 4px; padding: 3px; width: 850px;">
-
+</a>

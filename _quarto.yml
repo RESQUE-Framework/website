@@ -7,7 +7,7 @@ project:
     - "!profile/"
 
 website:
-  title: "The RESQUE Framework"
+  title: "The RESQUE<br>Framework"
   site-url: "https://resque-framework.github.io/website/"
   page-navigation: true
   navbar:

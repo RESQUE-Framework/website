@@ -10,6 +10,17 @@ h3 {
 }
 
 
+/* increase gap between main menu items */
+/* TODO: This does not work yet properly */
+.nav-link {
+    margin-right: 30px !important;
+  }
+
+/* Make sure that the logo is visible*/
+.navbar-brand-container {
+    min-width: 180px;
+}
+
 /* News */
 
 .news {

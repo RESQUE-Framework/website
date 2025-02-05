@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>News – The RESQUEFramework</title>
+<title>Computation of Relative Rigor Score (RRS) – The RESQUEFramework</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,24 +23,24 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-251ae6ad1732f59e71e1da7b0ac12842.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../tech_doc/pub_indicators.html" rel="next">
+<link href="../technical_docs.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-251ae6ad1732f59e71e1da7b0ac12842.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -68,35 +68,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
 <!-- Matomo -->
 <script>
   var _paq = window._paq = window._paq || [];
@@ -113,47 +84,18 @@ ul.task-list li input[type="checkbox"] {
 </script>
 <!-- End Matomo Code -->
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
-<body class="nav-fixed fullcontent">
+<body class="nav-sidebar docked nav-fixed fullcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">The RESQUE<br>Framework</span>
     </a>
   </div>
@@ -164,27 +106,27 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./get_profile.html"> 
+    <a class="nav-link" href="../get_profile.html"> 
 <span class="menu-text">👩‍🔬 For applicants</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./for_committees.html"> 
+    <a class="nav-link" href="../for_committees.html"> 
 <span class="menu-text">📊 For hiring/tenure committees</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./publications.html"> 
+    <a class="nav-link" href="../publications.html"> 
 <span class="menu-text">📔 Publications</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./eval_projects.html"> 
+    <a class="nav-link" href="../eval_projects.html"> 
 <span class="menu-text">🔎 Evaluation Projects</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./team.html"> 
+    <a class="nav-link" href="../team.html"> 
 <span class="menu-text">👥 Team / Contribute</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./technical_docs.html"> 
+    <a class="nav-link active" href="../technical_docs.html" aria-current="page"> 
 <span class="menu-text">⎔ Technical documentation</span></a>
   </li>  
 </ul>
@@ -193,10 +135,81 @@ window.Quarto = {
 </div>
       </div> <!-- /container-fluid -->
     </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tech_doc/RRS.html">Computation of Relative Rigor Score (RRS)</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../technical_docs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">General information</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tech_doc/RRS.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Computation of Relative Rigor Score (RRS)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+ <span class="menu-text"><br><b>Core Packs:</b><br><br></span>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tech_doc/pub_indicators.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">&nbsp;&nbsp;Indicators for Publications</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tech_doc/data_indicators.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">&nbsp;&nbsp;Indicators for Data Sets</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tech_doc/software_indicators.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">&nbsp;&nbsp;Indicators for Research Software</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+ <span class="menu-text"><br><b>Expansion Packs:</b><br><br></span>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tech_doc/EP-epistemic_goals_indicators.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">&nbsp;&nbsp;Epistemic Goals</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tech_doc/EP-multidisciplinary_indicators.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">&nbsp;&nbsp;Multi-/Interdisciplinarity</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tech_doc/EP-practical_relevance_indicators.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">&nbsp;&nbsp;Practical Relevance</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     
 <!-- main -->
@@ -204,7 +217,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">News</h1>
+<h1 class="title">Computation of Relative Rigor Score (RRS)</h1>
 </div>
 
 
@@ -221,117 +234,19 @@ window.Quarto = {
 </header>
 
 
+<section id="basic-principles" class="level2">
+<h2 class="anchored" data-anchor-id="basic-principles">Basic Principles</h2>
+<p>There are many ways to conduct science, and RESQUE does not give a precedence to any approach. For example, it does not favor confirmatory research over exploratory research. But whatever approach you choose, it should be done well. So we created quality indicators for different aspects.</p>
+<p>Importantly, you should not be penalized if certain points cannot be achieved in principle. Therefore, we compute the <strong>Relative Rigor Scores</strong> as a POMP (Percentage of Maximum Points): If an indicator is justifiably ‘not applicable’, the indicator is taken out of the set, the maximum score is adjusted accordingly, allowing for the possibility of achieving 100% of the applicable points.</p>
+</section>
+<section id="equal-weighting-of-research-outputs" class="level2">
+<h2 class="anchored" data-anchor-id="equal-weighting-of-research-outputs">Equal weighting of research outputs</h2>
+<p>For the computation of the overall RRS score, all submitted research outputs are weighted equally. That means, if two publications are available, each publication contributes 50% to the overall score, even if they differ in their maximally attainable points. The reasoning is that it should not be punished if some points cannot be obtained in principle. With our POMP (“percentage of maximum points”) computation, it is ensured that the RRS for each research output can reach 100% even if some indicators are not applicable. But if research outputs with less attainable points contribute less to the overall score, this would be a disadvantage. Therefore each output is weighted equally.</p>
 
 
+</section>
 
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-listing-date-sort="1710975600000" data-listing-file-modified-sort="1711084049822" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="52">
-<div class="thumbnail">
-<p><a href="./news/2024-03-21-Einstein_Foundation_Award.html" class="no-external"></a></p><a href="./news/2024-03-21-Einstein_Foundation_Award.html" class="no-external">
-<p class="card-img-top"><img src="news/img/EFA_164-2.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./news/2024-03-21-Einstein_Foundation_Award.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./news/2024-03-21-Einstein_Foundation_Award.html" class="no-external">Einstein Foundation Award</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./news/2024-03-21-Einstein_Foundation_Award.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./news/2024-03-21-Einstein_Foundation_Award.html" class="no-external">Anne Gärtner received the Einstein Foundation Early Career Award 2023 for the project on Responsible Research Assessment. The project is based on RESQUE and aims to further…</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./news/2024-03-21-Einstein_Foundation_Award.html" class="no-external">
-<div class="listing-date">
-2024-03-21
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-listing-date-sort="1708902000000" data-listing-file-modified-sort="1710403679458" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="911">
-<div class="thumbnail">
-<p><a href="./news/2024-02-26-theory_indicators.html" class="no-external"></a></p><a href="./news/2024-02-26-theory_indicators.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./news/2024-02-26-theory_indicators.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./news/2024-02-26-theory_indicators.html" class="no-external">New indicators for theory-guided research developed</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./news/2024-02-26-theory_indicators.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./news/2024-02-26-theory_indicators.html" class="no-external">A working group consisting of Nele Freyer, Jens Lange, Daniel Leising, Philipp Musfeld, and Felix Schönbrodt developed a set of indicators that allows to evaluate…</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./news/2024-02-26-theory_indicators.html" class="no-external">
-<div class="listing-date">
-2024-02-26
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-listing-date-sort="1702335600000" data-listing-file-modified-sort="1718195337477" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="24">
-<div class="thumbnail">
-<p><a href="./news/2023-12-12-website.html" class="no-external"></a></p><a href="./news/2023-12-12-website.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./news/2023-12-12-website.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./news/2023-12-12-website.html" class="no-external">RESQUE website is live!</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./news/2023-12-12-website.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./news/2023-12-12-website.html" class="no-external">We launched the RESQUE website. All material will be collected here, including news and information about case studies, evaluation projects, new indicator packs, etc.</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./news/2023-12-12-website.html" class="no-external">
-<div class="listing-date">
-2023-12-12
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-listing-date-sort="1693778400000" data-listing-file-modified-sort="1708691346307" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="147">
-<div class="thumbnail">
-<p><a href="./news/2023-09-04-Etzel_preprint.html" class="no-external"></a></p><a href="./news/2023-09-04-Etzel_preprint.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./news/2023-09-04-Etzel_preprint.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./news/2023-09-04-Etzel_preprint.html" class="no-external">Preprint published by Franka Etzel on an evaluation study</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./news/2023-09-04-Etzel_preprint.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./news/2023-09-04-Etzel_preprint.html" class="no-external">63 papers nominated by 21 participating researchers from personality and social psychology were rated by external raters (i.e., not the authors themselves) with the…</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./news/2023-09-04-Etzel_preprint.html" class="no-external">
-<div class="listing-date">
-2023-09-04
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -749,6 +664,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../technical_docs.html" class="pagination-link" aria-label="General information">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">General information</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../tech_doc/pub_indicators.html" class="pagination-link" aria-label="&amp;nbsp;&amp;nbsp;Indicators for Publications">
+        <span class="nav-page-text">&nbsp;&nbsp;Indicators for Publications</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 
 

@@ -1,0 +1,1598 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RESQUE</title>
+    <link rel="stylesheet" href="styles.css" />
+
+    <!-- Matomo -->
+    <script>
+        var _paq = window._paq = window._paq || [];
+        /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+        _paq.push(['trackPageView']);
+        _paq.push(['enableLinkTracking']);
+        (function() {
+        var u="//tellmi.psy.lmu.de/matomo/";
+        _paq.push(['setTrackerUrl', u+'matomo.php']);
+        _paq.push(['setSiteId', '6']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+        })();
+    </script>
+    <!-- End Matomo Code -->
+  
+
+    <script src="https://cdn.jsdelivr.net/npm/driver.js@1.0.1/dist/driver.js.iife.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/driver.js@1.0.1/dist/driver.css" />
+
+</head>
+
+<body>
+    <div id="main">
+        <div class="tabs-sidebar">
+            <div class="sidebar-top">
+                <span style='background-color: rgb(248, 150, 150); font-size:80%;'>[Warning: This app is deprecated.]</span><br><br>
+                <div class="top">                    
+                    <h3><a href="https://nicebread.github.io/RESQUE/">RESQUE</a></h3>
+                    <div id="actions">
+                        <button class="clear-button" onclick="showModal('clear-modal')">Clear</button>
+                        <button class="load-button" onclick="triggerLoad()">Load</button>
+                        <button class="save-button" onclick="exp()">Save to file ...</button>
+                    </div>
+                </div>
+                <p id="slot-info"></p>
+            </div>
+            <div class="tabs-container">
+                <div id="tabs">
+
+                </div>
+            </div>
+            <div id="add-container">
+                <div class="doi-input" style="display:none">
+                    <button class="pdf-button" onclick="document.getElementById('add-pdf').click()">Extract DOI from
+                        PDF</button>
+                    <input id="add-doi" type="text" placeholder="DOI (optional)" />
+                </div>
+
+                <div class="add-buttons">
+                    <button class="add-pub" onclick="newTab('pub')">Add Publication</button>
+                    <br />
+                    <button class="add-software" onclick="newTab('software')">Add Software</button>
+                    <br />
+                    <button class="add-data" onclick="newTab('data')">Add Data Set</button>
+                </div>
+            </div>
+        </div>
+        <div id="formview-container">
+            <div id="saving" class="animate pop" style="display: none;"></div>
+            <div id="formview"></div>
+        </div>
+        <div id="menu">
+            <div class="card animate pop" id="score-box">
+                <div id="score-container">
+                    <div id="current-score">
+                        <span class="sub">Rigor Score of selected research output</span>
+                        <span id="no-score">Applicant requests<br>manual processing</span>
+
+                        <div id="current-score-container">
+                            <p id="score-percentage"></p>
+                            <p id="score-dot">•</p>
+                            <p id="score-minmax"></p>
+                        </div>
+                    </div>
+                    <div id="overall-score">
+                        <span class="sub">Overall Rigor Score (mean)</span>
+                        <div id="overall-score-container">
+                            <p id="overall-score-percentage"></p>
+                        </div>
+                    </div>
+                </div>
+                <p id="ro-count-container"><span class="tag"><span id="scoredROs"></span> scored research outputs</span>
+                </p>
+                <p id="warning-score-too-low">⚠️ Many indicators are not applicable. Manual processing of this
+                    publication is recommended.</p>
+                <p id="warning-min-ro-threshold">⚠️ Please provide at least <span id="minROWarningThreshold"></span>
+                    research contributions that can be scored (e.g. by adding more empirical papers, data sets, or
+                    software contributions)</p>
+            </div>
+            <div id="info-box" class="card">
+                <p id="item-info">Click on an indicator to see detailed information</p>
+                <details id="item-background-details">
+                    <summary>Background information</summary>
+                    <span id="item-background"></span>
+                </details>
+                <details id="tip-external-details">
+                    <summary>Tips for external raters</summary>
+                    <span id="tip-external"></span>
+                </details>
+            </div>
+            <div class="menu-bottom">
+                <a class="fakelink" href="https://nicebread.github.io/RESQUE">RESQUE Website</a> • <span onclick="showInfoModal()" class="fakelink">FAQ</span> • <a class="github-link"
+                    href="https://github.com/nicebread/RESQUE">GitHub</a> • <span onclick="driver(tourAnytime()).drive()"
+                    class="fakelink">Tour</span>
+            </div>
+        </div>
+    </div>
+    <div id="info-modal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <button onclick="closeInfoModal()" id="add-modal-continue">Continue</button>
+
+            <h2>👋🏻 Welcome to the RESQUE tool!</h2>
+            <p>We need to change the way we assess research - with a focus on quality (over quantity). The <a
+                    href="https://github.com/nicebread/RESQUE">RESearch QUality Evaluation (RESQUE)</a> framework
+                provides an evaluation scheme for publications, data sets, and research software. With this tool, you
+                can enter the necessary information for your best research outputs, export a profile that shows your
+                research style (<i>not implemented yet</i>), and use it for your CV or in hiring and tenure committees.
+            </p>
+            <hr>
+            <h3>👀 How to use the RESQUE tool?</h3>
+            <details>
+                <summary>How do I add a new publication / software project / data set?</summary>
+                Normally, you would use the buttons in the sidebar on the left.
+                <br>
+                For this time, you can do it here:
+                <br><br>
+                <button onclick="newTab('pub')">New Publication</button>
+                <button onclick="newTab('software')">New Software Project</button>
+                <button onclick="newTab('data')">New Data Set</button>
+            </details>
+            <details>
+                <summary>How do I save my data?</summary>
+                Clicking on the <button onclick="exp()">Save as file ...</button> button here or in the top left corner
+                of this website exports a <code>.json</code> file. You can save this on your computer and share it with
+                others.
+            </details>
+            <details>
+                <summary>How do I load data I previously saved?</summary>
+                You can use the <button onclick="triggerLoad()">Load</button> button here or in the top left corner of
+                this website.
+            </details>
+            <details>
+                <summary>How can I clear all information I entered?</summary>
+                You can delete all data stored in the browser by clicking on the <button
+                    onclick="showModal('clear-modal')">Clear</button> button here or in the top left corner of this
+                website.
+            </details>
+            <details>
+                <summary>What should I do if I want to use RESQUE on a shared/public computer?</summary>
+                Whenever you open this website, it loads the locally stored data. On public computers, make sure that
+                you clear your data after you saved them as a file.
+            </details>
+            <hr>
+            <h3>🔒 Privacy • <span class="sub">Is my data stored privately in a safe location?</span></h3>
+            <p>
+                <b>No data leaves your device.</b>
+                <br>
+                We use the <a href="https://www.wikiwand.com/en/Web_storage">Web Storage API</a> supported by all major
+                browsers. Although the website itself is hosted on a server, your data is <i>only</i> stored and
+                processed in the local browser:
+                <br><br>
+                The data is processed only locally. Your score is calculated in the browser. The local PDF files you
+                open on this website are <i>not</i> uploaded to a server.
+                <br><br>
+                To get a sense of how many users we have, we do a very basic access logging with Matomo. You are not
+                identifiable by the logged information; none of your entered data is tracked; no cookies or third party
+                trackers are used.
+            </p>
+        </div>
+    </div>
+    <dialog id="clear-modal">
+        <h3>⚠️ Warning!</h3>
+        <p><b>This will delete all of your local data.</b><br><br>Do you want to save the data to a file first?</p>
+        <br>
+        <button onclick="closeModal('clear-modal')">Cancel</button> <button onclick="exp()">Save data to local
+            file</button>
+        <button onclick="reset()" class="critical">Clear all data</button>
+    </dialog>
+
+    <dialog id="config-incompatible-modal">
+        <h3>Incompatible configuration</h3>
+        <p>You have old data present, which was created using a different configuration. Do you want to load it, or
+            start with a fresh form?</p>
+        <p>Your data might be incompatible with the current configuration and lead to unexpected behavior.
+        </p>
+        <br>
+        <div class="buttons">
+            <button onclick="saveCurrentQueryConfig(); closeModal('config-incompatible-modal')">Use old data</button>
+            <button onclick="showModal('clear-modal')" class="critical">Clear everything and start fresh</button>
+        </div>
+    </dialog>
+
+    <div id="mobile">
+        <div class="card">
+            This window is too small for the <b>RESQUE</b> tool.
+            <br><br> Please visit <a href="https://nicebread.github.io/RESQUE/web">nicebread.github.io/RESQUE/web</a> on
+            a computer. If you are already on a computer, please make this window larger.
+            <hr>
+            <a class="github-link" href="https://github.com/nicebread/RESQUE">GitHub</a>
+        </div>
+    </div>
+
+    <input id="fileInput" type="file" accept="text/json" style="visibility: hidden" onchange="handleLoad(this.files)" />
+    <a id="download" style="visibility: hidden"></a>
+    <input id="add-pdf" type="file" accept="application/pdf" onchange="handleSelectPDF(this.files)"
+        style="visibility: hidden;" />
+
+    <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/object-hash@3.0.0/dist/object_hash.min.js"></script>
+    <script>
+        const driver = window.driver.js.driver;
+
+        const tourMain = {
+            showProgress: true,
+            steps: [
+                { popover: { title: '👋🏻 Welcome to the RESQUE tool!', description: 'We need to change the way we assess research - with a focus on quality (over quantity). The RESearch QUality Evaluation (RESQUE) framework provides an evaluation scheme for publications, data sets, and research software for psychological research. With this tool, you can enter the necessary information for your best research outputs, export a profile that shows your research style (not implemented yet), and use it for your CV or in hiring and tenure committees. <br><span style="background-color: lightyellow; font-size:80%;">[Note: The RESQUE is still a beta version and in active development.]</span>' } },
+                { popover: { title: '🔒 Privacy', description: 'The data you enter never leaves your device. Everything is processed locally. (except fetching the information about a publications using the DOI)' } },
+                { popover: { title: 'Saving changes...', description: 'Your changes are saved automatically in your browser. You can reload the page or close this tab and come back another time, the data you entered will still be here.' } },
+                // { element: '.pdf-button', popover: { description: 'You can open a PDF file and extract the DOI automatically. Note that this might fail in rare cases.' } },
+                { element: '.add-pub', popover: { title: 'Take your time...', description: 'After filling out the metadata form, add a new publication to continue the tour.' } },
+            ]
+        };
+
+        const tourForm = {
+            showProgress: true,
+            steps: [
+                { popover: { title: '🎉 You added your first publication!', description: 'We will continue showing you around.' } },
+                { element: '#DOI', popover: { description: 'You can enter the DOI here. We\'ll get the title and the year of publication from doi.org after you click away from the text field.' } },
+                { element: '#score-box', popover: { title: 'Score box', description: 'You see the score for the current research output and the overall score for all research outputs here.' } },
+                { element: '#info-box', popover: { title: 'Info box', description: 'You can click on an indicator in the form to see some help or detailed information here.' } },
+                { element: '.clear-button', popover: { title: 'Starting fresh', description: 'You can use the \'Clear\' button to delete everything you entered and start with a fresh form.' } },
+                { element: '.load-button', popover: { title: 'Loading previously exported data', description: 'The \'Load\' button opens a file picker, the local JSON file you select will be loaded into the tool.' } },
+                { element: '.save-button', popover: { title: 'Saving to a local file', description: 'If you want to export your data and save it to a local file (for example if you want to send the data to another person), you can use this button. A JSON file will be saved to your computer.' } },
+
+                { element: '.menu-bottom', popover: { description: 'You can click on FAQ to read more. You can also always take this tour by clicking on \'Tour\'' } },
+            ]
+        };
+
+        const tourAnytime = () => { return {
+            showProgress: true,
+            steps: [
+                { popover: { title: '👋🏻 Welcome to the RESQUE tool!', description: 'We need to change the way we assess research - with a focus on quality (over quantity). The RESearch QUality Evaluation (RESQUE) framework provides an evaluation scheme for publications, data sets, and research software. With this tool, you can enter the necessary information for your best research outputs, export a profile that shows your research style (not implemented yet), and use it for your CV or in hiring and tenure committees.' } },
+                { popover: { title: '🔒 Privacy', description: 'The data you enter never leaves your device. Everything is processed locally. (except fetching the information about a publications using the DOI)' } },
+                { popover: { title: 'Saving changes...', description: 'Your changes are saved automatically in your browser. You can reload the page or close this tab and come back another time, the data you entered will still be here.' } },
+                { element: '.pdf-button', popover: { description: 'You can open a PDF file and extract the DOI automatically. Note that this might fail in rare cases.' } },
+                { element: '.add-buttons', popover: { title: 'Add a new research output', description: 'You can use one of these three buttons to add new research outputs. RESQUE considers publications, software projects and data sets as research outputs.' } },
+                { element: '.clear-button', popover: { title: 'Starting fresh', description: 'You can use the \'Clear\' button to delete everything you entered and start with a fresh form.' } },
+                { element: '.load-button', popover: { title: 'Loading previously exported data', description: 'The \'Load\' button opens a file picker, the local JSON file you select will be loaded into the tool.' } },
+                { element: '.save-button', popover: { title: 'Saving to a local file', description: 'If you want to export your data and save it to a local file (for example if you want to send the data to another person), you can use this button. A JSON file will be saved to your computer.' } },
+
+                result.type === 'pub' ? { popover: { description: "Let's continue with the form and the right menu." } } : { popover: { title: 'Please switch to a publication tab', description: 'In order to continue the tour, you have to be on a publication tab. Add a new publication or switch to an existing one and start the tour again.' } },
+                { element: '#DOI', popover: { description: 'You can enter the DOI here. We\'ll get the title and the year of publication from doi.org after you click away from the text field.' } },
+                { element: '#score-box', popover: { title: 'Score box', description: 'You see the score for the current research output and the overall score for all research outputs here.' } },
+                { element: '#info-box', popover: { title: 'Info box', description: 'You can click on an indicator in the form to see some help or detailed information here.' } },
+
+                { element: '.menu-bottom', popover: { description: 'You can click on FAQ to read more. You can also always take this tour by clicking on \'Tour\'' } },
+            ]
+        }}
+    </script>
+    <script>
+        pdfjsLib.GlobalWorkerOptions.workerSrc =
+            'https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js';
+
+        function extractText(pdf) {
+            var totalPageCount = pdf.numPages;
+            var countPromises = [];
+            for (
+                var currentPage = 1;
+                currentPage <= totalPageCount;
+                currentPage++
+            ) {
+                var page = pdf.getPage(currentPage);
+                countPromises.push(
+                    page.then(function (page) {
+                        var textContent = page.getTextContent();
+                        return textContent.then(function (text) {
+                            return text.items
+                                .map(function (s) {
+                                    return s.str;
+                                })
+                                .join(' ');
+                        });
+                    }),
+                );
+            }
+
+            return Promise.all(countPromises).then(function (texts) {
+                return texts.join(' ');
+            })
+        }
+
+        function handleSelectPDF(files) {
+            var file = files[0];
+
+            //Step 2: Read the file using file reader
+            var fileReader = new FileReader();
+
+            fileReader.onload = function () {
+
+                //Step 4:turn array buffer into typed array
+                var typedarray = new Uint8Array(this.result);
+
+                //Step 5:pdfjs should be able to read this
+                const loadingTask = pdfjsLib.getDocument(typedarray);
+                loadingTask.promise.then(pdf => {
+                    extractText(pdf).then(text => {
+                        let dois = extractDOIs(text);
+                        document.getElementById('add-doi').value = dois[0];
+
+                        if (mode === MODE_PREVIEW || mode === MODE_PRINT) {
+                            console.log(text);
+                            console.log(dois);
+                        }
+                    })
+                });
+            };
+            //Step 3:Read the file as ArrayBuffer
+            fileReader.readAsArrayBuffer(file);
+        }
+
+        function extractDOIs(text) {
+            let pattern = /\b10\.\d{4,9}\/[-._;()/:a-zA-Z0-9]+\b/g;
+            const dois = text.match(pattern);
+
+            return [...new Set(dois)];
+        }
+    </script>
+
+    <script>
+
+
+        async function use(config, ...packs) {
+
+            const pool = [];
+
+            const ps = await Promise.all(packs.map(async pack => {
+                const response = await fetch("../packs/" + pack + ".json");
+                return response.json();
+            }));
+
+            ps.forEach(p => pool.push(...p.elements));
+
+            let versions = {};
+
+            ps.forEach(pack => versions[pack.prefix] = pack.version);
+
+            let date = {};
+
+            ps.forEach(pack => date[pack.prefix] = pack.date);
+
+            let scoringInfos = {}
+
+            ps.forEach(pack => scoringInfos = { ...scoringInfos, ...pack.scoring })
+
+            return {
+                title: ps[0].title,
+                versions,
+                date,
+                scoring: scoringInfos,
+                pool,
+                config
+            };
+        }
+
+        function pick(combinedPack, ...ids) {
+            return {
+                title: combinedPack.title,
+                versions: combinedPack.versions,
+                date: combinedPack.date,
+                scoring: combinedPack.scoring,
+                config: combinedPack.config,
+                elements: ids.length <= 0 ? combinedPack.pool : ids.map(id => combinedPack.pool.find(item => item.id === id))
+            };
+        }
+
+        function pickByPrefix(combinedPack, prefix) {
+            return {
+                title: combinedPack.title,
+                versions: combinedPack.versions,
+                date: combinedPack.date,
+                scoring: combinedPack.scoring,
+                config: combinedPack.config,
+                elements: combinedPack.pool.filter(item => item.id.startsWith(prefix))
+            };
+        }
+
+        function pickByCondition(combinedPack, condition) {
+            return {
+                title: combinedPack.title,
+                versions: combinedPack.versions,
+                date: combinedPack.date,
+                scoring: combinedPack.scoring,
+                config: combinedPack.config,
+                elements: combinedPack.pool.filter(item => condition(item))
+            };
+        }
+
+        function pickExclude(combinedPack, ...ids) {
+            return pickByCondition(combinedPack, item => !ids.includes(item.id));
+        }
+    </script>
+
+    <script src="menu.js"></script>
+
+    <script>
+        const MODE_PREVIEW = "preview";
+        const MODE_PRINT = "print";
+
+        let elems = [];
+        let tabs = [];
+
+        let formTypes;
+
+        const getVersion = type => formTypes[type].versions[prefixes[type]];
+
+        const getConfig = (type) => ({
+            ...formTypes[type].config,
+            ...globalConfig,
+            ...queryConfig.global,
+            ...queryConfig[type]
+        })
+
+        const getDefaultValues = type => {
+            let defaultValues = {};
+
+            for (element of formTypes[type].elements) {
+                if (element.default) {
+                    if (element.type !== 'checkbox') {
+                        defaultValues[element.id] = element.default;
+                    } else {
+                        element.default.forEach((optionId) => {
+                            defaultValues[element.id + '_' + optionId] = true;
+                        })
+                    }
+                }
+            }
+
+            return defaultValues;
+        }
+
+        // Modal
+
+        window.onclick = e => {
+            if (event.target.classList.contains("modal")) {
+                e.target.style.display = "none";
+            }
+        }
+
+        const showModal = (id) => {
+            document.getElementById(id).showModal();
+        }
+
+        const closeModal = (id) => {
+            document.getElementById(id).close();
+        }
+
+        const showInfoModal = () => {
+            document.getElementById("info-modal").style.display = "block";
+        }
+
+        const closeInfoModal = () => {
+            document.getElementById("info-modal").style.display = "none";
+        }
+
+        const fetchInformationUsingDOI = async (doi) => {
+            return await fetch("https://doi.org/" + doi, {
+                headers: {
+                    Accept: 'application/vnd.citationstyles.csl+json'
+                }
+            })
+                .then(response => response.json())
+                .then(response => {
+                    if (mode === MODE_PREVIEW || mode === MODE_PRINT) {
+                        console.log(response);
+                    }
+
+                    return {
+                        title: response.title,
+                        year: response.published["date-parts"][0][0],
+                        DOI: response.DOI
+                    }
+                })
+                .catch(() => {
+                    return {
+                        error: true,
+                        title: doi ? '⚠️ <b>Invalid DOI:</b> ' + doi : undefined,
+                        year: undefined,
+                        DOI: doi
+                    }
+                })
+        }
+
+        const displayInformation = async (doi) => {
+
+            currentResult = result;
+
+            const publicationInformation = await fetchInformationUsingDOI(doi);
+
+            currentResult.Title = publicationInformation.title;
+            currentResult.Year = publicationInformation.year;
+
+            if (!publicationInformation.error) {
+                currentResult.DOI = "https://doi.org/" + publicationInformation.DOI;
+                document.getElementById("DOI").value = currentResult.DOI;
+            }
+
+            save();
+
+            rerenderDynamicValues();
+            updateTabs();
+
+        }
+
+        const newTab = type => {
+            let doiField = document.getElementById("add-doi");
+            let doi = doiField.value;
+
+            doiField.value = "";
+
+            let index = results.length
+
+            results.push({
+                type,
+                version: getVersion(type),
+                date_added: Date.now(),
+                ...getDefaultValues(type)
+            });
+
+            results[0].date_modified = Date.now();
+
+            document.getElementById("tabs").appendChild(createTab(results[results.length - 1], results.length - 1));
+
+            const tabsElement = document.getElementsByClassName("tabs-sidebar")[0];
+
+            if (doi) {
+                const publicationInformation = fetchInformationUsingDOI(doi.trim());
+            } else {
+                // Switch to new tab
+                save();
+
+                tabs[results.length - 1].click();
+
+                tabsElement.scrollTo({
+                    top: tabsElement.scrollHeight,
+                    behavior: "smooth"
+                });
+            }
+
+            if (type === 'pub' && results.length === 2) {
+                driver(tourForm).drive();
+            }
+        }
+
+        const save = () => {
+            localStorage.setItem("formdata", JSON.stringify(results))
+        }
+
+        const getSavedData = () => {
+            return JSON.parse(localStorage.getItem("formdata")) || [];
+        }
+
+        const reset = () => {
+            results = {};
+            localStorage.clear();
+            sessionStorage.clear();
+            location.reload();
+        }
+
+        const triggerLoad = () => {
+            fileSelector = document.getElementById("fileInput");
+            fileSelector.click();
+        }
+
+        const handleLoad = async files => {
+            let loadedData = JSON.parse(await files[0].text());
+
+            if (loadedData.every(r => getVersion(r.type) === r.version)) {
+                results = loadedData;
+                save();
+                sessionStorage.clear();
+                location.reload();
+            } else {
+                alert("Warning: the data in the local file was created using an earlier version. Trying to load it anyway.");
+
+                // Temporary: Load anyway!!
+                results = loadedData;
+                save();
+                sessionStorage.clear();
+                location.reload();
+            }
+        }
+
+        const exp = () => {
+            let millis = Date.now();
+            results[0].date_exported = millis;
+            let json = JSON.stringify(results, null, 2);
+            let blob = new Blob([json], { type: "text/json;charset=utf-8" });
+            let filename = `resque_${results[0].LastName ? results[0].LastName.toLowerCase() + "_" : ""}${millis}.json`;
+
+            let a = document.getElementById("download");
+            a.innerText = filename;
+            a.download = filename;
+            a.href = (window.URL || window.webkitURL).createObjectURL(blob);
+
+            a.click();
+        }
+
+        const showSaving = () => {
+            let saving = document.getElementById("saving");
+
+            if (saving.style.display !== "none") {
+                return;
+            }
+
+            saving.innerText = "Saving changes...";
+
+            saving.style.display = "block";
+
+            new Promise(r => setTimeout(r, 750))
+                .then(() => {
+                    saving.innerText = "Done ✅";
+                });
+
+            new Promise(r => setTimeout(r, 1500))
+                .then(() => {
+                    saving.style.display = "none";
+                });
+        }
+
+        const update = e => {
+            // Save date_created
+            if (!results[0].date_created) {
+                results[0].date_created = Date.now();
+
+                if (mode === MODE_PREVIEW || mode === MODE_PRINT) {
+                    console.log("First change: date_created saved.");
+                }
+            }
+
+            results[0].date_modified = Date.now();
+
+            let elem = elems.find(elem => elem.id === e.target.id);
+
+            if (e.target.classList.contains("type-radio") || e.target.classList.contains("type-dropdown")) {
+                result[e.target.name] = e.target.value;
+                elem = elems.find(elem => elem.id === e.target.name);
+            } else if (e.target.classList.contains("type-checkbox")) {
+                if (e.target.id === "P_TopPaper_Select") {
+                    const count = results.filter(r => r.type === "pub" && r["P_TopPaper_Select"] === true).length;
+
+                    if (e.target.checked && count >= config.maxTopPapers) {
+                        e.target.checked = false;
+                        alert(`You already selected ${config.maxTopPapers} best papers. Please deselect one of them to select a new one.`);
+                    }
+                }
+
+                if (!e.target.checked && e.target.getAttribute("data-min-selected")) {
+                    const minSelected = parseInt(e.target.getAttribute("data-min-selected"));
+
+                    const prefix = e.target.id.substring(0, e.target.id.lastIndexOf('_'));
+
+                    const selected = Object.entries(result).filter(([key, value]) => key.startsWith(prefix) && value === true);
+
+                    if (selected.length <= minSelected) {
+                        e.target.checked = true;
+                        alert(`You should select at least ${minSelected} option(s). Please select another option before deselecting this one.`);
+                    }
+                }
+
+                result[e.target.id] = e.target.checked;
+
+                elem = elems.find(elem => elem.id === e.target.id.slice(0, e.target.id.lastIndexOf('_')));
+            } else if (e.target.classList.contains("type-boolean")) {
+                result[e.target.id] = e.target.value === "true";
+            } else if (e.target.classList.contains("type-textbox")) {
+                result[e.target.id] = e.target.innerText;
+            } else {
+                result[e.target.id] = e.target.value;
+            }
+
+            if (mode === MODE_PREVIEW || mode === MODE_PRINT) {
+                console.log(results);
+            }
+
+            save();
+            updateInfo();
+            updateTabs();
+            applyFilters();
+            rerenderDynamicValues();
+            showInfo(e, elem);
+            showSaving();
+        }
+
+        const rerenderDynamicValues = () => {
+            // Update info items with value insertion
+            for (elem of elems) {
+                // Do not reload if click event (click events are only relevant for the info box)
+                if (elem.type === 'info' && /\$[a-zA-Z0-9_]+/.test(elem.text)) {
+                    let domElement = document.getElementById(elem.id);
+                    domElement.innerHTML = preprocessText(elem.text);
+
+                    if (/\$[a-zA-Z0-9_]+@papers/.test(elem.text)) {
+                        const tabWidth = tabs[0].clientWidth;
+                        domElement.childNodes.forEach(t => {
+                            t.addEventListener('click', handleTabClick);
+                            t.setAttribute("style", "width:" + tabWidth);
+                        });
+                    }
+                } else if (/\$[a-zA-Z0-9_]+/.test(elem.title)) {
+                    document.querySelector("." + elem.id + ".title").innerHTML = preprocessText(elem.title);
+                }
+            }
+        }
+
+        const updateInfo = () => {
+            const usedSlots = results.length - 1;
+            const maxReached = usedSlots >= config.max;
+
+            document.getElementById("slot-info").innerText = `${usedSlots} of ${config.max} slots used${maxReached ? ", you can't add more publications." : ""}`;
+
+            if (usedSlots >= config.max) {
+                document.getElementById("add-container").style.display = "none"
+            } else {
+                document.getElementById("add-container").style.display = "inherit"
+            }
+
+            if (result.type === 'meta') {
+                // Hide the score box and skip updating score values
+                document.getElementById('score-box').style.display = "none";
+                return;
+            }
+
+            let scores = scoreAll(results);
+            let scorables = scores.scores.filter(s => s.max && s.max > 0)
+            let scoringResult = scores.scores[currentTab];
+
+            const minIndicatorsWarning = scoringResult.max < config.minIndicatorsWarningThreshold && scoringResult.max > 0;
+            const minROWarning = scorables.length < config.minROWarningThreshold;
+
+            if (minIndicatorsWarning) {
+                document.getElementById('warning-score-too-low').style.display = 'block';
+            } else {
+                document.getElementById('warning-score-too-low').style.display = 'none';
+            }
+
+            if (minROWarning) {
+                document.getElementById('minROWarningThreshold').innerText = config.minROWarningThreshold;
+                document.getElementById('warning-min-ro-threshold').style.display = 'block';
+            } else {
+                document.getElementById('warning-min-ro-threshold').style.display = 'none';
+            }
+
+            if ([minIndicatorsWarning, minROWarning].some(bool => bool)) {
+                document.getElementById('score-box').classList.add('warning');
+            } else {
+                document.getElementById('score-box').classList.remove('warning');
+            }
+
+
+            // Show score box
+            document.getElementById('score-box').style.display = "";
+
+            if (scoringResult.max > 0) {
+                document.getElementById("no-score").style.display = "none";
+                document.getElementById("current-score-container").style.display = "flex"
+                document.getElementById("score-minmax").innerHTML = `${scoringResult.score} / ${scoringResult.max}`
+                document.getElementById("score-percentage").innerText = `${scoringResult.percentage}%`
+            } else {
+                document.getElementById("no-score").style.display = "block";
+                document.getElementById("current-score-container").style.display = "none"
+            }
+
+            document.getElementById("scoredROs").innerText = scorables.length;
+            document.getElementById("overall-score-percentage").innerText = `${scores.overall.percentage}%`
+        }
+
+        const preprocessCondition = condition => {
+            let processedCondition = condition
+                .replaceAll(/([\$\w]+)\s*=\|=\s*\[(.*?)\]/g, (match, variable, list) => {
+                    return "(" + list.split(",")
+                        .map(value => `${variable} === ${value.trim()}`)
+                        .join(" || ") + ")";
+                })
+                .replaceAll(/([\$\w]+)\s*=&=\s*\[(.*?)\]/g, (match, variable, list) => {
+                    return "(" + list.split(",")
+                        .map(value => `${variable} === ${value.trim()}`)
+                        .join(" && ") + ")";
+                })
+
+            return processedCondition;
+        }
+
+        const insertValuesIntoCondition = condition => {
+            return condition
+                .replaceAll(/meta\$([a-zA-Z0-9_]+)/g, `results[0]['$1']`)
+                .replaceAll(/\$(\w*)/g, `context['$1']`);
+        }
+
+        const evaluateCondition = condition => evaluateConditionInContext(condition, result);
+
+        const evaluateConditionInContext = (condition, context) => {
+            const exists = id => !!id && id !== "";
+
+            return eval(insertValuesIntoCondition(preprocessCondition(condition)));
+        }
+
+        const applyFilters = () => {
+            if (mode === MODE_PREVIEW || mode === MODE_PRINT) {
+                return;
+            }
+
+            for (let elem of elems) {
+                if (!elem.condition) continue;
+
+
+                const domElements = [...document.getElementsByClassName(elem.id)];
+
+                if (evaluateCondition(elem.condition)) {
+                    domElements.forEach(de => de.style.display = "")
+                } else {
+                    domElements.forEach(de => de.style.display = "none")
+                }
+            }
+        }
+
+        const countWords = (text) => {
+            return text.trim() ? text.replace(/[\r\n\t]+/g, " ").split(/\s+/).filter(x => x).length : 0;
+        }
+
+        const updateWordcount = (textbox, wordcount) => {
+            const words = countWords(textbox.innerText);
+
+            if (textbox.hasAttribute("data-maxwords")) {
+                const maxwords = parseInt(textbox.getAttribute("data-maxwords"));
+                wordcount.innerText = words + " / " + maxwords;
+
+                if (words <= maxwords) {
+                    wordcount.classList.add("wordcount-ok");
+                    wordcount.classList.remove("wordcount-warning");
+                } else {
+                    wordcount.classList.remove("wordcount-ok");
+                    wordcount.classList.add("wordcount-warning");
+                }
+            } else {
+                wordcount.innerText = words;
+            }
+        }
+
+        const textboxWordcount = e => {
+            const wordcount = document.getElementById(e.target.id + "-wordcount");
+
+            updateWordcount(e.target, wordcount);
+        }
+
+        const partialHighlight = (indicatorId, text) => {
+            return text.replaceAll(/\{(.*?)\|(.*?)\}/g, (match, foundCondition, text) => {
+                let condition = foundCondition.trim();
+
+                if (condition.startsWith(':')) {
+                    condition = `$${indicatorId} =|= [${condition.replace(':', '')}]`
+                }
+
+                return evaluateCondition(condition)
+                    ? `<span class="highlight">${text.trim()}</span>`
+                    : text
+            });
+        }
+
+        const showInfo = (e, element) => {
+            const itemInfo = document.getElementById("item-info");
+
+            const itemBackground = document.getElementById("item-background");
+            const itemBackgroundDetails = document.getElementById("item-background-details");
+
+            const tipExternal = document.getElementById("tip-external");
+            const tipExternalDetails = document.getElementById("tip-external-details");
+
+            if (element.info) {
+                itemInfo.style.color = "#333333";
+                itemInfo.innerHTML = `<b>${element.id}</b>${element.eval_dimension ? '<span id="eval-dimension" class="tag">' + element.eval_dimension + '</span>' : ""}<br><br>${partialHighlight(element.id, element.info)}`;
+            } else {
+                itemInfo.style.color = "gray";
+                itemInfo.innerHTML = `<b>${element.id}</b>${element.eval_dimension ? '<span id="eval-dimension" class="tag">' + element.eval_dimension + '</span>' : ""}<br><br><i>No information</i>`;
+            }
+
+            if (element.background) {
+                itemBackground.innerHTML = element.background;
+                itemBackgroundDetails.style.display = "block";
+                itemBackgroundDetails.removeAttribute("open");
+            } else {
+                itemBackgroundDetails.style.display = "none";
+            }
+
+            if (element.tip_external) {
+                tipExternal.innerHTML = element.tip_external;
+                tipExternalDetails.style.display = "block";
+
+                tipExternalDetails.removeAttribute("open");
+
+                if (results[0].RaterType === "External") {
+                    tipExternalDetails.setAttribute("open", "");
+                }
+            } else {
+                tipExternalDetails.style.display = "none";
+            }
+        }
+
+        const insertValuesIntoText = text => {
+            const processType = {
+                datetime: (value) => {
+                    const millis = parseInt(value);
+                    return millis ? new Date(millis).toLocaleString() : '...';
+                },
+                date: (value) => {
+                    const millis = parseInt(value);
+                    return millis ? new Date(millis).toLocaleDateString() : '...';
+                },
+                default: (value) => 'Unknown type'
+            }
+
+            const globals = {
+                paper_count: (value) => results.filter(r => r.type === 'pub' && r[value] === true).length,
+
+                papers: (value) => {
+                    let topPapers = results.map((r, index) => {
+                        r.position = index;
+                        return r;
+                    }).filter(r => r.type === 'pub' && r[value] === true);
+
+                    let positions = topPapers.map(paper => paper.position);
+
+                    if (topPapers.length <= 0) {
+                        return "<i>No papers selected</i>";
+                    }
+
+                    const papersToDisplay = tabs
+                        .filter((tab, index) => positions.includes(index))
+                        .map(t => {
+                            t.classList.remove("selected");
+                            return t.outerHTML;
+                        });
+
+                    return papersToDisplay.join("");
+                }
+            }
+            return text
+                .replaceAll(/meta\$([a-zA-Z0-9_]+)/g, (match, variable) => results[0][variable])
+                .replaceAll(/global\$([a-zA-Z0-9_]+)@([a-zA-Z0-9_]+)/g, (match, variable, type) => {
+                    return globals[type](variable);
+                })
+                .replaceAll(/config\$([a-zA-Z0-9_]+)/g, (match, variable) => {
+                    return config[variable];
+                })
+                .replaceAll(/config\$([a-zA-Z0-9_]+)@([a-zA-Z0-9_]+)/g, (match, variable, type) => {
+                    return processType[type](config[variable]);
+                })
+                .replaceAll(/\$([a-zA-Z0-9_]+?)@([a-zA-Z0-9_]+)/g, (match, variable, type) => {
+                    return processType[type](result[variable]);
+                })
+                .replaceAll(/\$([a-zA-Z0-9_]+)/g, (match, variable) => {
+                    return result[variable] ?? '...';
+                });
+        }
+
+        const preprocessText = text => insertValuesIntoText(partialHighlight(null, text));
+
+        const createInput = (element) => {
+            elems.push(element);
+
+            const creator = {
+                "separator": () => {
+                    let separator = document.createElement("hr");
+                    separator.setAttribute("style", "height:3px;border:none;color:#333;background-color:#333;");
+
+                    return separator;
+                },
+                "info": () => {
+                    let info = document.createElement("p");
+                    info.id = element.id;
+
+                    info.innerHTML = preprocessText(element.text);
+
+                    return info;
+                },
+                "text": () => {
+                    let input = document.createElement("input");
+                    input.type = "text";
+
+                    input.placeholder = element.title || '';
+
+                    return input;
+                },
+                "textbox": () => {
+                    let container = document.createElement("div");
+                    container.classList.add("textbox-container");
+
+                    let input = document.createElement("div");
+                    input.id = element.id;
+                    input.classList.add("textbox", "type-textbox");
+                    input.contentEditable = true;
+
+                    let wordcount = document.createElement("div");
+                    wordcount.id = element.id + "-wordcount";
+                    wordcount.classList.add("wordcount");
+
+                    if (element.id in result) {
+                        input.innerText = result[element.id];
+                    }
+
+                    if (element.maxwords) {
+                        input.setAttribute("data-maxwords", element.maxwords);
+                        wordcount.classList.add("wordcount-max");
+                    }
+
+                    updateWordcount(input, wordcount);
+
+                    input.addEventListener("input", textboxWordcount);
+                    input.addEventListener("blur", update);
+
+                    container.append(input, wordcount);
+
+                    return container;
+                },
+                "number": () => {
+                    let input = document.createElement("input");
+                    input.type = "number";
+
+                    input.placeholder = element.title || '';
+
+                    return input;
+                },
+                "date": () => {
+                    let input = document.createElement("input");
+                    input.type = "date";
+
+                    input.placeholder = element.title || '';
+
+                    return input;
+                },
+                "dropdown": () => {
+                    let input = document.createElement("select");
+                    input.name = element.id;
+                    input.id = element.id;
+
+                    let options = element.options.map((option) => {
+                        let opt = document.createElement("option")
+                        opt.value = option.id;
+                        opt.innerHTML = option.text;
+
+                        if ((mode === MODE_PREVIEW|| mode === MODE_PRINT) && details) {
+                            opt.innerHTML = `[${option.id}] ${option.text}`;
+                        }
+
+                        return opt;
+                    })
+
+                    input.append(...options);
+
+                    return input;
+                },
+                "boolean": () => {
+                    let input = document.createElement("select");
+                    input.name = element.id;
+                    input.id = element.id;
+
+                    let options = element.options.map((option, index) => {
+                        let opt = document.createElement("option")
+                        opt.value = index == 0;
+                        opt.innerText = option;
+
+                        return opt;
+                    })
+
+                    input.append(...options);
+
+                    return input;
+                },
+                "radio": () => {
+                    let input = document.createElement("div");
+                    input.classList.add("radio", element.alignment ? "alignment-" + element.alignment : "alignment-vertical")
+
+                    let options = element.options.map((option, index) => {
+                        let container = document.createElement("div");
+
+                        let label = document.createElement("label");
+
+                        let radio = document.createElement("input");
+                        radio.type = "radio";
+                        radio.value = option.id;
+                        radio.name = element.id;
+                        radio.classList.add("type-radio");
+
+                        let optionText = option.text;
+
+                        if ((mode === MODE_PREVIEW || mode === MODE_PRINT) && details) {
+                            optionText = `[${option.id}] ${optionText}`;
+                        }
+
+                        let span = document.createElement("span");
+                        span.innerHTML = optionText;
+
+                        label.append(radio, span);
+
+                        if (element.id in result && result[element.id] === option.id) {
+                            radio.checked = true;
+                        }
+
+                        return label;
+                    })
+
+                    input.append(...options);
+
+                    return input;
+                },
+                "checkbox": () => {
+                    let input = document.createElement("div");
+
+                    let options = element.options.map((option, index) => {
+                        let container = document.createElement("div");
+
+                        let label = document.createElement("label");
+
+                        let checkbox = document.createElement("input");
+                        checkbox.type = "checkbox";
+                        checkbox.id = element.id + '_' + (option.id ? option.id : String.fromCharCode(index + 97));
+                        checkbox.classList.add("type-checkbox");
+
+                        let span = document.createElement("span");
+                        let text = typeof option === 'string' ? option : option.text;
+
+                        if ((mode === MODE_PREVIEW || mode === MODE_PRINT) && details) {
+                            text = `[${checkbox.id}] ${option.text}`;
+                        }
+
+                        span.innerHTML = text;
+
+                        label.append(checkbox, span);
+
+
+                        checkbox.setAttribute("data-min-selected", element.min_selected);
+
+                        // Last option exclusive
+                        if (element.last_option_exclusive) {
+                            // Uncheck others if the last one is checked
+                            if (index === element.options.length - 1) {
+                                checkbox.addEventListener("change", e => {
+                                    if (e.target.checked) {
+                                        element.options.forEach((option, index) => {
+                                            if (index !== element.options.length - 1) {
+                                                let id = element.id + String.fromCharCode(index + 97);
+                                                document.getElementById(id).checked = false;
+                                                update({ ...e, target: document.getElementById(id) })
+                                            }
+                                        })
+                                    }
+                                })
+                            } else {
+                                // Uncheck last one if one of the others is checked
+                                checkbox.addEventListener("change", e => {
+                                    let id = element.id + String.fromCharCode(options.length - 1 + 97);
+
+                                    if (e.target.checked) {
+                                        document.getElementById(id).checked = false;
+                                    }
+
+                                    update({ ...e, target: document.getElementById(id) });
+                                })
+                            }
+                        }
+
+                        if (checkbox.id in result && result[checkbox.id] === true) {
+                            checkbox.checked = true;
+                        }
+
+                        return label;
+                    })
+
+                    input.append(...options);
+
+                    return input;
+                },
+                "global_checkbox": () => {
+                    let container = document.createElement("div");
+
+                    let label = document.createElement("label");
+
+                    let checkbox = document.createElement("input");
+                    checkbox.type = "checkbox";
+                    checkbox.id = element.id;
+                    checkbox.classList.add("type-global_checkbox");
+
+                    if (result[element.id]) {
+                        checkbox.checked = result[element.id];
+                    }
+
+                    label.append(checkbox, element.text);
+                    container.appendChild(label);
+
+                    return container;
+                }
+            }
+
+            const actions = {
+                fetch_doi: () => {
+                    displayInformation(result['DOI']);
+                }
+            };
+
+            if (element.type in creator) {
+                let domElement = creator[element.type]();
+
+                domElement.classList.add("type-" + element.type);
+
+                if (element.id) {
+                    domElement.id = element.id;
+                }
+
+                // TODO: Check allowed patterns
+                // domElement.pattern = element.check;
+
+                if (element.onchange) {
+                    domElement.onblur = actions[element.onchange];
+                }
+
+                if (filterTriggers.includes(element.id)) {
+                    domElement.addEventListener('input', update);
+                }
+
+
+                if (element.id in result) {
+                    domElement.value = result[element.id];
+                }
+
+                let fragment = document.createElement("div");
+
+                if (element.title) {
+                    let title = document.createElement("p");
+                    title.innerHTML = preprocessText(element.title);
+
+                    title.classList.add(element.id, "title");
+                    fragment.appendChild(title);
+
+                    if ((mode === MODE_PREVIEW || mode === MODE_PRINT) && details) {
+                        title.innerHTML = `[${element.id}] ${title.innerHTML}`;
+                    }
+                }
+
+
+                domElement.classList.add(element.id);
+
+                if ((mode === MODE_PREVIEW || mode ==MODE_PRINT) && details && element.condition) {
+                    let previewCondition = document.createElement("p");
+                    previewCondition.style.color = "gray";
+                    previewCondition.style.fontSize = "0.8rem";
+                    previewCondition.innerHTML = `[ <i>Condition:</i>  <code>${element.condition}</code> ]`;
+                    fragment.appendChild(previewCondition);
+                }
+
+                fragment.appendChild(domElement);
+
+                fragment.title = element.tooltip || "";
+                fragment.addEventListener("click", e => showInfo(e, element));
+
+                return fragment;
+            } else return "";
+        }
+
+        const createForm = (form) => {
+            let formElement = document.createElement("form");
+
+            let domElements;
+
+            if (mode == MODE_PRINT && filter.length) {
+                // filter elements, id starts with a prefix from the filter
+                domElements = form.elements
+                    .filter(elem => filter.some(f => elem.id.startsWith(f)))
+                    .map(elem => createInput(elem));
+            } else {
+                domElements = form.elements.map(elem => createInput(elem));
+            }
+
+            console.log(form)
+
+            let title = document.createElement("h2");
+            title.innerText = form.title;
+
+            if (mode === MODE_PREVIEW && details) {
+                title.innerText = "[Preview] " + title.innerText;
+            } else if (mode === MODE_PRINT) {
+                title.innerText = `RESQUE: Full list of indicators for type "${title.innerText}"`;
+            }
+
+            formElement.appendChild(title)
+            if (mode === MODE_PRINT) {
+                let versions = Object.entries(form.versions).map(([prefix, version]) => `${prefix}: ${version}`).join(", ");
+                let date = Object.entries(form.date).map(([prefix, date]) => `${prefix}: ${new Date(date).toLocaleDateString()}`).join(", ");
+
+                formElement.append(`Version ${versions}; last update on ${date}`);
+            }
+            formElement.append(...domElements);
+
+            formElement.addEventListener('change', update);
+
+            return formElement;
+        }
+
+        const handleTabClick = e => {
+            currentTab = parseInt(e.target.getAttribute("data-index"));
+            sessionStorage.setItem("index", currentTab.toString())
+
+            if (currentTab !== preTab) {
+                loadForm({ index: currentTab });
+                preTab = currentTab;
+            }
+
+            updateTabs();
+        }
+
+        const loadForm = options => {
+            elems = [];
+            result = results[options.index];
+
+            config = getConfig(result.type);
+
+            const formView = document.getElementById("formview");
+            const scrollPre = formView.scrollTop;
+
+            filterTriggers = formTypes[result.type].elements
+                .filter(element => element.condition)
+                .map(element => element.condition.match(/\$\w*/g))
+                .flat()
+                .map(ids => ids.replaceAll('$', ''));
+
+            formView.innerHTML = "";
+            formView.appendChild(createForm(formTypes[result.type]));
+
+            if (options.preserveScrollHeight) {
+                formView.scrollHeight = scrollPre;
+            }
+
+            applyFilters();
+            updateInfo();
+            rerenderDynamicValues();
+        }
+
+        const updateTabs = () => {
+            let numberOfPublications = 0;
+            let numberOfSoftwareProjects = 0;
+            let numberOfDataSets = 0;
+
+            tabs.forEach(t => {
+                if (parseInt(t.getAttribute("data-index")) === currentTab) {
+                    t.classList.add("selected");
+                } else {
+                    t.classList.remove("selected");
+                }
+
+                const content = t.firstChild;
+
+                const index = parseInt(t.getAttribute("data-index"));
+                const result = results[index];
+
+                switch (result.type) {
+                    case "meta":
+                        content.innerHTML = `<b>Author / Metadata</b>${result["LastName"] ? '<br>' + result["LastName"] : ''}`;
+                        break;
+                    case "pub":
+                        content.innerHTML = `<b>Publication ${++numberOfPublications}</b>${result["Title"] ? '<br>' + result["Title"] : ''}`
+                        break;
+                    case "software":
+                        content.innerHTML = `<b>Software Project ${++numberOfSoftwareProjects}</b>${result["Title"] ? '<br>' + result["Title"] : ''}`;
+                        break;
+                    case "data":
+                        content.innerHTML = `<b>Data Set ${++numberOfDataSets}</b>${result["Title"] ? '<br>' + result["Title"] : ''}`;
+                        break;
+
+                    default:
+                        break;
+                }
+            })
+        }
+
+        const createTab = (result, index) => {
+            let tab = document.createElement("div");
+            tab.classList.add("tab");
+
+            let content = document.createElement("span");
+            tab.appendChild(content);
+
+            tab.setAttribute("data-index", index);
+
+            tab.addEventListener("click", handleTabClick);
+
+            tabs.push(tab);
+            return tab;
+        }
+
+        const scoreAll = rs => {
+            const scores = rs.map(r => score(r));
+
+            const validScores = scores.filter(s => Object.keys(s).length && s.max > 0)
+
+            const relative = validScores
+                .map(s => s.relative)
+                .reduce((sum, current) => sum + current, 0) / validScores.length
+
+            return {
+                scores,
+                overall: {
+                    relative,
+                    percentage: (relative * 100).toFixed(1)
+                }
+            };
+        }
+
+        const score = r => {
+            const scoring = formTypes[r.type].scoring;
+
+            if (!Object.keys(scoring).length) {
+                return {};
+            }
+
+            let maxScore = 0;
+            let reachedScore = 0;
+
+            for (indicator in scoring) {
+                if (indicator === 'post') {
+                    // skip post
+                    continue;
+                }
+                if (scoring[indicator].not_applicable && evaluateConditionInContext(scoring[indicator].not_applicable, r)) {
+                    continue;
+                }
+
+                maxScore += scoring[indicator].max;
+
+                switch (scoring[indicator].op) {
+                    case "sum":
+                        reachedScore += scoring[indicator].points
+                            .filter(p => evaluateConditionInContext(p.condition, r))
+                            .reduce((sum, next) => sum + next.value, 0);
+                        break;
+                    case "select":
+                        reachedScore += (scoring[indicator].points.find(p => evaluateConditionInContext(p.condition, r)) || { value: 0 }).value;
+                        break;
+                    default:
+                        break;
+                }
+
+
+            }
+
+            if (scoring.post) {
+                scoring.post.forEach(transformation => {
+                    if (evaluateConditionInContext(transformation.condition, r)) {
+                        console.log(transformation.factor)
+                        reachedScore *= transformation.factor;
+                    }
+                })
+            }
+
+            return {
+                max: maxScore,
+                score: reachedScore,
+                relative: reachedScore / maxScore,
+                percentage: ((reachedScore / maxScore) * 100).toFixed(1)
+            }
+        }
+
+        function getQueryConfig(params) {
+            let queryConfig = {
+                global: {},
+            };
+
+            params.forEach((value, key) => {
+                if (key.includes(':')) {
+                    const parts = key.split(':');
+
+                    let location = queryConfig;
+
+                    parts.forEach((part, index) => {
+                        if (index === parts.length - 1) {
+                            // Set the parameter
+                            location[part] = value;
+                        } else {
+                            // Navigate into the correct location
+                            location[part] = location[part] ?? {};
+                            location = location[part];
+                        }
+                    })
+                } else {
+                    // Global config parameter
+                    queryConfig.global[key] = value;
+                }
+            })
+
+            return queryConfig;
+        }
+
+        function saveCurrentQueryConfig() {
+            results[0].queryConfig = queryConfig;
+            save();
+        }
+
+        let meta, pub, software, data;
+
+        let filterTriggers;
+
+        let config, globalConfig, queryConfig;
+
+        const params = new URLSearchParams(window.location.search);
+
+        queryConfig = getQueryConfig(params);
+
+        const mode = params.get("mode");
+        const details = params.get("details") !== "false";
+        const doimagic = params.get("doimagic");
+        const filter = (params.get("filter") ?? "").split(",").filter(f => f);
+
+        let results = getSavedData();
+
+        let currentTab = parseInt(sessionStorage.getItem("index") || "0");
+        let preTab = -1;
+        let result = results[currentTab];
+
+        let prefixes = {
+            meta: "M",
+            pub: "P",
+            software: "S",
+            data: "D"
+        }
+
+        if (!localStorage.getItem("formdata")) {
+            //showInfoModal();
+            driver(tourMain).drive();
+        }
+
+        if (mode === MODE_PRINT) {
+            const formview = document.querySelector("#formview");
+            formview.style.overflow = "visible";
+
+            document.querySelector("#main").style.display = "block";
+            document.body.style.overflow = "visible";
+            document.querySelector("#formview-container").style.overflow = "visible";
+            document.querySelector(".tabs-sidebar").style.display = "none";
+            document.querySelector("#menu").style.display = "none";
+            
+            document.querySelector("#mobile").style.display = "none";
+        }
+
+        menu().then(m => {
+            formTypes = m;
+
+            // If there is no meta (= no elements in the results list), create one
+            if (!results.length) {
+                results.push({
+                    type: "meta",
+                    version: getVersion("meta"),
+                    date_created: Date.now(),
+                    ...getDefaultValues("meta")
+                })
+            }
+
+            ({ meta, pub, software, data, config: globalConfig } = m);
+            results.forEach((r, index) => {
+                document.getElementById("tabs").appendChild(createTab(r, index));
+            });
+
+            if (!results[0].queryConfig) {
+                // save query config
+                saveCurrentQueryConfig();
+            }
+
+            // Check config compatibility
+            if (objectHash(results[0].queryConfig) !== objectHash(queryConfig)) {
+                showModal('config-incompatible-modal');
+            }
+
+            loadForm({ index: currentTab });
+            updateTabs();
+            updateInfo();
+            applyFilters();
+        })
+    </script>
+</body>
+
+</html>

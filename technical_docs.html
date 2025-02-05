@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.6.40">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>⎔ Technical documentation – The RESQUE Framework</title>
+<title>⎔ Technical documentation – The RESQUEFramework</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,16 +30,16 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./tech_doc/pub_indicators.html" rel="next">
+<link href="./tech_doc/RRS.html" rel="next">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-251ae6ad1732f59e71e1da7b0ac12842.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -95,7 +95,7 @@ ul.task-list li input[type="checkbox"] {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">The RESQUE Framework</span>
+    <span class="navbar-title">The RESQUE<br>Framework</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -106,11 +106,11 @@ ul.task-list li input[type="checkbox"] {
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
     <a class="nav-link" href="./get_profile.html"> 
-<span class="menu-text">📊 Get your RESQUE profile</span></a>
+<span class="menu-text">👩‍🔬 For applicants</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./for_committees.html"> 
-<span class="menu-text">🚀 For hiring/tenure committees</span></a>
+<span class="menu-text">📊 For hiring/tenure committees</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./publications.html"> 
@@ -155,6 +155,12 @@ ul.task-list li input[type="checkbox"] {
   <div class="sidebar-item-container"> 
   <a href="./technical_docs.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">General information</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tech_doc/RRS.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Computation of Relative Rigor Score (RRS)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -211,10 +217,6 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#how-to-cite-resque" id="toc-how-to-cite-resque" class="nav-link active" data-scroll-target="#how-to-cite-resque">How to cite RESQUE</a></li>
   <li><a href="#postprocessing-the-applicants-data" id="toc-postprocessing-the-applicants-data" class="nav-link" data-scroll-target="#postprocessing-the-applicants-data">Postprocessing the applicants’ data</a></li>
-  <li><a href="#scoring-rules" id="toc-scoring-rules" class="nav-link" data-scroll-target="#scoring-rules">Scoring rules</a>
-  <ul class="collapse">
-  <li><a href="#relative-rigor-score-rrs-equal-weighting-of-research-outputs" id="toc-relative-rigor-score-rrs-equal-weighting-of-research-outputs" class="nav-link" data-scroll-target="#relative-rigor-score-rrs-equal-weighting-of-research-outputs">Relative Rigor Score (RRS): Equal weighting of research outputs</a></li>
-  </ul></li>
   </ul>
 </nav>
     </div>
@@ -263,15 +265,8 @@ ul.task-list li input[type="checkbox"] {
 <li>the <a href="https://www.topfactor.org">TOP factor</a> for the journals the author is publishing in</li>
 </ul>
 <p>Furthermore, the package provides an interactive dashboard that allows to compare multiple candidates.</p>
-</section>
-<section id="scoring-rules" class="level2">
-<h2 class="anchored" data-anchor-id="scoring-rules">Scoring rules</h2>
-<section id="relative-rigor-score-rrs-equal-weighting-of-research-outputs" class="level3">
-<h3 class="anchored" data-anchor-id="relative-rigor-score-rrs-equal-weighting-of-research-outputs">Relative Rigor Score (RRS): Equal weighting of research outputs</h3>
-<p>For the computation of the overall RRS score, all submitted research outputs are weighted equally. That means, if two publications are available, each publication contributes 50% to the overall score, even if they differ in their maximally attainable points. The reasoning is that it should not be punished if some points cannot be obtained in principle. With our <a href="./get_profile.html#basic-principles">POMP (“percentage of maximum points”) computation</a>, it is ensured that the RRS for each research output can reach 100% even if some indicators are not applicable. But if research outputs with less attainable points contribute less to the overall score, this would be a disadvantage. Therefore each output is weighted equally.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -357,8 +352,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -469,7 +462,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {
@@ -699,8 +691,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   <div class="nav-page nav-page-previous">
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./tech_doc/pub_indicators.html" class="pagination-link" aria-label="&amp;nbsp;&amp;nbsp;Indicators for Publications">
-        <span class="nav-page-text">&nbsp;&nbsp;Indicators for Publications</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./tech_doc/RRS.html" class="pagination-link" aria-label="Computation of Relative Rigor Score (RRS)">
+        <span class="nav-page-text">Computation of Relative Rigor Score (RRS)</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

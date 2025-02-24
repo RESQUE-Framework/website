@@ -1,0 +1,24 @@
+---
+title: "⎔ Technical documentation"
+toc: true
+---
+
+## How to cite RESQUE
+
+When you use the RESQUE tools, please cite it as:
+
+> Schönbrodt, F., Gärtner, A., & Leising, D. (2024). The RESQUE Framework (Version 0.3) [Computer software]. https://github.com/RESQUE-Framework
+
+You can also get the current reference with the `.cff` file in the [repository](https://github.com/RESQUE-Framework/website):
+
+![Image CC-BY 4.0 by The Turing Way](https://the-turing-way.netlify.app/_images/github-cff-integration.jpg)
+
+## Postprocessing the applicants' data
+
+The applicants' data (acquired by the Collector app) is stored in `json` files that can be imported in R with the [RESQUER package](https://github.com/RESQUE-Framework/RESQUER). The package preprocesses the data and enriches it with:
+
+- citation metrics from [OpenAlex](https://openalex.org)
+- impact metrics from [BIP!](https://bip.imsi.athenarc.gr)
+- the [TOP factor](https://www.topfactor.org) for the journals the author is publishing in
+
+Furthermore, the package provides an interactive dashboard that allows to compare multiple candidates.

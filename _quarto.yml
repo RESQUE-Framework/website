@@ -21,7 +21,7 @@ website:
       - eval_projects.qmd      
       - team.qmd
       - text: "⎔ Technical documentation"
-        file: technical_docs.qmd
+        file: tech_docs.qmd
 
   sidebar:
     - title: "📔 Publications"
@@ -40,9 +40,11 @@ website:
       background: light
       contents:        
         - text: "General information"
-          file: technical_docs.qmd
+          file: tech_docs.qmd
         - text: "Computation of Relative Rigor Score (RRS)"
           file: tech_doc/RRS.qmd
+        - text: "Customization of RESQUE"
+          file: tech_doc/customization.qmd
         - text: "<br><b>Core Packs:</b><br><br>"
         - text: "&nbsp;&nbsp;Indicators for Publications"
           file: tech_doc/pub_indicators.qmd

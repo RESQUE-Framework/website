@@ -1,0 +1,13 @@
+---
+title: "Customizing RESQUE"
+toc: false
+---
+
+RESQUE advocates a "buffet table approach", where each committee can select and adjust the indicators that are relevant for them.
+Currently, however, this customization of the [Collector App](https://resque-framework.github.io/collector-app) needs some technical expertise.
+
+The selection of indicators itself (if you do not want to use the default core set) is done by adjusting the `json` files in the subfolder `/packs` of the [Collector App](https://github.com/RESQUE-Framework/collector-app). In these config files, all indicators can be adjusted, removed, or new indicators added. 
+
+We suggest that you fork our repository and make your changes in your personal copy. If you activate Github Pages, you will get a dedicated URL for the Collector App of your hiring committee (this could be, for example, `https://resque-framework.github.io/collector-app-hamburg`). 
+
+We are happy to [assist](team.qmd) in customizing the app for your hiring committee.

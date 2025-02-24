@@ -1,26 +1,45 @@
 ---
 title: "📊 For hiring/tenure committees"
+toc: true
 ---
 
 ::: {.callout-warning}
-TODO - this is not complete.
+This is not complete yet. If you plan to use the RESQUE Tools in your hiring process, please get [in contact](team.qmd) with us first.
 :::
 
+
 ## Choose your indicators
-The RESQUE framework decisively promotes a "buffett table approach": From the list of available indicators, hiring committees choose those which show a fit to the position and to the preferences and the research culture of the institution.
+The RESQUE framework promotes a "buffett table approach": From the list of available indicators, hiring committees choose those which show a fit to the position and to the preferences and the research culture of the institution.
 
-We provide a lean **core set** with the basic quality indicators that fit to the vast majority of research in any psycghological sub-discipline. This core set is recommended for all hiring committees (although any indicator can be deselected).
+We provide a **core set** with the basic quality indicators that fit to the vast majority of research in any psychological sub-discipline. This core set is recommended for all hiring committees (although any indicator can be deselected).
 
-This can be expanded by multiple **expansion packs** that contain additional indicators. These packs are tailored to specific research areas or research cultures.
+This can be expanded by multiple **[expansion packs](tech_docs.qmd)** that contain additional indicators. These packs are tailored to specific research areas or research cultures.
 
-Currently, the selection of indicators itself (if you do not want to use the default core set) is done by adjusting the `json` files in the subfolder `/packs` of the [collector app](https://github.com/RESQUE-Framework/collector-app). In these config files, all indicators can be adjusted, removed, or new indicators added. We suggest that you fork our repository and make your changes in your personal copy. Currently, adapting the questions of the collector app requires some technical knowledge. However, we are happy to [assist](team.qmd) in customizing the app for your hiring committee.
-
+For more information, see our page on [Customization](tech_doc/customization.qmd).
 
 ## Choose your weights
 
 We make suggestions for weights that define how much each indicator contributes to the rigor score(s). But every committee can define their own weights.
 
 If an indicator gets the weight 0 (but is not removed from the collector app), it becomes a **descriptive** indicator. It does not contribute to any quality score, but the committee still can see the answers.
+
+## Instruct your applicants
+
+Make clear what you expect of applicants. A possible paragraph for the job announcement could be:
+
+> Bitte legen Sie in einem separaten Dokument dar, auf welche Art und Weise Sie diese Ziele bisher verfolgt haben und weiterhin tun werden (Open Science Statement). Darüber hinaus bitten wir Sie, Ihr ausgefülltes RESQUE-Profil, das Sie in der RESQUE Collector App erstellen können (https://resque-framework.github.io/collector-app/), mit den anderen Bewerbungsunterlagen einzureichen. Tragen Sie bitte 10 Publikationen ein und markieren Sie Ihre 3 besten Publikationen ("This is one of my best papers."). Exportieren Sie Ihre Daten als json-Datei ("Save to file …") und reichen Sie diese mit den anderen Unterlagen ein.
+
+Instead of putting the more technical information (such as the number of requested publications) in the official announcement, we can also add them to the Welcome Screen of the collector app. This has the advantage that the text can be change during the process (in contrast to the static text of the official announcement).
+
+
+## Applicant profiles: Helping you to make good decisions
+
+We plan to provide **three types of research profile documents** that are designed to help committees make informed decisions:
+
+1. **Individual profiles** (see [example](/includes/demo_profile.html)) of applicants. (status: ✅ working, but will be continuously improved and can be customized to the needs of committees)
+2. A (static) **overview sheet** of all applicants, summarizing key insights from the individual profiles. (status: ❌ not developed yet)
+3. A dynamic **Shiny App** allowing to compare all applicants on multiple dimensions. (status: 🔧 prototype available in the [RESQUER package](https://github.com/RESQUE-Framework/RESQUER), but not ready for production yet)
+
 
 ---
 

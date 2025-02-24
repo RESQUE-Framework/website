@@ -13,7 +13,7 @@ h3 {
 /* increase gap between main menu items */
 /* TODO: This does not work yet properly */
 .nav-link {
-    margin-right: 30px !important;
+    margin-right: 20px !important;
   }
 
 /* Make sure that the logo is visible*/

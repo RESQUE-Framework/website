@@ -13,3 +13,5 @@ Slightly longer slide decks with more information:
 - Gärtner (2023-09): [Responsible Research Assessment II: The RESQUE web form for hiring and promotion](../presentations/Gaertner-2023-09-Responsible_Research_Assessment_II.pdf)
 - [Slides for meetings for an Expansion Pack](../presentations/RESQUE_Expansion_Pack_Meeting.pdf)
 - Schönbrodt (2024-06): [Responsible Research Assessment: A pitch for hiring committees](../presentations/Schoenbrodt-2024-RESQUE-Pitch.pdf)
+- Schönbrodt (2025-02): [Responsible Research Assessment: A pitch for hiring committees - long version](../presentations/Schoenbrodt-2025-RESQUE-BKs_english.pdf)
+

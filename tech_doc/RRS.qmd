@@ -17,18 +17,6 @@ But if research outputs with less attainable points contribute less to the overa
 
 ## Interpretation of the RRS radarchart
 
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  echo=FALSE,
-  message=FALSE,
-  warning=FALSE
-)
-library(tibble)
-library(RESQUER)
-```
-
 The radar chart helps you to see how many quality indicators have been fulfilled in multiple areas of methodological rigor.
 
 - The **width** of each sector corresponds to the **maximal number of rigor points** one could gain. If you often opt-out of certain indicators, then the maximal points get reduced and the sector gets more narrow.

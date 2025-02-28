@@ -7,29 +7,51 @@ toc: true
 This is not complete yet. If you plan to use the RESQUE Tools in your hiring process, please get [in contact](team.qmd) with us first.
 :::
 
+Here's an **overview of the necessary steps** for using a customized version of RESQUE in your hiring process:
 
-## Choose your indicators
+1. [Choose the set of indicators](#choose-your-indicators) (or use the default set)
+2. [Choose the weights](#choose-your-weights) (or use the default set)
+3. [Create a custom copy of the Collector App](#create-a-custom-copy-of-the-collector-app)
+4. [Provide clear instructions for your applicants](#provide-clear-instructions-for-your-applicants)
+5. Applicants enter data, download their `json` file with the data and send that file to the hiring committee.
+
+---
+
+## 1. Choose your indicators
 The RESQUE framework promotes a "buffett table approach": From the list of available indicators, hiring committees choose those which show a fit to the position and to the preferences and the research culture of the institution.
 
 We provide a **core set** with the basic quality indicators that fit to the vast majority of research in any psychological sub-discipline. This core set is recommended for all hiring committees (although any indicator can be deselected).
 
 This can be expanded by multiple **[expansion packs](tech_docs.qmd)** that contain additional indicators. These packs are tailored to specific research areas or research cultures.
 
-For more information, see our page on [Customization](tech_doc/customization.qmd).
-
-## Choose your weights
+## 2. Choose your weights
 
 We make suggestions for weights that define how much each indicator contributes to the rigor score(s). But every committee can define their own weights.
 
 If an indicator gets the weight 0 (but is not removed from the collector app), it becomes a **descriptive** indicator. It does not contribute to any quality score, but the committee still can see the answers.
 
-## Instruct your applicants
+## 3. Create a custom copy of the Collector App
+
+For more information, see our page on [Customization](tech_doc/customization.qmd).
+
+## 4. Provide clear instructions for your applicants
 
 Make clear what you expect of applicants. A possible paragraph for the job announcement could be:
 
 > Bitte legen Sie in einem separaten Dokument dar, auf welche Art und Weise Sie diese Ziele bisher verfolgt haben und weiterhin tun werden (Open Science Statement). Darüber hinaus bitten wir Sie, Ihr ausgefülltes RESQUE-Profil, das Sie in der RESQUE Collector App erstellen können (https://resque-framework.github.io/collector-app/), mit den anderen Bewerbungsunterlagen einzureichen. Tragen Sie bitte 10 Publikationen ein und markieren Sie Ihre 3 besten Publikationen ("This is one of my best papers."). Exportieren Sie Ihre Daten als json-Datei ("Save to file …") und reichen Sie diese mit den anderen Unterlagen ein.
 
-Instead of putting the more technical information (such as the number of requested publications) in the official announcement, we can also add them to the Welcome Screen of the collector app. This has the advantage that the text can be change during the process (in contrast to the static text of the official announcement).
+Here's another version that has been proposed:
+
+> Dem Department ist es wichtig, wissenschaftliche Leistungen in ihrer gesamten Breite zu verstehen, was neben Publikationen zum Beispiel auch veröffentlichte Datensätze und Forschungssoftware beinhaltet. Bewerberinnen und Bewerber werden daher gebeten, statt einer vollständigen Publikationsliste 12 wichtige oder repräsentative wissenschaftliche Arbeiten in der RESQUE Collector App (https://resque-framework.github.io/collector-app/) einzutragen und daraus die 3 besten Arbeiten zu nominieren. Von einer Nennung von h-Index (o.Ä.) sowie Journal Impact Faktoren bitten wir abzusehen.
+
+Instead of putting the more technical information (such as the number of requested publications) in the official announcement, we can also add them to the welcome screen of the Collector App. This has the advantage that the text can be changed during the process (in contrast to the static text of the official announcement).
+
+## 5. Embedding RESQUE in your hiring portal
+
+Here are some experiences and caveats how to integrate the RESQUE files/profiles in existing hiring portals:
+
+- The hiring portals of some universities do not allow the upload of `json` or `html` files. Some committees solved this problem by letting applicants send the `json` file via email. (Some applicants opened the `json` file and converted it to PDF, because only that was allowed as upload format)
+- The technical expertise of committee members varies. Locally opening `.html` files can be challenging.
 
 
 ## Applicant profiles: Helping you to make good decisions
@@ -44,7 +66,6 @@ We plan to provide **three types of research profile documents** that are design
 ---
 
 ::: {.callout-note collapse="true" title="TODOs"}
-- Show recommended paragraph in job ad
 - cf. Lange et al.: Commit to weights and indicator sets when publishing the job ad; we recommend to publish the weights and indicators along with the ad.
 - Template for instructions for applicants
 :::

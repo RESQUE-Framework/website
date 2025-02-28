@@ -4,6 +4,10 @@ title: "👥 Team / Contribute"
 
 The RESQUE framework is a collaborative project initiated by the German Psychological Society ([DGPs](https://www.dgps.de)). 
 
+Please contact [📧 felix.schoenbrodt@psy.lmu.de](mailto:felix.schoenbrodt@psy.lmu.de) for all questions about RESQUE.
+
+## The RESQUE community
+
 This project is a community effort with many contributors:
 
 - The project is **coordinated** by [Felix Schönbrodt](http://www.nicebread.de), [Anne Gärtner](https://tu-dresden.de/mn/psychologie/ifap/differentielle-psychologie/die-professur/Mitarbeiter/dipl-psych-anne-gaertner), [Daniel Leising](https://tu-dresden.de/mn/psychologie/iaosp/diagnostische/die-professur/inhaber-in), and the [Open-Science-Committee of the DGPs](https://www.dgps.de/schwerpunkte/transparente-wissenschaft/kommission-open-science/)
@@ -24,9 +28,9 @@ Join our [**mailing list**](https://www.listserv.dfn.de/sympa/info/psy-dora) to 
 
 For **minor updates** and **minor feature requests**, please use the [Discussions](https://github.com/orgs/RESQUE-Framework/discussions) of the [Github repository](https://github.com/RESQUE-Framework).
 
-If you want to **collaborate scientifically** on the project, please contact one of the project maintainers ([Felix Schönbrodt](mailto:felix.schoenbrodt@psy.lmu.de); [Anne Gärtner](mailto:anne_gaertner@tu-dresden.de); [Daniel Leising](mailto:Daniel.Leising@tu-dresden.de)).
+If you want to **collaborate scientifically** on the project, please contact one of the project maintainers ([📧 Felix Schönbrodt](mailto:felix.schoenbrodt@psy.lmu.de); [📧 Anne Gärtner](mailto:anne_gaertner@tu-dresden.de); [📧 Daniel Leising](mailto:Daniel.Leising@tu-dresden.de)).
 
-If you want to **develop an expansion pack** for your field, please contact [Anne Gärtner](mailto:anne_gaertner@tu-dresden.de).
+If you want to **develop an expansion pack** for your field, please contact [📧 Anne Gärtner](mailto:anne_gaertner@tu-dresden.de).
 
 Please note and respect our [Code of Conduct](/CODE_OF_CONDUCT.md).
 

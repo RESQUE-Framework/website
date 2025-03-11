@@ -16,6 +16,10 @@ Things might change substantially in the near future. If you want to use the RES
 please send the `json` file (see Step 1) to the committee.**
 :::
 
+**Important notes**:
+
+- Only publications with sufficient data on the indicators can be fully processed (see "Problems" in the top right corner of the Collector App - if there no problems are shown, everything is fine.). Hence, bulk importing publications from ORCID without adding the information does not help; such publications will be excluded from analysis (and also do not show up in the Impact table).
+
 ---
 
 Here is a full [demo profile](/includes/demo_profile.html).

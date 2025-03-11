@@ -7,7 +7,7 @@ toc: true
 
 When you use the RESQUE tools, please cite it as:
 
-> Schönbrodt, F., Gärtner, A., & Leising, D. (2024). The RESQUE Framework (Version 0.3) [Computer software]. https://github.com/RESQUE-Framework
+> Schönbrodt, F., Gärtner, A., & Leising, D. (2025). The RESQUE Framework (Version 0.6) [Computer software]. https://github.com/RESQUE-Framework
 
 You can also get the current reference with the `.cff` file in the [repository](https://github.com/RESQUE-Framework/website):
 

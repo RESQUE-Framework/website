@@ -14,8 +14,8 @@ website:
     search: true
     background: light
     left:
-      - get_profile.qmd
-      - for_committees.qmd
+      - applicants.qmd
+      - committees.qmd
       - text: "📔 Publications"
         file: publications.qmd
       - eval_projects.qmd      

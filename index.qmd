@@ -135,7 +135,7 @@ We provide R scripts that ...
 
 An interactive dashboard allows to compare multiple candidates and to zoom into the profiles of specific candidates.
 
-For more information, see [here](get_profile.qmd).
+For more information, see [here](applicants.qmd).
 
 
 ## Partners and supporters of RESQUE

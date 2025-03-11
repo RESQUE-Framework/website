@@ -46,6 +46,8 @@ Here's another version that has been proposed:
 
 Instead of putting the more technical information (such as the number of requested publications) in the official announcement, we can also add them to the welcome screen of the Collector App. This has the advantage that the text can be changed during the process (in contrast to the static text of the official announcement).
 
+For computing the academic age, you should also define what counts as eligile periods that can be deducted (such as child care).
+
 ## 5. Embedding RESQUE in your hiring portal
 
 Here are some experiences and caveats how to integrate the RESQUE files/profiles in existing hiring portals:

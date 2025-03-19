@@ -34,6 +34,10 @@ If an indicator gets the weight 0 (but is not removed from the collector app), i
 
 For more information, see our page on [Customization](tech_doc/customization.qmd).
 
+::: {.callout-note title="Where can I change the texts and indicators?"}
+See our separate document ["How to create a custom copy of the Collector App"](https://github.com/RESQUE-Framework/collector-app-eichstaett/blob/main/How_to_fork.md), which explains step by step where and how changes can be done.
+:::
+
 ## 4. Provide clear instructions for your applicants
 
 Make clear what you expect of applicants. A possible paragraph for the job announcement could be:
@@ -46,28 +50,30 @@ Here's another version that has been proposed:
 
 Instead of putting the more technical information (such as the number of requested publications) in the official announcement, we can also add them to the welcome screen of the Collector App. This has the advantage that the text can be changed during the process (in contrast to the static text of the official announcement).
 
-For computing the academic age, you should also define what counts as eligile periods that can be deducted (such as child care).
+For computing the academic age, you should also define what counts as eligile periods that can be deducted (such as child care). 
 
 ## 5. Embedding RESQUE in your hiring portal
 
 Here are some experiences and caveats how to integrate the RESQUE files/profiles in existing hiring portals:
 
-- The hiring portals of some universities do not allow the upload of `json` or `html` files. Some committees solved this problem by letting applicants send the `json` file via email. (Some applicants opened the `json` file and converted it to PDF, because only that was allowed as upload format)
-- The technical expertise of committee members varies. Locally opening `.html` files can be challenging.
+- The hiring portals of some universities do not allow the upload of `json` or `html` files. Some committees solved this problem by letting applicants send the `json` file via email. (Some applicants opened the `json` file and converted it to PDF, because only that was allowed as upload format. However, no data analysis is possible with such PDF files, we do need the original `json` files.)
+- The technical expertise of committee members varies. Locally opening `.html` files can be challenging for some.
 
+The current approach is that the RESQUE Collector App runs independently from any hiring portal, and applicants need to manually upload their resulting `json` file into the hiring portal, or send it via email to a contact.
 
 ## Applicant profiles: Helping you to make good decisions
 
 We plan to provide **three types of research profile documents** that are designed to help committees make informed decisions:
 
 1. **Individual profiles** (see [example](/includes/demo_profile.html)) of applicants. (status: ✅ working, but will be continuously improved and can be customized to the needs of committees)
-2. A (static) **overview sheet** of all applicants, summarizing key insights from the individual profiles. (status: ❌ not developed yet)
+2. A (static) **overview sheet** of all applicants, summarizing key insights from the individual profiles. (status: ✅ a first version exists, but will be continuously improved and can be customized to the needs of committees)
 3. A dynamic **Shiny App** allowing to compare all applicants on multiple dimensions. (status: 🔧 prototype available in the [RESQUER package](https://github.com/RESQUE-Framework/RESQUER), but not ready for production yet)
 
 
----
 
-::: {.callout-note collapse="true" title="TODOs"}
+
+<!-- TODO
+
 - cf. Lange et al.: Commit to weights and indicator sets when publishing the job ad; we recommend to publish the weights and indicators along with the ad.
-- Template for instructions for applicants
-:::
+- 
+ -->

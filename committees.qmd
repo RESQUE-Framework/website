@@ -35,7 +35,7 @@ If an indicator gets the weight 0 (but is not removed from the collector app), i
 For more information, see our page on [Customization](tech_doc/customization.qmd).
 
 ::: {.callout-note title="Where can I change the texts and indicators?"}
-See our separate document ["How to create a custom copy of the Collector App"](https://github.com/RESQUE-Framework/collector-app-eichstaett/blob/main/How_to_fork.md), which explains step by step where and how changes can be done.
+See our separate document ["How to create a custom copy of the Collector App"](https://github.com/RESQUE-Framework/collector-app/blob/main/How_to_fork.md), which explains step by step where and how changes can be done.
 :::
 
 ## 4. Provide clear instructions for your applicants

@@ -32,23 +32,20 @@ If an indicator gets the weight 0 (but is not removed from the collector app), i
 
 ## 3. Create a custom copy of the Collector App
 
-For more information, see our page on [Customization](tech_doc/customization.qmd).
+For more information, see our page on ["How to create a custom copy of the Collector App"](https://github.com/RESQUE-Framework/collector-app/blob/main/How_to_fork.md), which explains step by step where and how changes can be done.
 
-::: {.callout-note title="Where can I change the texts and indicators?"}
-See our separate document ["How to create a custom copy of the Collector App"](https://github.com/RESQUE-Framework/collector-app/blob/main/How_to_fork.md), which explains step by step where and how changes can be done.
-:::
 
 ## 4. Provide clear instructions for your applicants
 
 Make clear what you expect of applicants. A possible paragraph for the job announcement could be:
 
-> Bitte legen Sie in einem separaten Dokument dar, auf welche Art und Weise Sie diese Ziele bisher verfolgt haben und weiterhin tun werden (Open Science Statement). Darüber hinaus bitten wir Sie, Ihr ausgefülltes RESQUE-Profil, das Sie in der RESQUE Collector App erstellen können (https://resque-framework.github.io/collector-app/), mit den anderen Bewerbungsunterlagen einzureichen. Tragen Sie bitte 10 Publikationen ein und markieren Sie Ihre 3 besten Publikationen ("This is one of my best papers."). Exportieren Sie Ihre Daten als json-Datei ("Save to file …") und reichen Sie diese mit den anderen Unterlagen ein.
+> Das Department Psychologie legt Wert auf transparente, belastbare und replizierbare Forschung. Bitte legen Sie in einem separaten Dokument dar, auf welche Art und Weise Sie diese Ziele bisher verfolgt haben und weiterhin tun werden (Open Science Statement). Darüber hinaus bitten wir Sie, Ihr ausgefülltes RESQUE-Profil, das Sie in der RESQUE Collector App erstellen können (https://resque-framework.github.io/collector-app/), mit den anderen Bewerbungsunterlagen einzureichen. Tragen Sie bitte 10 Publikationen ein und markieren Sie Ihre 3 besten Publikationen ("This is one of my best papers."). Exportieren Sie Ihre Daten als json-Datei ("Save to file …") und reichen Sie diese mit den anderen Unterlagen ein.
 
 Here's another version that has been proposed:
 
 > Dem Department ist es wichtig, wissenschaftliche Leistungen in ihrer gesamten Breite zu verstehen, was neben Publikationen zum Beispiel auch veröffentlichte Datensätze und Forschungssoftware beinhaltet. Bewerberinnen und Bewerber werden daher gebeten, statt einer vollständigen Publikationsliste 12 wichtige oder repräsentative wissenschaftliche Arbeiten in der RESQUE Collector App (https://resque-framework.github.io/collector-app/) einzutragen und daraus die 3 besten Arbeiten zu nominieren. Von einer Nennung von h-Index (o.Ä.) sowie Journal Impact Faktoren bitten wir abzusehen.
 
-Instead of putting the more technical information (such as the number of requested publications) in the official announcement, we can also add them to the welcome screen of the Collector App. This has the advantage that the text can be changed during the process (in contrast to the static text of the official announcement).
+Instead of putting the more technical information (such as the number of requested publications) in the official announcement, we can also add them to the welcome screen of your customized Collector App. This has the advantage that the text can be changed during the process (in contrast to the static text of the official announcement).
 
 For computing the academic age, you should also define what counts as eligile periods that can be deducted (such as child care). 
 

@@ -1,0 +1,129 @@
+/* Container */
+.action-button-container {
+    text-align: center;
+}
+
+/* Base button styles - shared by all variants */
+.resque-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 18px 36px;
+    margin: 5px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 12px;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    min-width: 280px;
+}
+
+/* Shimmer effect for all buttons */
+.resque-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.6s;
+}
+
+.resque-btn:hover::before {
+    left: 100%;
+}
+
+/* Base hover and active states */
+.resque-btn:hover {
+    transform: translateY(-2px);
+}
+
+.resque-btn:active {
+    transform: translateY(0);
+}
+
+/* Primary blue button */
+.resque-btn--primary {
+    color: white;
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    box-shadow: 0 4px 14px 0 rgba(37, 99, 235, 0.3);
+}
+
+.resque-btn--primary:hover {
+    box-shadow: 0 8px 25px 0 rgba(37, 99, 235, 0.4);
+    background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+}
+
+.resque-btn--primary:active {
+    box-shadow: 0 4px 14px 0 rgba(37, 99, 235, 0.3);
+}
+
+/* Secondary green button */
+.resque-btn--secondary {
+    color: white;
+    background: linear-gradient(135deg, #059669 0%, #047857 100%);
+    box-shadow: 0 4px 14px 0 rgba(5, 150, 105, 0.3);
+}
+
+.resque-btn--secondary:hover {
+    box-shadow: 0 8px 25px 0 rgba(5, 150, 105, 0.4);
+    background: linear-gradient(135deg, #047857 0%, #065f46 100%);
+}
+
+.resque-btn--secondary:active {
+    box-shadow: 0 4px 14px 0 rgba(5, 150, 105, 0.3);
+}
+
+/* Outline green button */
+.resque-btn--outline {
+    color: #059669;
+    background: white;
+    border: 2px solid #059669;
+    box-shadow: 0 4px 14px 0 rgba(5, 150, 105, 0.1);
+}
+
+.resque-btn--outline::before {
+    background: linear-gradient(90deg, transparent, rgba(5, 150, 105, 0.05), transparent);
+}
+
+.resque-btn--outline:hover {
+    box-shadow: 0 8px 25px 0 rgba(5, 150, 105, 0.2);
+    background: #f0fdf4;
+    border-color: #047857;
+    color: #047857;
+}
+
+.resque-btn--outline:active {
+    box-shadow: 0 4px 14px 0 rgba(5, 150, 105, 0.1);
+}
+
+/* Icon and text styles */
+.btn-icon {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+}
+
+.btn-text {
+    font-size: 1.1rem;
+    letter-spacing: 0.025em;
+}
+
+/* Responsive design */
+@media (max-width: 640px) {
+    .resque-btn {
+        padding: 16px 24px;
+        font-size: 1rem;
+        min-width: 240px;
+    }
+    
+    .btn-text {
+        font-size: 1rem;
+    }
+}

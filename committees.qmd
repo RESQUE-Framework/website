@@ -51,6 +51,7 @@ For computing the academic age, you should also define what counts as eligile pe
 
 ## 5. Embedding RESQUE in your hiring portal
 
+Applicants are required to upload/send their RESQUE jsons files to the committee.
 Here are some experiences and caveats how to integrate the RESQUE files/profiles in existing hiring portals:
 
 - The hiring portals of some universities do not allow the upload of `json` or `html` files. Some committees solved this problem by letting applicants send the `json` file via email. (Some applicants opened the `json` file and converted it to PDF, because only that was allowed as upload format. However, no data analysis is possible with such PDF files, we do need the original `json` files.)
@@ -68,6 +69,21 @@ We plan to provide **three types of research profile documents** that are design
 
 
 
+# Frequently Asked Questions of Hiring Committees
+
+::: {.faq}
+
+
+<details class="faq">
+<summary><strong>Can RESQUE be gamed?</strong></summary>
+Yes. Every evaluation system can and will be gamed (Goodhart's law). Here we present our considerations how we try to minimize the amount and impact of gaming RESQUE, and what you as a committee can to do mitigate and detect gaming:
+
+TBD
+</details>
+
+
+
+:::
 
 <!-- TODO
 

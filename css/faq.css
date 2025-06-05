@@ -1,0 +1,57 @@
+/* faq.css */
+
+/* Base styling for all <details> blocks */
+details.faq {
+  background: var(--quarto-callout-bg, #f9f9fc);
+  border: 1px solid var(--quarto-callout-border, #dadce0);
+  border-radius: 0.5rem;
+  margin: 1.5rem 0;
+  padding: 0.75rem 1rem;
+  transition: background 0.3s ease;
+}
+
+/* Hover effect */
+details.faq:hover {
+  background: var(--quarto-callout-bg-hover, #eef0f6);
+}
+
+/* Style the summary line */
+details.faq summary {
+  list-style: none;           /* remove default bullet */
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0;
+}
+
+/* Custom arrow indicator */
+details.faq summary::-webkit-details-marker {
+  display: none;  /* hide default marker */
+}
+details.faq summary::before {
+  content: "▶";            /* right-pointing arrow */
+  display: inline-block;
+  transition: transform 0.25s ease;
+}
+details.faq[open] summary::before {
+  transform: rotate(90deg);
+}
+
+/* Content inside the <details> */
+details.faq div {
+  margin-top: 0.75rem;
+  line-height: 1.6;
+  color: var(--quarto-callout-text, #333);
+}
+
+/* Optional: style links inside FAQ */
+details.faq a {
+  color: var(--quarto-link-color, #005cc5);
+  text-decoration: underline;
+}
+details.faq a:hover {
+  color: var(--quarto-link-hover-color, #003d99);
+}

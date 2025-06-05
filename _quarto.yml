@@ -63,6 +63,9 @@ website:
 format:
   html:
     theme: cosmo
-    css: styles.css
+    css: 
+      - css/styles.css
+      - css/faq.css
+      - css/action_button.css
     toc: false
     include-in-header: includes/matomo.html

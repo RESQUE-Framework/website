@@ -45,7 +45,7 @@ In alignment with the principles of [CoARA](https://coara.eu), this approach ack
         <h4>1. Evaluated Indicators</h4>
         <img src="images/R1.jpg" alt="Indicators Image">
         <p>✅ A set of evaluated <b>indicators</b> for aspects of research quality.</p>
-        <p><strong>👉🏼 "Buffett table" approach:</strong> Escape h-index and JIF by choosing valid indicators that suit your research assessment scenario.</p>
+        <p><strong>👉🏼 "Buffet table" approach:</strong> Escape h-index and JIF by choosing valid indicators that suit your research assessment scenario.</p>
       </div>
     </div>
 

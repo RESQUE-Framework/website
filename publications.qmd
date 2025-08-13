@@ -5,13 +5,15 @@ toc: false
 
 The *general framework* of RESQUE is described in:
 
-> [1] ![](images/OA_icon.png) Schönbrodt, F. D., Gärtner, A., Frank, M., Gollwitzer, M., Ihle, M., Mischkowski, D., Phan, L. V., Schmitt, M., Scheel, A. M., Schubert, A.-L., Steinberg, U., & Leising, D. (2022). **Responsible Research Assessment I: Implementing DORA for hiring and promotion in psychology.** [https://doi.org/10.31234/osf.io/rgh5b](https://doi.org/10.31234/osf.io/rgh5b)
+> [1] ![](images/OA_icon.png) Schönbrodt, F. D., Gärtner, A., Frank, M., Gollwitzer, M., Ihle, M., Mischkowski, D., Phan, L. V., Schmitt, M., Scheel, A. M., Schubert, A.-L., Steinberg, U., & Leising, D. (2025). **Responsible Research Assessment I: Implementing DORA and CoARA for hiring and promotion in psychology.** [https://doi.org/10.31234/osf.io/rgh5b_v2](https://doi.org/10.31234/osf.io/rgh5b_v2)
 
 ![](images/RESQUE_framework.png)
 
 The *specific RESQUE rating schemes* are described in:
 
-> [2] ![](images/OA_icon.png) Gärtner, A., Leising, D., & Schönbrodt, F. D. (2022). **Responsible Research Assessment II: A specific proposal for hiring and promotion in psychology.** [https://doi.org/10.31234/osf.io/5yexm](https://doi.org/10.31234/osf.io/5yexm)
+https://doi.org/10.31234/osf.io/5yexm_v2
+
+> [2] ![](images/OA_icon.png) Gärtner, A., Leising, D., Freyer, N., Musfeld, P., Lange, J., & Schönbrodt, F. D. (2025). **Responsible Research Assessment II: A specific proposal for hiring and promotion in psychology.** [https://doi.org/10.31234/osf.io/5yexm_v2](https://doi.org/10.31234/osf.io/5yexm_v2)
 
 and
 

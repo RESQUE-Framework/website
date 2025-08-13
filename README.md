@@ -12,6 +12,7 @@ The website is built as a static website using [Quarto](https://quarto.org/).
 
 ### General workflow
 
+- We use the [Issues](https://github.com/RESQUE-Framework/website/issues?q=sort%3Aupdated-desc+is%3Aissue+is%3Aopen) feature of the website repository to catalogue and discuss ideas and feature requests for the website. (Issues for the [Collector App](https://github.com/RESQUE-Framework/collector-app/issues?q=sort%3Aupdated-desc+is%3Aissue+is%3Aopen) and the [RESQUER](https://github.com/RESQUE-Framework/RESQUER/issues?q=sort%3Aupdated-desc+is%3Aissue+is%3Aopen) package should go into their respective repositories.)
 - Do not push to the `main` branch directly. Instead, create a new branch for your changes and open a pull request (PR) to merge it into the `main` branch.
 - Whenever a new commit is pushed to the `main` branch, the website is automatically built and deployed by a Github action. This takes ~1 min. and then the new website is live (both on the [Github Pages link](https://resque-framework.github.io/website/) and at [https://www.resque.info](https://www.resque.info))
 - Github Pages uses caching. You will only see the change when you reload the website in your browser.

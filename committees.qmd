@@ -41,7 +41,7 @@ Make clear what you expect of applicants. A possible paragraph for the job annou
 
 > Das Department Psychologie legt Wert auf transparente, belastbare und replizierbare Forschung. Bitte legen Sie in einem separaten Dokument dar, auf welche Art und Weise Sie diese Ziele bisher verfolgt haben und weiterhin tun werden (Open Science Statement). Darüber hinaus bitten wir Sie, Ihr ausgefülltes RESQUE-Profil, das Sie in der RESQUE Collector App erstellen können (https://resque-framework.github.io/collector-app/), mit den anderen Bewerbungsunterlagen einzureichen. Tragen Sie bitte 10 Publikationen ein und markieren Sie Ihre 3 besten Publikationen ("This is one of my best papers."). Exportieren Sie Ihre Daten als json-Datei ("Save to file …") und reichen Sie diese mit den anderen Unterlagen ein.
 
-Here's another version that has been proposed:
+This is another version that has been proposed:
 
 > Dem Department ist es wichtig, wissenschaftliche Leistungen in ihrer gesamten Breite zu verstehen, was neben Publikationen zum Beispiel auch veröffentlichte Datensätze und Forschungssoftware beinhaltet. Bewerberinnen und Bewerber werden daher gebeten, statt einer vollständigen Publikationsliste 12 wichtige oder repräsentative wissenschaftliche Arbeiten in der RESQUE Collector App (https://resque-framework.github.io/collector-app/) einzutragen und daraus die 3 besten Arbeiten zu nominieren. Von einer Nennung von h-Index (o.Ä.) sowie Journal Impact Faktoren bitten wir abzusehen.
 
@@ -49,10 +49,17 @@ Instead of putting the more technical information (such as the number of request
 
 For computing the academic age, you should also define what counts as eligile periods that can be deducted (such as child care). 
 
+Here are some **exemplary job ads** that included RESQUE:
+
+- Katholische Universität Eichstätt-Ingolstadt: [Professur für Entwicklungs- und Pädagogische
+Psychologie (W3)](includes/job_ads/W3_Eichstaett_EntwicklungPaedagogischePsy.pdf)
+- Johannes Gutenberg-Universität Mainz: [Juniorprofessur für Klinische Psychologie und Psychotherapie des Kindes- und Jugendalters (W1)](includes/job_W1_Mainz_KiJu.pdf.pdf)
+
 ## 5. Embedding RESQUE in your hiring portal
 
-Applicants are required to upload/send their RESQUE jsons files to the committee.
-Here are some experiences and caveats how to integrate the RESQUE files/profiles in existing hiring portals:
+Applicants are required to enter their data into the Collector App and then download a `.json` file that contains all data.
+This `.json` file then needs to be uploaded/sent to the committee.
+Here are some experiences and caveats how to integrate this upload in existing hiring portals:
 
 - The hiring portals of some universities do not allow the upload of `json` or `html` files. Some committees solved this problem by letting applicants send the `json` file via email. (Some applicants opened the `json` file and converted it to PDF, because only that was allowed as upload format. However, no data analysis is possible with such PDF files, we do need the original `json` files.)
 - The technical expertise of committee members varies. Locally opening `.html` files can be challenging for some.

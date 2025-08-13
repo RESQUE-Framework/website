@@ -1,0 +1,12 @@
+---
+title: "RESQUE Framework Presented at CoARA National Chapter Meeting in Bonn"
+date: 2024-10-08
+---
+
+The RESQUE team successfully presented our research evaluation framework and application at the third meeting of the [Coalition for Advancing Research Assessment (CoARA) National Chapter for Germany](https://coara.eu/working-groups/national-chapters/coara-national-chapter-germany/), held at the German Research Foundation (DFG) headquarters in Bonn on October 8, 2024.
+
+The meeting brought together representatives from research institutions across Germany to discuss implementation strategies for responsible research assessment. The meeting focused on experiences with CoARA action plans and practical approaches to CoARA implementation in academic appointment procedures, where the RESQUE framework offers valuable insights and tools.
+
+Our demonstration highlighted how the RESQUE app supports institutions in transitioning toward more comprehensive and equitable research evaluation practices, aligning with CoARA's principles for reforming research assessment. The positive reception from attendees underscored the growing recognition of alternative evaluation frameworks in the German research landscape.
+
+The meeting facilitated productive discussions about practical implementation challenges and solutions in research assessment reform.

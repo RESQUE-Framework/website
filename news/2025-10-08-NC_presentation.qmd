@@ -1,7 +1,6 @@
 ---
-title: "2024-10-08-NC_presentation"
-author: "Anna-Lena Schubert"
-date: 2024_10-08
+title: "RESQUE Framework Presented at CoARA National Chapter Meeting in Bonn"
+date: 2024-10-08
 ---
 
 The RESQUE team successfully presented our research evaluation framework and application at the third meeting of the [Coalition for Advancing Research Assessment (CoARA) National Chapter for Germany](https://coara.eu/working-groups/national-chapters/coara-national-chapter-germany/), held at the German Research Foundation (DFG) headquarters in Bonn on October 8, 2024.

@@ -1,0 +1,10 @@
+---
+title: "RESQUE framework refined and redeployed at Catholic University Eichstätt-Ingolstadt"
+date: 2025-03-31
+---
+
+Following successful implementation and valuable feedback from the University of Mainz pilot, the RESQUE framework has been adopted by Catholic University Eichstätt-Ingolstadt (KU) for their W3 Professor recruitment in Developmental and Educational Psychology, with several key refinements based on the Mainz experience. The job ad can be found here: [Professur für Entwicklungs- und Pädagogische Psychologie (W3)](../includes/job_ads/W3_Eichstaett_EntwicklungPaedagogischePsy.pdf).
+
+The [KU Psychology Department's](https://www.ku.de/ppf/psychologie) hiring process represents the second formal integration of RESQUE into German academic recruitment, incorporating lessons learned from candidate and committee feedback at Mainz. Notable improvements include streamlined profile creation workflows and enhanced integration with the university's emphasis on transparent, robust, and reproducible research practices. The refined version being tested at KU addresses these concerns while maintaining the framework's comprehensive evaluation capabilities.
+
+The consecutive adoptions by Mainz and Eichstätt-Ingolstadt demonstrate growing momentum for alternative research evaluation approaches in German higher education.

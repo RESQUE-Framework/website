@@ -1,0 +1,13 @@
+---
+title: "RESQUE Framework Featured in Forschung & Lehre"
+date: 2025-05-06
+---
+
+The RESQUE Framework was recently introduced in the magazine "Forschung & Lehre", published by the German Association of University Professors and Lecturers (Deutscher Hochschulverband, DHV).
+
+The article is available at the following link:
+[https://www.forschung-und-lehre.de/heftarchiv/ausgabe-5/25](https://www.forschung-und-lehre.de/heftarchiv/ausgabe-5/25).
+
+Please note: The article is available in German only and is behind a paywall.
+
+

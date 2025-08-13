@@ -11,13 +11,18 @@ The *general framework* of RESQUE is described in:
 
 The *specific RESQUE rating schemes* are described in:
 
-https://doi.org/10.31234/osf.io/5yexm_v2
-
 > [2] ![](images/OA_icon.png) Gärtner, A., Leising, D., Freyer, N., Musfeld, P., Lange, J., & Schönbrodt, F. D. (2025). **Responsible Research Assessment II: A specific proposal for hiring and promotion in psychology.** [https://doi.org/10.31234/osf.io/5yexm_v2](https://doi.org/10.31234/osf.io/5yexm_v2)
 
 and
 
-> [3] ![](images/OA_icon.png) Gärtner, A., Leising, D., & Schönbrodt, F. D. (2023). **Empfehlungen zur Bewertung wissenschaftlicher Leistungen bei Berufungsverfahren in der Psychologie.** Psychologische Rundschau, 74(3), 166–174. [https://doi.org/10.1026/0033-3042/a000630](https://doi.org/10.1026/0033-3042/a000630)
+> [3] ![](images/OA_icon.png) Leising, D., Gärtner, A., & Schönbrodt, F. D. (2025). **Responsible Research Assessment (Parts I and II): Responses to the Commentaries.**
+[https://doi.org/10.31234/osf.io/6akmr_v2](https://doi.org/10.31234/osf.io/6akmr_v2)
+
+
+and
+
+> [4] ![](images/OA_icon.png) Gärtner, A., Leising, D., & Schönbrodt, F. D. (2023). **Empfehlungen zur Bewertung wissenschaftlicher Leistungen bei Berufungsverfahren in der Psychologie.** Psychologische Rundschau, 74(3), 166–174. [https://doi.org/10.1026/0033-3042/a000630](https://doi.org/10.1026/0033-3042/a000630)
+
 
 (Note: these publications refer to version 0.1 of the RESQUE scheme; as the rating scheme will be continuously updated based on community feedback and ongoing evaluation studies, some divergences to these publications will arise).
 

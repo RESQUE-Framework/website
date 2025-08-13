@@ -1,0 +1,10 @@
+---
+title: "RESQUE framework tested at the University of Mainz"
+date: 2024-02-21
+---
+
+The RESQUE framework has moved from presentation to practical implementation, with Johannes Gutenberg University Mainz (JGU) becoming the first institution to formally integrate RESQUE profiles into their academic recruitment process.
+
+The [Department of Psychology](https://www.psychologie.uni-mainz.de/) is requiring all applicants for a Junior Professorship in Clinical Psychology and Psychotherapy for Children and Adolescents to submit a completed RESQUE profile alongside traditional application materials. This represents the first documented case of RESQUE being used in academic hiring, marking a significant milestone in the framework's development and adoption.
+
+The position posting explicitly requests candidates create their profile using the RESQUE Collector App, positioning it alongside an Open Science Statement as evidence of the university's commitment to transparent and comprehensive research evaluation practices. This implementation follows our successful presentation at the CoARA National Chapter meeting in Bonn and demonstrates the framework's transition from theoretical concept to operational tool in German higher education. The job ad can be found here: [Juniorprofessur für Klinische Psychologie und Psychotherapie des Kindes- und Jugendalters (W1)](../includes/job_W1_Mainz_KiJu.pdf.pdf).

@@ -1,6 +1,6 @@
 ---
 title: "RESQUE framework tested at the University of Mainz"
-date: 2024-02-21
+date: 2025-02-21
 ---
 
 The RESQUE framework has moved from presentation to practical implementation, with Johannes Gutenberg University Mainz (JGU) becoming the first institution to formally integrate RESQUE profiles into their academic recruitment process.

@@ -53,6 +53,7 @@ Here are some **exemplary job ads** that included RESQUE:
 
 - Katholische Universität Eichstätt-Ingolstadt: [Professur für Entwicklungs- und Pädagogische
 Psychologie (W3)](includes/job_ads/W3_Eichstaett_EntwicklungPaedagogischePsy.pdf)
+- Johannes Gutenberg-Universität Mainz: [Juniorprofessur für Klinische Psychologie und Psychotherapie des Kindes- und Jugendalters (W1)](includes/job_W1_Mainz_KiJu.pdf.pdf)
 
 ## 5. Embedding RESQUE in your hiring portal
 

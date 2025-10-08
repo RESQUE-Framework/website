@@ -1,0 +1,8 @@
+---
+title: "Uni Witten/Herdecke uses RESQUE for their Open Science Price"
+date: 2025-10-10
+---
+
+Universität Witten/Herdecke’s Department of Psychology and Psychotherapy has launched its annual [Open Science Prize](https://www.uni-wh.de/open-science-preis-des-departments-fuer-psychologie-und-psychotherapie) recognizing a single published paper that exemplifies transparency and reproducibility. The competitive award carries €300 and is open to first authors affiliated with the department; professors are excluded and students are encouraged to apply.
+
+They use a [customized version](https://resque-framework.github.io/open-science-UWH/) of the RESQUE Collector App for the application process.

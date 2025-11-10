@@ -1,0 +1,21 @@
+---
+title: "Expansion Set: Clinical Psychology"
+toc: false
+---
+
+A working group of the section "Clinical Psychology" of the German Psychological Society developed this expansion set tailored to quality aspects relevant in Clinical Psychology.
+
+Thanks to Juliane Burghardt, Jakob Fink-Lamotte, Kevin Hilbert, Niklas Jacobs, Anja Kraeplin, Anne Möllmann, and Helen Niemeyer for their work!
+
+::: {.small}
+Notes:
+
+- You can browse all available indicators (also archived versions) on [this website](https://resque-framework.github.io/collector-app/preview).
+- Although you can click the checkboxes on this preview, this does not have any effect. The checkboxes are only for visualization purposes. The actual app can be found [here](https://resque-framework.github.io/collector-app/).
+:::
+<br>
+
+
+```{=html}
+<iframe title="Indicators for publications: Clinical Psychology Expansion Set" src="https://resque-framework.github.io/collector-app/preview?path=EP&type=EP-clinical_psychology" width="100%" height="20000px"></iframe>
+```

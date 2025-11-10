@@ -4,3 +4,5 @@
 doc/
 index_files/
 RESQUE.code-workspace
+
+**/*.quarto_ipynb

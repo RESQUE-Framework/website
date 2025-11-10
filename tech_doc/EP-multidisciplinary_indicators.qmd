@@ -1,5 +1,5 @@
 ---
-title: "Multi-/Interdisciplinarity"
+title: "Expansion pack: Multi-/Interdisciplinarity"
 toc: false
 ---
 

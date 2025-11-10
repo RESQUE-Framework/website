@@ -53,6 +53,8 @@ website:
         - text: "&nbsp;&nbsp;Indicators for Research Software"
           file: tech_doc/software_indicators.qmd
         - text: "<br><b>Expansion Packs:</b><br><br>"
+        - text: "&nbsp;&nbsp;Clinical Psychology"  
+          file: tech_doc/EP-clinical_psychology.qmd
         - text: "&nbsp;&nbsp;Epistemic Goals"  
           file: tech_doc/EP-epistemic_goals_indicators.qmd
         - text: "&nbsp;&nbsp;Multi-/Interdisciplinarity"  

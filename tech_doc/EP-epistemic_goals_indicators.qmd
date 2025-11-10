@@ -1,5 +1,5 @@
 ---
-title: "Epistemic goals"
+title: "Expansion pack: Epistemic goals"
 toc: false
 ---
 

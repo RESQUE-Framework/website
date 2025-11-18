@@ -45,7 +45,11 @@ This is another version that has been proposed:
 
 > Dem Department ist es wichtig, wissenschaftliche Leistungen in ihrer gesamten Breite zu verstehen, was neben Publikationen zum Beispiel auch veröffentlichte Datensätze und Forschungssoftware beinhaltet. Bewerberinnen und Bewerber werden daher gebeten, statt einer vollständigen Publikationsliste 12 wichtige oder repräsentative wissenschaftliche Arbeiten in der RESQUE Collector App (https://resque-framework.github.io/collector-app/) einzutragen und daraus die 3 besten Arbeiten zu nominieren. Von einer Nennung von h-Index (o.Ä.) sowie Journal Impact Faktoren bitten wir abzusehen.
 
-Instead of putting the more technical information (such as the number of requested publications) in the official announcement, we can also add them to the welcome screen of your customized Collector App. This has the advantage that the text can be changed during the process (in contrast to the static text of the official announcement).
+
+
+Instead of putting the more technical information (such as the number of requested publications) in the official announcement, we recommend to add them to the welcome screen of your customized Collector App. This has the advantage that the text can be changed during the process (in contrast to the static text of the official announcement). Then a shorter paragraph in the announcement could be:
+
+> Das Institut für Psychologie legt Wert auf transparente, belastbare und replizierbare Forschung. Daher ist in einem separaten Dokument darzulegen (ca. 1-2 Seiten), auf welche Art und Weise diese Ziele bisher verfolgt wurden und geplant ist, dies weiterhin zu tun (Open Science Statement). Ein Einbringen in die Open Science Initiative der Fakultät ist erwünscht. [...] Darüber hinaus bitten wir darum, ein ausgefülltes RESQUE-Profil, das in der RESQUE Collector App erstellt werden kann []ADD CUSTOM LINK], mit den anderen Bewerbungsunterlagen einzureichen. Die genauen Instruktionen finden sich in der App.
 
 For computing the academic age, you should also define what counts as eligile periods that can be deducted (such as child care). 
 

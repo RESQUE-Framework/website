@@ -1,9 +1,9 @@
 ---
-title: "Expansion Set: Clinical Psychology"
+title: "Expansion Pack: Clinical Psychology"
 toc: false
 ---
 
-A working group of the section "Clinical Psychology" of the German Psychological Society developed this expansion set tailored to quality aspects relevant in Clinical Psychology.
+A working group of the section "Clinical Psychology" of the German Psychological Society developed this Expansion Pack tailored to quality aspects relevant in Clinical Psychology.
 
 Thanks to Juliane Burghardt, Jakob Fink-Lamotte, Kevin Hilbert, Niklas Jacobs, Anja Kraeplin, Anne Möllmann, and Helen Niemeyer for their work!
 
@@ -17,5 +17,5 @@ Notes:
 
 
 ```{=html}
-<iframe title="Indicators for publications: Clinical Psychology Expansion Set" src="https://resque-framework.github.io/collector-app/preview?path=EP&type=EP-clinical_psychology&showPoints=true" width="100%" height="20000px"></iframe>
+<iframe title="Indicators for publications: Clinical Psychology Expansion Pack" src="https://resque-framework.github.io/collector-app/preview?path=EP&type=EP-clinical_psychology&showPoints=true" width="100%" height="20000px"></iframe>
 ```

@@ -55,12 +55,16 @@ website:
         - text: "<br><b>Expansion Packs:</b><br><br>"
         - text: "&nbsp;&nbsp;Clinical Psychology"  
           file: tech_doc/EP-clinical_psychology.qmd
+        - text: "&nbsp;&nbsp;Theory-guided research and theory development"
+          file: tech_doc/EP-theorizing.qmd
         - text: "&nbsp;&nbsp;Epistemic Goals"  
           file: tech_doc/EP-epistemic_goals_indicators.qmd
         - text: "&nbsp;&nbsp;Multi-/Interdisciplinarity"  
           file: tech_doc/EP-multidisciplinary_indicators.qmd
         - text: "&nbsp;&nbsp;Practical Relevance"  
           file: tech_doc/EP-practical_relevance_indicators.qmd
+        - text: "&nbsp;&nbsp;Stimuli"  
+          file: tech_doc/EP-stimuli.qmd
 
 format:
   html:

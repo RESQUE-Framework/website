@@ -1,0 +1,18 @@
+---
+title: "Expansion Pack: Theory-guided research and theory development"
+toc: false
+---
+
+
+::: {.small}
+Notes:
+
+- You can browse all available indicators (also archived versions) on [this website](https://resque-framework.github.io/collector-app/preview).
+- Although you can click the checkboxes on this preview, this does not have any effect. The checkboxes are only for visualization purposes. The actual app can be found [here](https://resque-framework.github.io/collector-app/).
+:::
+<br>
+
+
+```{=html}
+<iframe title="Indicators for publications: Theory-guided research and theory development" src="https://resque-framework.github.io/collector-app/preview?path=dev&type=EP-theory_development&showPoints=true" width="100%" height="20000px"></iframe>
+```

@@ -104,10 +104,11 @@ With the goal to make data entry for applicants and hiring committees as easy an
 
 We plan to provide three rating schemes for ...
 
-- [**RESQUE-Pubs**](tech_doc/pub_indicators.qmd) (Publications, preprints, book chapters, etc.): ✅ v0.4.0, ready for use (but still likely to change).
+- [**RESQUE-Pubs**](tech_doc/pub_indicators.qmd) (Publications, preprints, book chapters, etc.): ✅ ready for use (but still likely to change in detail).
 - [**RESQUE-Data**](tech_doc/data_indicators.qmd) (Data sets): ❌ under development, not implemented in Collector App yet
 - [**RESQUE-Software**](tech_doc/software_indicators.qmd) (Research software): ❌ under development, not implemented in Collector App yet
 
+The core sets are supposed to be a good fit to most areas of psychology.
 
 ### ☑︎ Rating schemes: Expansion packs
 
@@ -118,11 +119,14 @@ Such EPs ideally are contributed from a legit academic community and stem from a
 
 The subdivisions of the German Psychological Society have been asked to discuss the need for discipline-specific indicators.
 
-**Available Expansion Packs:**
+**Available Expansion Packs (EPs):**
 
-- [Epistemic Goals](tech_doc/EP-epistemic_goals_indicators.qmd)
-- [Multi-/Interdisciplinarity](tech_doc/EP-multidisciplinary_indicators.qmd)
-- [Practical Relevance](tech_doc/EP-practical_relevance_indicators.qmd)
+- [EP Clinical Psychology](tech_doc/EP-clinical_psychology.qmd)
+- [Theory-guided research and theory development](tech_doc/EP-theorizing.qmd)
+- [Epistemic Goals](tech_doc/EP-epistemic_goals.qmd)
+- [Multi-/Interdisciplinarity](tech_doc/EP-multidisciplinary.qmd)
+- [Practical Relevance](tech_doc/EP-practical_relevance.qmd)
+- [Stimuli](tech_doc/EP-stimuli.qmd)
 
 
 ### 📊 The RESQUE Research Profile

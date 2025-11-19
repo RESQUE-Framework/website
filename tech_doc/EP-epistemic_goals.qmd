@@ -3,6 +3,10 @@ title: "Expansion pack: Epistemic goals"
 toc: false
 ---
 
+These indicators are based on:
+
+> Scheel, A. M., Muijlwijk, H., & Lakens, D. (2025, September 1). Epistemic Research Goals and the Role of Hypothesis Testing in Psychological Research. [https://doi.org/10.31234/osf.io/3smdk_v1](https://doi.org/10.31234/osf.io/3smdk_v1)
+
 ::: {.small}
 Notes:
 

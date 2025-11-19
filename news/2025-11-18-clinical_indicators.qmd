@@ -1,0 +1,10 @@
+---
+title: "New expansion pack for Clinical Psychology"
+date: 2025-11-18
+---
+
+A working group of the section "Clinical Psychology" of the German Psychological Society developed an Expansion Pack tailored to quality aspects relevant in Clinical Psychology.
+
+Thanks to Juliane Burghardt, Jakob Fink-Lamotte, Kevin Hilbert, Niklas Jacobs, Anja Kraeplin, Anne Möllmann, and Helen Niemeyer for their work!
+
+You can see the current version of the Clinical Expansion Pack here: [Expansion pack: Clinical Psychology](../tech_doc/EP-clinical_psychology.qmd)

@@ -131,15 +131,11 @@ The subdivisions of the German Psychological Society have been asked to discuss 
 
 ### 📊 The RESQUE Research Profile
 
-We provide R scripts that ...
+The [RESQUER](https://resque-framework.github.io/RESQUER/index.html) package for R ...
 
-1. load and aggregate multiple json files with RESQUE ratings
-2. enrich the data with other sources of information (e.g. citation counts & normalized citation counts from [OpenAlex](https://openalex.org), impact metrics from [BIP!](https://bip.imsi.athenarc.gr))
-3. provide candidate profiles that can be requested by hiring and tenure committees, or used by candidates as an attachment to their CV or website.
-
-An interactive dashboard allows to compare multiple candidates and to zoom into the profiles of specific candidates.
-
-For more information, see [here](applicants.qmd).
+1. loads and aggregates multiple json files with RESQUE ratings
+2. enriches the data with other open sources of information (e.g. citation counts & normalized citation counts from [OpenAlex](https://openalex.org), impact metrics from [BIP!](https://bip.imsi.athenarc.gr))
+3. provides candidate profiles that can be requested by hiring and tenure committees, or used by candidates as an attachment to their CV or website.
 
 
 ## Partners and supporters of RESQUE

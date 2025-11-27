@@ -5,7 +5,7 @@ toc: false
 
 A working group of the section "Clinical Psychology" of the German Psychological Society developed this Expansion Pack tailored to quality aspects relevant in Clinical Psychology.
 
-Thanks to Juliane Burghardt, Jakob Fink-Lamotte, Kevin Hilbert, Niklas Jacobs, Anja Kraeplin, Anne Möllmann, and Helen Niemeyer for their work!
+Thanks to Kevin Hilbert, Niklas Jacobs, Juliane Burghardt, Jakob Fink-Lamotte, Anja Kraeplin, Anne Möllmann, and Helen Niemeyer for their work!
 
 ::: {.small}
 Notes:

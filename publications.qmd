@@ -5,18 +5,18 @@ toc: false
 
 The *general framework* of RESQUE is described in:
 
-> [1] ![](images/OA_icon.png) Schönbrodt, F. D., Gärtner, A., Frank, M., Gollwitzer, M., Ihle, M., Mischkowski, D., Phan, L. V., Schmitt, M., Scheel, A. M., Schubert, A.-L., Steinberg, U., & Leising, D. (2025). **Responsible Research Assessment I: Implementing DORA and CoARA for hiring and promotion in psychology.** [https://doi.org/10.31234/osf.io/rgh5b_v2](https://doi.org/10.31234/osf.io/rgh5b_v2)
+> [1] ![](images/OA_icon.png) Schönbrodt, F. D., Gärtner, A., Frank, M., Gollwitzer, M., Ihle, M., Mischkowski, D., Phan, L. V., Schmitt, M., Scheel, A. M., Schubert, A.-L., Steinberg, U., & Leising, D. (2025). **Responsible Research Assessment I: Implementing DORA and CoARA for hiring and promotion in psychology.** Meta-Psychology, 9.  [https://conferences.lnu.se/index.php/metapsychology/article/view/4601](https://conferences.lnu.se/index.php/metapsychology/article/view/4601)
 
 ![](images/RESQUE_framework.png)
 
 The *specific RESQUE rating schemes* are described in:
 
-> [2] ![](images/OA_icon.png) Gärtner, A., Leising, D., Freyer, N., Musfeld, P., Lange, J., & Schönbrodt, F. D. (2025). **Responsible Research Assessment II: A specific proposal for hiring and promotion in psychology.** [https://doi.org/10.31234/osf.io/5yexm_v2](https://doi.org/10.31234/osf.io/5yexm_v2)
+> [2] ![](images/OA_icon.png) Gärtner, A., Leising, D., Freyer, N., Musfeld, P., Lange, J., & Schönbrodt, F. D. (2025). **Responsible Research Assessment II: A specific proposal for hiring and promotion in psychology.** Meta-Psychology, 9.  [https://conferences.lnu.se/index.php/metapsychology/article/view/4604](https://conferences.lnu.se/index.php/metapsychology/article/view/4604)
 
 and
 
-> [3] ![](images/OA_icon.png) Leising, D., Gärtner, A., & Schönbrodt, F. D. (2025). **Responsible Research Assessment (Parts I and II): Responses to the Commentaries.**
-[https://doi.org/10.31234/osf.io/6akmr_v2](https://doi.org/10.31234/osf.io/6akmr_v2)
+> [3] ![](images/OA_icon.png) Leising, D., Gärtner, A., & Schönbrodt, F. D. (2025). **Responsible Research Assessment (Parts I and II): Responses to the Commentaries.** Meta-Psychology, 9. 
+[https://conferences.lnu.se/index.php/metapsychology/article/view/4603](https://conferences.lnu.se/index.php/metapsychology/article/view/4603)
 
 
 and
@@ -28,5 +28,5 @@ A *short overview* can be found in:
 
 > [5] ![](images/OA_icon.png) Gärtner, A., Leising, D., Schönbrodt, F. D. (2024). **Towards responsible research assessment: How to reward research quality.** PLoS Biology 22(2):e3002553. [https://doi.org/10.1371/journal.pbio.3002553](https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.3002553)
 
-(Note: these publications refer to version 0.2 of the RESQUE scheme; as the rating scheme will be continuously updated based on community feedback and ongoing evaluation studies, some divergences to these publications will arise).
+(Note: These publications refer to version 0.2 of the RESQUE scheme. As the scheme is continuously updated based on community feedback and ongoing evaluation studies, some differences from the current version may occur.)
 

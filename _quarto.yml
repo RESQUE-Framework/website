@@ -28,11 +28,7 @@ website:
       style: "docked"
       background: light
       contents:
-        - text: "How can I enter my data and get a profile?"
-          file: applicants.qmd
-        - text: "Frequently Asked Questions of Applicants"
-          href: applicants.qmd#frequently-asked-questions-of-applicants
-        - section: "Quicklinks"
+        - section: "**Quicklinks**"
           contents:
             - text: "Go to the Collector App"
               href: https://resque-framework.github.io/collector-app/

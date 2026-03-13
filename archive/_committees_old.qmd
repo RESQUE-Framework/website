@@ -1,0 +1,103 @@
+---
+title: "📊 For hiring/tenure committees"
+toc: true
+---
+
+::: {.callout-warning}
+The RESQUE Framework is constantly evolving. If you plan to use the RESQUE Tools in your hiring process, please get [in contact](team.qmd) with us first.
+:::
+
+Here's an **overview of the necessary steps** for using a customized version of RESQUE in your hiring process:
+
+1. [Choose the set of indicators](#choose-your-indicators) (or use the default set)
+2. [Choose the weights](#choose-your-weights) (or use the default set)
+3. [Create a custom copy of the Collector App](#create-a-custom-copy-of-the-collector-app)
+4. [Provide clear instructions for your applicants](#provide-clear-instructions-for-your-applicants)
+5. Applicants enter data, download their `json` file with the data and send that file to the hiring committee.
+
+---
+
+## 1. Choose your indicators
+The RESQUE framework promotes a "buffett table approach": From the list of available indicators, hiring committees choose those which show a fit to the position and to the preferences and the research culture of the institution.
+
+We provide a **core set** with the basic quality indicators that fit to the vast majority of research in any psychological sub-discipline. This core set is recommended for all hiring committees (although any indicator can be deselected).
+
+This can be expanded by multiple **[expansion packs](tech_docs.qmd)** that contain additional indicators. These packs are tailored to specific research areas or research cultures.
+
+## 2. Choose your weights
+
+We make suggestions for weights that define how much each indicator contributes to the rigor score(s). But every committee can define their own weights.
+
+If an indicator gets the weight 0 (but is not removed from the collector app), it becomes a **descriptive** indicator. It does not contribute to any quality score, but the committee still can see the answers.
+
+## 3. Create a custom copy of the Collector App
+
+For more information, see our page on ["How to create a custom copy of the Collector App"](https://github.com/RESQUE-Framework/collector-app/blob/main/How_to_fork.md), which explains step by step where and how changes can be done.
+
+
+## 4. Provide clear instructions for your applicants
+
+Make clear what you expect of applicants. A possible paragraph for the job announcement could be:
+
+> Das Department Psychologie legt Wert auf transparente, belastbare und replizierbare Forschung. Bitte legen Sie in einem separaten Dokument dar, auf welche Art und Weise Sie diese Ziele bisher verfolgt haben und weiterhin tun werden (Open Science Statement). Darüber hinaus bitten wir Sie, Ihr ausgefülltes RESQUE-Profil, das Sie in der RESQUE Collector App erstellen können (https://resque-framework.github.io/collector-app/), mit den anderen Bewerbungsunterlagen einzureichen. Tragen Sie bitte 10 Publikationen ein und markieren Sie Ihre 3 besten Publikationen ("This is one of my best papers."). Exportieren Sie Ihre Daten als json-Datei ("Save to file …") und reichen Sie diese mit den anderen Unterlagen ein.
+
+This is another version that has been proposed:
+
+> Dem Department ist es wichtig, wissenschaftliche Leistungen in ihrer gesamten Breite zu verstehen, was neben Publikationen zum Beispiel auch veröffentlichte Datensätze und Forschungssoftware beinhaltet. Bewerberinnen und Bewerber werden daher gebeten, statt einer vollständigen Publikationsliste 12 wichtige oder repräsentative wissenschaftliche Arbeiten in der RESQUE Collector App (https://resque-framework.github.io/collector-app/) einzutragen und daraus die 3 besten Arbeiten zu nominieren. Von einer Nennung von h-Index (o.Ä.) sowie Journal Impact Faktoren bitten wir abzusehen.
+
+
+
+Instead of putting the more technical information (such as the number of requested publications) in the official announcement, we recommend to add them to the welcome screen of your customized Collector App. This has the advantage that the text can be changed during the process (in contrast to the static text of the official announcement). Then a shorter paragraph in the announcement could be:
+
+> Das Institut für Psychologie legt Wert auf transparente, belastbare und replizierbare Forschung. Daher ist in einem separaten Dokument darzulegen (ca. 1-2 Seiten), auf welche Art und Weise diese Ziele bisher verfolgt wurden und geplant ist, dies weiterhin zu tun (Open Science Statement). Ein Einbringen in die Open Science Initiative der Fakultät ist erwünscht. [...] Darüber hinaus bitten wir darum, ein ausgefülltes RESQUE-Profil, das in der RESQUE Collector App erstellt werden kann []ADD CUSTOM LINK], mit den anderen Bewerbungsunterlagen einzureichen. Die genauen Instruktionen finden sich in der App.
+
+For computing the academic age, you should also define what counts as eligile periods that can be deducted (such as child care). 
+
+Here are some **exemplary job ads** that included RESQUE:
+
+- Katholische Universität Eichstätt-Ingolstadt: [Professur für Entwicklungs- und Pädagogische
+Psychologie (W3)](includes/job_ads/W3_Eichstaett_EntwicklungPaedagogischePsy.pdf)
+- Johannes Gutenberg-Universität Mainz: [Juniorprofessur für Klinische Psychologie und Psychotherapie des Kindes- und Jugendalters (W1)](includes/job_W1_Mainz_KiJu.pdf.pdf)
+
+## 5. Embedding RESQUE in your hiring portal
+
+Applicants are required to enter their data into the Collector App and then download a `.json` file that contains all data.
+This `.json` file then needs to be uploaded/sent to the committee.
+Here are some experiences and caveats how to integrate this upload in existing hiring portals:
+
+- The hiring portals of some universities do not allow the upload of `json` or `html` files. Some committees solved this problem by letting applicants send the `json` file via email. (Some applicants opened the `json` file and converted it to PDF, because only that was allowed as upload format. However, no data analysis is possible with such PDF files, we do need the original `json` files.)
+- The technical expertise of committee members varies. Locally opening `.html` files can be challenging for some.
+
+The current approach is that the RESQUE Collector App runs independently from any hiring portal, and applicants need to manually upload their resulting `json` file into the hiring portal, or send it via email to a contact.
+
+## 6. In the committee's meeting: Helping you to make good decisions with applicant profiles
+
+We recommend that the weighting and importance of evaluative dimensions is discussed and fixed in written in the first session (within the provided RESQUE scoring categories, but also beyond, e.g. teaching, or outreach) In the first committee meeting
+
+We provide **two types of research profile documents** that are designed to help committees make informed decisions:
+
+1. **Individual profiles** (see [example](/includes/demo_profile.html)) of applicants. (status: ✅ working, but will be continuously improved and can be customized to the needs of committees)
+2. A (static) **overview sheet** of all applicants, summarizing key insights from the individual profiles. (status: ✅ a first version exists, but will be continuously improved and can be customized to the needs of committees)
+
+
+# Frequently Asked Questions of Hiring Committees
+
+::: {.faq}
+
+
+<details class="faq">
+<summary><strong>Can RESQUE be gamed?</strong></summary>
+Yes. Every evaluation system can and will be gamed (Goodhart's law). Here we present our considerations how we try to minimize the amount and impact of gaming RESQUE, and what you as a committee can to do mitigate and detect gaming:
+
+TBD
+</details>
+
+
+
+:::
+
+<!-- TODO
+
+- cf. Lange et al.: Commit to weights and indicator sets when publishing the job ad; we recommend to publish the weights and indicators along with the ad.
+- 
+ -->

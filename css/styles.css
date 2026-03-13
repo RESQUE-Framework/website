@@ -282,3 +282,218 @@ h3 {
     }
 }
 
+
+/* Committees modern draft page */
+
+.committees-modern {
+    color: #1f2937;
+}
+
+.cm-eyebrow {
+    margin: 0;
+    color: #2563eb;
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+}
+
+.cm-hero {
+    margin: 0.8rem 0 1.7rem;
+    padding: 1.4rem 1.5rem;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    border-radius: 18px;
+    background: linear-gradient(180deg, #ffffff 0%, #f5f9ff 100%);
+    box-shadow: 0 14px 30px rgba(15, 23, 42, 0.08);
+}
+
+.cm-hero__title {
+    margin: 0.2rem 0 0.55rem;
+    font-size: 1.8rem;
+    line-height: 1.2;
+}
+
+.cm-hero__lead {
+    margin: 0;
+    color: #4b5563;
+    max-width: 60ch;
+}
+
+.cm-hero__actions {
+    margin-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+}
+
+.cm-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.62rem 0.95rem;
+    border-radius: 10px;
+    font-weight: 700;
+    text-decoration: none;
+    color: #ffffff;
+    transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.cm-btn:hover,
+.cm-btn:focus {
+    color: #ffffff;
+    text-decoration: none;
+    transform: translateY(-1px);
+    filter: brightness(1.03);
+}
+
+.cm-btn--primary {
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    box-shadow: 0 5px 14px rgba(37, 99, 235, 0.28);
+}
+
+.cm-btn--secondary {
+    background: linear-gradient(135deg, #059669 0%, #047857 100%);
+    box-shadow: 0 5px 14px rgba(5, 150, 105, 0.28);
+}
+
+.cm-steps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.95rem;
+    margin: 1rem 0 1.7rem;
+}
+
+.cm-step-card {
+    display: block;
+    padding: 1rem;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    border-radius: 14px;
+    background: #ffffff;
+    box-shadow: 0 10px 22px rgba(15, 23, 42, 0.06);
+    color: #1f2937;
+    text-decoration: none;
+}
+
+.cm-step-card:hover,
+.cm-step-card:focus {
+    color: #1f2937;
+    text-decoration: none;
+    transform: translateY(-2px);
+    box-shadow: 0 14px 26px rgba(15, 23, 42, 0.1);
+}
+
+.cm-step-card h3 {
+    margin: 0.15rem 0 0.35rem;
+    font-size: 1.04rem;
+}
+
+.cm-step-card p {
+    margin: 0;
+    color: #4b5563;
+}
+
+.cm-step-card__kicker {
+    display: inline-block;
+    margin-bottom: 0.3rem;
+    font-size: 0.74rem;
+    font-weight: 700;
+    color: #2563eb;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.cm-badge {
+    display: inline-block;
+    margin-left: 0.45rem;
+    padding: 0.15rem 0.45rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    vertical-align: middle;
+}
+
+.cm-badge--ready {
+    color: #065f46;
+    background: #d1fae5;
+}
+
+.cm-badge--progress {
+    color: #92400e;
+    background: #fef3c7;
+}
+
+.cm-checklist-card {
+    margin: 1rem 0 0.8rem;
+    padding: 1rem 1.1rem;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    border-radius: 14px;
+    background: #f8fbff;
+}
+
+.cm-checklist-card h3 {
+    margin-top: 0;
+}
+
+.cm-checklist-card ul {
+    margin-bottom: 0;
+}
+
+.cm-resource-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.9rem;
+    margin: 0.95rem 0 0.25rem;
+}
+
+.cm-resource-card {
+    display: block;
+    padding: 0.95rem;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    border-radius: 12px;
+    background: #ffffff;
+    color: #1f2937;
+    text-decoration: none;
+}
+
+.cm-resource-card:hover,
+.cm-resource-card:focus {
+    text-decoration: none;
+    color: #1f2937;
+    border-color: rgba(52, 152, 219, 0.4);
+    background: #f8fbff;
+}
+
+.cm-resource-card h3 {
+    margin: 0 0 0.3rem;
+    font-size: 1rem;
+}
+
+.cm-resource-card p {
+    margin: 0;
+    color: #4b5563;
+}
+
+.cm-contact-cta {
+    margin-top: 1.3rem;
+    padding: 1.15rem 1.2rem;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #eff6ff 0%, #f0fdf4 100%);
+    border: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+.cm-contact-cta h2 {
+    margin: 0 0 0.35rem;
+}
+
+.cm-contact-cta p {
+    margin: 0 0 0.8rem;
+    color: #4b5563;
+}
+
+@media (max-width: 991.98px) {
+    .cm-steps-grid,
+    .cm-resource-grid {
+        grid-template-columns: 1fr;
+    }
+}
+

@@ -157,7 +157,7 @@ Committee recommendation:
 ```{=html}
 <section class="cm-resource-grid">
   <a class="cm-resource-card" href="includes/job_ads/W3_Eichstaett_EntwicklungPaedagogischePsy.pdf"><h3>Example job ad: Eichstätt (W3)</h3><p>Professur für Entwicklungs- und Pädagogische Psychologie.</p></a>
-  <a class="cm-resource-card" href="includes/job_W1_Mainz_KiJu.pdf.pdf"><h3>Example job ad: Mainz (W1)</h3><p>Klinische Psychologie und Psychotherapie des Kindes- und Jugendalters.</p></a>
+  <a class="cm-resource-card" href="includes/job_ads/W1_Mainz_KiJu.pdf"><h3>Example job ad: Mainz (W1)</h3><p>Klinische Psychologie und Psychotherapie des Kindes- und Jugendalters.</p></a>
   <a class="cm-resource-card" href="/includes/demo_profile.html"><h3>Demo applicant profile</h3><p>Preview the profile format used in committee review.</p></a>
   <a class="cm-resource-card" href="https://github.com/RESQUE-Framework/collector-app/blob/main/How_to_fork.md"><h3>Collector App customization guide</h3><p>Step-by-step setup for a committee-specific app copy.</p></a>
 </section>
@@ -174,7 +174,7 @@ Yes. Any evaluation system can be gamed (Goodhart’s law). The practical mitiga
 
 <details class="faq">
 <summary><strong>How many publications should we request?</strong></summary>
-Use a number that is (a) realistic for applicants and feasible for committee review, and specify how many “best papers” should be nominated. Typically, the 10 best publications are requested for a full professorship position; but this number might be lower for, e.g., junior professorship positions.
+Use a number that is realistic for applicants and feasible for committee review, and specify how many “best papers” should be nominated. Typically, the 10 best publications are requested for a full professorship position; but this number might be lower for, e.g., junior professorship positions.
 </details>
 
 <details class="faq">

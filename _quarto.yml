@@ -24,6 +24,20 @@ website:
         file: tech_docs.qmd
 
   sidebar:
+    - title: "👩‍🔬 For applicants"
+      style: "docked"
+      background: light
+      contents:
+        - text: "How can I enter my data and get a profile?"
+          file: applicants.qmd
+        - text: "Frequently Asked Questions of Applicants"
+          href: applicants.qmd#frequently-asked-questions-of-applicants
+        - section: "Quicklinks"
+          contents:
+            - text: "Go to the Collector App"
+              href: https://resque-framework.github.io/collector-app/
+            - text: "Go to the Profile Builder"
+              href: https://shiny.psy.lmu.de/felix/RESQUE_profile/
     - title: "📔 Publications"
       style: "docked"
       background: light

@@ -70,14 +70,14 @@ Here are some experiences and caveats how to integrate this upload in existing h
 
 The current approach is that the RESQUE Collector App runs independently from any hiring portal, and applicants need to manually upload their resulting `json` file into the hiring portal, or send it via email to a contact.
 
-## Applicant profiles: Helping you to make good decisions
+## 6. In the committee's meeting: Helping you to make good decisions with applicant profiles
 
-We plan to provide **three types of research profile documents** that are designed to help committees make informed decisions:
+We recommend that the weighting and importance of evaluative dimensions is discussed and fixed in written in the first session (within the provided RESQUE scoring categories, but also beyond, e.g. teaching, or outreach) In the first committee meeting
+
+We provide **two types of research profile documents** that are designed to help committees make informed decisions:
 
 1. **Individual profiles** (see [example](/includes/demo_profile.html)) of applicants. (status: ✅ working, but will be continuously improved and can be customized to the needs of committees)
 2. A (static) **overview sheet** of all applicants, summarizing key insights from the individual profiles. (status: ✅ a first version exists, but will be continuously improved and can be customized to the needs of committees)
-3. A dynamic **Shiny App** allowing to compare all applicants on multiple dimensions. (status: 🔧 prototype available in the [RESQUER package](https://github.com/RESQUE-Framework/RESQUER), but not ready for production yet)
-
 
 
 # Frequently Asked Questions of Hiring Committees

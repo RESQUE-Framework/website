@@ -31,7 +31,7 @@ main.content > header#title-block-header {
 </section>
 ```
 
-::: {.callout-warning}
+::: {.callout-note}
 The RESQUE Framework is evolving. If you plan to use RESQUE in a hiring process, please [contact us](team.qmd) first.
 :::
 

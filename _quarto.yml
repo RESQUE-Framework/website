@@ -24,7 +24,8 @@ website:
         file: tech_docs.qmd
 
   sidebar:
-    - title: "👩‍🔬 For applicants"
+    - id: applicants
+      title: "👩‍🔬 For applicants"
       style: "docked"
       background: light
       contents:

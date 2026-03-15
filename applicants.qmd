@@ -1,6 +1,7 @@
 ---
 title: "👩‍🔬 For applicants"
 toc: false
+sidebar: applicants
 ---
 
 ::: {.callout-warning title="Warning: App still under development" collapse="true"}
@@ -46,7 +47,7 @@ Choose the option that matches your use case:
             </svg>
             Create a RESQUE profile for a single publication
         </span>
-        <span class="applicant-path-card__text">Generate a profile for a publication that you can include at the journal submission, or as an open quality checklist in the supplementary material.</span>
+        <span class="applicant-path-card__text">Generate a profile for a publication that you can include at journal submission or as an open quality checklist in the supplementary material.</span>
     </a>
 </div>
 ```
@@ -93,7 +94,7 @@ This option is useful when you want to present a concise RESQUE profile of your 
 3. (optional, but recommended) Save the data as a local `json` file (**Save to file ...**), so that you can later change values.
 
 
-You can use that report as an in-depth, transparent quality checklist. Include it when you submit your manuscript to a journal, or include it in the supplementary material. Some journals already require a "Open Research Practice" statement - with this RESQUE checklist, you get a much more detailed summary of your open research practices.
+You can use that report as an in-depth quality checklist. Include it when you submit your manuscript to a journal, or include it in the supplementary material. Some journals already require an "Open Research Practice" statement - with this RESQUE checklist, you get a much more detailed summary of your open research practices.
 :::
 
 

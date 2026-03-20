@@ -22,11 +22,11 @@ main.content > header#title-block-header {
   <div class="cm-hero__content">
     <p class="cm-eyebrow">Committee workflow</p>
     <h2 class="cm-hero__title">Set up RESQUE for your hiring committee in six steps</h2>
-    <p class="cm-hero__lead">With a few steps, committees can set up a customized version of the RESQUE tool that fits their needs.</p>
-    <div class="cm-hero__actions">
-      <!-- <a class="cm-btn cm-btn--primary" href="https://github.com/RESQUE-Framework/collector-app/blob/main/How_to_fork.md">Open the technical setup guide</a> -->
-      <a class="cm-btn cm-btn--secondary" href="/includes/demo_profile.html">View demo profile</a>
-    </div>
+  </div>
+  <p class="cm-hero__lead">With a few steps, committees can set up a customized version of the RESQUE tool that fits their needs. To facilitate and improve decision-making, committees receive (a) individual profiles for each applicant and (b) a comparative overview sheet of all candidates.</p>
+  <div class="cm-hero__actions">
+    <a class="cm-btn cm-btn--primary" href="/includes/demo_profile.html">Profile of a single person (demo)</a>
+    <a class="cm-btn cm-btn--secondary" href="/includes/demo_overview_anonymous.html">Overview of multiple anonymous candidates (demo)</a>
   </div>
 </section>
 ```
@@ -41,18 +41,18 @@ If you want to use RESQUE in your hiring committee, go through these steps:
 
 ```{=html}
 <section class="cm-steps-grid">
-  <a class="cm-step-card" href="#step-1-choose-your-indicators"><span class="cm-step-card__kicker">Step 1</span><h3>🧩 Choose indicators</h3><p>Select indicators from the core set and the expansion packs.</p></a>
-  <a class="cm-step-card" href="#step-2-choose-your-weights"><span class="cm-step-card__kicker">Step 2</span><h3>⚖️ Choose weights</h3><p>Adjust the weights that you want to give to single indicators.</p></a>
-  <a class="cm-step-card" href="#step-3-create-your-custom-collector-app-copy"><span class="cm-step-card__kicker">Step 3</span><h3>🛠️ Customize app</h3><p>Create a committee-specific Collector App copy.</p></a>
-  <a class="cm-step-card" href="#step-4-publish-applicant-instructions"><span class="cm-step-card__kicker">Step 4</span><h3>📣 Publish instructions</h3><p>Give applicants clear submission rules.</p></a>
-  <a class="cm-step-card" href="#step-5-set-up-portal-upload"><span class="cm-step-card__kicker">Step 5</span><h3>📤 Set up upload</h3><p>Ensure your hiring portal accepts the required files.</p></a>
-  <a class="cm-step-card" href="#step-6-use-profiles-in-the-committee-meeting"><span class="cm-step-card__kicker">Step 6</span><h3>👥 Use profiles</h3><p>Use profile outputs in structured committee discussions.</p></a>
+  <a class="cm-step-card" href="#step-1-choose-your-indicators-and-weights"><span class="cm-step-card__kicker">Step 1</span><h3>🧩 Choose indicators</h3><p>Select indicators and decide whether to keep default scoring weights.</p></a>
+  <a class="cm-step-card" href="#step-2-create-your-custom-collector-app-copy"><span class="cm-step-card__kicker">Step 2</span><h3>🛠️ Customize app</h3><p>Create a committee-specific Collector App copy.</p></a>
+  <a class="cm-step-card" href="#step-3-create-applicant-instructions"><span class="cm-step-card__kicker">Step 3</span><h3>📣 Create instructions</h3><p>Give applicants clear submission rules.</p></a>
+  <a class="cm-step-card" href="#step-4-set-up-portal-upload"><span class="cm-step-card__kicker">Step 4</span><h3>📤 Integrate into your hiring portal</h3><p>Ensure your hiring portal accepts the required files.</p></a>
+  <a class="cm-step-card" href="#step-5-test-the-application"><span class="cm-step-card__kicker">Step 5</span><h3>🧪 Test the application</h3><p>Run a full test submission before opening the call.</p></a>
+  <a class="cm-step-card" href="#step-6-use-profiles-in-the-committee-meeting"><span class="cm-step-card__kicker">Step 6</span><h3>👥 Use RESQUE profiles</h3><p>Use RESQUE profiles in structured committee discussions.</p></a>
 </section>
 ```
 
 ## Step-by-step setup
 
-### Step 1: Choose your indicators {#step-1-choose-your-indicators}
+### Step 1: Choose your indicators and weights {#step-1-choose-your-indicators-and-weights}
 
 **Why this matters:** Indicators define what counts as research quality for this position.
 
@@ -60,29 +60,28 @@ If you want to use RESQUE in your hiring committee, go through these steps:
 
 - Use only the core set, or add expansion packs.
 - Keep or deselect indicators that do not match the position profile.
+- Keep default indicator weights, or decide where weighting adjustments are needed.
 
 ::: {.callout-note title="Default recommendation"}
 Start with the core set, then add only those expansion indicators that fit the research culture of the field.
 :::
 
-You can inspect both the core packs and the expansion packs in the [Technical documentation](tech_docs.qmd)
+You can inspect both the core packs and the expansion packs in the [Technical documentation](tech_docs.qmd). In most cases, committees start with the core set for publications and deselect some of the indicators. Go through the [complete indicator list](https://resque-framework.github.io/collector-app/preview.html?type=pubs&showPoints=true&showLabels=true) and record all indicator labels that you want to exclude. The labels are at the start of each line in grey and brackets, such as: <span style="font-size: small; color: gray;">[P_Sample_Location]</span>
 
-### Step 2: Choose your weights {#step-2-choose-your-weights}
-
-**Why this matters:** Some indicators have scores attached, which then are aggregated into category scores across all entered publications. The standard categories displayed in the RESQUE profile are: "Open Data", "Open Materials", "Preregistration","Reproducible Code 6 Verification", and "Methodological Rigor". RESQUE gives you the opportunity to change the weight of each single indicator.
+Some indicators have scores attached, which then are aggregated into category scores across all entered publications. The standard categories displayed in the RESQUE profile are: "Open Data", "Open Materials", "Preregistration", "Reproducible Code & Verification", and "Methodological Rigor". RESQUE gives you the opportunity to change the weight of each single indicator, but committees typically stick to the default values.
 
 
 ::: {.callout-note title="Default recommendation"}
-Changing the individual scores requires a bit more technical expertise and in-depth discussions in the committee. Unless there are good reasons to change a score, we recommend to stay with the default values, which are the result of quite extensive discussions in a large community. The easier way is to fully remove an indicator (see Step 1) if it is not relevant for this position.
+Changing the individual scores requires a bit more technical expertise and in-depth discussions in the committee. Unless there are good reasons to change a score, we recommend to stay with the default values, which are the result of quite extensive discussions in a large community. The easier way is to fully remove an indicator if it is not relevant for a certain position.
 :::
 
-### Step 3: Create your custom Collector App copy {#step-3-create-your-custom-collector-app-copy}
+### Step 2: Create your custom Collector App copy {#step-2-create-your-custom-collector-app-copy}
 
 **Why this matters:** A custom app version lets you align instructions and chosen indicators with your specific call, and you get a unique link that can be announced in the call.
 
 **What to configure:**
 
-- Intro text and institution-specific wording
+- [Welcome text](https://github.com/RESQUE-Framework/collector-app/blob/main/config/instructions.md) and institution-specific wording
 - Min/max number of requested publications
 - Branding (logo/colors) if desired
 
@@ -92,7 +91,7 @@ Primary guide: [How to fork and customize the Collector App](https://github.com/
 As long as RESQUE is still under development, we offer individual help for setting up the custom app. If you plan to use RESQUE in a hiring process, please [contact us](team.qmd) first.
 :::
 
-### Step 4: Publish applicant instructions {#step-4-publish-applicant-instructions}
+### Step 3: Create applicant instructions {#step-3-create-applicant-instructions}
 
 **Why this matters:** Clear instructions reduce submission errors and follow-up communication.
 
@@ -110,23 +109,34 @@ As long as RESQUE is still under development, we offer individual help for setti
 > Dem Department ist es wichtig, wissenschaftliche Leistungen in ihrer gesamten Breite zu verstehen, was neben Publikationen zum Beispiel auch veröffentlichte Datensätze und Forschungssoftware beinhaltet. Bewerberinnen und Bewerber werden daher gebeten, statt einer vollständigen Publikationsliste 12 wichtige oder repräsentative wissenschaftliche Arbeiten in der RESQUE Collector App ([CUSTOM LINK]) einzutragen und daraus die 3 besten Arbeiten zu nominieren. Die genauen Instruktionen finden sich unter dem angegebenen Link.
 :::
 
-### Step 5: Set up portal upload {#step-5-set-up-portal-upload}
+### Step 4: Integrate into your hiring portal {#step-4-set-up-portal-upload}
 
 **Why this matters:** The committees collects the json data files from all applicants. These are used to create individual profiles and an overview sheet. Make the submission process as frictionless as possible for the applicants.
 
 ::: {.callout-warning title="Common portal issue"}
-Some hiring portals do not allow `.json` uploads. If this happens, define a fallback route (e.g., dedicated committee email) and communicate it clearly.
+Some hiring portals do not allow `.json` uploads, but only PDF files. If this happens, define a fallback route (e.g., dedicated committee email address) and communicate it clearly.
 :::
 
 Checklist:
 
 - Portal accepts `.json`
 - Backup route is defined if `.json` is blocked
-- Instructions explicitly request original `json` file (not the `html` file from the RESQUE Profile Builder, and also not the `json` file converted into a PDF)
+- Instructions explicitly request the original `json` file (not the `html` file from the RESQUE Profile Builder, and also not a `json` file converted into a PDF)
 
-### Step 6: Create profiles and use them in the committee meeting {#step-6-use-profiles-in-the-committee-meeting}
+### Step 5: Test the application {#step-5-test-the-application}
 
-**Why this matters:** RESQUE profiles add relevant information about the applicants and support more consistent and transparent discussion.
+**Why this matters:** A trial run helps you catch technical or wording issues before applicants start submitting files.
+
+Checklist:
+
+- Complete at least one end-to-end dummy submission
+- Verify that the custom app link works from the job ad
+- Confirm that the exported `json` can be uploaded through the portal (or fallback route)
+- Confirm that the committee can generate the profile from the submitted `json`, either locally with the [RESQUER package](https://resque-framework.github.io/RESQUER/), or with the [Profile Builder App](https://shiny.psy.lmu.de/felix/RESQUE_profile/)
+
+### Step 6 (after the applications are submitted): Create profiles and use them in the committee meeting {#step-6-use-profiles-in-the-committee-meeting}
+
+**Why this matters:** RESQUE profiles add structured and relevant information about the applicants and support more evidence-based and transparent discussion.
 
 We currently provide two profiles:
 
@@ -143,7 +153,7 @@ Committee recommendation:
 <section class="cm-checklist-card">
   <h3>Before opening the call</h3>
   <ul>
-    <li>✅ Custom Collector App created</li>
+    <li>✅ Custom Collector App created with chosen sets of indicators</li>
     <li>✅ File formats and upload route tested (i.e., `json` files can be uploaded in the hiring portal, or alternatively via email)</li>
     <li>✅ Applicant instructions include custom Collector App link</li>
     <li>✅ Committee contact for technical issues defined</li>

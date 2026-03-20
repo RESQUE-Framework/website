@@ -22,11 +22,11 @@ main.content > header#title-block-header {
   <div class="cm-hero__content">
     <p class="cm-eyebrow">Committee workflow</p>
     <h2 class="cm-hero__title">Set up RESQUE for your hiring committee in six steps</h2>
-    <p class="cm-hero__lead">With a few steps, committees can set up a customized version of the RESQUE tool that fits their needs.</p>
-    <div class="cm-hero__actions">
-      <!-- <a class="cm-btn cm-btn--primary" href="https://github.com/RESQUE-Framework/collector-app/blob/main/How_to_fork.md">Open the technical setup guide</a> -->
-      <a class="cm-btn cm-btn--secondary" href="/includes/demo_profile.html">View demo profile</a>
-    </div>
+  </div>
+  <p class="cm-hero__lead">With a few steps, committees can set up a customized version of the RESQUE tool that fits their needs. To facilitate and improve decision-making, committees receive (a) individual profiles for each applicant and (b) a comparative overview sheet of all candidates.</p>
+  <div class="cm-hero__actions">
+    <a class="cm-btn cm-btn--primary" href="/includes/demo_profile.html">Profile of a single person (demo)</a>
+    <a class="cm-btn cm-btn--secondary" href="/includes/demo_overview_anonymous.html">Overview of multiple anonymous candidates (demo)</a>
   </div>
 </section>
 ```

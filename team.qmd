@@ -16,7 +16,7 @@ This project is a community effort with many contributors:
 - Maximilian Ernst, Aaron Peikert and Felix Schönbrodt had a leading role in the development of the **RESQUE-Software** scheme
 - Nele Freyer, Jens Lange, Daniel Leising, Philipp Musfeld, and Felix Schönbrodt developed the [indicators for formal theory development and evaluation](tech_doc/EP-theorizing.qmd)
 - Juliane Burghardt, Jakob Fink-Lamotte, Kevin Hilbert, Niklas Jacobs, Anja Kraeplin, Anne Möllmann, Helen Niemeyer, and Felix Schönbrodt developed the [Expansion Pack Clinical Psychology](tech_doc/EP-clinical_psychology.qmd)
-- Daniel Nüst contributed to the **code verification indicator** in RESQUE-Pubs
+- Daniel Nüst contributed to the **code verification indicator** in RESQUE-Pub
 - Dejana Damjanovic, Gracia Prüm, Elina Schweppe, Leonie Vogelsang and Martin Wiehr coded many papers and created the first "norm" sample
 
 ... all who wrote [comments](publications.qmd) with many constructive suggestions

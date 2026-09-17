@@ -104,7 +104,7 @@ With the goal to make data entry for applicants and hiring committees as easy an
 
 We plan to provide three rating schemes for ...
 
-- [**RESQUE-Pubs**](tech_doc/pub_indicators.qmd) (Publications, preprints, book chapters, etc.): ✅ ready for use (but still likely to change in detail).
+- [**RESQUE-Pub**](tech_doc/pub_indicators.qmd) (Publications, preprints, book chapters, etc.): ✅ ready for use (but still likely to change in detail).
 - [**RESQUE-Data**](tech_doc/data_indicators.qmd) (Data sets): ❌ under development, not implemented in Collector App yet
 - [**RESQUE-Software**](tech_doc/software_indicators.qmd) (Research software): ❌ under development, not implemented in Collector App yet
 

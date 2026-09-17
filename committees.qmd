@@ -66,7 +66,7 @@ If you want to use RESQUE in your hiring committee, go through these steps:
 Start with the core set, then add only those expansion indicators that fit the research culture of the field.
 :::
 
-You can inspect both the core packs and the expansion packs in the [Technical documentation](tech_docs.qmd). In most cases, committees start with the core set for publications and deselect some of the indicators. Go through the [complete indicator list](https://resque-framework.github.io/collector-app/preview.html?type=pubs&showPoints=true&showLabels=true) and record all indicator labels that you want to exclude. The labels are at the start of each line in grey and brackets, such as: <span style="font-size: small; color: gray;">[P_Sample_Location]</span>
+You can inspect both the core packs and the expansion packs in the [Technical documentation](tech_docs.qmd). In most cases, committees start with the core set for publications and deselect some of the indicators. Go through the [complete indicator list](https://resque-framework.github.io/collector-app/preview.html?type=pub&showPoints=true&showLabels=true) and record all indicator labels that you want to exclude. The labels are at the start of each line in grey and brackets, such as: <span style="font-size: small; color: gray;">[P_Sample_Location]</span>
 
 Some indicators have scores attached, which then are aggregated into category scores across all entered publications. The standard categories displayed in the RESQUE profile are: "Open Data", "Open Materials", "Preregistration", "Reproducible Code & Verification", and "Methodological Rigor". RESQUE gives you the opportunity to change the weight of each single indicator, but committees typically stick to the default values.
 

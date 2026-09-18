@@ -84,6 +84,7 @@ Changing the individual scores requires a bit more technical expertise and in-de
 - [Welcome text](https://github.com/RESQUE-Framework/collector-app/blob/main/config/instructions.md) and institution-specific wording
 - Min/max number of requested publications
 - Branding (logo/colors) if desired
+- Changes in indicator selection (if any)
 
 Primary guide: [How to fork and customize the Collector App](https://github.com/RESQUE-Framework/collector-app/blob/main/How_to_fork.md)
 
@@ -119,9 +120,9 @@ Some hiring portals do not allow `.json` uploads, but only PDF files. If this ha
 
 Checklist:
 
-- Portal accepts `.json`
+- Portal accepts `.json` files for upload
 - Backup route is defined if `.json` is blocked
-- Instructions explicitly request the original `json` file (not the `html` file from the RESQUE Profile Builder, and also not a `json` file converted into a PDF)
+- Instructions explicitly request the *original* `json` file (not the `html` file from the RESQUE Profile Builder, and also not a `json` file converted into a PDF)
 
 ### Step 5: Test the application {#step-5-test-the-application}
 
@@ -131,7 +132,7 @@ Checklist:
 
 - Complete at least one end-to-end dummy submission
 - Verify that the custom app link works from the job ad
-- Confirm that the exported `json` can be uploaded through the portal (or fallback route)
+- Confirm that the exported `json` file can be uploaded through the portal (or fallback route)
 - Confirm that the committee can generate the profile from the submitted `json`, either locally with the [RESQUER package](https://resque-framework.github.io/RESQUER/), or with the [Profile Builder App](https://shiny.psy.lmu.de/felix/RESQUE_profile/)
 
 ### Step 6 (after the applications are submitted): Create profiles and use them in the committee meeting {#step-6-use-profiles-in-the-committee-meeting}
@@ -141,7 +142,7 @@ Checklist:
 We currently provide two profiles:
 
 1. **Individual profiles** for each applicant (<a href="/includes/demo_profile.html">View demo profile</a>)
-2. **Overview sheet** across applicants (demo)
+2. **Overview sheet** across applicants (<a href="/includes/demo_overview_anonymous.html">View demo overview sheet</a>)
 
 Committee recommendation:
 
@@ -154,8 +155,8 @@ Committee recommendation:
   <h3>Before opening the call</h3>
   <ul>
     <li>✅ Custom Collector App created with chosen sets of indicators</li>
-    <li>✅ File formats and upload route tested (i.e., `json` files can be uploaded in the hiring portal, or alternatively via email)</li>
-    <li>✅ Applicant instructions include custom Collector App link</li>
+    <li>✅ File formats and upload route tested (i.e., <tt>json</tt> files can be uploaded in the hiring portal, or alternatively via email)</li>
+    <li>✅ Applicant instructions include the <i>custom</i> Collector App link</li>
     <li>✅ Committee contact for technical issues defined</li>
     <li>✅ Trial run completed with at least one dummy submission</li>
   </ul>
@@ -179,7 +180,7 @@ Committee recommendation:
 
 <details class="faq">
 <summary><strong>Can RESQUE be gamed?</strong></summary>
-Yes. Any evaluation system can be gamed (Goodhart’s law). The practical mitigation strategy is to combine indicator-based structure with a qualitative discussion and human judgement.
+Yes. Any evaluation system can be gamed (Goodhart’s law). However, we think that RESQUE indicators are closer to the actual behavior than traditional bibliometric indicators. E-g-, if you "game" the Open Data indicator by retrospectively uploading your raw data and providing a codebook, the goal is actually achieved. The practical mitigation strategy for gaming strategies is to combine indicator-based structure with a qualitative discussion and human judgement.
 </details>
 
 <details class="faq">

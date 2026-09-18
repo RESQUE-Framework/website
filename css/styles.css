@@ -496,3 +496,12 @@ h3 {
     }
 }
 
+
+/* visually separate screenshots from the page background */
+.screenshot {
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.16);
+  padding: 4px;
+}

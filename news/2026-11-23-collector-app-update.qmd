@@ -1,0 +1,16 @@
+---
+title: "Collector App update: Pack validation, presets, and clearer defaults"
+date: 2026-11-23
+description: "The Collector App helps administrators check customized indicator sets with a validator and now supports preset answers."
+---
+
+The [Collector App](https://resque-framework.github.io/collector-app/) has new options for tailoring forms and making them easier to complete.
+
+**Pack validation** helps hiring committees and other administrators check their customized app before using it. After loading the selected packs, the app checks whether indicators referenced in conditions and scoring are available. For example, it can flag an indicator that another question needs but that was excluded in `config.yaml`. It also reports invalid preset answers and warns about missing references in display text.
+
+If the validator finds errors, it automatically opens a report with details; warnings are also available in the report. Administrators can run the check again using **Pack validation** in the menu footer. The validator checks references and presets, but does not check every possible error or evaluate scoring rules. See the [pack validation guide](https://github.com/RESQUE-Framework/collector-app/blob/fbf199a074a1ca2b89e82038774428e4a940e772/documentation/RESQUE-Pack-Guide.md#browser-pack-validation) for details.
+
+**More informative startup errors** help administrators diagnose invalid configuration files or problems loading packs instead of seeing a blank page. For YAML syntax errors, the message can point to the relevant line and column. The pack preview also warns when the configuration cannot be read.
+
+**Preset answers** let administrators provide answers to selected questions in their configuration. The questions are then hidden from respondents, while the preset answers can still be used in the form and scoring. This can simplify a form for a committee when the same answer applies to every applicant. For example, the indicator `meta$RaterType` can be preset to `Applicant` in hiring situations, as no external raters are present in this application context.
+See the [preset documentation](https://github.com/RESQUE-Framework/collector-app/blob/fbf199a074a1ca2b89e82038774428e4a940e772/documentation/Config-Presets.md) for setup details.
